@@ -3,6 +3,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SearchCard from "../components/SearchCard";
 import ChatCard from "../components/ChatCard";
+import CommunityCard from "../components/CommunityCard";
+import MypageCard from "../components/MypageCard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -20,6 +22,8 @@ const Home = () => {
       <Author>프랑스 수필가, 죠세프 수베르</Author>
       <SearchCard />
       <ChatCard />
+      <CommunityCard />
+      <MypageCard />
     </>
   );
 };
