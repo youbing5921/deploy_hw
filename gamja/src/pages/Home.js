@@ -65,11 +65,6 @@ const Author = styled.div`
 const Cards = styled.div`
   padding: 109px 40px 38px 40px;
   display: grid;
-  /* grid-template-columns: repeat(2, minmax(200px, 1fr)); */
   grid-template-columns: repeat(2, 248px);
   gap: 23px;
-
-  /* @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  } */
 `;
