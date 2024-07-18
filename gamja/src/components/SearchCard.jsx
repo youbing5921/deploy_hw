@@ -16,7 +16,7 @@ const SearchCard = ({ onBtnClick }) => {
 export default SearchCard;
 
 const SearchCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/help.svg"});
+  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn1.svg"});
   border: none;
   width: 248px;
   height: 409.624px;

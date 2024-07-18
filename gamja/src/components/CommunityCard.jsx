@@ -17,7 +17,7 @@ const CommunityCard = ({ onBtnClick }) => {
 export default CommunityCard;
 
 const CommunityCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/community.svg"});
+  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn3.svg"});
   border: none;
   width: 248px;
   height: 380px;

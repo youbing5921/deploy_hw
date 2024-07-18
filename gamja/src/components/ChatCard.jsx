@@ -17,7 +17,7 @@ const ChatCard = ({ onBtnClick }) => {
 export default ChatCard;
 
 const ChatCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/chat.svg"});
+  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn2.svg"});
   border: none;
   width: 248px;
   height: 409.624px;

@@ -16,7 +16,7 @@ const MypageCard = ({ onBtnClick }) => {
 export default MypageCard;
 
 const MypageCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/mypage.svg"});
+  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn4.svg"});
   border: none;
   width: 248px;
   height: 380px;
