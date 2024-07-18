@@ -19,6 +19,6 @@ export default App;
 
 const Wrapper = styled.div`
   background-color: #f8f8f8;
-  max-width: 600px;
+  width: 600px;
   margin: 0 auto;
 `;

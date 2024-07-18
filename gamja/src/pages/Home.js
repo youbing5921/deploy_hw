@@ -20,10 +20,12 @@ const Home = () => {
         가르치는 것은 <br /> 두 번 배우는 것이다
       </Comment>
       <Author>프랑스 수필가, 죠세프 수베르</Author>
-      <SearchCard />
-      <ChatCard />
-      <CommunityCard />
-      <MypageCard />
+      <Cards>
+        <SearchCard />
+        <ChatCard />
+        <CommunityCard />
+        <MypageCard />
+      </Cards>
     </>
   );
 };
@@ -58,4 +60,16 @@ const Author = styled.div`
   line-height: normal;
   margin-left: 40px;
   margin-top: 22px;
+`;
+
+const Cards = styled.div`
+  padding: 109px 40px 38px 40px;
+  display: grid;
+  /* grid-template-columns: repeat(2, minmax(200px, 1fr)); */
+  grid-template-columns: repeat(2, 248px);
+  gap: 23px;
+
+  /* @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  } */
 `;

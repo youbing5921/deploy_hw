@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const ChatCard = ({ txt, onBtnClick }) => {
+const ChatCard = ({ onBtnClick }) => {
   return (
     <ChatCardBtn onClick={onBtnClick}>
       <Title>채팅하기</Title>
       <SubTitle>
-        멘토들과 이야기꽃을
+        멘티들과 이야기꽃을
         <br />
         피워보세요!
       </SubTitle>
@@ -27,6 +27,7 @@ const ChatCardBtn = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* margin-bottom: 23px; */
 `;
 
 const Title = styled.div`

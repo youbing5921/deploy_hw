@@ -4,10 +4,10 @@ import styled from "styled-components";
 const SearchCard = ({ onBtnClick }) => {
   return (
     <SearchCardBtn onClick={onBtnClick}>
-      <Title>멘토 찾기</Title>
+      <Title>멘티 돕기</Title>
       <SubTitle>
-        든든한 멘토님들이 당신의
-        <br /> 고민해결을 위해 모였습니다!
+        멘토님들의 소중한 <br />
+        조언을 기다리고 있어요!
       </SubTitle>
     </SearchCardBtn>
   );
