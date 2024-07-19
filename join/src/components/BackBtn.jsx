@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const BackBtnStyle = styled.img.attrs({
+const BackBtn = styled.img.attrs({
   src: "/img/backBtn.svg",
 })`
   width: 45px;
@@ -9,9 +8,5 @@ const BackBtnStyle = styled.img.attrs({
   margin: 23px 0px 23px 0px;
   cursor: pointer;
 `;
-
-const BackBtn = () => {
-  return <BackBtnStyle />;
-};
 
 export default BackBtn;
