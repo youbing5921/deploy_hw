@@ -16,16 +16,18 @@ const Home = () => {
           alt="로고이미지"
         />
       </LogoBar>
-      <Comment>
-        가르치는 것은 <br /> 두 번 배우는 것이다
-      </Comment>
-      <Author>프랑스 수필가, 죠세프 수베르</Author>
-      <Cards>
-        <SearchCard />
-        <ChatCard />
-        <CommunityCard />
-        <MypageCard />
-      </Cards>
+      <Container>
+        <Quote>
+          가르치는 것은 <br /> 두 번 배우는 것이다
+        </Quote>
+        <Author>프랑스 수필가, 죠세프 수베르</Author>
+        <Cards>
+          <SearchCard />
+          <ChatCard />
+          <CommunityCard />
+          <MypageCard />
+        </Cards>
+      </Container>
     </>
   );
 };
@@ -42,14 +44,16 @@ const LogoImg = styled.img`
   height: 60px;
 `;
 
-const Comment = styled.div`
+const Container = styled.div`
+  padding: 40px;
+`;
+
+const Quote = styled.div`
   color: #494949;
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: 40px;
-  margin-right: 225px;
 `;
 
 const Author = styled.div`
@@ -58,12 +62,11 @@ const Author = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-  margin-left: 40px;
   margin-top: 22px;
 `;
 
 const Cards = styled.div`
-  padding: 109px 40px 38px 40px;
+  padding-top: 109px;
   display: grid;
   grid-template-columns: repeat(2, 248px);
   gap: 23px;
