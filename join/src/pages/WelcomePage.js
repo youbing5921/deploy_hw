@@ -5,6 +5,33 @@ import MainContainer from "../components/MainContainer";
 import BackBtn from "../components/BackBtn";
 import { useNavigate } from "react-router-dom";
 
+const WelcomePage = () => {
+  const navigate = useNavigate();
+
+  return (
+    <MainContainer>
+      <BackBtn />
+      <HelloText>
+        안녕하세요!
+        <br />
+        <span>보이지</span>에 오신 것을
+        <br />
+        환영합니다.
+      </HelloText>
+      <NewBottonBtn onClick={() => navigate("/join/tos")}>
+        회원가입하기
+      </NewBottonBtn>
+      <HorizonLine
+        text="이미 보이져에요! "
+        bold="로그인하기"
+        onClick={() => navigate("/login")}
+      />
+    </MainContainer>
+  );
+};
+
+export default WelcomePage;
+
 const HelloText = styled.p`
   color: #494949;
   font-family: Pretendard;
@@ -50,30 +77,3 @@ const HorizonLine = ({ text, bold, onClick }) => {
 const NewBottonBtn = styled(BottonBtn)`
   margin: auto auto 31px auto;
 `;
-
-const WelcomePage = () => {
-  const navigate = useNavigate();
-
-  return (
-    <MainContainer>
-      <BackBtn />
-      <HelloText>
-        안녕하세요!
-        <br />
-        <span>보이지</span>에 오신 것을
-        <br />
-        환영합니다.
-      </HelloText>
-      <NewBottonBtn onClick={() => navigate("/join/tos")}>
-        회원가입하기
-      </NewBottonBtn>
-      <HorizonLine
-        text="이미 보이져에요! "
-        bold="로그인하기"
-        onClick={() => navigate("/login")}
-      />
-    </MainContainer>
-  );
-};
-
-export default WelcomePage;
