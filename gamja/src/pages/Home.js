@@ -1,33 +1,75 @@
 import styled from "styled-components";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import QuoteSection from "../components/QuoteSection";
 import SearchCard from "../components/SearchCard";
 import ChatCard from "../components/ChatCard";
 import CommunityCard from "../components/CommunityCard";
 import MypageCard from "../components/MypageCard";
+import mentorBtn1 from "../images/mentorBtn1.svg";
+import menteeBtn1 from "../images/menteeBtn1.svg";
+import mentorBtn2 from "../images/mentorBtn2.svg";
+import menteeBtn2 from "../images/menteeBtn2.svg";
+import mentorBtn3 from "../images/mentorBtn3.svg";
+import menteeBtn3 from "../images/menteeBtn3.svg";
+import mentorBtn4 from "../images/mentorBtn4.svg";
+import menteeBtn4 from "../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const userType = "mentee";
   return (
     <>
-      <LogoBar onClick={() => navigate("/home")}>
-        <LogoImg
-          src={process.env.PUBLIC_URL + "/mentorLogo.svg"}
-          alt="로고이미지"
-        />
-      </LogoBar>
-      <Container>
-        <Quote>
-          가르치는 것은 <br /> 두 번 배우는 것이다
-        </Quote>
-        <Author>프랑스 수필가, 죠세프 수베르</Author>
-        <Cards>
-          <SearchCard />
-          <ChatCard />
-          <CommunityCard />
-          <MypageCard />
-        </Cards>
-      </Container>
+      {userType === "mentor" ? (
+        <>
+          <LogoBar>
+            <LogoImg
+              src={process.env.PUBLIC_URL + "/mentorLogo.svg"}
+              alt="로고이미지"
+              onClick={() => navigate("/home")}
+            />
+          </LogoBar>
+          <Container>
+            <QuoteSection />
+            <Cards>
+              <SearchCard
+                txt={"멘티 돕기"}
+                subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
+                fontColor={"#fff"}
+                bgImg={mentorBtn1}
+              />
+              <ChatCard txt={"멘티"} fontColor={"#fff"} bgImg={mentorBtn2} />
+              <CommunityCard fontColor={"#fff"} bgImg={mentorBtn3} />
+              <MypageCard fontColor={"#fff"} bgImg={mentorBtn4} />
+            </Cards>
+          </Container>
+        </>
+      ) : (
+        <>
+          <LogoBar>
+            <LogoImg
+              src={process.env.PUBLIC_URL + "/menteeLogo.svg"}
+              alt="로고이미지"
+              onClick={() => navigate("/home")}
+            />
+          </LogoBar>
+          <Container>
+            <QuoteSection />
+            <Cards>
+              <SearchCard
+                txt={"멘토 찾기"}
+                subtxt={
+                  "든든한 멘토님들이 당신의 \n고민해결을 위해 모였습니다!"
+                }
+                bgImg={menteeBtn1}
+              />
+              <ChatCard txt={"멘토"} bgImg={menteeBtn2} />
+              <CommunityCard bgImg={menteeBtn3} />
+              <MypageCard bgImg={menteeBtn4} />
+            </Cards>
+          </Container>
+        </>
+      )}
     </>
   );
 };
@@ -46,23 +88,6 @@ const LogoImg = styled.img`
 
 const Container = styled.div`
   padding: 40px;
-`;
-
-const Quote = styled.div`
-  color: #494949;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
-
-const Author = styled.div`
-  color: #a4a4a4;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-top: 22px;
 `;
 
 const Cards = styled.div`

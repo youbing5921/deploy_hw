@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import mentorBtn4 from "../images/mentorBtn4.svg";
-// import menteeBtn4 from "../images/menteeBtn4.svg";
 
-const MypageCard = ({ onBtnClick }) => {
+const MypageCard = ({ onBtnClick, fontColor, bgImg }) => {
   return (
-    <MypageCardBtn onClick={onBtnClick}>
-      <Title>마이페이지</Title>
-      <SubTitle>
+    <MypageCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
+      <Title fontColor={fontColor}>마이페이지</Title>
+      <SubTitle fontColor={fontColor}>
         내 정보를 확인하고 <br />
         수정할 수 있어요!
       </SubTitle>
@@ -18,7 +16,7 @@ const MypageCard = ({ onBtnClick }) => {
 export default MypageCard;
 
 const MypageCardBtn = styled.div`
-  background-image: url(${mentorBtn4});
+  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
   border: none;
   width: 248px;
   height: 380px;
@@ -31,20 +29,20 @@ const MypageCardBtn = styled.div`
 `;
 
 const Title = styled.div`
-  color: #fff;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
+  color: ${(props) => props.fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
   width: 152px;
-  color: #fff;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-align: center;
+  color: ${(props) => props.fontColor || "#494949"};
 `;

@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import mentorBtn2 from "../images/mentorBtn2.svg";
-// import menteeBtn2 from "../images/menteeBtn2.svg";
 
-const ChatCard = ({ onBtnClick }) => {
+const ChatCard = ({ txt, onBtnClick, fontColor, bgImg }) => {
   return (
-    <ChatCardBtn onClick={onBtnClick}>
-      <Title>채팅하기</Title>
-      <SubTitle>
-        멘티들과 이야기꽃을
+    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
+      <Title fontColor={fontColor}>채팅하기</Title>
+      <SubTitle fontColor={fontColor}>
+        {txt}들과 이야기꽃을
         <br />
         피워보세요!
       </SubTitle>
@@ -19,7 +17,7 @@ const ChatCard = ({ onBtnClick }) => {
 export default ChatCard;
 
 const ChatCardBtn = styled.div`
-  background-image: url(${mentorBtn2});
+  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
   border: none;
   width: 248px;
   height: 409.624px;
@@ -29,24 +27,23 @@ const ChatCardBtn = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin-bottom: 23px; */
 `;
 
 const Title = styled.div`
-  color: #fff;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
+  color: ${(props) => props.fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
   width: 132px;
-  color: #fff;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-align: center;
+  color: ${(props) => props.fontColor || "#494949"};
 `;

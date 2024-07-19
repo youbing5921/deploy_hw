@@ -1,16 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import mentorBtn1 from "../images/mentorBtn1.svg";
-// import menteeBtn1 from "../images/menteeBtn1.svg";
 
-const SearchCard = ({ onBtnClick }) => {
+const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, bgImg }) => {
   return (
-    <SearchCardBtn onClick={onBtnClick}>
-      <Title>멘티 돕기</Title>
-      <SubTitle>
-        멘토님들의 소중한 <br />
-        조언을 기다리고 있어요!
-      </SubTitle>
+    <SearchCardBtn onClick={onBtnClick} bgImg={bgImg}>
+      <Title fontColor={fontColor}>{txt}</Title>
+      <SubTitle fontColor={fontColor}>{subtxt}</SubTitle>
     </SearchCardBtn>
   );
 };
@@ -18,7 +13,7 @@ const SearchCard = ({ onBtnClick }) => {
 export default SearchCard;
 
 const SearchCardBtn = styled.div`
-  background-image: url(${mentorBtn1});
+  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
   border: none;
   width: 248px;
   height: 409.624px;
@@ -32,20 +27,21 @@ const SearchCardBtn = styled.div`
 `;
 
 const Title = styled.div`
-  color: #fff;
   font-size: 35px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
+  color: ${(props) => props.fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
+  white-space: pre-line;
   width: 224px;
-  color: #fff;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-align: center;
+  color: ${(props) => props.fontColor || "#494949"};
 `;
