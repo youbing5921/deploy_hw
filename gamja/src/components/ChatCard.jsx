@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import mentorBtn2 from "../images/mentorBtn2.svg";
+// import menteeBtn2 from "../images/menteeBtn2.svg";
 
 const ChatCard = ({ onBtnClick }) => {
   return (
@@ -17,7 +19,7 @@ const ChatCard = ({ onBtnClick }) => {
 export default ChatCard;
 
 const ChatCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn2.svg"});
+  background-image: url(${mentorBtn2});
   border: none;
   width: 248px;
   height: 409.624px;

@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <LogoBar onClick={() => navigate("/home")}>
         <LogoImg
-          src={process.env.PUBLIC_URL + "/images/mentorLogo.svg"}
+          src={process.env.PUBLIC_URL + "/mentorLogo.svg"}
           alt="로고이미지"
         />
       </LogoBar>

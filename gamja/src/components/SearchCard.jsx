@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import mentorBtn1 from "../images/mentorBtn1.svg";
+// import menteeBtn1 from "../images/menteeBtn1.svg";
 
 const SearchCard = ({ onBtnClick }) => {
   return (
@@ -16,7 +18,7 @@ const SearchCard = ({ onBtnClick }) => {
 export default SearchCard;
 
 const SearchCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn1.svg"});
+  background-image: url(${mentorBtn1});
   border: none;
   width: 248px;
   height: 409.624px;

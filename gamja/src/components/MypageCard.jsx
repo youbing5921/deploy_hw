@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import mentorBtn4 from "../images/mentorBtn4.svg";
+// import menteeBtn4 from "../images/menteeBtn4.svg";
 
 const MypageCard = ({ onBtnClick }) => {
   return (
@@ -16,7 +18,7 @@ const MypageCard = ({ onBtnClick }) => {
 export default MypageCard;
 
 const MypageCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn4.svg"});
+  background-image: url(${mentorBtn4});
   border: none;
   width: 248px;
   height: 380px;

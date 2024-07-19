@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import mentorBtn3 from "../images/mentorBtn3.svg";
+// import menteeBtn3 from "../images/menteeBtn3.svg";
 
 const CommunityCard = ({ onBtnClick }) => {
   return (
@@ -17,7 +19,7 @@ const CommunityCard = ({ onBtnClick }) => {
 export default CommunityCard;
 
 const CommunityCardBtn = styled.div`
-  background-image: url(${process.env.PUBLIC_URL + "/images/mentorBtn3.svg"});
+  background-image: url(${mentorBtn3});
   border: none;
   width: 248px;
   height: 380px;
