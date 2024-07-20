@@ -5,6 +5,7 @@ import MainContainer from "../components/MainContainer";
 import BottonBtn from "../components/BottonBtn";
 import BackBtn from "../components/BackBtn";
 import Checkbox from "../components/Checkbox";
+import TitleOval from "../components/TitleOval";
 
 const tos = [
   { id: 0, text: "약관에 모두 동의", required: false, detail: null },
@@ -56,7 +57,7 @@ const TermsOfServicePage = () => {
   return (
     <MainContainer>
       <BackBtn />
-      <TosOval>이용약관 동의</TosOval>
+      <TitleOval>이용약관 동의</TitleOval>
       <TitleText>새로운 계정을 만들어볼까요?</TitleText>
       <SideText>이용약관에 동의해주세요.</SideText>
       {tos.map((element) => {
@@ -74,24 +75,24 @@ const TermsOfServicePage = () => {
 
 export default TermsOfServicePage;
 
-const TosOval = styled.p`
-  display: inline-flex;
-  width: 109px;
-  height: 24px;
-  padding: 10px 30px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  margin: 63px 0 0 0;
+// const TosOval = styled.p`
+//   display: inline-flex;
+//   width: 109px;
+//   height: 24px;
+//   padding: 10px 30px;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 100px;
+//   margin: 63px 0 0 0;
 
-  color: #fff;
-  font-size: 17px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  font-family: "Pretendard";
-  background-color: rgba(73, 73, 73, 0.2);
-`;
+//   color: #fff;
+//   font-size: 17px;
+//   font-style: normal;
+//   font-weight: 700;
+//   line-height: normal;
+//   font-family: "Pretendard";
+//   background-color: rgba(73, 73, 73, 0.2);
+// `;
 
 const TitleText = styled.div`
   color: #494949;
@@ -127,4 +128,7 @@ const NotiText = styled.div`
 
 const NewBottonBtn = styled(BottonBtn)`
   margin: 0 auto 56px auto;
+  &:hover {
+    background-color: #494949;
+  }
 `;

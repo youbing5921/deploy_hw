@@ -75,5 +75,6 @@ const HorizonLine = ({ text, bold, onClick }) => {
 };
 
 const NewBottonBtn = styled(BottonBtn)`
+  background-color: #494949;
   margin: auto auto 31px auto;
 `;

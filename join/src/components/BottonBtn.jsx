@@ -10,7 +10,7 @@ const BottonBtn = styled.button`
   gap: 10px;
   cursor: pointer;
   border-radius: 20px;
-  background: #494949;
+  background: #dbdbdb;
   border: 0px;
 
   color: #fff;
