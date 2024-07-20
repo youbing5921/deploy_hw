@@ -6,34 +6,39 @@ const Checkbox = ({ element }) => {
   const text = element.text;
   const required = element.required;
   const detail = element.detail;
-  const inputAll = Array.prototype.slice.call(
-    document.querySelectorAll(".smallInput")
-  );
-  const container = document.querySelector("#totalInputDiv");
+  // const [tosTrue, setTosTrue] = useState([false, false, false, false, false]);
 
-  const onTotalChange = () => {
-    if (container.style.backgroundColor !== "rgb(73, 73, 73)") {
-      container.style.backgroundColor = "#494949";
-      inputAll.forEach((elt) => {
-        elt.checked = true;
-      });
-    } else {
-      container.style.backgroundColor = "#f8f8f8";
-      inputAll[5].checked = false;
-    }
-  };
+  // const inputAll = Array.prototype.slice.call(
+  //   document.querySelectorAll(".smallInput")
+  // );
+  // const container = document.querySelector("#totalInputDiv");
 
-  const onChange = () => {
-    // 여기부터 수정 필요
-    inputAll.every((elt) => {
-      if (elt.checked === false) {
-        console.log(elt);
-      } else {
-        container.querySelector("input").checked = true;
-        console.log(elt);
-      }
-    });
-  };
+  // const onTotalChange = () => {
+  //   if (container.style.backgroundColor !== "rgb(73, 73, 73)") {
+  //     container.style.backgroundColor = "#494949";
+  //     inputAll.forEach((elt) => {
+  //       elt.checked = true;
+  //       console.log(elt.id);
+  //     });
+  //   } else {
+  //     container.style.backgroundColor = "#f8f8f8";
+  //     inputAll[5].checked = false;
+  //   }
+  // };
+
+  // const onChange = (e) => {
+  //   // 여기부터 수정 필요
+  //   const checked = e.target.checked;
+  //   //console.log(typeof (e.target.id - 1));
+  //   const newArr = [...tosTrue];
+
+  //   newArr[e.target.id - 1] = checked;
+  //   console.log(newArr);
+
+  //   setTosTrue(newArr);
+  //   //tosTrue[e.target.id - 1] = checked;
+  //   console.log(tosTrue);
+  // };
 
   if (id === 0) {
     return (
@@ -42,20 +47,37 @@ const Checkbox = ({ element }) => {
           id={id}
           type="checkbox"
           required={required}
-          onChange={onTotalChange}
+          // onChange={onTotalChange}
         />
         <TotalLabelStyle htmlFor={id}>{text}</TotalLabelStyle>
       </TotalInputDiv>
+    );
+  } else if (required) {
+    return (
+      <InputDiv>
+        <input
+          id={id}
+          className="required"
+          type="checkbox"
+          required={true}
+          // onChange={onChange}
+        />
+        <LabelStyle htmlFor={id}>{text}</LabelStyle>
+        {detail !== null ? (
+          <DetailStyle id={id} href="" detail={detail}>
+            보기
+          </DetailStyle>
+        ) : null}
+      </InputDiv>
     );
   } else {
     return (
       <InputDiv>
         <input
           id={id}
-          className="smallInput"
           type="checkbox"
-          required={required}
-          onChange={onChange}
+          required={false}
+          // onChange={onChange}
         />
         <LabelStyle htmlFor={id}>{text}</LabelStyle>
         {detail !== null ? (

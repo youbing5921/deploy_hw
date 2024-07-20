@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainContainer from "../components/MainContainer";
@@ -38,10 +38,27 @@ const tos = [
 const TermsOfServicePage = () => {
   const navigate = useNavigate();
 
+  const onClick = () => {
+    const inputRequired = Array.prototype.slice.call(
+      document.querySelectorAll(".required")
+    );
+    if (
+      inputRequired.every((elt) => {
+        return elt.checked;
+      })
+    ) {
+      navigate("/join/info");
+    } else {
+      alert("필수 약관을 모두 동의해주시기 바랍니다.");
+    }
+  };
+
   return (
     <MainContainer>
       <BackBtn />
       <TosOval>이용약관 동의</TosOval>
+      <TitleText>새로운 계정을 만들어볼까요?</TitleText>
+      <SideText>이용약관에 동의해주세요.</SideText>
       {tos.map((element) => {
         return <Checkbox element={element} key={element.id} />;
       })}
@@ -50,7 +67,7 @@ const TermsOfServicePage = () => {
         <br />
         동의 거부 시 회원가입이 제한됩니다.
       </NotiText>
-      <NewBottonBtn onClick={() => navigate("/join/tos")}>다음</NewBottonBtn>
+      <NewBottonBtn onClick={onClick}>다음</NewBottonBtn>
     </MainContainer>
   );
 };
@@ -74,6 +91,27 @@ const TosOval = styled.p`
   line-height: normal;
   font-family: "Pretendard";
   background-color: rgba(73, 73, 73, 0.2);
+`;
+
+const TitleText = styled.div`
+  color: #494949;
+  font-family: Pretendard;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding-top: 30px;
+`;
+
+const SideText = styled.div`
+  color: #7f7f7f;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 9px;
+  padding-bottom: 63px;
 `;
 
 const NotiText = styled.div`
