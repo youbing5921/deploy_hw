@@ -14,6 +14,7 @@ const InputInfo = () => {
   const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
+  const [step, setStep] = useState(1);
 
   // 이름 관련 함수
   const onNameChange = (e) => {
@@ -69,7 +70,6 @@ const InputInfo = () => {
       titleOval.style.backgroundColor = "#7F7F7F";
       bottonBtn.style.backgroundColor = "#494949";
       setBtnDisabled(false);
-      console.log("change");
     } else {
       titleOval.style.backgroundColor = "rgba(73, 73, 73, 0.2)";
       bottonBtn.style.backgroundColor = "rgba(73, 73, 73, 0.2)";
@@ -77,10 +77,33 @@ const InputInfo = () => {
     }
   };
 
+  const backToStep = () => {
+    const mainContainerList = document.querySelectorAll(".mainContainer");
+    if (step !== 1) {
+      mainContainerList[step - 2].id = "";
+      mainContainerList[step - 1].id = "hide";
+      setStep((present) => present + 1);
+    } else {
+      console.log("초기 사이트로 이동");
+    }
+  };
+
+  const moveToStep = () => {
+    const mainContainerList = document.querySelectorAll(".mainContainer");
+    if (step !== mainContainerList.length) {
+      mainContainerList[step].id = "";
+      mainContainerList[step - 1].id = "hide";
+      setStep((present) => present + 1);
+    } else {
+      console.log("다음 사이트로 이동");
+    }
+  };
+
   return (
     <>
-      <MainContainer id="hide">
-        <BackBtn />
+      {/* Step1 : 이름 입력하기 */}
+      <MainContainer id="" className="mainContainer">
+        <BackBtn onClick={backToStep} />
         <TitleOval className="titleOval1">이름 입력하기</TitleOval>
         <NameInput>
           제 이름은
@@ -95,12 +118,19 @@ const InputInfo = () => {
           />
           입니다.
         </NameInput>
-        <NewBottonBtn id="1" disabled={btnDisabled} className="newBottonBtn1">
+        <NewBottonBtn
+          id="1"
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn1"
+        >
           다음
         </NewBottonBtn>
       </MainContainer>
-      <MainContainer id="hide">
-        <BackBtn />
+
+      {/* Step2 : 생년월일 입력하기 */}
+      <MainContainer id="hide" className="mainContainer">
+        <BackBtn onClick={backToStep} />
         <TitleOval className="titleOval2">생년월일 입력하기</TitleOval>
         <BirthInput>
           저는
@@ -136,12 +166,19 @@ const InputInfo = () => {
           <br />
           태어났어요.
         </BirthInput>
-        <NewBottonBtn id={2} className="newBottonBtn2">
+        <NewBottonBtn
+          id={2}
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn2"
+        >
           다음
         </NewBottonBtn>
       </MainContainer>
-      <MainContainer>
-        <BackBtn />
+
+      {/* Step3 : 이메일 입력하기 */}
+      <MainContainer id="hide" className="mainContainer">
+        <BackBtn onClick={backToStep} />
         <TitleOval className="titleOval3">이메일 입력하기</TitleOval>
         <ColorfulInput>
           제 이메일은
@@ -155,7 +192,12 @@ const InputInfo = () => {
           />
           입니다.
         </ColorfulInput>
-        <NewBottonBtn id="3" disabled={btnDisabled} className="newBottonBtn3">
+        <NewBottonBtn
+          id="3"
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn3"
+        >
           다음
         </NewBottonBtn>
       </MainContainer>
