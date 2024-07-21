@@ -1,58 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const Checkbox = ({ element }) => {
+const Checkbox = ({ element, onChange }) => {
   const id = element.id;
   const text = element.text;
   const required = element.required;
   const detail = element.detail;
-  // const [tosTrue, setTosTrue] = useState([false, false, false, false, false]);
 
-  // const inputAll = Array.prototype.slice.call(
-  //   document.querySelectorAll(".smallInput")
-  // );
-  // const container = document.querySelector("#totalInputDiv");
-
-  // const onTotalChange = () => {
-  //   if (container.style.backgroundColor !== "rgb(73, 73, 73)") {
-  //     container.style.backgroundColor = "#494949";
-  //     inputAll.forEach((elt) => {
-  //       elt.checked = true;
-  //       console.log(elt.id);
-  //     });
-  //   } else {
-  //     container.style.backgroundColor = "#f8f8f8";
-  //     inputAll[5].checked = false;
-  //   }
-  // };
-
-  // const onChange = (e) => {
-  //   // 여기부터 수정 필요
-  //   const checked = e.target.checked;
-  //   //console.log(typeof (e.target.id - 1));
-  //   const newArr = [...tosTrue];
-
-  //   newArr[e.target.id - 1] = checked;
-  //   console.log(newArr);
-
-  //   setTosTrue(newArr);
-  //   //tosTrue[e.target.id - 1] = checked;
-  //   console.log(tosTrue);
-  // };
-
-  if (id === 0) {
-    return (
-      <TotalInputDiv id="totalInputDiv">
-        <input
-          id={id}
-          type="checkbox"
-          required={required}
-          // onChange={onTotalChange}
-        />
-        <TotalLabelStyle htmlFor={id}>{text}</TotalLabelStyle>
-      </TotalInputDiv>
-    );
-  } else if (required) {
+  if (required) {
     return (
       <InputDiv>
         <input
@@ -60,7 +15,7 @@ const Checkbox = ({ element }) => {
           className="required"
           type="checkbox"
           required={true}
-          // onChange={onChange}
+          onChange={onChange}
         />
         <LabelStyle htmlFor={id}>{text}</LabelStyle>
         {detail !== null ? (
@@ -73,12 +28,7 @@ const Checkbox = ({ element }) => {
   } else {
     return (
       <InputDiv>
-        <input
-          id={id}
-          type="checkbox"
-          required={false}
-          // onChange={onChange}
-        />
+        <input id={id} type="checkbox" required={false} onChange={onChange} />
         <LabelStyle htmlFor={id}>{text}</LabelStyle>
         {detail !== null ? (
           <DetailStyle id={id} href="" detail={detail}>
@@ -116,19 +66,6 @@ const InputDiv = styled.div`
   }
 `;
 
-const TotalInputDiv = styled(InputDiv)`
-  border-radius: 20px;
-  border: 1px solid #a4a4a4;
-  input[type="checkbox"] {
-    &:checked + label {
-      color: #fff;
-    }
-    &:checked + #totalInputDiv {
-      background: #494949;
-    }
-  }
-`;
-
 const LabelStyle = styled.label`
   color: #a4a4a4;
   font-family: Pretendard;
@@ -136,10 +73,6 @@ const LabelStyle = styled.label`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-`;
-
-const TotalLabelStyle = styled(LabelStyle)`
-  /* color: #fff; */
 `;
 
 const DetailStyle = styled.a`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainContainer from "../components/MainContainer";
@@ -8,7 +8,6 @@ import Checkbox from "../components/Checkbox";
 import TitleOval from "../components/TitleOval";
 
 const tos = [
-  { id: 0, text: "약관에 모두 동의", required: false, detail: null },
   { id: 1, text: "(필수) 만 14세 이상입니다", required: true, detail: null },
   {
     id: 2,
@@ -38,61 +37,57 @@ const tos = [
 
 const TermsOfServicePage = () => {
   const navigate = useNavigate();
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
-  const onClick = () => {
+  const onChange = () => {
     const inputRequired = Array.prototype.slice.call(
       document.querySelectorAll(".required")
     );
+    const titleOval = document.querySelector(".titleOval");
+    const newBottonBtn = document.querySelector(".newBottonBtn");
     if (
       inputRequired.every((elt) => {
         return elt.checked;
       })
     ) {
-      navigate("/join/info");
+      titleOval.style.backgroundColor = "#7F7F7F";
+      newBottonBtn.style.backgroundColor = "#494949";
+      setBtnDisabled(false);
     } else {
-      alert("필수 약관을 모두 동의해주시기 바랍니다.");
+      titleOval.style.backgroundColor = "rgba(73, 73, 73, 0.2)";
+      newBottonBtn.style.backgroundColor = "#dbdbdb";
+      setBtnDisabled(true);
     }
   };
 
   return (
     <MainContainer>
       <BackBtn />
-      <TitleOval>이용약관 동의</TitleOval>
+      <TitleOval className="titleOval">이용약관 동의</TitleOval>
       <TitleText>새로운 계정을 만들어볼까요?</TitleText>
       <SideText>이용약관에 동의해주세요.</SideText>
       {tos.map((element) => {
-        return <Checkbox element={element} key={element.id} />;
+        return (
+          <Checkbox element={element} key={element.id} onChange={onChange} />
+        );
       })}
       <NotiText>
         개인정보 수집 및 이용에 대한 동의를 거부할 권리가 있으며,
         <br />
         동의 거부 시 회원가입이 제한됩니다.
       </NotiText>
-      <NewBottonBtn onClick={onClick}>다음</NewBottonBtn>
+      <NewBottonBtn
+        className="newBottonBtn"
+        disabled={btnDisabled}
+        onClick={() => navigate("/join/info")}
+      >
+        다음
+      </NewBottonBtn>
     </MainContainer>
   );
 };
 
 export default TermsOfServicePage;
-
-// const TosOval = styled.p`
-//   display: inline-flex;
-//   width: 109px;
-//   height: 24px;
-//   padding: 10px 30px;
-//   align-items: center;
-//   justify-content: center;
-//   border-radius: 100px;
-//   margin: 63px 0 0 0;
-
-//   color: #fff;
-//   font-size: 17px;
-//   font-style: normal;
-//   font-weight: 700;
-//   line-height: normal;
-//   font-family: "Pretendard";
-//   background-color: rgba(73, 73, 73, 0.2);
-// `;
 
 const TitleText = styled.div`
   color: #494949;
@@ -128,7 +123,4 @@ const NotiText = styled.div`
 
 const NewBottonBtn = styled(BottonBtn)`
   margin: 0 auto 56px auto;
-  &:hover {
-    background-color: #494949;
-  }
 `;

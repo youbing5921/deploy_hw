@@ -19,10 +19,6 @@ const BottonBtn = styled.button`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-
-  &:hover {
-    background-color: #494949;
-  }
 `;
 
 export default BottonBtn;
