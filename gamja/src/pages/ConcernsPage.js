@@ -23,6 +23,7 @@ export default ConcernsPage;
 const Container = styled.div`
   background-color: #ededed;
   width: 600px;
+  height: 1230px;
   margin: 0 auto;
 `;
 
