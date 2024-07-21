@@ -1,7 +1,8 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import styled from "styled-components";
+import Home from "./pages/Home";
+import ConcernsPage from "./pages/ConcernsPage";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <Wrapper>
         <Routes>
           <Route path="/home" element={<Home />}></Route>
+          <Route path="/concerns" element={<ConcernsPage />}></Route>
         </Routes>
       </Wrapper>
     </>

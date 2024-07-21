@@ -17,14 +17,14 @@ import menteeBtn4 from "../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentee";
+  const userType = "mentor";
   return (
     <>
       {userType === "mentor" ? (
         <>
           <LogoBar>
             <LogoImg
-              src={process.env.PUBLIC_URL + "/mentorLogo.svg"}
+              src={process.env.PUBLIC_URL + "/img/mentorLogo.svg"}
               alt="로고이미지"
               onClick={() => navigate("/home")}
             />
@@ -37,6 +37,7 @@ const Home = () => {
                 subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
                 fontColor={"#fff"}
                 bgImg={mentorBtn1}
+                onBtnClick={() => navigate("/concerns")}
               />
               <ChatCard txt={"멘티"} fontColor={"#fff"} bgImg={mentorBtn2} />
               <CommunityCard fontColor={"#fff"} bgImg={mentorBtn3} />
@@ -48,7 +49,7 @@ const Home = () => {
         <>
           <LogoBar>
             <LogoImg
-              src={process.env.PUBLIC_URL + "/menteeLogo.svg"}
+              src={process.env.PUBLIC_URL + "/img/menteeLogo.svg"}
               alt="로고이미지"
               onClick={() => navigate("/home")}
             />
