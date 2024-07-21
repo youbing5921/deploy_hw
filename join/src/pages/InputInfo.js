@@ -13,6 +13,8 @@ const InputInfo = () => {
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
+  const [userId, setUserId] = useState("");
+  const [password, setPassword] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [step, setStep] = useState(1);
 
@@ -60,6 +62,22 @@ const InputInfo = () => {
     changeBtnColor(condition, titleOval3, newBottonBtn3);
   }, [email]);
 
+  // 아이디 관련 함수
+  useEffect(() => {
+    const titleOval4 = document.querySelector(".titleOval4");
+    const newBottonBtn4 = document.querySelector(".newBottonBtn4");
+    const condition = userId.length > 0;
+    changeBtnColor(condition, titleOval4, newBottonBtn4);
+  }, [userId]);
+
+  // 비밀번호 관련 함수
+  useEffect(() => {
+    const titleOval5 = document.querySelector(".titleOval5");
+    const newBottonBtn5 = document.querySelector(".newBottonBtn5");
+    const condition = password.length > 0;
+    changeBtnColor(condition, titleOval5, newBottonBtn5);
+  }, [password]);
+
   // 공통 함수
   const fitLength = (value, maxlength) => {
     return value.length > maxlength ? value.substr(0, maxlength) : value;
@@ -94,6 +112,7 @@ const InputInfo = () => {
       mainContainerList[step].id = "";
       mainContainerList[step - 1].id = "hide";
       setStep((present) => present + 1);
+      setBtnDisabled(true);
     } else {
       console.log("다음 사이트로 이동");
     }
@@ -119,7 +138,6 @@ const InputInfo = () => {
           입니다.
         </NameInput>
         <NewBottonBtn
-          id="1"
           disabled={btnDisabled}
           onClick={moveToStep}
           className="newBottonBtn1"
@@ -167,7 +185,6 @@ const InputInfo = () => {
           태어났어요.
         </BirthInput>
         <NewBottonBtn
-          id={2}
           disabled={btnDisabled}
           onClick={moveToStep}
           className="newBottonBtn2"
@@ -193,10 +210,64 @@ const InputInfo = () => {
           입니다.
         </ColorfulInput>
         <NewBottonBtn
-          id="3"
           disabled={btnDisabled}
           onClick={moveToStep}
           className="newBottonBtn3"
+        >
+          다음
+        </NewBottonBtn>
+      </MainContainer>
+
+      {/* Step4 : 아이디 입력하기 */}
+      <MainContainer id="hide" className="mainContainer">
+        <BackBtn onClick={backToStep} />
+        <TitleOval className="titleOval4">아이디 설정하기</TitleOval>
+        <ColorfulInput>
+          제 아이디는
+          <br />
+          <input
+            type="text"
+            placeholder="voyage123"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
+            autoFocus
+          />
+          입니다.
+        </ColorfulInput>
+        <NewBottonBtn
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn4"
+        >
+          다음
+        </NewBottonBtn>
+      </MainContainer>
+
+      {/* Step5 : 비밀번호 입력하기 */}
+      <MainContainer id="hide" className="mainContainer">
+        <BackBtn onClick={backToStep} />
+        <TitleOval className="titleOval5">비밀번호 설정하기</TitleOval>
+        <ColorfulInput>
+          제 비밀번호는
+          <br />
+          <input
+            type="text"
+            placeholder="Chungpa03"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoFocus
+          />
+          입니다.
+        </ColorfulInput>
+        <NotiText>
+          알파벳 대문자･소문자, 숫자, 특수문자 중 두 개 이상을 선택하여
+          <br />
+          최소 8자리 이상의 비밀번호를 설정해주세요.
+        </NotiText>
+        <NewBottonBtn
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn5"
         >
           다음
         </NewBottonBtn>
@@ -230,6 +301,16 @@ const BirthInput = styled(ColorfulInput)`
     width: 50px;
     margin-left: 10px;
   }
+`;
+
+const NotiText = styled.div`
+  color: rgba(73, 73, 73, 0.2);
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 27px;
 `;
 
 const NewBottonBtn = styled(BottonBtn)`
