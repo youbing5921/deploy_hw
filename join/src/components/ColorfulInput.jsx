@@ -11,12 +11,13 @@ const InputDiv = styled.div`
   margin-top: 81px;
 
   input {
+    height: 77px;
     border: 0px;
     font-family: Pretendard;
     font-size: 50px;
     font-style: normal;
     font-weight: 700;
-    line-height: normal;
+    line-height: 10;
     background: linear-gradient(to right, #03aed2, #fdde55);
     color: transparent;
     background-clip: text;
@@ -24,7 +25,8 @@ const InputDiv = styled.div`
   }
   input::placeholder {
     color: #dbdbdb;
-    background-color: transparent;
+    background: transparent;
+    padding-bottom: 1px;
   }
   input:focus {
     outline: none;
