@@ -259,11 +259,6 @@ const InputInfo = () => {
           />
           입니다.
         </ColorfulInput>
-        <NotiText>
-          알파벳 대문자･소문자, 숫자, 특수문자 중 두 개 이상을 선택하여
-          <br />
-          최소 8자리 이상의 비밀번호를 설정해주세요.
-        </NotiText>
         <NewBottonBtn
           disabled={btnDisabled}
           onClick={moveToStep}
@@ -301,16 +296,6 @@ const BirthInput = styled(ColorfulInput)`
     width: 50px;
     margin-left: 10px;
   }
-`;
-
-const NotiText = styled.div`
-  color: rgba(73, 73, 73, 0.2);
-  font-family: Pretendard;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 27px;
 `;
 
 const NewBottonBtn = styled(BottonBtn)`
