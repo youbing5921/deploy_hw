@@ -1,55 +1,27 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import profileImg from "../images/profile.svg";
-import sendBtn from "../images/sendBtn.svg";
+import MenteeImg from "../images/MenteeImg.svg";
+import SendBtn from "../images/SendBtn.svg";
 
-let concernList = [
-  {
-    id: "1",
-    profile: profileImg,
-    name: "돈이 뭐길래",
-    category: "재테크",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "2",
-    profile: profileImg,
-    name: "돈이 뭐길래",
-    category: "재테크",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "3",
-    profile: profileImg,
-    name: "돈이 뭐길래",
-    category: "사랑",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-];
-
-const Concern = () => {
+const Concern = ({ concernList }) => {
   const navigate = useNavigate();
   return (
     <>
       {concernList.map((concern) => (
-        <ConcernBox
-          key={concern.id}
-          // onClick={() => navigate(`/concern/${concern.id}`)}
-        >
+        <ConcernBox key={concern.id}>
           <Info>
             <Profile
-              src={concern.profile}
-              alt={`${concern.name} profile`}
+              src={MenteeImg}
+              alt="profileImg"
               onClick={() => navigate(`/userpage/${concern.name}`)}
             />
             <Username onClick={() => navigate(`/userpage/${concern.name}`)}>
               {concern.name}
             </Username>
-            <Category>{concern.category}</Category>
+            <Category>{concern.category1}</Category>
+            <Category>{concern.category2}</Category>
+            <Category>{concern.category3}</Category>
           </Info>
           <Content>
             <Comment>{concern.comment}</Comment>
@@ -61,7 +33,7 @@ const Concern = () => {
                 placeholder="멘티의 고민 해결에 실마리가 될 한마디 해답을 주세요"
               />
               <SendButton>
-                <img src={sendBtn} alt="send" />
+                <img src={SendBtn} alt="send" />
               </SendButton>
             </ChatInputWrapper>
           </ChatBox>

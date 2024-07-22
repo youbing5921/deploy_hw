@@ -11,33 +11,32 @@ const categories = [
   "진로",
 ];
 
-const CategoryBar = () => {
+const CategoryBar = ({ onSelectCategory }) => {
   const [selectCategory, setSelectCategory] = useState("전체");
 
   const onClickCategory = (category) => {
     setSelectCategory(category);
+    onSelectCategory(category);
   };
 
   return (
-    <>
-      <Categorys>
-        {categories.map((category) => (
-          <Category
-            key={category}
-            isActive={selectCategory === category}
-            onClick={() => onClickCategory(category)}
-          >
-            {category}
-          </Category>
-        ))}
-      </Categorys>
-    </>
+    <Categories>
+      {categories.map((category) => (
+        <Category
+          key={category}
+          isActive={selectCategory === category}
+          onClick={() => onClickCategory(category)}
+        >
+          {category}
+        </Category>
+      ))}
+    </Categories>
   );
 };
 
 export default CategoryBar;
 
-const Categorys = styled.div`
+const Categories = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,9 +47,6 @@ const Categorys = styled.div`
 const Category = styled.div`
   color: ${(props) => (props.isActive ? "#000" : "#a4a4a4")};
   font-size: 20px;
-  font-style: normal;
   font-weight: 600;
-  line-height: 150%;
-  letter-spacing: -0.44px;
   cursor: pointer;
 `;

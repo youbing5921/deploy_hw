@@ -63,6 +63,7 @@ const Home = () => {
                   "든든한 멘토님들이 당신의 \n고민해결을 위해 모였습니다!"
                 }
                 bgImg={menteeBtn1}
+                onBtnClick={() => navigate("/find")}
               />
               <ChatCard txt={"멘토"} bgImg={menteeBtn2} />
               <CommunityCard bgImg={menteeBtn3} />

@@ -1,20 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import TopBar from "../components/TopBar";
 import CategoryBar from "../components/CategoryBar";
 import Concern from "../components/Concern";
+import MenteeImg from "../images/MenteeImg.svg";
+
+const initConcernList = [
+  {
+    id: "1",
+    profile: MenteeImg,
+    name: "돈이 뭐길래",
+    category1: "재테크",
+    category2: "사랑",
+    category3: "인간관계",
+    comment:
+      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
+  },
+  {
+    id: "2",
+    profile: MenteeImg,
+    name: "돈이 뭐길래",
+    category1: "재테크",
+    category2: "가치관",
+    category3: "사랑",
+    comment:
+      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
+  },
+  {
+    id: "3",
+    profile: MenteeImg,
+    name: "돈이 뭐길래",
+    category1: "사랑",
+    category2: "생활",
+    category3: "가치관",
+    comment:
+      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
+  },
+  {
+    id: "4",
+    profile: MenteeImg,
+    name: "돈이 뭐길래",
+    category1: "사랑",
+    category2: "재테크",
+    category3: "인간관계",
+    comment:
+      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
+  },
+];
 
 const ConcernsPage = () => {
+  const [concernList, setConcernList] = useState(initConcernList);
+  const [selectedCategory, setSelectedCategory] = useState("전체");
+
+  const filteredConcerns = concernList.filter(
+    (concern) =>
+      selectedCategory === "전체" ||
+      concern.category1 === selectedCategory ||
+      concern.category2 === selectedCategory ||
+      concern.category3 === selectedCategory
+  );
+
   return (
-    <>
-      <Container>
-        <TopContainer>
-          <TopBar txt={"멘토 돕기"} />
-          <CategoryBar />
-        </TopContainer>
-        <Concern />
-      </Container>
-    </>
+    <Container>
+      <TopContainer>
+        <TopBar txt={"멘티 돕기"} />
+        <CategoryBar onSelectCategory={setSelectedCategory} />
+      </TopContainer>
+      <Concern concernList={filteredConcerns} />
+    </Container>
   );
 };
 
@@ -25,6 +78,10 @@ const Container = styled.div`
   width: 600px;
   height: 1230px;
   margin: 0 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TopContainer = styled.div`
