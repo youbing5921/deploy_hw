@@ -3,12 +3,10 @@ import styled from "styled-components";
 import TopBar from "../components/TopBar";
 import CategoryBar from "../components/CategoryBar";
 import Concern from "../components/Concern";
-import MenteeImg from "../images/MenteeImg.svg";
 
 const initConcernList = [
   {
     id: "1",
-    profile: MenteeImg,
     name: "돈이 뭐길래",
     category1: "재테크",
     category2: "사랑",
@@ -18,7 +16,6 @@ const initConcernList = [
   },
   {
     id: "2",
-    profile: MenteeImg,
     name: "돈이 뭐길래",
     category1: "재테크",
     category2: "가치관",
@@ -28,7 +25,6 @@ const initConcernList = [
   },
   {
     id: "3",
-    profile: MenteeImg,
     name: "돈이 뭐길래",
     category1: "사랑",
     category2: "생활",
@@ -38,7 +34,6 @@ const initConcernList = [
   },
   {
     id: "4",
-    profile: MenteeImg,
     name: "돈이 뭐길래",
     category1: "사랑",
     category2: "재테크",
