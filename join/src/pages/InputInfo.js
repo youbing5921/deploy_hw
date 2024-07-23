@@ -15,6 +15,7 @@ const InputInfo = () => {
   const [email, setEmail] = useState("");
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [step, setStep] = useState(1);
 
@@ -78,6 +79,36 @@ const InputInfo = () => {
     changeBtnColor(condition, titleOval5, newBottonBtn5);
   }, [password]);
 
+  // 멘토/멘티 관련 함수
+  const onRoleClick = (e) => {
+    const mentoDiv = document.querySelector("#mentoDiv");
+    const mentiDiv = document.querySelector("#mentiDiv");
+    const chosenRole = e.target.value;
+
+    if (role === chosenRole) {
+      mentoDiv.className = "";
+      mentiDiv.className = "";
+      setRole("");
+    } else {
+      if (chosenRole === "mento") {
+        mentoDiv.className = "mentoChosen";
+        mentiDiv.className = "notChosen";
+      } else {
+        mentiDiv.className = "mentiChosen";
+        mentoDiv.className = "notChosen";
+      }
+      setRole(chosenRole);
+      setBtnDisabled(false);
+    }
+  };
+
+  useEffect(() => {
+    const titleOval6 = document.querySelector(".titleOval6");
+    const newBottonBtn6 = document.querySelector(".newBottonBtn6");
+    const condition = role !== "";
+    changeBtnColor(condition, titleOval6, newBottonBtn6);
+  }, [role]);
+
   // 공통 함수
   const fitLength = (value, maxlength) => {
     return value.length > maxlength ? value.substr(0, maxlength) : value;
@@ -121,7 +152,7 @@ const InputInfo = () => {
   return (
     <>
       {/* Step1 : 이름 입력하기 */}
-      <MainContainer id="" className="mainContainer">
+      <MainContainer className="mainContainer">
         <BackBtn onClick={backToStep} />
         <TitleOval className="titleOval1">이름 입력하기</TitleOval>
         <NameInput>
@@ -267,6 +298,40 @@ const InputInfo = () => {
           다음
         </NewBottonBtn>
       </MainContainer>
+
+      {/* Step6 : 멘토/멘티 선택하기 */}
+      <MainContainer id="hide" className="mainContainer">
+        <BackBtn onClick={backToStep} />
+        <TitleOval className="titleOval6">역할 설정</TitleOval>
+        <RoleChoosingText>
+          마지막으로 보이지에서의 역할을
+          <br />
+          선택해주세요.
+        </RoleChoosingText>
+        <MentoMentiBtn>
+          <label>
+            <input type="radio" value="mento" onClick={onRoleClick} />
+            <div id="mentoDiv">
+              <h3>멘토</h3>
+              <p>인생 후배들의 등대가 되어주세요 !</p>
+            </div>
+          </label>
+          <label>
+            <input type="radio" value="menti" onClick={onRoleClick} />
+            <div id="mentiDiv">
+              <h3>멘티</h3>
+              <p>인생이라는 바다를 함께 항해해요!</p>
+            </div>
+          </label>
+        </MentoMentiBtn>
+        <NewBottonBtn
+          disabled={btnDisabled}
+          onClick={moveToStep}
+          className="newBottonBtn6"
+        >
+          다음
+        </NewBottonBtn>
+      </MainContainer>
     </>
   );
 };
@@ -295,6 +360,80 @@ const BirthInput = styled(ColorfulInput)`
   input:nth-child(4) {
     width: 50px;
     margin-left: 10px;
+  }
+`;
+
+const RoleChoosingText = styled(ColorfulInput)`
+  font-size: 35px;
+`;
+
+const MentoMentiBtn = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 115px;
+  width: 600px;
+  gap: 20px;
+  input {
+    display: none;
+  }
+  div {
+    width: 520px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    h3 {
+      margin: 0px;
+      color: #494949;
+      font-family: Pretendard;
+      text-align: center;
+      font-size: 50px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    p {
+      color: #494949;
+      margin: 0px;
+      text-align: center;
+      font-family: Pretendard;
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;
+    }
+  }
+  #mentoDiv:hover,
+  .mentoChosen {
+    background: linear-gradient(261deg, #cdeff6 0%, #03aed2 87.2%);
+    h3 {
+      color: white;
+    }
+    p {
+      color: white;
+    }
+  }
+  #mentiDiv:hover,
+  .mentiChosen {
+    background: linear-gradient(260deg, #ffeca1 0%, #ffd30f 100%);
+    h3 {
+      color: white;
+    }
+    p {
+      color: white;
+    }
+  }
+  .notChosen {
+    h3 {
+      color: rgba(73, 73, 73, 0.2);
+    }
+    p {
+      display: none;
+    }
   }
 `;
 
