@@ -103,7 +103,7 @@ const JoinBottonBtn = styled(BottonBtn)`
   margin-top: 63px;
   gap: 17px;
   .normalDiv {
-    color: var(---tertiary, #494949);
+    color: #494949;
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
