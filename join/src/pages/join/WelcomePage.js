@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import BottonBtn from "../components/BottonBtn";
-import MainContainer from "../components/MainContainer";
-import BackBtn from "../components/BackBtn";
+import BottonBtn from "../../components/join/BottonBtn";
+import MainContainer from "../../components/join/MainContainer";
+import BackBtn from "../../components/join/BackBtn";
 import { useNavigate } from "react-router-dom";
 
 const WelcomePage = () => {

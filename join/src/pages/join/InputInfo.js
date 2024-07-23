@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../App.css";
+import "../../App.css";
 import styled from "styled-components";
-import MainContainer from "../components/MainContainer";
-import BottonBtn from "../components/BottonBtn";
-import BackBtn from "../components/BackBtn";
-import TitleOval from "../components/TitleOval";
-import ColorfulInput from "../components/ColorfulInput";
+import MainContainer from "../../components/join/MainContainer";
+import BottonBtn from "../../components/join/BottonBtn";
+import BackBtn from "../../components/join/BackBtn";
+import TitleOval from "../../components/join/TitleOval";
+import ColorfulInput from "../../components/join/ColorfulInput";
 import { useNavigate } from "react-router-dom";
 
 const InputInfo = () => {
