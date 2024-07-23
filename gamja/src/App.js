@@ -1,9 +1,9 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import Home from "./pages/Home";
-import ConcernsPage from "./pages/ConcernsPage";
-import FindMentor from "./pages/FindMentor";
+import Home from "./pages/common/Home";
+import ConcernsPage from "./pages/mentor/ConcernsPage";
+import FindMentor from "./pages/mentee/FindMentor";
 
 function App() {
   return (

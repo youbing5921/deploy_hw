@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import MentorImg from "../images/MentorImg.svg";
-import FollowYellow from "../images/FollowYellow.svg";
-import FollowGray from "../images/FollowGray.svg";
+import MentorImg from "../../images/MentorImg.svg";
+import FollowYellow from "../../images/FollowYellow.svg";
+import FollowGray from "../../images/FollowGray.svg";
 
 const MentorInfo = ({ infoList, toggleSubscription }) => {
   const navigate = useNavigate();

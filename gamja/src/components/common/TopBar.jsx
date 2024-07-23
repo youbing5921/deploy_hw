@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import BackBtn from "../components/BackBtn";
+import BackBtn from "./BackBtn";
 
 const TopBar = ({ txt, marginLeft }) => {
   const navigate = useNavigate();

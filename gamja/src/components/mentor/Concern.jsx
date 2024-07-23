@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import MenteeImg from "../images/MenteeImg.svg";
-import SendBtn from "../images/SendBtn.svg";
+import MenteeImg from "../../images/MenteeImg.svg";
+import SendBtn from "../../images/SendBtn.svg";
 
 const Concern = ({ concernList }) => {
   const navigate = useNavigate();

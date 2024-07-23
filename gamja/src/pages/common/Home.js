@@ -1,23 +1,23 @@
 import styled from "styled-components";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import QuoteSection from "../components/QuoteSection";
-import SearchCard from "../components/SearchCard";
-import ChatCard from "../components/ChatCard";
-import CommunityCard from "../components/CommunityCard";
-import MypageCard from "../components/MypageCard";
-import mentorBtn1 from "../images/mentorBtn1.svg";
-import menteeBtn1 from "../images/menteeBtn1.svg";
-import mentorBtn2 from "../images/mentorBtn2.svg";
-import menteeBtn2 from "../images/menteeBtn2.svg";
-import mentorBtn3 from "../images/mentorBtn3.svg";
-import menteeBtn3 from "../images/menteeBtn3.svg";
-import mentorBtn4 from "../images/mentorBtn4.svg";
-import menteeBtn4 from "../images/menteeBtn4.svg";
+import QuoteSection from "../../components/common/QuoteSection";
+import SearchCard from "../../components/common/SearchCard";
+import ChatCard from "../../components/common/ChatCard";
+import CommunityCard from "../../components/common/CommunityCard";
+import MypageCard from "../../components/common/MypageCard";
+import mentorBtn1 from "../../images/mentorBtn1.svg";
+import menteeBtn1 from "../../images/menteeBtn1.svg";
+import mentorBtn2 from "../../images/mentorBtn2.svg";
+import menteeBtn2 from "../../images/menteeBtn2.svg";
+import mentorBtn3 from "../../images/mentorBtn3.svg";
+import menteeBtn3 from "../../images/menteeBtn3.svg";
+import mentorBtn4 from "../../images/mentorBtn4.svg";
+import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentor";
+  const userType = "mentee";
   return (
     <>
       {userType === "mentor" ? (

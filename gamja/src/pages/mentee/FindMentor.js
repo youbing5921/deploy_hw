@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TopBar from "../components/TopBar";
-import CategoryBar from "../components/CategoryBar";
-import MentorInfo from "../components/MentorInfo";
+import TopBar from "../../components/common/TopBar";
+import CategoryBar from "../../components/common/CategoryBar";
+import MentorInfo from "../../components/mentee/MentorInfo";
 
 let allInfoList = [
   {
