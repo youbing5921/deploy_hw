@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import WelcomePage from "./pages/WelcomePage";
-import TermsOfServicePage from "./pages/TermsOfServicePage";
-import InputInfo from "./pages/InputInfo";
-import Login from "./pages/Login";
-import JoinComplete from "./pages/JoinComplete";
+import WelcomePage from "./pages/join/WelcomePage";
+import TermsOfServicePage from "./pages/join/TermsOfServicePage";
+import InputInfo from "./pages/join/InputInfo";
+import Login from "./pages/join/Login";
+import JoinComplete from "./pages/join/JoinComplete";
 
 function App() {
   return (

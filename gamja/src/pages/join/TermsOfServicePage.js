@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import MainContainer from "../components/MainContainer";
-import BottonBtn from "../components/BottonBtn";
-import BackBtn from "../components/BackBtn";
-import Checkbox from "../components/Checkbox";
-import TitleOval from "../components/TitleOval";
+import MainContainer from "../../components/join/MainContainer";
+import BottonBtn from "../../components/join/BottonBtn";
+import BackBtn from "../../components/join/BackBtn";
+import Checkbox from "../../components/join/Checkbox";
+import TitleOval from "../../components/join/TitleOval";
 
 const tos = [
   { id: 1, text: "(필수) 만 14세 이상입니다", required: true, detail: null },
