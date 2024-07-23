@@ -6,6 +6,7 @@ import BottonBtn from "../components/BottonBtn";
 import BackBtn from "../components/BackBtn";
 import TitleOval from "../components/TitleOval";
 import ColorfulInput from "../components/ColorfulInput";
+import { useNavigate } from "react-router-dom";
 
 const InputInfo = () => {
   const [name, setName] = useState("");
@@ -18,6 +19,7 @@ const InputInfo = () => {
   const [role, setRole] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [step, setStep] = useState(1);
+  const navigate = useNavigate();
 
   // 이름 관련 함수
   const onNameChange = (e) => {
@@ -133,7 +135,7 @@ const InputInfo = () => {
       mainContainerList[step - 1].id = "hide";
       setStep((present) => present + 1);
     } else {
-      console.log("초기 사이트로 이동");
+      navigate("/join/tos");
     }
   };
 
@@ -145,7 +147,7 @@ const InputInfo = () => {
       setStep((present) => present + 1);
       setBtnDisabled(true);
     } else {
-      console.log("다음 사이트로 이동");
+      navigate("/join/complete");
     }
   };
 
