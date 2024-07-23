@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import StarRate from "./StarRate";
+import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
@@ -47,13 +47,7 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
                 <span>회</span>
               </CategoryCount>
             </CategoryBox>
-            <RatingBox>
-              <StarRate rating={mentor.rating} />
-              <Rating>
-                {mentor.rating}
-                <span>/100</span>
-              </Rating>
-            </RatingBox>
+            <RateBox rating={mentor.rating} />
           </MiddleBox>
           <BtnBox>
             <GoRead>칼럼 읽기</GoRead>
@@ -139,30 +133,6 @@ const CategoryCount = styled.span`
     color: #a4a4a4;
     font-size: 8px;
     font-weight: 500;
-  }
-`;
-
-const RatingBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 5px;
-  border-radius: 15px;
-  background: #f1f0f0;
-  width: 189px;
-  padding: 5px 15px;
-`;
-
-const Rating = styled.div`
-  color: #494949;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 600;
-
-  > span {
-    color: #a4a4a4;
-    font-size: 10px;
-    font-weight: 600;
   }
 `;
 
