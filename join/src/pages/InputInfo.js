@@ -147,7 +147,11 @@ const InputInfo = () => {
       setStep((present) => present + 1);
       setBtnDisabled(true);
     } else {
-      navigate("/join/complete");
+      navigate("/join/complete", {
+        state: {
+          role: role,
+        },
+      });
     }
   };
 
