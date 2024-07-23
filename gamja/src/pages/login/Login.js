@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import MainContainer from "../../components/login/MainContainer";
@@ -10,6 +10,7 @@ import InputLabel from "../../components/login/InputLabel";
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
 
   const onChange = (e) => {
@@ -19,6 +20,14 @@ const Login = () => {
       setPw(e.target.value);
     }
   };
+
+  useEffect(() => {
+    if (id !== "" && pw !== "") {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [id, pw]);
 
   return (
     <MainContainer>
@@ -41,7 +50,9 @@ const Login = () => {
           onChange={onChange}
         />
       </InputDiv>
-      <LoginBottonBtn>로그인</LoginBottonBtn>
+      <LoginBottonBtn disabled={disabled} onClick={() => console.log("로그인")}>
+        로그인
+      </LoginBottonBtn>
       <FindIdPw>
         <button onClick={() => navigate("/login/findId")}>아이디 찾기</button>
         <div />

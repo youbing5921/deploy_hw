@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import MainContainer from "../../components/login/MainContainer";
@@ -11,6 +11,7 @@ const FindId = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
+  const [disabled, setDisabled] = useState(true);
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const path = "/login/findId";
@@ -26,6 +27,14 @@ const FindId = () => {
       setId(value);
     }
   };
+
+  useEffect(() => {
+    if ((id || name) && email) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [name, email, id]);
 
   return (
     <MainContainer>
@@ -51,7 +60,10 @@ const FindId = () => {
                 onChange={onChange}
               />
             </InputDiv>
-            <FindBottonBtn onClick={() => console.log("비밀번호 찾기")}>
+            <FindBottonBtn
+              disabled={disabled}
+              onClick={() => console.log("아이디 찾기")}
+            >
               아이디 찾기
             </FindBottonBtn>
           </>
@@ -75,7 +87,10 @@ const FindId = () => {
                 onChange={onChange}
               />
             </InputDiv>
-            <FindBottonBtn onClick={() => console.log("비밀번호 찾기")}>
+            <FindBottonBtn
+              disabled={disabled}
+              onClick={() => console.log("비밀번호 찾기")}
+            >
               비밀번호 찾기
             </FindBottonBtn>
           </>
