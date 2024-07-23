@@ -49,7 +49,7 @@ const ConcernBox = styled.div`
   border-radius: 20px;
   background: #f8f8f8;
   padding: 21px 24px;
-  margin: 17px 40px;
+  margin: 17px 0px;
   align-self: stretch;
   cursor: pointer;
 `;
