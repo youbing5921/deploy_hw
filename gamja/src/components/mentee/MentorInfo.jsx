@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import StarRate from "./StarRate";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
@@ -47,7 +48,7 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
               </CategoryCount>
             </CategoryBox>
             <RatingBox>
-              <Stars>⭐⭐⭐⭐⭐</Stars>
+              <StarRate rating={mentor.rating} />
               <Rating>
                 {mentor.rating}
                 <span>/100</span>
@@ -150,10 +151,6 @@ const RatingBox = styled.div`
   background: #f1f0f0;
   width: 189px;
   padding: 5px 15px;
-`;
-
-const Stars = styled.div`
-  color: #ffd700;
 `;
 
 const Rating = styled.div`

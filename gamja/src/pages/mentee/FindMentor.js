@@ -15,7 +15,7 @@ let allInfoList = [
     count2: "10",
     category3: "생활",
     count3: "2",
-    rating: "89",
+    rating: "50",
   },
   {
     id: "2",
@@ -27,7 +27,7 @@ let allInfoList = [
     count2: "10",
     category3: "가치관",
     count3: "20",
-    rating: "89",
+    rating: "65",
   },
   {
     id: "3",
@@ -39,7 +39,7 @@ let allInfoList = [
     count2: "2",
     category3: "가치관",
     count3: "20",
-    rating: "39",
+    rating: "35",
   },
   {
     id: "4",
@@ -51,7 +51,7 @@ let allInfoList = [
     count2: "10",
     category3: "진로",
     count3: "20",
-    rating: "89",
+    rating: "30",
   },
 ];
 
