@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const LogoImage = styled.img.attrs({
-  src: "/img/voyageLogo.png",
+  src: "/img/voyageLogo.svg",
 })`
   width: 200px;
   height: 200px;
