@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const BackBtn = styled.img.attrs({
-  src: "/img/BackBtn.svg",
+  src: "/img/backBtn.svg",
 })`
   width: 45px;
   height: 45px;
