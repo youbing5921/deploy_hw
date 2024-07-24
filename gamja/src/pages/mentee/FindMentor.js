@@ -176,9 +176,11 @@ const AutoMatch = styled.button`
   justify-content: center;
   align-items: center;
   color: #fdde55;
+  font-family: "Pretendard";
   font-size: 20px;
   font-weight: 700;
   border-radius: 15px;
   background: #494949;
   border: none;
+  cursor: pointer;
 `;

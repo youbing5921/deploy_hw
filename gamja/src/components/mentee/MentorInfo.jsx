@@ -149,6 +149,7 @@ const GoRead = styled.button`
   cursor: pointer;
   color: #494949;
   border: none;
+  font-family: "Pretendard";
   font-size: 15px;
   font-weight: 600;
   background: linear-gradient(
@@ -165,6 +166,7 @@ const GoChat = styled.button`
   cursor: pointer;
   color: #494949;
   border: none;
+  font-family: "Pretendard";
   font-size: 15px;
   font-weight: 600;
   background: #fdde55;
