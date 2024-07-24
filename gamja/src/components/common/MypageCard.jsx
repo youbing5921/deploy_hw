@@ -38,7 +38,6 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  width: 152px;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
