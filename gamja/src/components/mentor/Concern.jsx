@@ -26,17 +26,17 @@ const Concern = ({ concernList }) => {
           <Content>
             <Comment>{concern.comment}</Comment>
           </Content>
-          <ChatBox>
-            <ChatInputWrapper>
-              <ChatInput
+          <ReplyBox>
+            <ReplyInputWrapper>
+              <ReplyInput
                 type="text"
                 placeholder="멘티의 고민 해결에 실마리가 될 한마디 해답을 주세요"
               />
               <SendButton>
                 <img src={SendBtn} alt="send" />
               </SendButton>
-            </ChatInputWrapper>
-          </ChatBox>
+            </ReplyInputWrapper>
+          </ReplyBox>
         </ConcernBox>
       ))}
     </>
@@ -101,15 +101,15 @@ const Comment = styled.div`
   line-height: normal;
 `;
 
-const ChatBox = styled.div`
+const ReplyBox = styled.div`
   margin-top: 10px;
 `;
 
-const ChatInputWrapper = styled.div`
+const ReplyInputWrapper = styled.div`
   position: relative;
 `;
 
-const ChatInput = styled.input`
+const ReplyInput = styled.input`
   width: 442px;
   height: 38px;
   padding: 3px 10px 3px 20px;
