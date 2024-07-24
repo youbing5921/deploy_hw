@@ -46,10 +46,10 @@ const RateBox = ({ rating }) => {
                   {isPartialStar && (
                     <linearGradient
                       id={gradientId}
-                      x1=""
-                      y1=""
-                      x2=""
-                      y2=""
+                      x1="0.622282"
+                      y1="9.49279"
+                      x2="18"
+                      y2="9.4791"
                       gradientUnits="userSpaceOnUse"
                     >
                       <stop stopColor="#FDDE55" />
