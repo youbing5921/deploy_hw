@@ -2,8 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import WelcomePage from "./pages/join/WelcomePage";
 import TermsOfServicePage from "./pages/join/TermsOfServicePage";
 import InputInfo from "./pages/join/InputInfo";
-import Login from "./pages/join/Login";
 import JoinComplete from "./pages/join/JoinComplete";
+import Login from "./pages/login/Login";
+import FindIdPw from "./pages/login/FindIdPw";
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
         <Route path="/join/info" element={<InputInfo />}></Route>
         <Route path="/join/complete" element={<JoinComplete />}></Route>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/login/findId" element={<FindIdPw />}></Route>
+        <Route path="/login/findPw" element={<FindIdPw />}></Route>
       </Routes>
     </div>
   );
