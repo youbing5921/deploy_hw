@@ -37,7 +37,6 @@ const Title = styled.div`
 
 const SubTitle = styled.div`
   white-space: pre-line;
-  width: 224px;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
