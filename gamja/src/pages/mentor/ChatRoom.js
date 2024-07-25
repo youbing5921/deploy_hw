@@ -4,6 +4,7 @@ import SearchBtnImg from "../../images/SearchBtn.png";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
 import Receiver from "../../components/chat/Receiver";
+import Sender from "../../components/chat/Sender";
 
 const ChatRoom = () => {
   return (
@@ -21,6 +22,7 @@ const ChatRoom = () => {
         </TopContainer>
         <MessageContainer>
           <Receiver />
+          <Sender />
         </MessageContainer>
       </Container>
     </>
@@ -68,4 +70,6 @@ const Icon = styled.img`
   cursor: pointer;
 `;
 
-const MessageContainer = styled.div``;
+const MessageContainer = styled.div`
+  padding: 31px 40px 0px 29px;
+`;

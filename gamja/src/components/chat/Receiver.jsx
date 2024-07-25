@@ -47,12 +47,8 @@ const Username = styled.div`
 `;
 
 const WhiteMessage = styled.div`
-  display: flex;
   max-width: 332px;
   padding: 20px 25px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
   border-radius: 15px;
   background: #fff;
   color: #494949;
