@@ -3,19 +3,25 @@ import styled from "styled-components";
 import SearchBtnImg from "../../images/SearchBtn.png";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
+import Receiver from "../../components/chat/Receiver";
 
 const ChatRoom = () => {
   return (
     <>
       <Container>
-        <TopBar txt={"채팅하기"} />
-        <Title>
-          <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
-          <ButtonContainer>
-            <Icon src={SearchBtnImg} alt="Search" />
-            <Icon src={OutBtnImg} alt="Out" />
-          </ButtonContainer>
-        </Title>
+        <TopContainer>
+          <TopBar txt={"채팅하기"} />
+          <FuncBar>
+            <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
+            <ButtonContainer>
+              <Icon src={SearchBtnImg} alt="Search" />
+              <Icon src={OutBtnImg} alt="Out" />
+            </ButtonContainer>
+          </FuncBar>
+        </TopContainer>
+        <MessageContainer>
+          <Receiver />
+        </MessageContainer>
       </Container>
     </>
   );
@@ -23,14 +29,23 @@ const ChatRoom = () => {
 
 export default ChatRoom;
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #ededed;
+  width: 600px;
+  height: 1230px;
+  margin: 0 auto;
+`;
 
-const Title = styled.div`
+const TopContainer = styled.div`
   background: #f8f8f8;
   box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.05);
-  padding: 10px 40px;
+`;
+
+const FuncBar = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  padding: 15px 40px;
 `;
 
 const RoomName = styled.div`
@@ -52,3 +67,5 @@ const Icon = styled.img`
   height: 40px;
   cursor: pointer;
 `;
+
+const MessageContainer = styled.div``;
