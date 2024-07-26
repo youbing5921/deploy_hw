@@ -2,32 +2,42 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 
+const reviewList = [
+  {
+    id: 1,
+    username: "돈이 뭐길래",
+    category: ["인간관계", "사랑"],
+    comment:
+      "닉값합니다! 진짜 척척박사세요. 다음에 또 고민이 생기면 육은영멘토님께 채팅해보려구요! 감사합니다 :)",
+  },
+];
+
 const Review = () => {
   return (
     <>
-      <Container>
-        <Top>
-          <Left>
-            <Low>
-              <Profile src={MenteeImg} alt="menteeImg" />
-            </Low>
-            <Middle>
-              <Username>돈이 뭐길래</Username>
-              <Category>재테크</Category>
-              <Category>사랑</Category>
-            </Middle>
-          </Left>
-          <Right>
-            <High>
-              <MoreBtn>더보기</MoreBtn>
-            </High>
-          </Right>
-        </Top>
-        <Comment>
-          닉값합니다! 진짜 척척박사세요. 다음에 또 고민이 생기면 육은영멘토님께
-          채팅해보려구요! 감사합니다 :)
-        </Comment>
-      </Container>
+      {reviewList.map((reviewInfo) => (
+        <Container key={reviewInfo.id}>
+          <Top>
+            <Left>
+              <Low>
+                <Profile src={MenteeImg} alt="menteeImg" />
+              </Low>
+              <Middle>
+                <Username>{reviewInfo.username}</Username>
+                {reviewInfo.category.map((cat, idx) => (
+                  <Category key={idx}>{cat}</Category>
+                ))}
+              </Middle>
+            </Left>
+            <Right>
+              <High>
+                <MoreBtn>더보기</MoreBtn>
+              </High>
+            </Right>
+          </Top>
+          <Comment>{reviewInfo.comment}</Comment>
+        </Container>
+      ))}
     </>
   );
 };
@@ -85,8 +95,6 @@ const Category = styled.div`
 `;
 
 const MoreBtn = styled.button`
-  /* width: 34px;
-  height: 15px; */
   padding: 4px 7.5px;
   border-radius: 5px;
   background: rgba(73, 73, 73, 0.2);
