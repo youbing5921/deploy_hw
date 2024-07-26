@@ -58,5 +58,4 @@ const WhiteMessage = styled.div`
   font-size: 20px;
   font-weight: 500;
   margin-right: auto;
-  /* margin-bottom: 24px; */
 `;
