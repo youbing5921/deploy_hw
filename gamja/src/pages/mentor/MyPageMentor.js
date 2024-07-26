@@ -4,6 +4,7 @@ import TopBar from "../../components/common/TopBar";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
 import Arrow from "../../images/Arrow.svg";
+import StarBox from "../../components/mypage/StarBox";
 
 const MyPageMentor = () => {
   return (
@@ -19,7 +20,7 @@ const MyPageMentor = () => {
                 <Next src={Arrow} alt="바로가기" />
               </FontZone>
               <CareerList>
-                <Career>1999-2003 숙명전자 재직</Career>
+                <Career>1999-2003 숙명전자 재직 </Career>
                 <Career>2003-2010 네이바 재직</Career>
                 <Career>2011.05.20 결혼</Career>
                 <Career>2012-2023 개인사업</Career>
@@ -27,7 +28,13 @@ const MyPageMentor = () => {
               </CareerList>
             </CareerBox>
           </Left>
-          <Right></Right>
+          <Right>
+            <Rating>
+              <Title>나의 등대 지수</Title>
+              <SubTitle>나는 멘티들에게 얼마나 밝은 등대일까?</SubTitle>
+              <StarBox rating={"89"} />
+            </Rating>
+          </Right>
         </Both>
         <JournalList txt={"일지"} fontColor={"#fff"} bgColor={"#03AED2"} />
       </Container>
@@ -51,11 +58,12 @@ const Container = styled.div`
 const Both = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 34px 40px;
 `;
 const Left = styled.div``;
-const Right = styled.div``;
+const Right = styled.div`
+  margin-left: 28px;
+`;
 
 const CareerBox = styled.div`
   display: flex;
@@ -98,3 +106,19 @@ const Career = styled.div`
   font-size: 10px;
   font-weight: 500;
 `;
+
+const Title = styled.div`
+  color: #494949;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 2px;
+`;
+
+const SubTitle = styled.div`
+  color: #7f7f7f;
+  font-size: 10px;
+  font-weight: 500;
+  margin-bottom: 9px;
+`;
+
+const Rating = styled.div``;
