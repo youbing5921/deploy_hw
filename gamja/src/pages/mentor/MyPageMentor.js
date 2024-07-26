@@ -7,6 +7,7 @@ import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
 import History from "../../components/mypage/History";
 import Review from "../../components/mypage/Review";
+import Column from "../../components/mypage/Column";
 
 const MyPageMentor = () => {
   return (
@@ -47,6 +48,10 @@ const MyPageMentor = () => {
           </Right>
         </Both>
         <JournalList txt={"일지"} fontColor={"#fff"} bgColor={"#03AED2"} />
+        <ColumnBox>
+          <Title>내가 스크랩한 칼럼</Title>
+          <Column />
+        </ColumnBox>
       </Container>
     </>
   );
@@ -144,3 +149,8 @@ const HistoryBox = styled.div`
   overflow: hidden;
 `;
 const ReviewBox = styled.div``;
+
+const ColumnBox = styled.div`
+  margin-top: 81px;
+  margin-left: 40px;
+`;

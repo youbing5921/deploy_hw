@@ -1,0 +1,105 @@
+import React from "react";
+import styled from "styled-components";
+import MentorColumn from "../../images/MentorColumn.png";
+
+const columnList = [
+  {
+    id: 1,
+    category: "가치관",
+    title: "단 한 번뿐인 인생, 도전하라!",
+    author: "김조이",
+  },
+  {
+    id: 2,
+    category: "가치관",
+    title: "단 한 번뿐인 인생, 도전하라!",
+    author: "김조이",
+  },
+
+  {
+    id: 3,
+    category: "가치관",
+    title: "단 한 번뿐인 인생, 도전하라!",
+    author: "김조이",
+  },
+  {
+    id: 4,
+    category: "가치관",
+    title: "단 한 번뿐인 인생, 도전하라!",
+    author: "김조이",
+  },
+];
+
+const Column = () => {
+  return (
+    <>
+      <Wapper>
+        {columnList.map((columnInfo) => (
+          <Container key={columnList.id}>
+            <Photo src={MentorColumn} alt="mentorColumn" />
+            <InfoBox>
+              <Category>{columnInfo.category}</Category>
+              <Title>{columnInfo.title}</Title>
+              <Author>{columnInfo.author}</Author>
+            </InfoBox>
+          </Container>
+        ))}
+      </Wapper>
+    </>
+  );
+};
+
+export default Column;
+
+const Wapper = styled.div`
+  display: flex;
+  gap: 12px;
+  max-width: 560px;
+  padding-right: 10px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const Container = styled.div`
+  display: flex;
+  width: 145px;
+  padding: 12px 12px 20px 12px;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 15px;
+  background: #f8f8f8;
+  margin-top: 17px;
+`;
+
+const Photo = styled.img`
+  height: 94px;
+  border-radius: 10px;
+`;
+
+const InfoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+`;
+const Category = styled.div`
+  padding: 3px 9px;
+  border-radius: 9px;
+  background: rgba(3, 174, 210, 0.2);
+  color: #03aed2;
+  text-align: center;
+  font-size: 8px;
+  font-weight: 400;
+`;
+const Title = styled.div`
+  color: #494949;
+  font-size: 15px;
+  font-weight: 600;
+`;
+const Author = styled.div`
+  color: #a4a4a4;
+  font-size: 10px;
+  font-weight: 500;
+`;

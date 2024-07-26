@@ -113,6 +113,7 @@ const JournalTitle = styled.div`
   text-align: center;
   font-size: 15px;
   font-weight: 700;
+  cursor: pointer;
 `;
 const WriteDate = styled.div`
   color: #7f7f7f;
