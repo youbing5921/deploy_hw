@@ -21,20 +21,18 @@ const ChatRoom = () => {
         </FuncBar>
       </TopContainer>
       <MessageContainer>
+        <Receiver message="안녕하세요, " username="호기심천국" />
         <Receiver
-          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
+          message="멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
           username="호기심천국"
         />
-        <Receiver
-          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
-          username="호기심천국"
-        />
+        <Sender message="안녕하세요" />
+        <Sender message="호기심천국님! 잘 찾아오셨네요^^" />
         <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
         <Receiver
           message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
           username="호기심천국"
         />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
         <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
       </MessageContainer>
       <InputMessage />

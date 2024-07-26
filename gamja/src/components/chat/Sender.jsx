@@ -15,7 +15,7 @@ const MessageBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 24px;
+  margin-bottom: 15px;
 `;
 
 const BlueMessage = styled.div`
