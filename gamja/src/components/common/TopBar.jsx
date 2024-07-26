@@ -21,6 +21,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   padding: 0px 35px;
+  background: #f8f8f8;
 `;
 const Title = styled.div`
   color: #494949;
