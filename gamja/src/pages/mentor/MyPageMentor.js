@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
+import MenteeImg from "../../images/MenteeImg.svg";
 import TopBar from "../../components/common/TopBar";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
@@ -16,7 +17,7 @@ const MyPageMentor = () => {
         <TopBar txt={"마이페이지"} marginLeft={"154px"} />
         <Both>
           <Left>
-            <UserInfo />
+            <UserInfo profilImg={MenteeImg} />
             <CareerBox>
               <FontZone>
                 <CareerFont>경력</CareerFont>

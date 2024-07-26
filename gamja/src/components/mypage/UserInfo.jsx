@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import MenteeImg from "../../images/MenteeImg.svg";
-import MentorImg from "../../images/MentorImg.svg";
 import Arrow from "../../images/Arrow.svg";
 
 const UserInfo = ({ profilImg, categoryColor, categoryBg }) => {
   return (
     <>
       <ProfileBox>
-        <Profile src={profilImg || MenteeImg} alt="profileImg" />
+        <Profile src={profilImg} alt="profileImg" />
         <NameBox>
           <Username>척척육은영</Username>
           <Next src={Arrow} alt="바로가기" />
