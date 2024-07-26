@@ -9,25 +9,36 @@ import InputMessage from "../../components/chat/InputMessage";
 
 const ChatRoom = () => {
   return (
-    <>
-      <Container>
-        <TopContainer>
-          <TopBar txt={"채팅하기"} />
-          <FuncBar>
-            <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
-            <ButtonContainer>
-              <Icon src={SearchBtnImg} alt="Search" />
-              <Icon src={OutBtnImg} alt="Out" />
-            </ButtonContainer>
-          </FuncBar>
-        </TopContainer>
-        <MessageContainer>
-          <Receiver />
-          <Sender />
-        </MessageContainer>
-        <InputMessage />
-      </Container>
-    </>
+    <Container>
+      <TopContainer>
+        <TopBar txt={"채팅하기"} />
+        <FuncBar>
+          <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
+          <ButtonContainer>
+            <Icon src={SearchBtnImg} alt="Search" />
+            <Icon src={OutBtnImg} alt="Out" />
+          </ButtonContainer>
+        </FuncBar>
+      </TopContainer>
+      <MessageContainer>
+        <Receiver
+          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
+          username="호기심천국"
+        />
+        <Receiver
+          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
+          username="호기심천국"
+        />
+        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
+        <Receiver
+          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
+          username="호기심천국"
+        />
+        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
+        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
+      </MessageContainer>
+      <InputMessage />
+    </Container>
   );
 };
 
@@ -35,9 +46,12 @@ export default ChatRoom;
 
 const Container = styled.div`
   background-color: #ededed;
-  width: 600px;
-  height: 1230px;
+  width: 100%;
+  max-width: 600px;
+  height: 100vh;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 `;
 
 const TopContainer = styled.div`
@@ -57,7 +71,7 @@ const RoomName = styled.div`
   font-size: 25px;
   font-style: normal;
   font-weight: 600;
-  line-height: 150%; /* 37.5px */
+  line-height: 150%;
   letter-spacing: -0.55px;
 `;
 
@@ -73,9 +87,9 @@ const Icon = styled.img`
 `;
 
 const MessageContainer = styled.div`
+  flex: 1;
   padding: 31px 40px 0px 29px;
-  height: 927px;
-  overflow-y: scroll;
+  overflow-y: auto;
   &::-webkit-scrollbar {
     display: none;
   }

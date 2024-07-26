@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const Sender = () => {
+const Sender = ({ message }) => {
   return (
-    <>
-      <MessageBox>
-        <BlueMessage>안녕하세요, 호기심천국님! 잘 찾아오셨네요^^</BlueMessage>
-        <BlueMessage> 잘 찾아오셨네요^^</BlueMessage>
-      </MessageBox>
-    </>
+    <MessageBox>
+      <BlueMessage>{message}</BlueMessage>
+    </MessageBox>
   );
 };
 

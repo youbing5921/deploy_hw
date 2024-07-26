@@ -2,22 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import ChatMentee from "../../images/ChatMentee.svg";
 
-const Receiver = () => {
+const Receiver = ({ message, username }) => {
   return (
-    <>
-      <MessageBox>
-        <ProfileImg src={ChatMentee} alt="멘티 프로필" />
-        <NameBubble>
-          <Username>호기심천국</Username>
-          <WhiteMessage>
-            안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해
-            여쭙고 싶어 채팅드렸습니다.
-          </WhiteMessage>
-          <WhiteMessage>안녕하세요,</WhiteMessage>
-          <WhiteMessage>안녕하세요, 멘토님! “진로를</WhiteMessage>
-        </NameBubble>
-      </MessageBox>
-    </>
+    <MessageBox>
+      <ProfileImg src={ChatMentee} alt="멘티 프로필" />
+      <NameBubble>
+        <Username>{username}</Username>
+        <WhiteMessage>{message}</WhiteMessage>
+      </NameBubble>
+    </MessageBox>
   );
 };
 
