@@ -13,6 +13,8 @@ const Receiver = () => {
             안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해
             여쭙고 싶어 채팅드렸습니다.
           </WhiteMessage>
+          <WhiteMessage>안녕하세요,</WhiteMessage>
+          <WhiteMessage>안녕하세요, 멘토님! “진로를</WhiteMessage>
         </NameBubble>
       </MessageBox>
     </>
@@ -32,6 +34,7 @@ const ProfileImg = styled.img`
 const MessageBox = styled.div`
   display: flex;
   gap: 8px;
+  margin-bottom: 24px;
 `;
 
 const NameBubble = styled.div`
@@ -54,4 +57,6 @@ const WhiteMessage = styled.div`
   color: #494949;
   font-size: 20px;
   font-weight: 500;
+  margin-right: auto;
+  /* margin-bottom: 24px; */
 `;
