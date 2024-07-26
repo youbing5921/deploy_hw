@@ -55,7 +55,7 @@ const Wapper = styled.div`
   display: flex;
   gap: 12px;
   max-width: 560px;
-  padding-right: 10px;
+  padding-right: 40px;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     display: none;

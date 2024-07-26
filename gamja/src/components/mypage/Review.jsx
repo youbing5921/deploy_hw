@@ -54,7 +54,6 @@ const Top = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* gap: 9px; */
 `;
 const Profile = styled.img`
   width: 40px;
@@ -86,8 +85,9 @@ const Category = styled.div`
 `;
 
 const MoreBtn = styled.button`
-  width: 34px;
-  height: 15px;
+  /* width: 34px;
+  height: 15px; */
+  padding: 4px 7.5px;
   border-radius: 5px;
   background: rgba(73, 73, 73, 0.2);
   border: none;
