@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import BlankSendBtn from "../../images/BlankSendBtn.svg";
 import SendBtn from "../../images/sendBtn.svg";
 
 const InputMessage = () => {
+  const [message, setMessage] = useState("");
+  const [sendBtnSrc, setSendBtnSrc] = useState(BlankSendBtn);
+
+  const handleInputChange = (e) => {
+    setMessage(e.target.value);
+    setSendBtnSrc(e.target.value ? SendBtn : BlankSendBtn);
+  };
+
+  const handleSendBtn = () => {
+    setMessage("");
+    setSendBtnSrc(BlankSendBtn);
+  };
+
   return (
     <InputBox>
-      <Input type="text" />
-      <SendButton>
-        <img src={SendBtn} alt="send" />
+      <Input type="text" value={message} onChange={handleInputChange} />
+      <SendButton onClick={handleSendBtn}>
+        <img src={sendBtnSrc} alt="send" />
       </SendButton>
     </InputBox>
   );

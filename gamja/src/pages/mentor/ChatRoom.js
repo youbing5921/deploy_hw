@@ -75,4 +75,8 @@ const Icon = styled.img`
 const MessageContainer = styled.div`
   padding: 31px 40px 0px 29px;
   height: 927px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
