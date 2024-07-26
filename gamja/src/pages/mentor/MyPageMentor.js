@@ -6,6 +6,7 @@ import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
 import History from "../../components/mypage/History";
+import Review from "../../components/mypage/Review";
 
 const MyPageMentor = () => {
   return (
@@ -41,6 +42,7 @@ const MyPageMentor = () => {
             </HistoryBox>
             <ReviewBox>
               <Title>나의 멘토링 후기</Title>
+              <Review />
             </ReviewBox>
           </Right>
         </Both>
@@ -67,6 +69,7 @@ const Both = styled.div`
   display: flex;
   flex-direction: row;
   padding: 34px 40px;
+  margin-bottom: 32px;
 `;
 const Left = styled.div`
   display: flex;

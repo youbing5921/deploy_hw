@@ -86,7 +86,7 @@ const Wrapper = styled.div`
 `;
 
 const Left = styled.div`
-  margin-top: 6px;
+  margin-top: 5px;
   width: 78px;
   padding: 15px 10px;
   border-radius: 15px;
