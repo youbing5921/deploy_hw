@@ -77,6 +77,7 @@ const WriteBtn = styled.button`
   border: none;
   font-size: 13px;
   font-weight: 700;
+  cursor: pointer;
 `;
 
 const BoldHr = styled.div`

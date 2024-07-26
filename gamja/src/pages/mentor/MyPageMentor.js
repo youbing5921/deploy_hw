@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Arrow from "../../images/Arrow.svg";
 import TopBar from "../../components/common/TopBar";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
-import Arrow from "../../images/Arrow.svg";
 import StarBox from "../../components/mypage/StarBox";
+import History from "../../components/mypage/History";
 
 const MyPageMentor = () => {
   return (
@@ -34,6 +35,13 @@ const MyPageMentor = () => {
               <SubTitle>나는 멘티들에게 얼마나 밝은 등대일까?</SubTitle>
               <StarBox rating={"89"} />
             </Rating>
+            <HistoryBox>
+              <Title>나의 멘토링 내역</Title>
+              <History />
+            </HistoryBox>
+            <ReviewBox>
+              <Title>나의 멘토링 후기</Title>
+            </ReviewBox>
           </Right>
         </Both>
         <JournalList txt={"일지"} fontColor={"#fff"} bgColor={"#03AED2"} />
@@ -60,14 +68,20 @@ const Both = styled.div`
   flex-direction: row;
   padding: 34px 40px;
 `;
-const Left = styled.div``;
+const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
 const Right = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-left: 28px;
+  gap: 20px;
 `;
 
 const CareerBox = styled.div`
   display: flex;
-  margin-top: 12px;
   width: 157px;
   padding: 30px 0px;
   flex-direction: column;
@@ -122,3 +136,8 @@ const SubTitle = styled.div`
 `;
 
 const Rating = styled.div``;
+
+const HistoryBox = styled.div`
+  overflow: hidden;
+`;
+const ReviewBox = styled.div``;
