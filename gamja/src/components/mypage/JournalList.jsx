@@ -1,6 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 
+const JournalInfo = [
+  {
+    id: 1,
+    title: "사랑과 돈",
+    date: "2024.07.20",
+  },
+  {
+    id: 2,
+    title: "인생을 값지게 사는 법",
+    date: "2024.06.02",
+  },
+  {
+    id: 3,
+    title: "흰 빨래 잘 하는 팁",
+    date: "2024.06.01",
+  },
+  {
+    id: 4,
+    title: "도전과 실패",
+    date: "2024.05.21",
+  },
+  {
+    id: 5,
+    title: "짝사랑의 가치",
+    date: "2024.04.12",
+  },
+];
+
 const JournalList = ({ txt, onBtnClick, fontColor, bgColor }) => {
   return (
     <>
@@ -17,31 +45,15 @@ const JournalList = ({ txt, onBtnClick, fontColor, bgColor }) => {
         </Top>
         <BoldHr />
         <ListBox>
-          <Journal>
-            <JournalTitle>사랑과 돈</JournalTitle>
-            <WriteDate>2024.07.20</WriteDate>
-          </Journal>
-          <BasicHr />
-          <Journal>
-            <JournalTitle>인생을 값지게 사는 법</JournalTitle>
-            <WriteDate>2024.06.02</WriteDate>
-          </Journal>
-          <BasicHr />
-          <Journal>
-            <JournalTitle>흰 빨래 잘 하는 팁</JournalTitle>
-            <WriteDate>2024.06.01</WriteDate>
-          </Journal>
-          <BasicHr />
-          <Journal>
-            <JournalTitle>도전과 실패</JournalTitle>
-            <WriteDate>2024.05.21</WriteDate>
-          </Journal>
-          <BasicHr />
-          <Journal>
-            <JournalTitle>짝사랑의 가치</JournalTitle>
-            <WriteDate>2024.04.20</WriteDate>
-          </Journal>
-          <BasicHr />
+          {JournalInfo.map((journal) => (
+            <React.Fragment key={journal.id}>
+              <Journal>
+                <JournalTitle>{journal.title}</JournalTitle>
+                <WriteDate>{journal.date}</WriteDate>
+              </Journal>
+              <BasicHr />
+            </React.Fragment>
+          ))}
         </ListBox>
       </Container>
     </>
@@ -108,6 +120,7 @@ const Journal = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const JournalTitle = styled.div`
   color: #494949;
   text-align: center;
@@ -115,6 +128,7 @@ const JournalTitle = styled.div`
   font-weight: 700;
   cursor: pointer;
 `;
+
 const WriteDate = styled.div`
   color: #7f7f7f;
   text-align: center;
