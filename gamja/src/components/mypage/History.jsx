@@ -128,6 +128,7 @@ const Right = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 4px;
+  border-radius: 15px;
   max-width: 238px;
   overflow-x: scroll;
   &::-webkit-scrollbar {
