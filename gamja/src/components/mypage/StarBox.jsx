@@ -90,9 +90,7 @@ const RatingBox = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   width: 289px;
-  /* display: inline-flex; */
   padding: 13px 25px;
-  /* gap: 25px; */
 `;
 
 const StarRateWrap = styled.div`

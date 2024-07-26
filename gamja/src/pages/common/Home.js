@@ -17,7 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentee";
+  const userType = "mentor";
   return (
     <>
       {userType === "mentor" ? (
@@ -41,7 +41,11 @@ const Home = () => {
               />
               <ChatCard txt={"멘티"} fontColor={"#fff"} bgImg={mentorBtn2} />
               <CommunityCard fontColor={"#fff"} bgImg={mentorBtn3} />
-              <MypageCard fontColor={"#fff"} bgImg={mentorBtn4} />
+              <MypageCard
+                fontColor={"#fff"}
+                bgImg={mentorBtn4}
+                onBtnClick={() => navigate("/mentor/mypage/:username")}
+              />
             </Cards>
           </Container>
         </>
