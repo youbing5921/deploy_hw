@@ -2,27 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
 
-const UserInfo = ({ profilImg, categoryColor, categoryBg }) => {
+const UserInfo = ({ profilImg, categoryColor, categoryBg, Info }) => {
   return (
     <>
-      <ProfileBox>
-        <Profile src={profilImg} alt="profileImg" />
-        <NameBox>
-          <Username>척척육은영</Username>
-          <Next src={Arrow} alt="바로가기" />
-        </NameBox>
-        <CategoryBox>
-          <Category categoryColor={categoryColor} categoryBg={categoryBg}>
-            가치관
-          </Category>
-          <Category categoryColor={categoryColor} categoryBg={categoryBg}>
-            사랑
-          </Category>
-          <Category categoryColor={categoryColor} categoryBg={categoryBg}>
-            생활
-          </Category>
-        </CategoryBox>
-      </ProfileBox>
+      {Info.map((info) => (
+        <ProfileBox>
+          <Profile src={profilImg} alt="profileImg" />
+          <NameBox>
+            <Username>{info.name}</Username>
+            <Next src={Arrow} alt="바로가기" />
+          </NameBox>
+          <CategoryBox>
+            {info.category.map((cat, idx) => (
+              <Category
+                key={idx}
+                categoryColor={categoryColor}
+                categoryBg={categoryBg}
+              >
+                {cat}
+              </Category>
+            ))}
+          </CategoryBox>
+        </ProfileBox>
+      ))}
     </>
   );
 };
