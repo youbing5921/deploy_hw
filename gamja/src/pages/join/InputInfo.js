@@ -14,6 +14,10 @@ const InputInfo = () => {
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
+  const [textareaHeight, setTextareaHeight] = useState({
+    row: 1,
+    lineBreak: {},
+  });
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
@@ -58,11 +62,23 @@ const InputInfo = () => {
   }, [year, month, date]);
 
   // 이메일 관련 함수
+  const onEmailChange = (e) => {
+    const value = fitLength(e.target.value, 24);
+    setEmail(value);
+  };
+
   useEffect(() => {
     const titleOval3 = document.querySelector(".titleOval3");
     const newBottonBtn3 = document.querySelector(".newBottonBtn3");
     const condition = email.length > 0;
     changeBtnColor(condition, titleOval3, newBottonBtn3);
+
+    const emailInput = document.querySelector(".emailInput");
+    if (email.length > 12) {
+      emailInput.style.height = "154px";
+    } else {
+      emailInput.style.height = "77px";
+    }
   }, [email]);
 
   // 아이디 관련 함수
@@ -128,19 +144,18 @@ const InputInfo = () => {
     }
   };
 
+  const mainContainerList = document.querySelectorAll(".mainContainer");
   const backToStep = () => {
-    const mainContainerList = document.querySelectorAll(".mainContainer");
     if (step !== 1) {
       mainContainerList[step - 2].id = "";
       mainContainerList[step - 1].id = "hide";
-      setStep((present) => present + 1);
+      setStep((present) => present - 1);
     } else {
       navigate("/join/tos");
     }
   };
 
   const moveToStep = () => {
-    const mainContainerList = document.querySelectorAll(".mainContainer");
     if (step !== mainContainerList.length) {
       mainContainerList[step].id = "";
       mainContainerList[step - 1].id = "hide";
@@ -237,13 +252,20 @@ const InputInfo = () => {
         <ColorfulInput>
           제 이메일은
           <br />
-          <input
+          <TextareaStyle
+            className="emailInput"
+            placeholder="voyage@gmail.com"
+            value={email}
+            onChange={onEmailChange}
+            autoFocus
+          />
+          {/* <input
             type="text"
             placeholder="voyage@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             autoFocus
-          />
+          /> */}
           입니다.
         </ColorfulInput>
         <NewBottonBtn
@@ -357,15 +379,36 @@ const BirthInput = styled(ColorfulInput)`
     margin: 0;
   }
   input:nth-child(2) {
-    width: 115px;
+    width: 120px;
+    text-align: end;
   }
   input:nth-child(3) {
-    width: 50px;
+    width: 55px;
+    text-align: end;
     margin-left: 10px;
   }
   input:nth-child(4) {
-    width: 50px;
+    width: 55px;
+    text-align: end;
     margin-left: 10px;
+  }
+`;
+
+const TextareaStyle = styled.textarea`
+  all: unset;
+  display: block;
+  width: 100%;
+  height: 77px;
+  white-space: normal;
+  font-family: Pretendard;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  background: linear-gradient(to right, #03aed2, #fdde55);
+  color: transparent;
+  background-clip: text;
+  &::placeholder {
+    color: #dbdbdb;
   }
 `;
 
