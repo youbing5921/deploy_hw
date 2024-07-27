@@ -14,6 +14,7 @@ import ChatOnBorad from "./pages/mentor/ChatOnBorad";
 import ChatRoom from "./pages/mentor/ChatRoom";
 import ChatInBox from "./pages/mentor/ChatInBox";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
+import MypageMentee from "./pages/mentee/MypageMentee";
 
 function App() {
   return (
@@ -36,6 +37,10 @@ function App() {
           <Route
             path="/mentor/mypage/:username"
             element={<MyPageMentor />}
+          ></Route>
+          <Route
+            path="/mentee/mypage/:username"
+            element={<MypageMentee />}
           ></Route>
         </Routes>
       </Wrapper>
