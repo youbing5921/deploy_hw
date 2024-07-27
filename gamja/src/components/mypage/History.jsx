@@ -29,30 +29,23 @@ const users = [
   },
 ];
 
-const History = () => {
+const History = ({ Info }) => {
   return (
     <>
       <Wrapper>
-        <Left>
-          <CategoryBox>
-            <Category>가치관</Category>
-            <CategoryCount>
-              5<span>회</span>
-            </CategoryCount>
-          </CategoryBox>
-          <CategoryBox>
-            <Category>사랑</Category>
-            <CategoryCount>
-              10<span>회</span>
-            </CategoryCount>
-          </CategoryBox>
-          <CategoryBox>
-            <Category>생활</Category>
-            <CategoryCount>
-              2<span>회</span>
-            </CategoryCount>
-          </CategoryBox>
-        </Left>
+        {Info.map((info) => (
+          <Left>
+            {info.category.map((cat, idx) => (
+              <CategoryBox key={idx}>
+                <Category>{cat}</Category>
+                <CategoryCount>
+                  {info.count[idx]}
+                  <span>회</span>
+                </CategoryCount>
+              </CategoryBox>
+            ))}
+          </Left>
+        ))}
         <Right>
           {users.map((user) => (
             <Container key={user.id}>
@@ -87,8 +80,8 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   margin-top: 5px;
-  width: 78px;
-  padding: 15px 10px;
+  width: 80px;
+  padding: 15px 8px;
   border-radius: 15px;
   background: #f8f8f8;
   box-shadow: 4px 0px 10px -5px rgba(0, 0, 0, 0.25);
@@ -102,7 +95,7 @@ const CategoryBox = styled.div`
 `;
 
 const Category = styled.div`
-  padding: 3px 9px;
+  padding: 3px 7px;
   border-radius: 9px;
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;

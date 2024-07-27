@@ -57,7 +57,7 @@ const MyPageMentor = () => {
               </Rating>
               <HistoryBox>
                 <Title>나의 멘토링 내역</Title>
-                <History />
+                <History Info={Info} />
               </HistoryBox>
               <ReviewBox>
                 <Title>나의 멘토링 후기</Title>
