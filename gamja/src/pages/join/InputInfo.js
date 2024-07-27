@@ -14,10 +14,6 @@ const InputInfo = () => {
   const [month, setMonth] = useState("");
   const [date, setDate] = useState("");
   const [email, setEmail] = useState("");
-  const [textareaHeight, setTextareaHeight] = useState({
-    row: 1,
-    lineBreak: {},
-  });
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
@@ -79,6 +75,7 @@ const InputInfo = () => {
     } else {
       emailInput.style.height = "77px";
     }
+    emailInput.focus();
   }, [email]);
 
   // 아이디 관련 함수
@@ -259,13 +256,6 @@ const InputInfo = () => {
             onChange={onEmailChange}
             autoFocus
           />
-          {/* <input
-            type="text"
-            placeholder="voyage@gmail.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoFocus
-          /> */}
           입니다.
         </ColorfulInput>
         <NewBottonBtn
@@ -368,7 +358,7 @@ export default InputInfo;
 
 const NameInput = styled(ColorfulInput)`
   input {
-    width: 160px;
+    width: 140px;
   }
 `;
 
@@ -379,18 +369,15 @@ const BirthInput = styled(ColorfulInput)`
     margin: 0;
   }
   input:nth-child(2) {
-    width: 120px;
-    text-align: end;
+    width: 135px;
   }
   input:nth-child(3) {
-    width: 55px;
-    text-align: end;
-    margin-left: 10px;
+    width: 65px;
+    margin-left: 15px;
   }
   input:nth-child(4) {
-    width: 55px;
-    text-align: end;
-    margin-left: 10px;
+    width: 65px;
+    margin-left: 15px;
   }
 `;
 
@@ -421,13 +408,13 @@ const MentoMentiBtn = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 115px;
-  width: 600px;
+  width: 520px;
   gap: 20px;
   input {
     display: none;
   }
   div {
-    width: 520px;
+    width: 440px;
     height: 240px;
     display: flex;
     flex-direction: column;
