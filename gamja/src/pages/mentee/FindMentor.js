@@ -139,10 +139,6 @@ const Container = styled.div`
   width: 600px;
   height: 1230px;
   margin: 0 auto;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const TopContainer = styled.div`
@@ -155,6 +151,10 @@ const InfoBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 24px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const BottomBar = styled.div`
@@ -176,7 +176,6 @@ const AutoMatch = styled.button`
   justify-content: center;
   align-items: center;
   color: #fdde55;
-  font-family: "Pretendard";
   font-size: 20px;
   font-weight: 700;
   border-radius: 15px;

@@ -13,6 +13,8 @@ import FindMentor from "./pages/mentee/FindMentor";
 import ChatOnBorad from "./pages/mentor/ChatOnBorad";
 import ChatRoom from "./pages/mentor/ChatRoom";
 import ChatInBox from "./pages/mentor/ChatInBox";
+import MyPageMentor from "./pages/mentor/MyPageMentor";
+import MypageMentee from "./pages/mentee/MypageMentee";
 
 function App() {
   return (
@@ -32,6 +34,14 @@ function App() {
           <Route path="/chat/onboard" element={<ChatOnBorad />}></Route>
           <Route path="/chat/:roomId" element={<ChatRoom />}></Route>
           <Route path="/chat/inbox" element={<ChatInBox />}></Route>
+          <Route
+            path="/mentor/mypage/:username"
+            element={<MyPageMentor />}
+          ></Route>
+          <Route
+            path="/mentee/mypage/:username"
+            element={<MypageMentee />}
+          ></Route>
         </Routes>
       </Wrapper>
     </>
@@ -45,4 +55,3 @@ const Wrapper = styled.div`
   width: 600px;
   margin: 0 auto;
 `;
-
