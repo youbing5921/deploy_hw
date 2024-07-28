@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const CommunityCard = ({ onBtnClick, fontColor, bgImg }) => {
+const CommunityCard = ({ onBtnClick, fontColor, $bgimg }) => {
   return (
-    <CommunityCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
+    <CommunityCardBtn
+      onClick={onBtnClick}
+      fontColor={fontColor}
+      $bgimg={$bgimg}
+    >
       <Title fontColor={fontColor}>커뮤니티</Title>
       <SubTitle fontColor={fontColor}>
         망망대해를 함께 항해하는
@@ -17,7 +21,7 @@ const CommunityCard = ({ onBtnClick, fontColor, bgImg }) => {
 export default CommunityCard;
 
 const CommunityCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 380px;

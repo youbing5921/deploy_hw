@@ -29,12 +29,12 @@ const users = [
   },
 ];
 
-const History = ({ Info }) => {
+const MentorHistory = ({ Info }) => {
   return (
     <>
       <Wrapper>
         {Info.map((info) => (
-          <Left>
+          <Left key={info.id}>
             {info.category.map((cat, idx) => (
               <CategoryBox key={idx}>
                 <Category>{cat}</Category>
@@ -71,7 +71,7 @@ const History = ({ Info }) => {
   );
 };
 
-export default History;
+export default MentorHistory;
 
 const Wrapper = styled.div`
   display: flex;

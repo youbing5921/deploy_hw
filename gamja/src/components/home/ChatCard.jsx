@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const ChatCard = ({ txt, onBtnClick, fontColor, bgImg }) => {
+const ChatCard = ({ txt, onBtnClick, fontColor, $bgimg }) => {
   return (
-    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
+    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} $bgimg={$bgimg}>
       <Title fontColor={fontColor}>채팅하기</Title>
       <SubTitle fontColor={fontColor}>
         {txt}들과 이야기꽃을
@@ -17,7 +17,7 @@ const ChatCard = ({ txt, onBtnClick, fontColor, bgImg }) => {
 export default ChatCard;
 
 const ChatCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 409.624px;

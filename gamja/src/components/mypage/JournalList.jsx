@@ -29,7 +29,7 @@ const JournalInfo = [
   },
 ];
 
-const JournalList = ({ txt, onBtnClick, fontColor, bgColor }) => {
+const JournalList = ({ txt, onBtnClick, $fontColor, $bgColor }) => {
   return (
     <>
       <Container>
@@ -37,8 +37,8 @@ const JournalList = ({ txt, onBtnClick, fontColor, bgColor }) => {
           <Title>나의 멘토링 {txt}</Title>
           <WriteBtn
             onClick={onBtnClick}
-            fontColor={fontColor}
-            bgColor={bgColor}
+            $fontColor={$fontColor}
+            $bgColor={$bgColor}
           >
             일지쓰기
           </WriteBtn>
@@ -83,8 +83,8 @@ const Title = styled.div`
 const WriteBtn = styled.button`
   padding: 5.5px 21.5px;
   font-family: "Pretendard";
-  color: ${(props) => props.fontColor || "#494949"};
-  background-color: ${(props) => props.bgColor || "#FDDE55"};
+  color: ${(props) => props.$fontColor || "#494949"};
+  background-color: ${(props) => props.$bgColor || "#FDDE55"};
   border-radius: 10px;
   border: none;
   font-size: 13px;

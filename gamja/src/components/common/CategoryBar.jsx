@@ -24,7 +24,7 @@ const CategoryBar = ({ onSelectCategory }) => {
       {categories.map((category) => (
         <Category
           key={category}
-          isActive={selectCategory === category}
+          $isactive={selectCategory === category}
           onClick={() => onClickCategory(category)}
         >
           {category}
@@ -45,7 +45,7 @@ const Categories = styled.div`
 `;
 
 const Category = styled.div`
-  color: ${(props) => (props.isActive ? "#000" : "#a4a4a4")};
+  color: ${(props) => (props.$isactive ? "#000" : "#a4a4a4")};
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;

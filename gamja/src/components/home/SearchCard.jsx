@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, bgImg }) => {
+const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, $bgimg }) => {
   return (
-    <SearchCardBtn onClick={onBtnClick} bgImg={bgImg}>
+    <SearchCardBtn onClick={onBtnClick} $bgimg={$bgimg}>
       <Title fontColor={fontColor}>{txt}</Title>
       <SubTitle fontColor={fontColor}>{subtxt}</SubTitle>
     </SearchCardBtn>
@@ -13,7 +13,7 @@ const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, bgImg }) => {
 export default SearchCard;
 
 const SearchCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 409.624px;

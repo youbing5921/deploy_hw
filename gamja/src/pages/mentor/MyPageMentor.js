@@ -6,7 +6,7 @@ import TopBar from "../../components/common/TopBar";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
-import History from "../../components/mypage/History";
+import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column";
 
@@ -32,8 +32,8 @@ const MyPageMentor = () => {
   return (
     <>
       {mypageInfo.map((info) => (
-        <Container>
-          <TopBar txt={"마이페이지"} marginLeft={"154px"} />
+        <Container key={info.id}>
+          <TopBar txt={"마이페이지"} $marginLeft={"154px"} />
           <Both>
             <Left>
               <UserInfo profilImg={MenteeImg} Info={Info} />
@@ -43,8 +43,8 @@ const MyPageMentor = () => {
                   <Next src={Arrow} alt="바로가기" />
                 </FontZone>
                 {info.career.map((ele, idx) => (
-                  <CareerList>
-                    <Career key={idx}>{ele}</Career>
+                  <CareerList key={idx}>
+                    <Career>{ele}</Career>
                   </CareerList>
                 ))}
               </CareerBox>
@@ -57,7 +57,7 @@ const MyPageMentor = () => {
               </Rating>
               <HistoryBox>
                 <Title>나의 멘토링 내역</Title>
-                <History Info={Info} />
+                <MentorHistory Info={Info} />
               </HistoryBox>
               <ReviewBox>
                 <Title>나의 멘토링 후기</Title>
@@ -65,7 +65,7 @@ const MyPageMentor = () => {
               </ReviewBox>
             </Right>
           </Both>
-          <JournalList txt={"일지"} fontColor={"#fff"} bgColor={"#03AED2"} />
+          <JournalList txt={"일지"} $fontColor={"#fff"} $bgColor={"#03AED2"} />
           <ColumnBox>
             <Title>내가 스크랩한 칼럼</Title>
             <Column />
@@ -81,7 +81,7 @@ export default MyPageMentor;
 const Container = styled.div`
   background-color: #ededed;
   width: 600px;
-  height: 1230px;
+  padding-bottom: 40px;
   margin: 0 auto;
   overflow-y: scroll;
   &::-webkit-scrollbar {
