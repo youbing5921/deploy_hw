@@ -36,14 +36,14 @@ const Home = () => {
                 txt={"멘티 돕기"}
                 subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
                 fontColor={"#fff"}
-                bgImg={mentorBtn1}
+                $bgimg={mentorBtn1}
                 onBtnClick={() => navigate("/concerns")}
               />
-              <ChatCard txt={"멘티"} fontColor={"#fff"} bgImg={mentorBtn2} />
-              <CommunityCard fontColor={"#fff"} bgImg={mentorBtn3} />
+              <ChatCard txt={"멘티"} fontColor={"#fff"} $bgimg={mentorBtn2} />
+              <CommunityCard fontColor={"#fff"} $bgimg={mentorBtn3} />
               <MypageCard
                 fontColor={"#fff"}
-                bgImg={mentorBtn4}
+                $bgimg={mentorBtn4}
                 onBtnClick={() => navigate("/mentor/mypage/:username")}
               />
             </Cards>
@@ -66,13 +66,13 @@ const Home = () => {
                 subtxt={
                   "든든한 멘토님들이 당신의 \n고민해결을 위해 모였습니다!"
                 }
-                bgImg={menteeBtn1}
+                $bgimg={menteeBtn1}
                 onBtnClick={() => navigate("/find")}
               />
-              <ChatCard txt={"멘토"} bgImg={menteeBtn2} />
-              <CommunityCard bgImg={menteeBtn3} />
+              <ChatCard txt={"멘토"} $bgimg={menteeBtn2} />
+              <CommunityCard $bgimg={menteeBtn3} />
               <MypageCard
-                bgImg={menteeBtn4}
+                $bgimg={menteeBtn4}
                 onBtnClick={() => navigate("/mentee/mypage/:username")}
               />
             </Cards>

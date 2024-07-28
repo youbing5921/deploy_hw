@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const MypageCard = ({ onBtnClick, fontColor, bgImg }) => {
+const MypageCard = ({ onBtnClick, fontColor, $bgimg }) => {
   return (
-    <MypageCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
+    <MypageCardBtn onClick={onBtnClick} fontColor={fontColor} $bgimg={$bgimg}>
       <Title fontColor={fontColor}>마이페이지</Title>
       <SubTitle fontColor={fontColor}>
         내 정보를 확인하고 <br />
@@ -16,7 +16,7 @@ const MypageCard = ({ onBtnClick, fontColor, bgImg }) => {
 export default MypageCard;
 
 const MypageCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 380px;
