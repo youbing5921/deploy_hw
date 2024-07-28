@@ -25,6 +25,7 @@ export default MyConcern;
 
 const Container = styled.div`
   padding: 0px 40px;
+  margin-top: 7px;
 `;
 
 const Top = styled.div`

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
 
-const UserInfo = ({ profilImg, categoryColor, categoryBg, Info }) => {
+const UserInfo = ({ profilImg, $categoryColor, $categoryBg, Info }) => {
   return (
     <>
       {Info.map((info) => (
@@ -16,8 +16,8 @@ const UserInfo = ({ profilImg, categoryColor, categoryBg, Info }) => {
             {info.category.map((cat, idx) => (
               <Category
                 key={idx}
-                categoryColor={categoryColor}
-                categoryBg={categoryBg}
+                $categoryColor={$categoryColor}
+                $categoryBg={$categoryBg}
               >
                 {cat}
               </Category>
@@ -78,8 +78,8 @@ const Category = styled.div`
   display: inline-block;
   padding: 3px 9px;
   border-radius: 9px;
-  background: ${(props) => props.categoryBg || "rgba(3, 174, 210, 0.2)"};
-  color: ${(props) => props.categoryColor || "#03aed2"};
+  background: ${(props) => props.$categoryBg || "rgba(3, 174, 210, 0.2)"};
+  color: ${(props) => props.$categoryColor || "#03aed2"};
   text-align: center;
   font-size: 8px;
   font-weight: 500;

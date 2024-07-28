@@ -30,7 +30,7 @@ const columnList = [
   },
 ];
 
-const Column = () => {
+const Column = ({ $categoryColor, $categoryBg }) => {
   return (
     <>
       <Wapper>
@@ -38,7 +38,12 @@ const Column = () => {
           <Container key={columnInfo.id}>
             <Photo src={MentorColumn} alt="mentorColumn" />
             <InfoBox>
-              <Category>{columnInfo.category}</Category>
+              <Category
+                $categoryColor={$categoryColor}
+                $categoryBg={$categoryBg}
+              >
+                {columnInfo.category}
+              </Category>
               <Title>{columnInfo.title}</Title>
               <Author>{columnInfo.author}</Author>
             </InfoBox>
@@ -87,8 +92,8 @@ const InfoBox = styled.div`
 const Category = styled.div`
   padding: 3px 9px;
   border-radius: 9px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  background: ${(props) => props.$categoryBg || "rgba(3, 174, 210, 0.2)"};
+  color: ${(props) => props.$categoryColor || "#03aed2"};
   text-align: center;
   font-size: 8px;
   font-weight: 400;

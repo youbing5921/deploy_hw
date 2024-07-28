@@ -81,7 +81,7 @@ export default MyPageMentor;
 const Container = styled.div`
   background-color: #ededed;
   width: 600px;
-  height: 1230px;
+  padding-bottom: 40px;
   margin: 0 auto;
   overflow-y: scroll;
   &::-webkit-scrollbar {
