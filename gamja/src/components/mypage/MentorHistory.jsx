@@ -34,7 +34,7 @@ const MentorHistory = ({ Info }) => {
     <>
       <Wrapper>
         {Info.map((info) => (
-          <Left>
+          <Left key={info.id}>
             {info.category.map((cat, idx) => (
               <CategoryBox key={idx}>
                 <Category>{cat}</Category>

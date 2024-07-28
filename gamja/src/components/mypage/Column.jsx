@@ -35,7 +35,7 @@ const Column = () => {
     <>
       <Wapper>
         {columnList.map((columnInfo) => (
-          <Container key={columnList.id}>
+          <Container key={columnInfo.id}>
             <Photo src={MentorColumn} alt="mentorColumn" />
             <InfoBox>
               <Category>{columnInfo.category}</Category>

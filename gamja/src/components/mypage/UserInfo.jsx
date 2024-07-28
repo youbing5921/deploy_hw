@@ -6,7 +6,7 @@ const UserInfo = ({ profilImg, categoryColor, categoryBg, Info }) => {
   return (
     <>
       {Info.map((info) => (
-        <ProfileBox>
+        <ProfileBox key={info.id}>
           <Profile src={profilImg} alt="profileImg" />
           <NameBox>
             <Username>{info.name}</Username>
