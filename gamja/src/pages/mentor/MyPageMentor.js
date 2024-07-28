@@ -6,7 +6,7 @@ import TopBar from "../../components/common/TopBar";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
-import History from "../../components/mypage/History";
+import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column";
 
@@ -57,7 +57,7 @@ const MyPageMentor = () => {
               </Rating>
               <HistoryBox>
                 <Title>나의 멘토링 내역</Title>
-                <History Info={Info} />
+                <MentorHistory Info={Info} />
               </HistoryBox>
               <ReviewBox>
                 <Title>나의 멘토링 후기</Title>

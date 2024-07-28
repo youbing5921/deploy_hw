@@ -29,7 +29,7 @@ const users = [
   },
 ];
 
-const History = ({ Info }) => {
+const MentorHistory = ({ Info }) => {
   return (
     <>
       <Wrapper>
@@ -71,7 +71,7 @@ const History = ({ Info }) => {
   );
 };
 
-export default History;
+export default MentorHistory;
 
 const Wrapper = styled.div`
   display: flex;

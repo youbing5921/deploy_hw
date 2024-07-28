@@ -17,7 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentor";
+  const userType = "mentee";
   return (
     <>
       {userType === "mentor" ? (
@@ -71,7 +71,10 @@ const Home = () => {
               />
               <ChatCard txt={"멘토"} bgImg={menteeBtn2} />
               <CommunityCard bgImg={menteeBtn3} />
-              <MypageCard bgImg={menteeBtn4} />
+              <MypageCard
+                bgImg={menteeBtn4}
+                onBtnClick={() => navigate("/mentee/mypage/:username")}
+              />
             </Cards>
           </Container>
         </>
