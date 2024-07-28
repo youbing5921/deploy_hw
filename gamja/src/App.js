@@ -14,6 +14,7 @@ import ChatOnBorad from "./pages/mentor/ChatOnBorad";
 import ChatRoom from "./pages/mentor/ChatRoom";
 import ChatInBox from "./pages/mentor/ChatInBox";
 import Category from "./pages/categoryAndMatching/Category";
+import Matching from "./pages/categoryAndMatching/Matching";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/chat/inbox" element={<ChatInBox />}></Route>
           <Route path="/category/mentor" element={<Category />}></Route>
           <Route path="/category/mentee" element={<Category />}></Route>
+          <Route path="/matching" element={<Matching />}></Route>
         </Routes>
       </Wrapper>
     </>

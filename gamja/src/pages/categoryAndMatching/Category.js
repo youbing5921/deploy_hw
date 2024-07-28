@@ -122,7 +122,7 @@ const Category = () => {
           className="bottomBtn"
           disabled={disabled}
           onClick={() => {
-            console.log("카테고리 선택 완료");
+            navigate("/matching");
           }}
         >
           나에게 딱 맞는 멘토 찾기
@@ -190,7 +190,7 @@ const HorizonLine = ({ text, bold, onClick }) => {
         textAlign: "center",
         borderBottom: "1px solid #aaa",
         lineHeight: "0.1em",
-        margin: "19px auto 53px auto",
+        margin: "28px auto 53px auto",
         color: "#494949",
       }}
     >
