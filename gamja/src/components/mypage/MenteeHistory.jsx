@@ -213,7 +213,7 @@ const DetailWrapper = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
-  margin-top: 15px;
+  margin-top: 14px;
 `;
 
 const Details = styled.div`
