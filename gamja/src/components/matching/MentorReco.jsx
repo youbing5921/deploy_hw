@@ -4,6 +4,8 @@ import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import OrderBtn from "./OrderBtn";
 import SemiTitle from "./SemiTitle";
+import MentorHistory from "./MemberHistory";
+import Review from "./Review";
 
 const MentorReco = ({ infoList }) => {
   const [order, setOrder] = useState(0);
@@ -53,22 +55,15 @@ const MentorReco = ({ infoList }) => {
         <SemiTitle style={{ marginTop: "34px" }}>멘토님의 등대 지수</SemiTitle>
         <RateBox rating={mentor.rating} />
 
-        <SemiTitle>멘토님의 멘토링 내역</SemiTitle>
-        <CategoryBox>
-          {mentor.category.map((elt, idx) => {
-            return (
-              <div key={idx}>
-                <p>{elt}</p>
-                <CategoryCount>
-                  {mentor.count[idx]}
-                  <span>회</span>
-                </CategoryCount>
-              </div>
-            );
-          })}
-        </CategoryBox>
+        <HistoryBox>
+          <SemiTitle>멘토님의 멘토링 내역</SemiTitle>
+          <MentorHistory mentor={mentor} />
+        </HistoryBox>
 
-        <SemiTitle>멘토님의 멘토링 후기</SemiTitle>
+        <ReviewBox>
+          <SemiTitle>멘토님의 멘토링 후기</SemiTitle>
+          <Review />
+        </ReviewBox>
       </MentorContainer>
 
       <OrderBtn
@@ -130,40 +125,6 @@ const MainCategory = styled.div`
   }
 `;
 
-const CategoryBox = styled(MainCategory)`
-  width: 78px;
-  height: 67px;
-  flex-direction: column;
-  border-radius: 15px;
-  background: #f8f8f8;
-  box-shadow: 4px 0px 10px -5px rgba(0, 0, 0, 0.25);
-  gap: 6.5px;
-  padding: 18px 10px 18px 10px;
-  div {
-    display: flex;
-    flex-direction: row;
-  }
-  p {
-    border-radius: 9px;
-    color: #494949;
-    margin: 0;
-    padding: 2.5px 7px 2.5px 7px;
-    font-size: 10px;
-  }
-`;
-
-const CategoryCount = styled.span`
-  color: #494949;
-  font-size: 15px;
-  font-weight: 500;
-  margin-left: auto;
-  span {
-    color: #a4a4a4;
-    font-size: 8px;
-    font-weight: 500;
-  }
-`;
-
 const MentorDiv = styled.div`
   display: flex;
   gap: 27px;
@@ -180,3 +141,9 @@ const MentorContainer = styled.div`
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
   padding: 46px 30px 46px 30px;
 `;
+
+const HistoryBox = styled.div`
+  overflow: hidden;
+`;
+
+const ReviewBox = styled.div``;
