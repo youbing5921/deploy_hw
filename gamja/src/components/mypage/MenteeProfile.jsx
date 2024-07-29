@@ -1,35 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
-import MenteeImg from "../../images/MenteeImg.svg";
+import MentorImg from "../../images/MentorImg.svg";
 
-const UserInfo = ({ Info }) => {
+const MenteeProfile = ({ Info }) => {
   return (
     <>
       {Info.map((info) => (
         <ProfileBox key={info.id}>
-          <Profile src={MenteeImg} alt="profileImg" />
+          <Profile src={MentorImg} alt="profileImg" />
           <NameBox>
             <Username>{info.name}</Username>
             <Next src={Arrow} alt="바로가기" />
           </NameBox>
-          <CategoryBox>
-            {info.category.map((cat, idx) => (
-              <Category key={idx}>{cat}</Category>
-            ))}
-          </CategoryBox>
         </ProfileBox>
       ))}
     </>
   );
 };
 
-export default UserInfo;
+export default MenteeProfile;
 
 const ProfileBox = styled.div`
   display: flex;
-  width: 157px;
-  padding: 30px 0px;
+  height: 117px;
+  padding: 19px 24px;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
@@ -46,8 +41,7 @@ const NameBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 7px;
-  margin-bottom: 9px;
+  gap: 9px;
 `;
 
 const Username = styled.div`
@@ -60,22 +54,4 @@ const Username = styled.div`
 const Next = styled.img`
   width: 6.477px;
   height: 10.983px;
-`;
-
-const CategoryBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 4.5px;
-`;
-
-const Category = styled.div`
-  display: inline-block;
-  padding: 3px 9px;
-  border-radius: 9px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
-  text-align: center;
-  font-size: 8px;
-  font-weight: 500;
 `;
