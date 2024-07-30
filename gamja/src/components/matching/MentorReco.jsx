@@ -115,7 +115,6 @@ const MainCategory = styled.div`
     color: #494949;
     margin: 0;
     padding: 2.5px 10px 2.5px 10px;
-    color: #494949;
     text-align: center;
     font-family: Pretendard;
     font-size: 15px;

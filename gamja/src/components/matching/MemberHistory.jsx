@@ -139,8 +139,8 @@ const Container = styled.div`
 `;
 
 const Profile = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
 
 const InfoBox = styled.div`
@@ -167,12 +167,12 @@ const ContentCategoryBox = styled.div`
 
 const ContentCategory = styled.div`
   border-radius: 5px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  background: rgba(73, 73, 73, 0.2);
+  color: #494949;
   text-align: center;
   font-size: 5px;
   font-weight: 500;
-  padding: 2px 5px;
+  padding: 2px 3px;
 `;
 
 const ConcernBox = styled.div`

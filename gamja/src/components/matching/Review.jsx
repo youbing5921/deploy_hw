@@ -83,9 +83,9 @@ const Username = styled.div`
 const Category = styled.div`
   display: inline-block;
   padding: 3px 9px;
-  border-radius: 5px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  border-radius: 10px;
+  background: rgba(73, 73, 73, 0.2);
+  color: #494949;
   text-align: center;
   font-size: 8px;
   font-style: normal;
