@@ -10,9 +10,10 @@ import FindIdPw from "./pages/login/FindIdPw";
 import Home from "./pages/common/Home";
 import ConcernsPage from "./pages/mentor/ConcernsPage";
 import FindMentor from "./pages/mentee/FindMentor";
-import ChatOnBorad from "./pages/mentor/ChatOnBorad";
-import ChatRoom from "./pages/mentor/ChatRoom";
-import ChatInBox from "./pages/mentor/ChatInBox";
+import ChatListMentor from "./pages/mentor/ChatListMentor";
+import ChatListMentee from "./pages/mentee/ChatListMentee";
+import ChatRoomMentor from "./pages/mentor/ChatRoomMentor";
+import ChatRoomMentee from "./pages/mentee/ChatRoomMentee";
 import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
@@ -33,9 +34,22 @@ function App() {
           <Route path="/home" element={<Home />}></Route>
           <Route path="/concerns" element={<ConcernsPage />}></Route>
           <Route path="/find" element={<FindMentor />}></Route>
-          <Route path="/chat/onboard" element={<ChatOnBorad />}></Route>
-          <Route path="/chat/:roomId" element={<ChatRoom />}></Route>
-          <Route path="/chat/inbox" element={<ChatInBox />}></Route>
+          <Route
+            path="/chat-list/mentor/:username"
+            element={<ChatListMentor />}
+          ></Route>
+          <Route
+            path="/chat-list/mentee/:username"
+            element={<ChatListMentee />}
+          ></Route>
+          <Route
+            path="/chat/mentor/:roomId"
+            element={<ChatRoomMentor />}
+          ></Route>
+          <Route
+            path="/chat/mentee/:roomId"
+            element={<ChatRoomMentee />}
+          ></Route>
           <Route path="/category/mentor" element={<Category />}></Route>
           <Route path="/category/mentee" element={<Category />}></Route>
           <Route path="/matching" element={<Matching />}></Route>

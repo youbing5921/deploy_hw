@@ -7,7 +7,7 @@ import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
 
-const ChatRoom = () => {
+const ChatRoomMentor = () => {
   return (
     <Container>
       <TopContainer>
@@ -48,7 +48,7 @@ const ChatRoom = () => {
   );
 };
 
-export default ChatRoom;
+export default ChatRoomMentor;
 
 const Container = styled.div`
   background-color: #ededed;
