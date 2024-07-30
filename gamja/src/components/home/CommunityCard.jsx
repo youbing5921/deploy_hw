@@ -1,22 +1,27 @@
 import React from "react";
 import styled from "styled-components";
 
-const MypageCard = ({ onBtnClick, fontColor, bgImg }) => {
+const CommunityCard = ({ onBtnClick, fontColor, $bgimg }) => {
   return (
-    <MypageCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
-      <Title fontColor={fontColor}>마이페이지</Title>
+    <CommunityCardBtn
+      onClick={onBtnClick}
+      fontColor={fontColor}
+      $bgimg={$bgimg}
+    >
+      <Title fontColor={fontColor}>커뮤니티</Title>
       <SubTitle fontColor={fontColor}>
-        내 정보를 확인하고 <br />
-        수정할 수 있어요!
+        망망대해를 함께 항해하는
+        <br />
+        보이저들과 이야기 공유해요!
       </SubTitle>
-    </MypageCardBtn>
+    </CommunityCardBtn>
   );
 };
 
-export default MypageCard;
+export default CommunityCard;
 
-const MypageCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+const CommunityCardBtn = styled.div`
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 380px;

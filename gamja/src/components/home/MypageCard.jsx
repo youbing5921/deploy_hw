@@ -1,23 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, bgImg }) => {
+const MypageCard = ({ onBtnClick, fontColor, $bgimg }) => {
   return (
-    <SearchCardBtn onClick={onBtnClick} bgImg={bgImg}>
-      <Title fontColor={fontColor}>{txt}</Title>
-      <SubTitle fontColor={fontColor}>{subtxt}</SubTitle>
-    </SearchCardBtn>
+    <MypageCardBtn onClick={onBtnClick} fontColor={fontColor} $bgimg={$bgimg}>
+      <Title fontColor={fontColor}>마이페이지</Title>
+      <SubTitle fontColor={fontColor}>
+        내 정보를 확인하고 <br />
+        수정할 수 있어요!
+      </SubTitle>
+    </MypageCardBtn>
   );
 };
 
-export default SearchCard;
+export default MypageCard;
 
-const SearchCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+const MypageCardBtn = styled.div`
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
-  height: 409.624px;
-  flex-shrink: 0;
+  height: 380px;
   cursor: pointer;
   position: relative;
   display: flex;
@@ -36,7 +38,6 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
-  white-space: pre-line;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;

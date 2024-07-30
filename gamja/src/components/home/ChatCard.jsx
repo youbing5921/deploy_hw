@@ -1,26 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 
-const CommunityCard = ({ onBtnClick, fontColor, bgImg }) => {
+const ChatCard = ({ txt, onBtnClick, fontColor, $bgimg }) => {
   return (
-    <CommunityCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
-      <Title fontColor={fontColor}>커뮤니티</Title>
+    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} $bgimg={$bgimg}>
+      <Title fontColor={fontColor}>채팅하기</Title>
       <SubTitle fontColor={fontColor}>
-        망망대해를 함께 항해하는
+        {txt}들과 이야기꽃을
         <br />
-        보이저들과 이야기 공유해요!
+        피워보세요!
       </SubTitle>
-    </CommunityCardBtn>
+    </ChatCardBtn>
   );
 };
 
-export default CommunityCard;
+export default ChatCard;
 
-const CommunityCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+const ChatCardBtn = styled.div`
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
-  height: 380px;
+  height: 409.624px;
   cursor: pointer;
   position: relative;
   display: flex;

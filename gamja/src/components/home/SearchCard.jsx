@@ -1,26 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-const ChatCard = ({ txt, onBtnClick, fontColor, bgImg }) => {
+const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, $bgimg }) => {
   return (
-    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} bgImg={bgImg}>
-      <Title fontColor={fontColor}>채팅하기</Title>
-      <SubTitle fontColor={fontColor}>
-        {txt}들과 이야기꽃을
-        <br />
-        피워보세요!
-      </SubTitle>
-    </ChatCardBtn>
+    <SearchCardBtn onClick={onBtnClick} $bgimg={$bgimg}>
+      <Title fontColor={fontColor}>{txt}</Title>
+      <SubTitle fontColor={fontColor}>{subtxt}</SubTitle>
+    </SearchCardBtn>
   );
 };
 
-export default ChatCard;
+export default SearchCard;
 
-const ChatCardBtn = styled.div`
-  background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
+const SearchCardBtn = styled.div`
+  background-image: url(${(props) => (props.$bgimg ? props.$bgimg : "")});
   border: none;
   width: 248px;
   height: 409.624px;
+  flex-shrink: 0;
   cursor: pointer;
   position: relative;
   display: flex;
@@ -39,6 +36,7 @@ const Title = styled.div`
 `;
 
 const SubTitle = styled.div`
+  white-space: pre-line;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;

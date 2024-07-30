@@ -399,6 +399,24 @@ const TextareaStyle = styled.textarea`
   }
 `;
 
+const TextareaStyle = styled.textarea`
+  all: unset;
+  display: block;
+  width: 100%;
+  height: 77px;
+  white-space: normal;
+  font-family: Pretendard;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 700;
+  background: linear-gradient(to right, #03aed2, #fdde55);
+  color: transparent;
+  background-clip: text;
+  &::placeholder {
+    color: #dbdbdb;
+  }
+`;
+
 const RoleChoosingText = styled(ColorfulInput)`
   font-size: 35px;
 `;

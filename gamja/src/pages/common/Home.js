@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import QuoteSection from "../../components/common/QuoteSection";
-import SearchCard from "../../components/common/SearchCard";
-import ChatCard from "../../components/common/ChatCard";
-import CommunityCard from "../../components/common/CommunityCard";
-import MypageCard from "../../components/common/MypageCard";
+import QuoteSection from "../../components/home/QuoteSection";
+import SearchCard from "../../components/home/SearchCard";
+import ChatCard from "../../components/home/ChatCard";
+import CommunityCard from "../../components/home/CommunityCard";
+import MypageCard from "../../components/home/MypageCard";
 import mentorBtn1 from "../../images/mentorBtn1.svg";
 import menteeBtn1 from "../../images/menteeBtn1.svg";
 import mentorBtn2 from "../../images/mentorBtn2.svg";
@@ -17,7 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentee";
+  const userType = "mentor";
   return (
     <>
       {userType === "mentor" ? (
@@ -36,12 +36,16 @@ const Home = () => {
                 txt={"멘티 돕기"}
                 subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
                 fontColor={"#fff"}
-                bgImg={mentorBtn1}
+                $bgimg={mentorBtn1}
                 onBtnClick={() => navigate("/concerns")}
               />
-              <ChatCard txt={"멘티"} fontColor={"#fff"} bgImg={mentorBtn2} />
-              <CommunityCard fontColor={"#fff"} bgImg={mentorBtn3} />
-              <MypageCard fontColor={"#fff"} bgImg={mentorBtn4} />
+              <ChatCard txt={"멘티"} fontColor={"#fff"} $bgimg={mentorBtn2} />
+              <CommunityCard fontColor={"#fff"} $bgimg={mentorBtn3} />
+              <MypageCard
+                fontColor={"#fff"}
+                $bgimg={mentorBtn4}
+                onBtnClick={() => navigate("/mentor/mypage/:username")}
+              />
             </Cards>
           </Container>
         </>
@@ -62,12 +66,15 @@ const Home = () => {
                 subtxt={
                   "든든한 멘토님들이 당신의 \n고민해결을 위해 모였습니다!"
                 }
-                bgImg={menteeBtn1}
+                $bgimg={menteeBtn1}
                 onBtnClick={() => navigate("/find")}
               />
-              <ChatCard txt={"멘토"} bgImg={menteeBtn2} />
-              <CommunityCard bgImg={menteeBtn3} />
-              <MypageCard bgImg={menteeBtn4} />
+              <ChatCard txt={"멘토"} $bgimg={menteeBtn2} />
+              <CommunityCard $bgimg={menteeBtn3} />
+              <MypageCard
+                $bgimg={menteeBtn4}
+                onBtnClick={() => navigate("/mentee/mypage/:username")}
+              />
             </Cards>
           </Container>
         </>
