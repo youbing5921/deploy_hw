@@ -94,5 +94,5 @@ const Tit = styled.div`
 `;
 
 const ColumnBox = styled.div`
-  padding: 0px 40px;
+  padding-left: 40px;
 `;
