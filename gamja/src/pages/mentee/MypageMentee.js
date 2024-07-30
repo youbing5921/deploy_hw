@@ -78,12 +78,12 @@ const Left = styled.div``;
 const Right = styled.div``;
 
 const ConcernBox = styled.div`
-  margin-bottom: 27px;
+  margin-bottom: 47px;
 `;
 
 const HistoryBox = styled.div``;
 const JournalBox = styled.div`
-  margin-bottom: 81px;
+  margin-bottom: 70px;
 `;
 const Tit = styled.div`
   color: #494949;
