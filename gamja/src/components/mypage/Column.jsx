@@ -76,6 +76,7 @@ const Container = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   margin-top: 17px;
+  cursor: pointer;
 `;
 
 const Photo = styled.img`

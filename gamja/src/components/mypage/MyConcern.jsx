@@ -6,7 +6,7 @@ const ReplyList = [
   {
     id: 1,
     reply:
-      "사랑도 결국 현실이에요. 내가 고민하기 시작한 이상 문제는 이미 시작된거에요.사랑도 결국 현실이에요",
+      "사랑도 결국 현실이에요. 내가 고민하기 시작한 이상 문제는 이미 시작된거에요.",
   },
   {
     id: 2,
@@ -144,9 +144,4 @@ const Text = styled.div`
   color: #494949;
   font-size: 13px;
   font-weight: 500;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  text-overflow: ellipsis;
 `;
