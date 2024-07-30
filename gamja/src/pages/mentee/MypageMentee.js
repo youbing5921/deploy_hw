@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MentorImg from "../../images/MentorImg.svg";
 import TopBar from "../../components/common/TopBar";
-import UserInfo from "../../components/mypage/UserInfo";
+import MenteeProfile from "../../components/mypage/MenteeProfile";
 import MyConcern from "../../components/mypage/MyConcern";
 import JournalList from "../../components/mypage/JournalList";
 import MenteeHistory from "../../components/mypage/MenteeHistory";
@@ -11,14 +10,13 @@ import Column from "../../components/mypage/Column";
 let mypageInfo = [
   {
     id: "1",
-    name: "척척육은영",
-    category: ["인간관계", "가치관", "재테크"],
+    name: "돈이 뭐길래",
     mentoringRecord: [
       "가치관",
       "재테크",
       "사랑",
-      "생활 지식",
-      "인간 관계",
+      "생활지식",
+      "인간관계",
       "진로",
     ],
     count: ["10", "20", "2", "3", "20", "0"],
@@ -31,20 +29,18 @@ const MypageMentee = () => {
       <Container>
         <TopBar txt={"마이페이지"} marginLeft={"154px"} />
         <Both>
-          <UserInfo
-            profilImg={MentorImg}
-            Info={Info}
-            $categoryBg={"rgba(73, 73, 73, 0.20)"}
-            $categoryColor={"#494949"}
-          />
+          <Left>
+            <MenteeProfile Info={Info} />
+          </Left>
+          <Right>
+            <HistoryBox>
+              <MenteeHistory Info={Info} />
+            </HistoryBox>
+          </Right>
         </Both>
         <ConcernBox>
           <MyConcern />
         </ConcernBox>
-        <HistoryBox>
-          <Title>나의 멘토링 내역</Title>
-          <MenteeHistory Info={Info} />
-        </HistoryBox>
         <JournalBox>
           <JournalList txt={"일지"} />
         </JournalBox>
@@ -78,22 +74,16 @@ const Both = styled.div`
   padding: 34px 40px;
 `;
 
-const Title = styled.div`
-  color: #494949;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 2px;
-  padding: 0px 40px;
-`;
+const Left = styled.div``;
+const Right = styled.div``;
+
 const ConcernBox = styled.div`
-  margin-bottom: 27px;
+  margin-bottom: 47px;
 `;
 
-const HistoryBox = styled.div`
-  margin-bottom: 60px;
-`;
+const HistoryBox = styled.div``;
 const JournalBox = styled.div`
-  margin-bottom: 81px;
+  margin-bottom: 70px;
 `;
 const Tit = styled.div`
   color: #494949;
@@ -103,5 +93,5 @@ const Tit = styled.div`
 `;
 
 const ColumnBox = styled.div`
-  padding: 0px 40px;
+  padding-left: 40px;
 `;
