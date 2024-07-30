@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../App.css";
 import styled from "styled-components";
 import MainContainer from "../../components/join/MainContainer";
@@ -19,6 +19,8 @@ const InputInfo = () => {
   const [role, setRole] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [step, setStep] = useState(1);
+
+  const textarea = useRef();
   const navigate = useNavigate();
 
   // 이름 관련 함수
@@ -61,6 +63,12 @@ const InputInfo = () => {
   const onEmailChange = (e) => {
     const value = fitLength(e.target.value, 24);
     setEmail(value);
+    handleResizeHeight();
+  };
+
+  const handleResizeHeight = () => {
+    textarea.current.style.height = "auto"; //height 초기화
+    textarea.current.style.height = textarea.current.scrollHeight + "px";
   };
 
   useEffect(() => {
@@ -68,18 +76,10 @@ const InputInfo = () => {
     const newBottonBtn3 = document.querySelector(".newBottonBtn3");
     const condition = email.length > 0;
     changeBtnColor(condition, titleOval3, newBottonBtn3);
-
-    const emailInput = document.querySelector(".emailInput");
-    if (email.length > 12) {
-      emailInput.style.height = "154px";
-    } else {
-      emailInput.style.height = "77px";
-    }
-    emailInput.focus();
   }, [email]);
 
   // 아이디 관련 함수
-  useEffect(() => {
+  출처: https: useEffect(() => {
     const titleOval4 = document.querySelector(".titleOval4");
     const newBottonBtn4 = document.querySelector(".newBottonBtn4");
     const condition = userId.length > 0;
@@ -254,6 +254,8 @@ const InputInfo = () => {
             placeholder="voyage@gmail.com"
             value={email}
             onChange={onEmailChange}
+            ref={textarea}
+            rows={1}
             autoFocus
           />
           입니다.
@@ -384,8 +386,9 @@ const BirthInput = styled(ColorfulInput)`
 const TextareaStyle = styled.textarea`
   all: unset;
   display: block;
-  width: 100%;
-  height: 77px;
+  width: 520px;
+  height: auto;
+  //height: 77px;
   white-space: normal;
   font-family: Pretendard;
   font-size: 50px;
@@ -394,6 +397,7 @@ const TextareaStyle = styled.textarea`
   background: linear-gradient(to right, #03aed2, #fdde55);
   color: transparent;
   background-clip: text;
+  caret-color: #dbdbdb;
   &::placeholder {
     color: #dbdbdb;
   }
