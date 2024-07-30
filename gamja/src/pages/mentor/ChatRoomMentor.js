@@ -95,7 +95,7 @@ const Icon = styled.img`
 const MessageContainer = styled.div`
   flex: 1;
   padding: 31px 40px 0px 29px;
-  overflow-y: auto;
+  overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
