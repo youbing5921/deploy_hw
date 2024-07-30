@@ -18,11 +18,13 @@ const Category = () => {
       e.target.id = "";
       setCategory(category.filter((elt) => elt != value));
     } else {
-      if (location === "/category/mentor") {
+      if (location === "/category/mentor" && category.length < 3) {
         e.target.id = "category_mentor_clicked";
+        setCategory((prev) => [...prev, e.target.value]);
+      } else if (location === "/category/mentee") {
+        e.target.id = "category_mentee_clicked";
+        setCategory((prev) => [...prev, e.target.value]);
       }
-      e.target.id = "category_mentee_clicked";
-      setCategory((prev) => [...prev, e.target.value]);
     }
   };
 
