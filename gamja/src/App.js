@@ -13,6 +13,8 @@ import FindMentor from "./pages/mentee/FindMentor";
 import ChatOnBorad from "./pages/mentor/ChatOnBorad";
 import ChatRoom from "./pages/mentor/ChatRoom";
 import ChatInBox from "./pages/mentor/ChatInBox";
+import Category from "./pages/categoryAndMatching/Category";
+import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
 import MypageMentee from "./pages/mentee/MypageMentee";
 
@@ -34,6 +36,9 @@ function App() {
           <Route path="/chat/onboard" element={<ChatOnBorad />}></Route>
           <Route path="/chat/:roomId" element={<ChatRoom />}></Route>
           <Route path="/chat/inbox" element={<ChatInBox />}></Route>
+          <Route path="/category/mentor" element={<Category />}></Route>
+          <Route path="/category/mentee" element={<Category />}></Route>
+          <Route path="/matching" element={<Matching />}></Route>
           <Route
             path="/mentor/mypage/:username"
             element={<MyPageMentor />}

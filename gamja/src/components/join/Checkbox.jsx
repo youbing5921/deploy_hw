@@ -42,7 +42,7 @@ const Checkbox = ({ element, onChange }) => {
 
 const InputDiv = styled.div`
   display: flex;
-  width: 520px;
+  width: 440px;
   padding: 22px 20px 22px 20px;
   align-items: center;
   gap: 20px;
