@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import MentorImg from "../../images/MentorImg.svg";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
 import MyConcern from "../../components/mypage/MyConcern";
