@@ -13,7 +13,7 @@ const ChatRoomMentor = () => {
       <TopContainer>
         <TopBar txt={"채팅하기"} />
         <FuncBar>
-          <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
+          <RoomName>진로를 선택할 때 가장 중요한 zmzmzm</RoomName>
           <ButtonContainer>
             <Icon src={SearchBtnImg} alt="Search" />
             <Icon src={OutBtnImg} alt="Out" />
@@ -73,6 +73,10 @@ const FuncBar = styled.div`
 `;
 
 const RoomName = styled.div`
+  width: 363px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #7f7f7f;
   font-size: 25px;
   font-style: normal;
