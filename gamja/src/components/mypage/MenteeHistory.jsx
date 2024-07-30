@@ -5,28 +5,28 @@ import CloseBtn from "../../images/xBtn.svg";
 const users = [
   {
     id: 1,
-    categories: ["생활 지식", "인간 관계"],
+    categories: ["생활지식", "인간관계"],
     concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
   },
   {
     id: 2,
-    categories: ["생활 지식", "인간 관계"],
+    categories: ["생활지식", "인간관계"],
     concern:
-      "도전하는 것이 무서워요. 도전에 따른 실패로 이제껏 쌓은 것들이 무너질까 두려워요",
+      "도전하는 것이 무서워요. 도전에 따른 실패로 이제껏 쌓은 것들이 무너질까 두려워요그리고 그리고그리고그리고",
   },
   {
     id: 3,
-    categories: ["재테크", "인간 관계"],
+    categories: ["재테크", "인간관계"],
     concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
   },
   {
     id: 4,
-    categories: ["재테크", "인간 관계"],
+    categories: ["재테크", "인간관계"],
     concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
   },
   {
     id: 5,
-    categories: ["재테크", "인간 관계"],
+    categories: ["재테크", "인간관계"],
     concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
   },
   {
@@ -218,7 +218,7 @@ const DetailWrapper = styled.div`
 
 const Details = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 8px;
 `;
 
 const DetailBox = styled.div`
@@ -227,14 +227,15 @@ const DetailBox = styled.div`
   background: #f8f8f8;
   border-radius: 15px;
   flex: 0 0 auto;
-  width: 90px;
+  width: 115px;
+  height: 96.5px;
   padding: 10px;
 `;
 
 const DetailCategoryBox = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 3px;
 `;
 
 const DetailCategory = styled.div`
@@ -242,7 +243,7 @@ const DetailCategory = styled.div`
   padding: 3px 10px;
   border-radius: 9px;
   color: #494949;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 500;
   text-align: center;
 `;
