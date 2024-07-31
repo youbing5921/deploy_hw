@@ -118,10 +118,10 @@ const ReplyInput = styled.input`
   background: #f6f6f6;
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1) inset;
   outline: none;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 500;
   ::placeholder {
-    color: #000;
+    color: #a4a4a4;
   }
 `;
 
