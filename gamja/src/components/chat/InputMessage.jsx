@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import BlankSendBtn from "../../images/BlankSendBtn.svg";
+import BlankSendBtn from "../../images/BlankSendBlue.svg";
 import SendBtn from "../../images/sendBtn.svg";
+import BlankYellow from "../../images/BlankYellow.svg";
+import sendYellow from "../../images/sendYellow.svg";
+import { useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 
 const InputMessage = () => {
+  const location = useLocation().pathname;
   const [message, setMessage] = useState("");
   const [sendBtnSrc, setSendBtnSrc] = useState(BlankSendBtn);
 
+  useEffect(() => {
+    if (matchPath("/chat/mentor/:roomId", location)) {
+      setSendBtnSrc(message ? SendBtn : BlankSendBtn);
+    } else if (matchPath("/chat/mentee/:roomId", location)) {
+      setSendBtnSrc(message ? sendYellow : BlankYellow);
+    }
+  }, [location, message]);
+
   const handleInputChange = (e) => {
     setMessage(e.target.value);
-    setSendBtnSrc(e.target.value ? SendBtn : BlankSendBtn);
   };
 
   const handleSendBtn = () => {
     setMessage("");
-    setSendBtnSrc(BlankSendBtn);
   };
 
   return (
