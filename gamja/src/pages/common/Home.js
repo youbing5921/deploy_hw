@@ -39,12 +39,17 @@ const Home = () => {
                 $bgimg={mentorBtn1}
                 onBtnClick={() => navigate("/concerns")}
               />
-              <ChatCard txt={"멘티"} fontColor={"#fff"} $bgimg={mentorBtn2} />
+              <ChatCard
+                txt={"멘티"}
+                fontColor={"#fff"}
+                $bgimg={mentorBtn2}
+                onBtnClick={() => navigate("/chat-list/mentor/:username")}
+              />
               <CommunityCard fontColor={"#fff"} $bgimg={mentorBtn3} />
               <MypageCard
                 fontColor={"#fff"}
                 $bgimg={mentorBtn4}
-                onBtnClick={() => navigate("/mentor/mypage/:username")}
+                onBtnClick={() => navigate("/mypage/mentor/:username")}
               />
             </Cards>
           </Container>
@@ -69,11 +74,15 @@ const Home = () => {
                 $bgimg={menteeBtn1}
                 onBtnClick={() => navigate("/find")}
               />
-              <ChatCard txt={"멘토"} $bgimg={menteeBtn2} />
+              <ChatCard
+                txt={"멘토"}
+                $bgimg={menteeBtn2}
+                onBtnClick={() => navigate("/chat-list/mentee/:username")}
+              />
               <CommunityCard $bgimg={menteeBtn3} />
               <MypageCard
                 $bgimg={menteeBtn4}
-                onBtnClick={() => navigate("/mentee/mypage/:username")}
+                onBtnClick={() => navigate("/mypage/mentee/:username")}
               />
             </Cards>
           </Container>

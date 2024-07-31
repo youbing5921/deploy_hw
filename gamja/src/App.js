@@ -10,10 +10,11 @@ import FindIdPw from "./pages/login/FindIdPw";
 import Home from "./pages/common/Home";
 import ConcernsPage from "./pages/mentor/ConcernsPage";
 import FindMentor from "./pages/mentee/FindMentor";
+import ChatListMentee from "./pages/chat/ChatListMentee";
 import ChatListMentor from "./pages/chat/ChatListMentor";
-import ChatListMentee from "./pages/chat/ChatListMentor";
 import ChatRoomMentor from "./pages/chat/ChatRoomMentor";
 import ChatRoomMentee from "./pages/chat/ChatRoomMentee";
+import CreateChat from "./pages/chat/CreateChat";
 import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
@@ -50,6 +51,10 @@ function App() {
           <Route
             path="/chat/mentee/:roomId"
             element={<ChatRoomMentee />}
+          ></Route>
+          <Route
+            path="/chat-create/mentee/:roomId"
+            element={<CreateChat />}
           ></Route>
           <Route path="/category/mentor" element={<Category />}></Route>
           <Route path="/category/mentee" element={<Category />}></Route>
