@@ -23,6 +23,7 @@ function App() {
     <>
       <Wrapper>
         <Routes>
+          <Route path="/" element={<Login />}></Route>
           <Route path="/join" element={<WelcomePage />}></Route>
           <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
           <Route path="/join/info" element={<InputInfo />}></Route>
