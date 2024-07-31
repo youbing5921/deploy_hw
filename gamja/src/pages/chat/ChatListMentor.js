@@ -1,14 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
-import ListMenuBar from "../../components/chat/ListMenuBar";
 
 const ChatListMentor = () => {
   return (
     <>
       <Container>
         <TopBar txt={"채팅하기"} />
-        <ListMenuBar />
       </Container>
     </>
   );
