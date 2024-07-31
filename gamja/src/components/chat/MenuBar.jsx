@@ -5,7 +5,7 @@ import clickedSuggest from "../../images/clickedSuggest.svg";
 import recentIcon from "../../images/recentIcon.svg";
 import suggestIcon from "../../images/suggestIcon.svg";
 
-const ListMenuBar = () => {
+const ListMenuBar = ({ txt }) => {
   const [selectedNav, setSelectedNav] = useState("recent");
 
   const onClickNav = (nav) => {
@@ -35,7 +35,7 @@ const ListMenuBar = () => {
             src={selectedNav === "suggest" ? clickedSuggest : suggestIcon}
           />
           <NavText isActive={selectedNav === "suggest"}>
-            멘티의 제안 목록
+            {txt || "멘티의 제안 목록"}
           </NavText>
         </NavBox>
       </Container>

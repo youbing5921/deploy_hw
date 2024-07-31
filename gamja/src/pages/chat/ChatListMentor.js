@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenuBar from "../../components/chat/MenuBar";
 import RecentChat from "../../components/chat/RecentChat";
+import SuggestMentee from "../../components/chat/SuggestMentee";
 import AdZone from "../../components/chat/AdZone";
 
 const ChatListMentor = () => {

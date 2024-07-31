@@ -132,7 +132,7 @@ const Username = styled.div`
 `;
 
 const Message = styled.div`
-  color: #494949;
+  color: #7f7f7f;
   font-family: Inter;
   font-size: 15px;
   font-style: normal;
@@ -143,4 +143,10 @@ const Message = styled.div`
 const DateBox = styled.div`
   padding-top: 5px;
 `;
-const Date = styled.div``;
+const Date = styled.div`
+  color: #7f7f7f;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 150%; /* 22.5px */
+  letter-spacing: -0.33px;
+`;
