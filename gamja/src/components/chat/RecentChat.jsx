@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
 import ChatMentee from "../../images/ChatMentee.svg";
@@ -14,37 +14,31 @@ const MessageArr = [
   },
   {
     id: 2,
-    username: "나왕똑똑",
+    username: "나좀똑똑",
     message: "진로를 선택할 때 가장 중요한 기준",
     date: "어제",
   },
   {
     id: 3,
-    username: "나왕똑똑",
+    username: "나덜똑똑",
     message: "진로를 선택할 때 가장 중요한 기준",
     date: "어제",
   },
   {
     id: 4,
-    username: "나왕똑똑",
+    username: "나개똑똑",
     message: "진로를 선택할 때 가장 중요한 기준",
     date: "어제",
   },
   {
     id: 5,
-    username: "나왕똑똑",
+    username: "나짱똑똑",
     message: "진로를 선택할 때 가장 중요한 기준",
     date: "어제",
   },
   {
     id: 6,
-    username: "나왕똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 7,
-    username: "나왕똑똑",
+    username: "나안똑똑",
     message: "진로를 선택할 때 가장 중요한 기준",
     date: "어제",
   },
@@ -52,6 +46,7 @@ const MessageArr = [
 
 const RecentChat = () => {
   const location = useLocation().pathname;
+  const navigate = useNavigate();
 
   if (matchPath("/chat-list/mentor/:username", location)) {
     return (
@@ -60,9 +55,13 @@ const RecentChat = () => {
           <Wrapper key={message.id}>
             <Both>
               <Left>
-                <Profile src={ChatMentee} alt="ChatMentee" />
+                <Profile
+                  src={ChatMentee}
+                  alt="ChatMentee"
+                  onClick={() => navigate(`/mypage/mentor/${message.username}`)}
+                />
               </Left>
-              <Right>
+              <Right onClick={() => navigate(`/chat/mentor/${message.id}`)}>
                 <Username>{message.username}</Username>
                 <Message>{message.message}</Message>
               </Right>
@@ -82,9 +81,13 @@ const RecentChat = () => {
           <Wrapper key={message.id}>
             <Both>
               <Left>
-                <Profile src={ChatMentor} alt="ChatMentor" />
+                <Profile
+                  src={ChatMentor}
+                  alt="ChatMentor"
+                  onClick={() => navigate(`/mypage/mentee/${message.username}`)}
+                />
               </Left>
-              <Right>
+              <Right onClick={() => navigate(`/chat/mentee/${message.id}`)}>
                 <Username>{message.username}</Username>
                 <Message>{message.message}</Message>
               </Right>
@@ -97,6 +100,7 @@ const RecentChat = () => {
       </>
     );
   }
+  return null;
 };
 
 export default RecentChat;
