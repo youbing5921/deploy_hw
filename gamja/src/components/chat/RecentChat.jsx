@@ -113,13 +113,18 @@ const Both = styled.div`
   align-items: center;
   gap: 14px;
 `;
-const Left = styled.div``;
-const Right = styled.div``;
+const Left = styled.div`
+  cursor: pointer;
+`;
+const Right = styled.div`
+  cursor: pointer;
+`;
 
 const Profile = styled.img`
   width: 65px;
   height: 65px;
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 const Username = styled.div`

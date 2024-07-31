@@ -1,7 +1,7 @@
 import React from "react";
 
 const SuggestMentee = () => {
-  return <></>;
+  return <div></div>;
 };
 
 export default SuggestMentee;

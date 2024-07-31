@@ -5,13 +5,7 @@ import clickedSuggest from "../../images/clickedSuggest.svg";
 import recentIcon from "../../images/recentIcon.svg";
 import suggestIcon from "../../images/suggestIcon.svg";
 
-const ListMenuBar = ({ txt }) => {
-  const [selectedNav, setSelectedNav] = useState("recent");
-
-  const onClickNav = (nav) => {
-    setSelectedNav(nav);
-  };
-
+const ListMenuBar = ({ txt, selectedNav, onClickNav }) => {
   return (
     <>
       <Container>

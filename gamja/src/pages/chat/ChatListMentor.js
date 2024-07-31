@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenuBar from "../../components/chat/MenuBar";
@@ -6,14 +6,24 @@ import RecentChat from "../../components/chat/RecentChat";
 import SuggestMentee from "../../components/chat/SuggestMentee";
 import AdZone from "../../components/chat/AdZone";
 
-const ChatListMentor = () => {
+const ChatListMentee = () => {
+  const [selectedNav, setSelectedNav] = useState("recent");
+
+  const onClickNav = (nav) => {
+    setSelectedNav(nav);
+  };
   return (
     <>
       <Container>
         <TopBar txt={"채팅하기"} />
-        <MenuBar />
+        <MenuBar
+          txt={"관심 멘토 목록"}
+          selectedNav={selectedNav}
+          onClickNav={onClickNav}
+        />
         <ListBox>
-          <RecentChat />
+          {selectedNav === "recent" && <RecentChat />}
+          {selectedNav === "suggest" && <SuggestMentee />}
         </ListBox>
         <BottomBar>
           <AdZone />
@@ -22,7 +32,8 @@ const ChatListMentor = () => {
     </>
   );
 };
-export default ChatListMentor;
+
+export default ChatListMentee;
 
 const Container = styled.div`
   background-color: #f8f8f8;
