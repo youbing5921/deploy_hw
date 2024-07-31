@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
+import ChatMentee from "../../images/ChatMentee.svg";
 
 const MessageArr = [
   {
@@ -48,26 +51,52 @@ const MessageArr = [
 ];
 
 const RecentChat = () => {
-  return (
-    <>
-      {MessageArr.map((message) => (
-        <Wrapper key={message.id}>
-          <Both>
-            <Left>
-              <Profile src={ChatMentor} alt="ChatMentee" />
-            </Left>
-            <Right>
-              <Username>{message.username}</Username>
-              <Message>{message.message}</Message>
-            </Right>
-          </Both>
-          <DateBox>
-            <Date>{message.date}</Date>
-          </DateBox>
-        </Wrapper>
-      ))}
-    </>
-  );
+  const location = useLocation().pathname;
+
+  if (matchPath("/chat-list/mentor/:username", location)) {
+    return (
+      <>
+        {MessageArr.map((message) => (
+          <Wrapper key={message.id}>
+            <Both>
+              <Left>
+                <Profile src={ChatMentee} alt="ChatMentee" />
+              </Left>
+              <Right>
+                <Username>{message.username}</Username>
+                <Message>{message.message}</Message>
+              </Right>
+            </Both>
+            <DateBox>
+              <Date>{message.date}</Date>
+            </DateBox>
+          </Wrapper>
+        ))}
+      </>
+    );
+  }
+  if (matchPath("/chat-list/mentee/:username", location)) {
+    return (
+      <>
+        {MessageArr.map((message) => (
+          <Wrapper key={message.id}>
+            <Both>
+              <Left>
+                <Profile src={ChatMentor} alt="ChatMentor" />
+              </Left>
+              <Right>
+                <Username>{message.username}</Username>
+                <Message>{message.message}</Message>
+              </Right>
+            </Both>
+            <DateBox>
+              <Date>{message.date}</Date>
+            </DateBox>
+          </Wrapper>
+        ))}
+      </>
+    );
+  }
 };
 
 export default RecentChat;
