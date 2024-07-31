@@ -61,7 +61,7 @@ const Category = () => {
         <ChatBtn
           disabled={disabled}
           $active={!disabled}
-          onClick={() => navigate("/matching")}
+          onClick={() => navigate("/chat/mentee/:username")}
         >
           멘토님과 채팅하기
         </ChatBtn>

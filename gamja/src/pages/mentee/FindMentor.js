@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import CategoryBar from "../../components/common/CategoryBar";
@@ -92,6 +93,7 @@ let allInfoList = [
 ];
 
 const FindMentor = () => {
+  const navigate = useNavigate();
   const [infoList, setInfoList] = useState(allInfoList);
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
@@ -126,7 +128,9 @@ const FindMentor = () => {
         />
       </InfoBox>
       <BottomBar>
-        <AutoMatch>자동 매칭하기</AutoMatch>
+        <AutoMatch onClick={() => navigate("/matching")}>
+          자동 매칭하기
+        </AutoMatch>
       </BottomBar>
     </Container>
   );
