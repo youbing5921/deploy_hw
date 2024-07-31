@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import clickedRecent from "../../images/clickedRecent.svg";
 import clickedSuggest from "../../images/clickedSuggest.svg";
@@ -11,24 +11,24 @@ const ListMenuBar = ({ txt, selectedNav, onClickNav }) => {
       <Container>
         <NavBox
           onClick={() => onClickNav("recent")}
-          isActive={selectedNav === "recent"}
+          $isActive={selectedNav === "recent"}
         >
           <NavIcon
             src={selectedNav === "recent" ? clickedRecent : recentIcon}
           />
-          <NavText isActive={selectedNav === "recent"}>
+          <NavText $isActive={selectedNav === "recent"}>
             최근 채팅한 목록
           </NavText>
         </NavBox>
         <MidHr />
         <NavBox
           onClick={() => onClickNav("suggest")}
-          isActive={selectedNav === "suggest"}
+          $isActive={selectedNav === "suggest"}
         >
           <NavIcon
             src={selectedNav === "suggest" ? clickedSuggest : suggestIcon}
           />
-          <NavText isActive={selectedNav === "suggest"}>
+          <NavText $isActive={selectedNav === "suggest"}>
             {txt || "멘티의 제안 목록"}
           </NavText>
         </NavBox>
@@ -76,7 +76,7 @@ const NavIcon = styled.img`
 `;
 
 const NavText = styled.div`
-  color: ${(props) => (props.isActive ? "#494949" : "#a4a4a4")};
+  color: ${(props) => (props.$isActive ? "#494949" : "#a4a4a4")};
   font-size: 25px;
   font-style: normal;
   font-weight: 600;
