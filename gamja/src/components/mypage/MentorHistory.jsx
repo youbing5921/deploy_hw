@@ -80,7 +80,7 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   margin-top: 5px;
-  width: 99px;
+  width: 150px;
   padding: 13px 10px;
   border-radius: 15px;
   background: #f8f8f8;
@@ -100,7 +100,7 @@ const Category = styled.div`
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 500;
 `;
 
@@ -113,7 +113,7 @@ const CategoryCount = styled.span`
     color: #a4a4a4;
     font-size: 8px;
     font-weight: 500;
-    /* margin-left: 2px; */
+    margin-left: 2px;
   }
 `;
 

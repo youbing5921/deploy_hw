@@ -13,7 +13,7 @@ let mypageInfo = [
   {
     id: "1",
     name: "척척육은영",
-    category: ["가치관", "인간관계", "사랑"],
+    category: ["가치관", "진로", "사랑"],
     count: ["10", "20", "2"],
     rating: "50",
   },
@@ -74,7 +74,6 @@ const Both = styled.div`
   display: flex;
   flex-direction: row;
   padding: 34px 40px;
-  margin-bottom: 32px;
 `;
 const Left = styled.div`
   display: flex;
@@ -107,6 +106,7 @@ const Rating = styled.div``;
 const HistoryBox = styled.div`
   overflow: hidden;
   padding: 0px 40px;
+  margin-bottom: 75px;
 `;
 const ReviewBox = styled.div``;
 
