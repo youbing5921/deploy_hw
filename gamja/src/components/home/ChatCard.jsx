@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const ChatCard = ({ txt, onBtnClick, fontColor, $bgimg }) => {
+const ChatCard = ({ txt, onBtnClick, $fontColor, $bgimg }) => {
   return (
-    <ChatCardBtn onClick={onBtnClick} fontColor={fontColor} $bgimg={$bgimg}>
-      <Title fontColor={fontColor}>채팅하기</Title>
-      <SubTitle fontColor={fontColor}>
+    <ChatCardBtn onClick={onBtnClick} $fontColor={$fontColor} $bgimg={$bgimg}>
+      <Title $fontColor={$fontColor}>채팅하기</Title>
+      <SubTitle $fontColor={$fontColor}>
         {txt}들과 이야기꽃을
         <br />
         피워보세요!
@@ -35,7 +35,7 @@ const Title = styled.div`
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
@@ -44,5 +44,5 @@ const SubTitle = styled.div`
   font-weight: 400;
   line-height: normal;
   text-align: center;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;
