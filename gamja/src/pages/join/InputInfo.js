@@ -159,9 +159,18 @@ const InputInfo = () => {
       setStep((present) => present + 1);
       setBtnDisabled(true);
     } else {
-      navigate("/join/complete", {
+      navigate(role === "mento" ? "/join/category" : "/join/complete", {
         state: {
           role: role,
+          info: {
+            username: name,
+            email: email,
+            password: password,
+            is_mentor: role === "mento" ? true : false,
+            name: userId,
+            birth_date: `${year}-${month}-${date}`,
+            agreed_to_terms: true,
+          },
         },
       });
     }

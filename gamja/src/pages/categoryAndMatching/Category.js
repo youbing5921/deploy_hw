@@ -57,7 +57,7 @@ const Category = () => {
           <button onClick={onClick} value="가치관">
             가치관
           </button>
-          <button onClick={onClick} value="돈,재테크">
+          <button onClick={onClick} value="돈・재테크">
             돈・재테크
           </button>
           <button onClick={onClick} value="사랑">
