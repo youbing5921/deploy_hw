@@ -24,6 +24,11 @@ import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
+import MentorSelectChat from "./pages/mypage/MentorSelectChat";
+import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
+import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
+import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
+import JournalDetail from "./pages/mypage/JournalDetail";
 
 function App() {
   return (
@@ -73,6 +78,26 @@ function App() {
         <Route
           path="/profile/mentee/:username"
           element={<MenteeProfile />}
+        ></Route>
+        <Route
+          path="/mypage/mentor/journal/select"
+          element={<MentorSelectChat />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/journal/select"
+          element={<MenteeSelectChat />}
+        ></Route>
+        <Route
+          path="/mypage/mentor/journal/write"
+          element={<MentorJournalWrite />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/journal/write"
+          element={<MenteeJournalWrite />}
+        ></Route>
+        <Route
+          path="/mypage/journal/detail/:id"
+          element={<JournalDetail />}
         ></Route>
       </Routes>
     </Wrapper>

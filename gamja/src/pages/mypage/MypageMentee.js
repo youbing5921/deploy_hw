@@ -5,7 +5,7 @@ import MenteeProfile from "../../components/mypage/MenteeProfile";
 import MyConcern from "../../components/mypage/MyConcern";
 import JournalList from "../../components/mypage/JournalList";
 import MenteeHistory from "../../components/mypage/MenteeHistory";
-import Column from "../../components/mypage/Column";
+import Column from "../../components/mypage/Column.jsx";
 
 let mypageInfo = [
   {
