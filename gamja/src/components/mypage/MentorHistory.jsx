@@ -91,7 +91,7 @@ const CategoryBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 13px 0px;
+  margin: 10px 0px;
 `;
 
 const Category = styled.div`

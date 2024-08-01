@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import xBtn from "../../images/xBtn.svg";
+import { useNavigate } from "react-router-dom";
 
 const userInfo = [
   {
@@ -16,7 +17,7 @@ const userInfo = [
       },
       {
         interest: "재테크",
-        count: 10,
+        count: 5,
       },
       {
         interest: "사랑",
@@ -24,21 +25,44 @@ const userInfo = [
       },
       {
         interest: "생활지식",
-        count: 10,
+        count: 20,
       },
       {
         interest: "인간관계",
-        count: 10,
+        count: 20,
       },
       {
         interest: "진로",
         count: 10,
       },
     ],
+    mymentoring: [
+      {
+        id: 1,
+        interest: ["인간관계", "생활지식"],
+        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
+      },
+      {
+        id: 2,
+        interest: ["가치관", "진로"],
+        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
+      },
+      {
+        id: 3,
+        interest: ["사랑", "생활지식"],
+        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
+      },
+    ],
   },
 ];
 
 const MenteeProfile = () => {
+  const navigate = useNavigate();
+
+  const onCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       {userInfo.map((info) => (
@@ -49,7 +73,7 @@ const MenteeProfile = () => {
                 <Profile src={MenteeImg} />
                 <Username>{info.name}</Username>
               </NameBox>
-              <CloseBtn src={xBtn} />
+              <CloseBtn src={xBtn} onClick={onCancel} />
             </Top>
             <ConcernBox>
               <Title>멘티의 한 줄 고민</Title>
@@ -62,7 +86,10 @@ const MenteeProfile = () => {
                   {info.mentoringRecord.slice(0, 3).map((record, index) => (
                     <Record key={index}>
                       <Interest>{record.interest}</Interest>
-                      <Count>{record.count}</Count>
+                      <Count>
+                        {record.count}
+                        <span>회</span>
+                      </Count>
                     </Record>
                   ))}
                 </Column>
@@ -70,11 +97,30 @@ const MenteeProfile = () => {
                   {info.mentoringRecord.slice(3, 6).map((record, index) => (
                     <Record key={index}>
                       <Interest>{record.interest}</Interest>
-                      <Count>{record.count}</Count>
+                      <Count>
+                        {record.count}
+                        <span>회</span>
+                      </Count>
                     </Record>
                   ))}
                 </Column>
               </History>
+              <DetailWrapper>
+                <Details>
+                  {info.mymentoring.map((mentoring) => (
+                    <DetailBox key={mentoring.id}>
+                      <DetailCategoryBox>
+                        {mentoring.interest.map((interest, index) => (
+                          <DetailCategory key={index}>
+                            {interest}
+                          </DetailCategory>
+                        ))}
+                      </DetailCategoryBox>
+                      <DetailContent>{mentoring.title}</DetailContent>
+                    </DetailBox>
+                  ))}
+                </Details>
+              </DetailWrapper>
             </HistoryBox>
           </MenteeBox>
         </Container>
@@ -92,7 +138,6 @@ const Container = styled.div`
 `;
 const MenteeBox = styled.div`
   width: 360px;
-  height: 531px;
   border-radius: 20px;
   background: linear-gradient(180deg, #cdeff6 0%, #03aed2 100%);
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
@@ -158,7 +203,6 @@ const History = styled.div`
   justify-content: space-between;
   margin-top: 7px;
   gap: 11px;
-  /* height: 118px; */
   padding: 15px 23px;
   border-radius: 15px;
   background: #f8f8f8;
@@ -190,4 +234,66 @@ const Count = styled.div`
   text-align: right;
   font-size: 15px;
   font-weight: 500;
+  > span {
+    color: #a4a4a4;
+    font-size: 8px;
+    font-weight: 500;
+    margin-left: 2px;
+  }
+`;
+
+const DetailWrapper = styled.div`
+  max-width: 339px;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-top: 14px;
+  border-radius: 15px;
+`;
+
+const Details = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+const DetailBox = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  background: #f8f8f8;
+  border-radius: 15px;
+  flex: 0 0 auto;
+  width: 115px;
+  height: 96.5px;
+  padding: 10px;
+`;
+
+const DetailCategoryBox = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+`;
+
+const DetailCategory = styled.div`
+  background: rgba(73, 73, 73, 0.2);
+  padding: 3px 10px;
+  border-radius: 9px;
+  color: #494949;
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+`;
+
+const DetailContent = styled.div`
+  margin-top: 15px;
+  color: #494949;
+  font-size: 13px;
+  font-weight: 400;
+  text-align: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 `;
