@@ -1,20 +1,50 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/mypage/TopBar";
+import axios from "axios";
 
-const JournalWrite = () => {
-  const location = useLocation();
-  const isMentorPath = location.pathname.includes(
-    "/mypage/mentor/journal/write"
-  );
+const MenteeJournalWrite = () => {
+  const navigate = useNavigate();
+
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+
+  const onChangeTitle = (e) => {
+    setTitle(e.target.value);
+  };
+
+  const onChangeContent = (e) => {
+    setContent(e.target.value);
+  };
+
+  const postJournal = () => {
+    axios
+      .post("http://127.0.0.1:8000/log/", {
+        title: title,
+        content: content,
+      })
+      .then((response) => {
+        console.log(response);
+        alert("저장이 완료되었습니다.");
+        navigate("/mypage/mentee/${username}");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("저장에 실패했습니다.");
+      });
+  };
 
   return (
     <>
       <Container>
         <TopBar txt={"멘토링 일지"} />
         <JournalInfo>
-          <TitleInput placeholder="제목을 입력하세요" />
+          <TitleInput
+            placeholder="제목을 입력하세요"
+            value={title}
+            onChange={onChangeTitle}
+          />
           <Together>
             <ChatTitle>진로를 선택할 때 가장 중요한 기준</ChatTitle>
             <P>&nbsp;･&nbsp;</P>
@@ -25,17 +55,21 @@ const JournalWrite = () => {
         </JournalInfo>
         <StyledHr />
         <ContentBox>
-          <Content placeholder="내용을 입력하세요" />
+          <Content
+            placeholder="내용을 입력하세요"
+            value={content}
+            onChange={onChangeContent}
+          />
         </ContentBox>
         <ButtonBox>
-          <Button isMentorPath={isMentorPath}>저장하기</Button>
+          <Button onClick={postJournal}>저장하기</Button>
         </ButtonBox>
       </Container>
     </>
   );
 };
 
-export default JournalWrite;
+export default MenteeJournalWrite;
 
 const Container = styled.div`
   width: 600px;
@@ -138,6 +172,6 @@ const Button = styled.button`
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
-  background: ${(props) => (props.isMentorPath ? "#03AED2" : "#fdde55")};
-  color: ${(props) => (props.isMentorPath ? "#f8f8f8" : "#494949")};
+  background: #fdde55;
+  color: #494949;
 `;

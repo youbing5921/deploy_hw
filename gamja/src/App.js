@@ -24,7 +24,8 @@ import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
-import JournalWrite from "./pages/mypage/JournalWrite";
+import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
+import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
 import JournalDetail from "./pages/mypage/JournalDetail";
 
 function App() {
@@ -78,11 +79,11 @@ function App() {
         ></Route>
         <Route
           path="/mypage/mentor/journal/write"
-          element={<JournalWrite />}
+          element={<MentorJournalWrite />}
         ></Route>
         <Route
           path="/mypage/mentee/journal/write"
-          element={<JournalWrite />}
+          element={<MenteeJournalWrite />}
         ></Route>
         <Route
           path="/mypage/journal/detail/:id"
