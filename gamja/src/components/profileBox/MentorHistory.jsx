@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import MenteeImg from "../../images/MenteeImg.svg";
+import MentorImg from "../../images/MentorImg.svg";
 
 const users = [
   {
     id: 1,
     username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
+    categories: ["생활지식", "인간관계"],
     concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요그리고 머시지",
   },
   {
@@ -51,7 +51,7 @@ const MentorHistory = ({ Info }) => {
             <Container key={user.id}>
               <InfoBox>
                 <PhotoBox>
-                  <Profile src={MenteeImg} alt="profileImg" />
+                  <Profile src={MentorImg} alt="profileImg" />
                 </PhotoBox>
                 <NameBox>
                   <Username>{user.username}</Username>
@@ -79,8 +79,7 @@ const Wrapper = styled.div`
 `;
 
 const Left = styled.div`
-  margin-top: 5px;
-  width: 150px;
+  width: 89px;
   padding: 13px 10px;
   border-radius: 15px;
   background: #f8f8f8;
@@ -97,8 +96,8 @@ const CategoryBox = styled.div`
 const Category = styled.div`
   padding: 3px 5px;
   border-radius: 10px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  background: rgba(73, 73, 73, 0.2);
+  color: #494949;
   text-align: center;
   font-size: 13px;
   font-weight: 500;
@@ -118,13 +117,12 @@ const CategoryCount = styled.span`
 `;
 
 const Right = styled.div`
-  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 4px;
   border-radius: 15px;
-  max-width: 418px;
+  max-width: 225px;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -163,13 +161,13 @@ const Username = styled.div`
 const ContentCategoryBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
 `;
 
 const ContentCategory = styled.div`
   border-radius: 10px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  background: rgba(73, 73, 73, 0.2);
+  color: #494949;
   text-align: center;
   font-size: 10px;
   font-weight: 500;

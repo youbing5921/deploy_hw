@@ -242,6 +242,7 @@ const DetailWrapper = styled.div`
     display: none;
   }
   margin-top: 14px;
+  border-radius: 15px;
 `;
 
 const Details = styled.div`
