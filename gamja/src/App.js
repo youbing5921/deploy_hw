@@ -24,6 +24,7 @@ import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
+import JournalDetail from "./pages/mypage/JournalDetail";
 
 function App() {
   return (
@@ -73,6 +74,10 @@ function App() {
         <Route
           path="/profile/mentee/:username"
           element={<MenteeProfile />}
+        ></Route>
+        <Route
+          path="/mypage/journal/detail/:id"
+          element={<JournalDetail />}
         ></Route>
       </Routes>
     </Wrapper>
