@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
@@ -17,7 +18,13 @@ const userInfo = [
 ];
 
 const MentorProfile = () => {
+  const navigate = useNavigate();
   const [Info, setInfo] = useState(userInfo);
+
+  const onCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       {userInfo.map((info) => (
@@ -37,7 +44,7 @@ const MentorProfile = () => {
                   ))}
                 </Right>
               </NameBox>
-              <CloseBtn src={xBtn} />
+              <CloseBtn src={xBtn} onClick={onCancel} />
             </Top>
             <RatingBox>
               <Title>멘토님의 등대 지수</Title>
@@ -53,7 +60,9 @@ const MentorProfile = () => {
               <Title>멘토님의 멘토링 후기</Title>
               <Review></Review>
             </ReviewBox>
-            <Button>멘토님과 채팅</Button>
+            <Button onClick={() => navigate("/chat-create/mentee/:roomId")}>
+              멘토님과 채팅
+            </Button>
           </MentorBox>
         </Container>
       ))}

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import xBtn from "../../images/xBtn.svg";
+import { useNavigate } from "react-router-dom";
 
 const userInfo = [
   {
@@ -56,6 +57,12 @@ const userInfo = [
 ];
 
 const MenteeProfile = () => {
+  const navigate = useNavigate();
+
+  const onCancel = () => {
+    navigate(-1);
+  };
+
   return (
     <>
       {userInfo.map((info) => (
@@ -66,7 +73,7 @@ const MenteeProfile = () => {
                 <Profile src={MenteeImg} />
                 <Username>{info.name}</Username>
               </NameBox>
-              <CloseBtn src={xBtn} />
+              <CloseBtn src={xBtn} onClick={onCancel} />
             </Top>
             <ConcernBox>
               <Title>멘티의 한 줄 고민</Title>

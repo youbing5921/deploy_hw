@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ChatMentor from "../../images/ChatMentor.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
+import { useNavigate } from "react-router-dom";
 
 const mentorList = [
   {
@@ -32,6 +33,7 @@ const mentorList = [
 ];
 
 const InterestMentee = () => {
+  const navigate = useNavigate();
   const [subscriptions, setSubscriptions] = useState([]);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const InterestMentee = () => {
     <>
       {mentorList.map((mentor) => (
         <Wrapper key={mentor.id}>
-          <Both>
+          <Both onClick={() => navigate(`/profile/mentor/${mentor.username}`)}>
             <Left>
               <Profile src={ChatMentor} alt="ChatMentor" />
             </Left>
