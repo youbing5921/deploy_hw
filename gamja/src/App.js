@@ -18,6 +18,7 @@ import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
 import MypageMentee from "./pages/mentee/MypageMentee";
 import Community from "./pages/community/CommunityPage";
+import Column from "./pages/community/ColumnPage";
 
 function App() {
   return (
@@ -49,6 +50,7 @@ function App() {
           element={<MypageMentee />}
         ></Route>
         <Route path="/community" element={<Community />}></Route>
+        <Route path="/community/:colId" element={<Column />}></Route>
       </Routes>
     </Wrapper>
   );

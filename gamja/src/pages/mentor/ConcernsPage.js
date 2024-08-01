@@ -76,7 +76,7 @@ const ConcernsPage = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"멘티 돕기"} />
+        <TopBar txt={""} />
         <CategoryBar onSelectCategory={setSelectedCategory} />
       </TopContainer>
       <ConcernBox>
