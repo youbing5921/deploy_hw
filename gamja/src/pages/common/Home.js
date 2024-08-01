@@ -35,19 +35,19 @@ const Home = () => {
               <SearchCard
                 txt={"멘티 돕기"}
                 subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
-                fontColor={"#fff"}
+                $fontColor={"#fff"}
                 $bgimg={mentorBtn1}
                 onBtnClick={() => navigate("/concerns")}
               />
               <ChatCard
                 txt={"멘티"}
-                fontColor={"#fff"}
+                $fontColor={"#fff"}
                 $bgimg={mentorBtn2}
                 onBtnClick={() => navigate("/chat-list/mentor/:username")}
               />
-              <CommunityCard fontColor={"#fff"} $bgimg={mentorBtn3} />
+              <CommunityCard $fontColor={"#fff"} $bgimg={mentorBtn3} />
               <MypageCard
-                fontColor={"#fff"}
+                $fontColor={"#fff"}
                 $bgimg={mentorBtn4}
                 onBtnClick={() => navigate("/mypage/mentor/:username")}
               />

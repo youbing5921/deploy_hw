@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-const CommunityCard = ({ onBtnClick, fontColor, $bgimg }) => {
+const CommunityCard = ({ onBtnClick, $fontColor, $bgimg }) => {
   return (
     <CommunityCardBtn
       onClick={onBtnClick}
-      fontColor={fontColor}
+      $fontColor={$fontColor}
       $bgimg={$bgimg}
     >
-      <Title fontColor={fontColor}>커뮤니티</Title>
-      <SubTitle fontColor={fontColor}>
+      <Title $fontColor={$fontColor}>커뮤니티</Title>
+      <SubTitle $fontColor={$fontColor}>
         망망대해를 함께 항해하는
         <br />
         보이저들과 이야기 공유해요!
@@ -39,7 +39,7 @@ const Title = styled.div`
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
@@ -48,5 +48,5 @@ const SubTitle = styled.div`
   font-weight: 400;
   line-height: normal;
   text-align: center;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;
