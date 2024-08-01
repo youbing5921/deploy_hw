@@ -17,40 +17,40 @@ import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mentor/MyPageMentor";
 import MypageMentee from "./pages/mentee/MypageMentee";
+import Community from "./pages/community/CommunityPage";
 
 function App() {
   return (
-    <>
-      <Wrapper>
-        <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/join" element={<WelcomePage />}></Route>
-          <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
-          <Route path="/join/info" element={<InputInfo />}></Route>
-          <Route path="/join/complete" element={<JoinComplete />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/login/findId" element={<FindIdPw />}></Route>
-          <Route path="/login/findPw" element={<FindIdPw />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/concerns" element={<ConcernsPage />}></Route>
-          <Route path="/find" element={<FindMentor />}></Route>
-          <Route path="/chat/onboard" element={<ChatOnBorad />}></Route>
-          <Route path="/chat/:roomId" element={<ChatRoom />}></Route>
-          <Route path="/chat/inbox" element={<ChatInBox />}></Route>
-          <Route path="/category/mentor" element={<Category />}></Route>
-          <Route path="/category/mentee" element={<Category />}></Route>
-          <Route path="/matching" element={<Matching />}></Route>
-          <Route
-            path="/mentor/mypage/:username"
-            element={<MyPageMentor />}
-          ></Route>
-          <Route
-            path="/mentee/mypage/:username"
-            element={<MypageMentee />}
-          ></Route>
-        </Routes>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/join" element={<WelcomePage />}></Route>
+        <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
+        <Route path="/join/info" element={<InputInfo />}></Route>
+        <Route path="/join/complete" element={<JoinComplete />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/login/findId" element={<FindIdPw />}></Route>
+        <Route path="/login/findPw" element={<FindIdPw />}></Route>
+        <Route path="/home" element={<Home />}></Route>
+        <Route path="/concerns" element={<ConcernsPage />}></Route>
+        <Route path="/find" element={<FindMentor />}></Route>
+        <Route path="/chat/onboard" element={<ChatOnBorad />}></Route>
+        <Route path="/chat/:roomId" element={<ChatRoom />}></Route>
+        <Route path="/chat/inbox" element={<ChatInBox />}></Route>
+        <Route path="/category/mentor" element={<Category />}></Route>
+        <Route path="/category/mentee" element={<Category />}></Route>
+        <Route path="/matching" element={<Matching />}></Route>
+        <Route
+          path="/mentor/mypage/:username"
+          element={<MyPageMentor />}
+        ></Route>
+        <Route
+          path="/mentee/mypage/:username"
+          element={<MypageMentee />}
+        ></Route>
+        <Route path="/community" element={<Community />}></Route>
+      </Routes>
+    </Wrapper>
   );
 }
 
