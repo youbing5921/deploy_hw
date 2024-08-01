@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-const SearchCard = ({ txt, subtxt, onBtnClick, fontColor, $bgimg }) => {
+const SearchCard = ({ txt, subtxt, onBtnClick, $fontColor, $bgimg }) => {
   return (
     <SearchCardBtn onClick={onBtnClick} $bgimg={$bgimg}>
-      <Title fontColor={fontColor}>{txt}</Title>
-      <SubTitle fontColor={fontColor}>{subtxt}</SubTitle>
+      <Title $fontColor={$fontColor}>{txt}</Title>
+      <SubTitle $fontColor={$fontColor}>{subtxt}</SubTitle>
     </SearchCardBtn>
   );
 };
@@ -32,7 +32,7 @@ const Title = styled.div`
   font-weight: 700;
   line-height: normal;
   margin-bottom: 9px;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;
 
 const SubTitle = styled.div`
@@ -42,5 +42,5 @@ const SubTitle = styled.div`
   font-weight: 400;
   line-height: normal;
   text-align: center;
-  color: ${(props) => props.fontColor || "#494949"};
+  color: ${(props) => props.$fontColor || "#494949"};
 `;

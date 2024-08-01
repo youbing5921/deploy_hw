@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import CategoryBar from "../../components/common/CategoryBar";
@@ -13,7 +14,7 @@ let allInfoList = [
     count1: "10",
     category2: "사랑",
     count2: "10",
-    category3: "생활",
+    category3: "생활지식",
     count3: "2",
     rating: "50",
   },
@@ -23,7 +24,7 @@ let allInfoList = [
     isSubscribed: false,
     category1: "인간관계",
     count1: "3",
-    category2: "재테크",
+    category2: "생활지식",
     count2: "8",
     category3: "가치관",
     count3: "1",
@@ -92,6 +93,7 @@ let allInfoList = [
 ];
 
 const FindMentor = () => {
+  const navigate = useNavigate();
   const [infoList, setInfoList] = useState(allInfoList);
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
@@ -126,7 +128,9 @@ const FindMentor = () => {
         />
       </InfoBox>
       <BottomBar>
-        <AutoMatch>자동 매칭하기</AutoMatch>
+        <AutoMatch onClick={() => navigate("/matching")}>
+          자동 매칭하기
+        </AutoMatch>
       </BottomBar>
     </Container>
   );

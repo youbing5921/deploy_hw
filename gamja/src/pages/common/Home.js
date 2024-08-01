@@ -17,7 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentor";
+  const userType = "mentee";
   return (
     <>
       {userType === "mentor" ? (
@@ -35,16 +35,21 @@ const Home = () => {
               <SearchCard
                 txt={"멘티 돕기"}
                 subtxt={"멘토님들의 소중한 \n조언을 기다리고 있어요!"}
-                fontColor={"#fff"}
+                $fontColor={"#fff"}
                 $bgimg={mentorBtn1}
                 onBtnClick={() => navigate("/concerns")}
               />
-              <ChatCard txt={"멘티"} fontColor={"#fff"} $bgimg={mentorBtn2} />
-              <CommunityCard fontColor={"#fff"} $bgimg={mentorBtn3} />
+              <ChatCard
+                txt={"멘티"}
+                $fontColor={"#fff"}
+                $bgimg={mentorBtn2}
+                onBtnClick={() => navigate("/chat-list/mentor/:username")}
+              />
+              <CommunityCard $fontColor={"#fff"} $bgimg={mentorBtn3} />
               <MypageCard
-                fontColor={"#fff"}
+                $fontColor={"#fff"}
                 $bgimg={mentorBtn4}
-                onBtnClick={() => navigate("/mentor/mypage/:username")}
+                onBtnClick={() => navigate("/mypage/mentor/:username")}
               />
             </Cards>
           </Container>
@@ -69,11 +74,15 @@ const Home = () => {
                 $bgimg={menteeBtn1}
                 onBtnClick={() => navigate("/find")}
               />
-              <ChatCard txt={"멘토"} $bgimg={menteeBtn2} />
+              <ChatCard
+                txt={"멘토"}
+                $bgimg={menteeBtn2}
+                onBtnClick={() => navigate("/chat-list/mentee/:username")}
+              />
               <CommunityCard $bgimg={menteeBtn3} />
               <MypageCard
                 $bgimg={menteeBtn4}
-                onBtnClick={() => navigate("/mentee/mypage/:username")}
+                onBtnClick={() => navigate("/mypage/mentee/:username")}
               />
             </Cards>
           </Container>

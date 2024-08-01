@@ -1,17 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import ChatMentee from "../../images/ChatMentee.svg";
+import ChatMentor from "../../images/ChatMentor.svg";
+import { useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 
 const Receiver = ({ message, username }) => {
-  return (
-    <MessageBox>
-      <ProfileImg src={ChatMentee} alt="멘티 프로필" />
-      <NameBubble>
-        <Username>{username}</Username>
-        <WhiteMessage>{message}</WhiteMessage>
-      </NameBubble>
-    </MessageBox>
-  );
+  const location = useLocation().pathname;
+
+  if (matchPath("/chat/mentor/:roomId", location)) {
+    return (
+      <MessageBox>
+        <ProfileImg src={ChatMentee} alt="멘티 프로필" />
+        <NameBubble>
+          <Username>{username}</Username>
+          <WhiteMessage>{message}</WhiteMessage>
+        </NameBubble>
+      </MessageBox>
+    );
+  }
+  if (matchPath("/chat/mentee/:roomId", location)) {
+    return (
+      <MessageBox>
+        <ProfileImg src={ChatMentor} alt="멘토 프로필" />
+        <NameBubble>
+          <Username>{username}</Username>
+          <WhiteMessage>{message}</WhiteMessage>
+        </NameBubble>
+      </MessageBox>
+    );
+  }
+  return null;
 };
 
 export default Receiver;

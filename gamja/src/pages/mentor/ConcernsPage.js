@@ -9,7 +9,7 @@ const initConcernList = [
     id: "1",
     name: "돈이 뭐길래",
     category1: "재테크",
-    category2: "사랑",
+    category2: "생활지식",
     category3: "인간관계",
     comment:
       "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
@@ -17,7 +17,7 @@ const initConcernList = [
   {
     id: "2",
     name: "돈이 뭐길래",
-    category1: "재테크",
+    category1: "생활지식",
     category2: "가치관",
     category3: "사랑",
     comment:
@@ -27,7 +27,7 @@ const initConcernList = [
     id: "3",
     name: "돈이 뭐길래",
     category1: "사랑",
-    category2: "생활",
+    category2: "생활지식",
     category3: "가치관",
     comment:
       "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",

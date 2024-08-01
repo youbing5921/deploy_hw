@@ -1,20 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import BlankSendBtn from "../../images/BlankSendBtn.svg";
+import BlankSendBtn from "../../images/BlankSendBlue.svg";
 import SendBtn from "../../images/sendBtn.svg";
+import BlankYellow from "../../images/BlankYellow.svg";
+import sendYellow from "../../images/sendYellow.svg";
+import { useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 
 const InputMessage = () => {
+  const location = useLocation().pathname;
   const [message, setMessage] = useState("");
   const [sendBtnSrc, setSendBtnSrc] = useState(BlankSendBtn);
 
+  useEffect(() => {
+    if (matchPath("/chat/mentor/:roomId", location)) {
+      setSendBtnSrc(message ? SendBtn : BlankSendBtn);
+    } else if (matchPath("/chat/mentee/:roomId", location)) {
+      setSendBtnSrc(message ? sendYellow : BlankYellow);
+    }
+  }, [location, message]);
+
   const handleInputChange = (e) => {
     setMessage(e.target.value);
-    setSendBtnSrc(e.target.value ? SendBtn : BlankSendBtn);
   };
 
   const handleSendBtn = () => {
     setMessage("");
-    setSendBtnSrc(BlankSendBtn);
   };
 
   return (
@@ -45,8 +56,8 @@ const Input = styled.input`
   background: #f6f6f6;
   box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1) inset;
   outline: none;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 500;
   padding: 3px 10px 3px 20px;
 `;
 

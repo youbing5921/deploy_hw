@@ -251,7 +251,7 @@ const DetailCategory = styled.div`
 const DetailContent = styled.div`
   margin-top: 15px;
   color: #494949;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 400;
   text-align: center;
   text-overflow: ellipsis;

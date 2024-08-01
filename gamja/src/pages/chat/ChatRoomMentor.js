@@ -7,13 +7,13 @@ import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
 
-const ChatRoom = () => {
+const ChatRoomMentor = () => {
   return (
     <Container>
       <TopContainer>
         <TopBar txt={"채팅하기"} />
         <FuncBar>
-          <RoomName>진로를 선택할 때 가장 중요한 기준</RoomName>
+          <RoomName>진로를 선택할 때 가장 중요한 zmzmzm</RoomName>
           <ButtonContainer>
             <Icon src={SearchBtnImg} alt="Search" />
             <Icon src={OutBtnImg} alt="Out" />
@@ -48,7 +48,7 @@ const ChatRoom = () => {
   );
 };
 
-export default ChatRoom;
+export default ChatRoomMentor;
 
 const Container = styled.div`
   background-color: #ededed;
@@ -73,6 +73,10 @@ const FuncBar = styled.div`
 `;
 
 const RoomName = styled.div`
+  width: 363px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: #7f7f7f;
   font-size: 25px;
   font-style: normal;
@@ -95,7 +99,7 @@ const Icon = styled.img`
 const MessageContainer = styled.div`
   flex: 1;
   padding: 31px 40px 0px 29px;
-  overflow-y: auto;
+  overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none;
   }
