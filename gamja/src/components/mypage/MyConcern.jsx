@@ -133,6 +133,7 @@ const Reply = styled.div`
   box-shadow: -3px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 8px 13px;
   height: 30px;
+  cursor: pointer;
 `;
 
 const Profile = styled.img`
