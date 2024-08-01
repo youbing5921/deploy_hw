@@ -19,6 +19,8 @@ import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
+import MentorProfile from "./pages/profileBox/MentorProfile";
+import MenteeProfile from "./pages/profileBox/MenteeProfile";
 
 function App() {
   return (
@@ -66,6 +68,14 @@ function App() {
           <Route
             path="/mypage/mentee/:username"
             element={<MypageMentee />}
+          ></Route>
+          <Route
+            path="/profile/mentor/:username"
+            element={<MentorProfile />}
+          ></Route>
+          <Route
+            path="/profile/mentee/:username"
+            element={<MenteeProfile />}
           ></Route>
         </Routes>
       </Wrapper>
