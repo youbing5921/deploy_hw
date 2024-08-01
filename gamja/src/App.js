@@ -18,6 +18,8 @@ import ChatRoomMentee from "./pages/chat/ChatRoomMentee";
 import CreateChat from "./pages/chat/CreateChat";
 import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
+import Community from "./pages/community/CommunityPage";
+import Column from "./pages/community/ColumnPage";
 import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";

@@ -46,6 +46,7 @@ const Login = () => {
         <InputStyle
           id="Pw"
           placeholder="비밀번호를 입력해주세요"
+          type="password"
           value={pw}
           onChange={onChange}
         />
