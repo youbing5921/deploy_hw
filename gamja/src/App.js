@@ -17,8 +17,8 @@ import ChatRoomMentee from "./pages/chat/ChatRoomMentee";
 import CreateChat from "./pages/chat/CreateChat";
 import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
-import MyPageMentor from "./pages/mentor/MyPageMentor";
-import MypageMentee from "./pages/mentee/MypageMentee";
+import MyPageMentor from "./pages/mypage/MyPageMentor";
+import MypageMentee from "./pages/mypage/MypageMentee";
 
 function App() {
   return (
