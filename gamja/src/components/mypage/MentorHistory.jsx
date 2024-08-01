@@ -7,7 +7,7 @@ const users = [
     id: 1,
     username: "돈이 뭐길래",
     categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
+    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요그리고 머시지",
   },
   {
     id: 2,
@@ -80,8 +80,8 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   margin-top: 5px;
-  width: 80px;
-  padding: 15px 8px;
+  width: 99px;
+  padding: 13px 10px;
   border-radius: 15px;
   background: #f8f8f8;
   box-shadow: 4px 0px 10px -5px rgba(0, 0, 0, 0.25);
@@ -91,16 +91,16 @@ const CategoryBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 4px;
+  margin: 13px 0px;
 `;
 
 const Category = styled.div`
-  padding: 3px 7px;
-  border-radius: 9px;
+  padding: 3px 5px;
+  border-radius: 10px;
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
 `;
 
@@ -113,16 +113,18 @@ const CategoryCount = styled.span`
     color: #a4a4a4;
     font-size: 8px;
     font-weight: 500;
+    /* margin-left: 2px; */
   }
 `;
 
 const Right = styled.div`
+  margin-top: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 4px;
   border-radius: 15px;
-  max-width: 238px;
+  max-width: 418px;
   overflow-x: scroll;
   &::-webkit-scrollbar {
     display: none;
@@ -131,23 +133,21 @@ const Right = styled.div`
 
 const Container = styled.div`
   flex: 0 0 auto;
-  width: 90px;
-  height: 70px;
+  width: 152px;
   border-radius: 15px;
   background: #f8f8f8;
-  padding: 7px 8px 12px 8px;
-  margin-top: 7px;
+  padding: 17px 12px;
 `;
 
 const Profile = styled.img`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 8px;
 `;
 
 const PhotoBox = styled.div``;
@@ -155,7 +155,7 @@ const NameBox = styled.div``;
 
 const Username = styled.div`
   color: #494949;
-  font-size: 8px;
+  font-size: 13px;
   font-weight: 500;
   margin-bottom: 2px;
 `;
@@ -167,21 +167,21 @@ const ContentCategoryBox = styled.div`
 `;
 
 const ContentCategory = styled.div`
-  border-radius: 5px;
+  border-radius: 10px;
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 5px;
+  font-size: 10px;
   font-weight: 500;
-  padding: 2px 5px;
+  padding: 3px 5px;
 `;
 
 const ConcernBox = styled.div`
-  margin-top: 8px;
-  max-height: 28px;
+  margin-top: 15px;
+  max-height: 36px;
   overflow: hidden;
   color: #494949;
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 400;
   display: -webkit-box;
   -webkit-line-clamp: 2;

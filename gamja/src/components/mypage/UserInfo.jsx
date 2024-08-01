@@ -29,7 +29,7 @@ export default UserInfo;
 const ProfileBox = styled.div`
   display: flex;
   width: 157px;
-  padding: 30px 0px;
+  padding: 38px 0px;
   flex-direction: column;
   align-items: center;
   border-radius: 15px;
@@ -66,16 +66,16 @@ const CategoryBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 4.5px;
+  gap: 3px;
 `;
 
 const Category = styled.div`
   display: inline-block;
-  padding: 3px 9px;
-  border-radius: 9px;
+  padding: 3px 5px;
+  border-radius: 10px;
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
 `;
