@@ -1,5 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 
 const JournalInfo = [
   {
@@ -29,35 +32,69 @@ const JournalInfo = [
   },
 ];
 
-const JournalList = ({ txt, onBtnClick, $fontColor, $bgColor }) => {
-  return (
-    <>
-      <Container>
-        <Top>
-          <Title>나의 멘토링 {txt}</Title>
-          <WriteBtn
-            onClick={onBtnClick}
-            $fontColor={$fontColor}
-            $bgColor={$bgColor}
-          >
-            일지쓰기
-          </WriteBtn>
-        </Top>
-        <BoldHr />
-        <ListBox>
-          {JournalInfo.map((journal) => (
-            <React.Fragment key={journal.id}>
-              <Journal>
-                <JournalTitle>{journal.title}</JournalTitle>
-                <WriteDate>{journal.date}</WriteDate>
-              </Journal>
-              <BasicHr />
-            </React.Fragment>
-          ))}
-        </ListBox>
-      </Container>
-    </>
-  );
+const JournalList = ({ txt, $fontColor, $bgColor }) => {
+  const location = useLocation().pathname;
+  const navigate = useNavigate();
+  if (matchPath("/mypage/mentee/:username", location)) {
+    return (
+      <>
+        <Container>
+          <Top>
+            <Title>나의 멘토링 {txt}</Title>
+            <WriteBtn
+              onClick={() => navigate("/mypage/mentee/journal/select")}
+              $fontColor={$fontColor}
+              $bgColor={$bgColor}
+            >
+              일지쓰기
+            </WriteBtn>
+          </Top>
+          <BoldHr />
+          <ListBox>
+            {JournalInfo.map((journal) => (
+              <React.Fragment key={journal.id}>
+                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                  <JournalTitle>{journal.title}</JournalTitle>
+                  <WriteDate>{journal.date}</WriteDate>
+                </Journal>
+                <BasicHr />
+              </React.Fragment>
+            ))}
+          </ListBox>
+        </Container>
+      </>
+    );
+  }
+  if (matchPath("/mypage/mentor/:username", location)) {
+    return (
+      <>
+        <Container>
+          <Top>
+            <Title>나의 멘토링 {txt}</Title>
+            <WriteBtn
+              onClick={() => navigate("/mypage/mentor/journal/select")}
+              $fontColor={$fontColor}
+              $bgColor={$bgColor}
+            >
+              일지쓰기
+            </WriteBtn>
+          </Top>
+          <BoldHr />
+          <ListBox>
+            {JournalInfo.map((journal) => (
+              <React.Fragment key={journal.id}>
+                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                  <JournalTitle>{journal.title}</JournalTitle>
+                  <WriteDate>{journal.date}</WriteDate>
+                </Journal>
+                <BasicHr />
+              </React.Fragment>
+            ))}
+          </ListBox>
+        </Container>
+      </>
+    );
+  }
 };
 
 export default JournalList;
@@ -119,6 +156,7 @@ const Journal = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const JournalTitle = styled.div`
@@ -126,7 +164,6 @@ const JournalTitle = styled.div`
   text-align: center;
   font-size: 15px;
   font-weight: 700;
-  cursor: pointer;
 `;
 
 const WriteDate = styled.div`

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
+import { useNavigate } from "react-router-dom";
 
 const ReplyList = [
   {
@@ -27,6 +28,7 @@ const ReplyList = [
 ];
 
 const MyConcern = () => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -44,7 +46,10 @@ const MyConcern = () => {
           </Concern>
           <ReplyWrapper>
             {ReplyList.map((reply) => (
-              <Reply key={reply.id}>
+              <Reply
+                key={reply.id}
+                onClick={() => navigate("/profile/mentor/:username")}
+              >
                 <Profile src={MentorImg} alt="MentorImg" />
                 <Text>{reply.reply}</Text>
               </Reply>
@@ -133,6 +138,7 @@ const Reply = styled.div`
   box-shadow: -3px 4px 6px 0px rgba(0, 0, 0, 0.1) inset;
   padding: 8px 13px;
   height: 30px;
+  cursor: pointer;
 `;
 
 const Profile = styled.img`

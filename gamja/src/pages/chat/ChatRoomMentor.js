@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import SearchBtnImg from "../../images/SearchBtn.png";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
 import Receiver from "../../components/chat/Receiver";
@@ -15,7 +14,6 @@ const ChatRoomMentor = () => {
         <FuncBar>
           <RoomName>진로를 선택할 때 가장 중요한 zmzmzm</RoomName>
           <ButtonContainer>
-            <Icon src={SearchBtnImg} alt="Search" />
             <Icon src={OutBtnImg} alt="Out" />
           </ButtonContainer>
         </FuncBar>
