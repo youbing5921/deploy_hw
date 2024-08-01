@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import SubBar from "../../components/mypage/SubBar";
+import RecentChat from "../../components/mypage/RecentChat";
 
 const MenteeSelectChat = () => {
   return (
@@ -9,6 +10,7 @@ const MenteeSelectChat = () => {
       <Container>
         <TopBar txt={"멘토링 일지"} />
         <SubBar />
+        <RecentChat />
       </Container>
     </>
   );
