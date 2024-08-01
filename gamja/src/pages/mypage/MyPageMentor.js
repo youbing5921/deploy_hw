@@ -7,7 +7,7 @@ import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
 import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
-import Column from "../../components/mypage/Column";
+import Column from "../../components/mypage/Column.jsx";
 
 let mypageInfo = [
   {
