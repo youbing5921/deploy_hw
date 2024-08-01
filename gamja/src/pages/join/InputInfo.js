@@ -79,7 +79,7 @@ const InputInfo = () => {
   }, [email]);
 
   // 아이디 관련 함수
-  출처: https: useEffect(() => {
+  useEffect(() => {
     const titleOval4 = document.querySelector(".titleOval4");
     const newBottonBtn4 = document.querySelector(".newBottonBtn4");
     const condition = userId.length > 0;
