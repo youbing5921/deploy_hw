@@ -17,7 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentor";
+  const userType = "mentee";
   return (
     <>
       {userType === "mentor" ? (

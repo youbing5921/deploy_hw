@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import MenteeImg from "../../images/MenteeImg.svg";
 
 const reviewList = [
   {
@@ -19,20 +18,14 @@ const Review = () => {
         <Container key={reviewInfo.id}>
           <Top>
             <Left>
-              <Low>
-                <Profile src={MenteeImg} alt="menteeImg" />
-              </Low>
-              <Middle>
-                <Username>{reviewInfo.username}</Username>
+              <CategoryBox>
                 {reviewInfo.category.map((cat, idx) => (
                   <Category key={idx}>{cat}</Category>
                 ))}
-              </Middle>
+              </CategoryBox>
             </Left>
             <Right>
-              <High>
-                <MoreBtn>더보기</MoreBtn>
-              </High>
+              <MoreBtn>더보기</MoreBtn>
             </Right>
           </Top>
           <Comment>{reviewInfo.comment}</Comment>
@@ -49,8 +42,7 @@ const Container = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   width: 307px;
-  height: 70px;
-  padding: 14px 16px 19px 16px;
+  padding: 15px 16px;
 `;
 
 const Left = styled.div`
@@ -65,44 +57,30 @@ const Top = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
-const Profile = styled.img`
-  width: 40px;
-  height: 40px;
-`;
-const Low = styled.div``;
 
-const Middle = styled.div``;
+const CategoryBox = styled.div``;
 
-const High = styled.div``;
-
-const Username = styled.div`
-  color: #494949;
-  font-size: 13px;
-  font-weight: 500;
-`;
 const Category = styled.div`
   display: inline-block;
-  padding: 3px 9px;
-  border-radius: 5px;
+  padding: 3px 5px;
+  border-radius: 10px;
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 8px;
-  font-style: normal;
+  font-size: 10px;
   font-weight: 500;
-  line-height: normal;
-  margin-right: 3px;
+  margin-right: 4px;
 `;
 
 const MoreBtn = styled.button`
-  padding: 4px 7.5px;
-  border-radius: 5px;
+  padding: 3px 5px;
+  border-radius: 10px;
   background: rgba(73, 73, 73, 0.2);
   border: none;
   color: #494949;
   text-align: center;
   font-family: Pretendard;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
   cursor: pointer;
 `;
