@@ -5,6 +5,7 @@ import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
+import axios from "axios";
 
 const WriteConcern = () => {
   const navigate = useNavigate();
@@ -29,6 +30,27 @@ const WriteConcern = () => {
 
   const handleConcernChange = (e) => {
     setConcern(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    const data = {
+      content: concern,
+      interests: category,
+    };
+
+    axios
+      .post("http://127.0.0.1:8000/concerns/", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate(-1);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -60,11 +82,7 @@ const WriteConcern = () => {
           )}
         </ButtonGroup>
         <SideText>최대 2개의 카테고리를 선택해주세요.</SideText>
-        <ChatBtn
-          disabled={disabled}
-          $active={!disabled}
-          onClick={() => navigate("/chat/mentee/:username")}
-        >
+        <ChatBtn disabled={disabled} $active={!disabled} onClick={handleSubmit}>
           한 줄 고민 작성하기
         </ChatBtn>
       </Wrapper>

@@ -48,7 +48,7 @@ const MypageMentee = () => {
           </Right>
         </Both>
         <ConcernBox>
-          <MyConcern />
+          <MyConcern Info={Info} />
         </ConcernBox>
         <JournalBox>
           <JournalList txt={"일지"} />
