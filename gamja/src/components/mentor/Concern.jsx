@@ -35,10 +35,10 @@ const Concern = ({ concernList }) => {
             <Profile
               src={MenteeImg}
               alt="profileImg"
-              onClick={() => navigate(`/userpage/${concern.mentee_name}`)}
+              onClick={() => navigate(`/profile/mentee/${concern.mentee_name}`)}
             />
             <Username
-              onClick={() => navigate(`/userpage/${concern.mentee_name}`)}
+              onClick={() => navigate(`/profile/mentee/${concern.mentee_name}`)}
             >
               {concern.mentee_name}
             </Username>
