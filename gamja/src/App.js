@@ -33,6 +33,7 @@ import WriteConcern from "./pages/mentee/WriteConcern";
 import EditConcern from "./pages/mentee/EditConcern";
 import EditProfile from "./pages/mentor/EditProfile";
 import EditMentee from "./pages/mentee/EditMentee";
+import WriteReview from "./pages/mentee/WriteReview";
 
 function App() {
   return (
@@ -112,6 +113,10 @@ function App() {
         <Route
           path="/mypage/mentee/edit/:username"
           element={<EditMentee />}
+        ></Route>
+        <Route
+          path="/review/write/:chatroomId"
+          element={<WriteReview />}
         ></Route>
       </Routes>
     </Wrapper>
