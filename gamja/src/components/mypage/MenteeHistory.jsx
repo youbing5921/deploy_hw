@@ -2,40 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import CloseBtn from "../../images/xBtn.svg";
 
-const users = [
-  {
-    id: 1,
-    categories: ["생활지식", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 2,
-    categories: ["생활지식", "인간관계"],
-    concern:
-      "도전하는 것이 무서워요. 도전에 따른 실패로 이제껏 쌓은 것들이 무너질까 두려워요그리고 그리고그리고그리고",
-  },
-  {
-    id: 3,
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 4,
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 5,
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 6,
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-];
-
 const MenteeHistory = ({ Info }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -47,8 +13,8 @@ const MenteeHistory = ({ Info }) => {
     setSelectedCategory(null);
   };
 
-  const filteredInfos = users.filter((user) =>
-    user.categories.includes(selectedCategory)
+  const filteredInfos = Info.myMentoring?.filter((mentoring) =>
+    mentoring.interests.some((interest) => interest.name === selectedCategory)
   );
 
   return (
@@ -61,54 +27,48 @@ const MenteeHistory = ({ Info }) => {
       </TitleBox>
       {selectedCategory === null ? (
         <Wrapper>
-          {Info.map((info) => {
-            const leftCategories = info.mentoringRecord.slice(0, 3);
-            const rightCategories = info.mentoringRecord.slice(3, 6);
-            return (
-              <Whole key={info.id}>
-                <CateLeft>
-                  {leftCategories.map((cat, idx) => (
-                    <CategoryBox
-                      key={idx}
-                      onClick={() => handleCategoryClick(cat)}
-                    >
-                      <Category>{cat}</Category>
-                      <CategoryCount>
-                        {info.count[idx]}
-                        <span>회</span>
-                      </CategoryCount>
-                    </CategoryBox>
-                  ))}
-                </CateLeft>
-                <CateRight>
-                  {rightCategories.map((cat, idx) => (
-                    <CategoryBox
-                      key={idx}
-                      onClick={() => handleCategoryClick(cat)}
-                    >
-                      <Category>{cat}</Category>
-                      <CategoryCount>
-                        {info.count[idx + 3]}
-                        <span>회</span>
-                      </CategoryCount>
-                    </CategoryBox>
-                  ))}
-                </CateRight>
-              </Whole>
-            );
-          })}
+          <Whole>
+            <CateLeft>
+              {Info.mentoringRecord?.slice(0, 3)?.map((cat, idx) => (
+                <CategoryBox
+                  key={idx}
+                  onClick={() => handleCategoryClick(cat.interest)}
+                >
+                  <Category>{cat.interest}</Category>
+                  <CategoryCount>
+                    {cat.count}
+                    <span>회</span>
+                  </CategoryCount>
+                </CategoryBox>
+              ))}
+            </CateLeft>
+            <CateRight>
+              {Info.mentoringRecord?.slice(3)?.map((cat, idx) => (
+                <CategoryBox
+                  key={idx}
+                  onClick={() => handleCategoryClick(cat.interest)}
+                >
+                  <Category>{cat.interest}</Category>
+                  <CategoryCount>
+                    {cat.count}
+                    <span>회</span>
+                  </CategoryCount>
+                </CategoryBox>
+              ))}
+            </CateRight>
+          </Whole>
         </Wrapper>
       ) : (
         <DetailWrapper>
           <Details>
-            {filteredInfos.map((user, index) => (
-              <DetailBox key={index}>
+            {filteredInfos?.map((mentoring) => (
+              <DetailBox key={mentoring.id}>
                 <DetailCategoryBox>
-                  {user.categories.map((category, idx) => (
-                    <DetailCategory key={idx}>{category}</DetailCategory>
+                  {mentoring.interests?.map((interest, idx) => (
+                    <DetailCategory key={idx}>{interest.name}</DetailCategory>
                   ))}
                 </DetailCategoryBox>
-                <DetailContent>{user.concern}</DetailContent>
+                <DetailContent>{mentoring.title}</DetailContent>
               </DetailBox>
             ))}
           </Details>

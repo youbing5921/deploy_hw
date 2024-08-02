@@ -68,14 +68,8 @@ function App() {
         <Route path="/category/mentor" element={<Category />}></Route>
         <Route path="/category/mentee" element={<Category />}></Route>
         <Route path="/matching" element={<Matching />}></Route>
-        <Route
-          path="/mypage/mentor/:username"
-          element={<MyPageMentor />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/:username"
-          element={<MypageMentee />}
-        ></Route>
+        <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
+        <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
         <Route
           path="/profile/mentor/:mentorId"
           element={<MentorProfile />}
