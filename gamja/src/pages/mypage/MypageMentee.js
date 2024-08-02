@@ -5,7 +5,8 @@ import MenteeProfile from "../../components/mypage/MenteeProfile";
 import MyConcern from "../../components/mypage/MyConcern";
 import JournalList from "../../components/mypage/JournalList";
 import MenteeHistory from "../../components/mypage/MenteeHistory";
-import Column from "../../components/mypage/Column";
+import Column from "../../components/mypage/Column.jsx";
+import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
 
 let mypageInfo = [
   {
@@ -51,6 +52,9 @@ const MypageMentee = () => {
             $categoryColor={"#494949"}
           />
         </ColumnBox>
+        <ButtonBox>
+          <LogoutBtn />
+        </ButtonBox>
       </Container>
     </>
   );
@@ -94,4 +98,9 @@ const Tit = styled.div`
 
 const ColumnBox = styled.div`
   padding-left: 40px;
+`;
+
+const ButtonBox = styled.div`
+  margin-top: 31px;
+  margin-left: 438px;
 `;

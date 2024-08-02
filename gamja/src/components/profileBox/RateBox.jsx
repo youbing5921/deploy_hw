@@ -90,7 +90,7 @@ const RatingBox = styled.div`
   gap: 5px;
   border-radius: 15px;
   background: #f8f8f8;
-  width: 268px;
+  width: 288px;
   height: 16px;
   padding: 16px 25px;
 `;
@@ -107,7 +107,7 @@ const StarRateWrap = styled.div`
 const Rating = styled.div`
   color: #494949;
   font-family: Inter;
-  font-size: 15px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;

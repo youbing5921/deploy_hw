@@ -128,7 +128,7 @@ const FindMentor = () => {
         />
       </InfoBox>
       <BottomBar>
-        <AutoMatch onClick={() => navigate("/matching")}>
+        <AutoMatch onClick={() => navigate("/category/mentee")}>
           자동 매칭하기
         </AutoMatch>
       </BottomBar>

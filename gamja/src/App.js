@@ -25,6 +25,11 @@ import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
 import FindResult from "./pages/login/FindResult";
+import MentorSelectChat from "./pages/mypage/MentorSelectChat";
+import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
+import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
+import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
+import JournalDetail from "./pages/mypage/JournalDetail";
 
 function App() {
   return (
@@ -65,11 +70,11 @@ function App() {
         <Route path="/category/mentee" element={<Category />}></Route>
         <Route path="/matching" element={<Matching />}></Route>
         <Route
-          path="/mentor/mypage/:username"
+          path="/mypage/mentor/:username"
           element={<MyPageMentor />}
         ></Route>
         <Route
-          path="/mentee/mypage/:username"
+          path="/mypage/mentee/:username"
           element={<MypageMentee />}
         ></Route>
         <Route
@@ -82,6 +87,26 @@ function App() {
         ></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="/community/:colId" element={<Column />}></Route>
+        <Route
+          path="/mypage/mentor/journal/select"
+          element={<MentorSelectChat />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/journal/select"
+          element={<MenteeSelectChat />}
+        ></Route>
+        <Route
+          path="/mypage/mentor/journal/write"
+          element={<MentorJournalWrite />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/journal/write"
+          element={<MenteeJournalWrite />}
+        ></Route>
+        <Route
+          path="/mypage/journal/detail/:id"
+          element={<JournalDetail />}
+        ></Route>
       </Routes>
     </Wrapper>
   );
