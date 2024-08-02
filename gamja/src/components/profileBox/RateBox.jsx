@@ -10,10 +10,10 @@ const RateBox = ({ rating }) => {
     let remainingScore = (rating * 95) / 100;
     let i = 0;
 
-    while (remainingScore > 19) {
-      tempStarRatesArr[i] = 19;
+    while (remainingScore > 24) {
+      tempStarRatesArr[i] = 24;
       i += 1;
-      remainingScore -= 19;
+      remainingScore -= 24;
     }
     tempStarRatesArr[i] = remainingScore;
     return tempStarRatesArr;
@@ -28,19 +28,19 @@ const RateBox = ({ rating }) => {
       <StarRateWrap>
         {starsArr.map((item, idx) => {
           const gradientId = `${item}StarGradient`;
-          const isPartialStar = ratesResArr[idx] < 19 && ratesResArr[idx] > 0;
+          const isPartialStar = ratesResArr[idx] < 24 && ratesResArr[idx] > 0;
 
           return (
             <span className="star_icon" key={`${item}_${idx}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="19"
-                height="19"
-                viewBox="0 0 19 19"
+                width="23"
+                height="24"
+                viewBox="0 0 23 24"
                 fill="none"
               >
                 <clipPath id={`${item}StarClip`}>
-                  <rect width={`${ratesResArr[idx]}`} height="19" />
+                  <rect width={`${ratesResArr[idx]}`} height="24" />
                 </clipPath>
                 <defs>
                   {isPartialStar && (
@@ -59,7 +59,7 @@ const RateBox = ({ rating }) => {
                 </defs>
                 <path
                   id={`${item}Star`}
-                  d="M0 9.5L6.56237 6.87722L9.1996 0.314826L11.8131 6.87929L18.3775 9.50724L11.8152 12.13L9.19239 18.6924L6.56444 12.1279L0 9.5Z"
+                  d="M0.34375 12L8.42052 8.77197L11.6663 0.69517L14.8829 8.77451L22.9623 12.0089L14.8855 15.2369L11.6575 23.3137L8.42306 15.2344L0.34375 12Z"
                   fill={
                     ratesResArr[idx] === 0
                       ? "#494949"

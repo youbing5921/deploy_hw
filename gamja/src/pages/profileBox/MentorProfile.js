@@ -50,9 +50,11 @@ const MentorProfile = () => {
               </Left>
               <Right>
                 <Username>{Info.name}</Username>
-                <CategoryBox>
-                  <Category>{Info.info?.interests_display.name}</Category>
-                </CategoryBox>
+                {Info.info.interests_display.map((interest, idx) => (
+                  <CategoryBox key={idx}>
+                    <Category>{interest.name}</Category>
+                  </CategoryBox>
+                ))}
               </Right>
             </NameBox>
             <CloseBtn src={xBtn} onClick={onCancel} />
