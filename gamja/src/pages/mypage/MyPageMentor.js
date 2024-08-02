@@ -8,6 +8,7 @@ import StarBox from "../../components/mypage/StarBox";
 import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column.jsx";
+import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
 
 let mypageInfo = [
   {
@@ -51,6 +52,9 @@ const MyPageMentor = () => {
             <Title>내가 스크랩한 칼럼</Title>
             <Column />
           </ColumnBox>
+          <ButtonBox>
+            <LogoutBtn />
+          </ButtonBox>
         </Container>
       ))}
     </>
@@ -113,4 +117,9 @@ const ReviewBox = styled.div``;
 const ColumnBox = styled.div`
   margin-top: 81px;
   margin-left: 40px;
+`;
+
+const ButtonBox = styled.div`
+  margin-top: 31px;
+  margin-left: 438px;
 `;
