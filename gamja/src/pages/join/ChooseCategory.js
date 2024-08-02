@@ -12,13 +12,11 @@ const Category = () => {
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
 
-  console.log(userInfo);
-
   const onClick = (e) => {
     const value = e.target.value;
     if (category.includes(value)) {
       e.target.id = "";
-      setCategory(category.filter((elt) => elt != value));
+      setCategory(category.filter((elt) => elt !== value));
     } else {
       if (category.length < 3) {
         e.target.id = "category_mentor_clicked";
@@ -137,33 +135,6 @@ const ButtonDiv = styled.div`
     line-height: normal;
   }
 `;
-
-const HorizonLine = ({ text, bold, onClick }) => {
-  return (
-    <div
-      style={{
-        width: "474px",
-        textAlign: "center",
-        borderBottom: "1px solid #aaa",
-        lineHeight: "0.1em",
-        margin: "28px auto 53px auto",
-        color: "#494949",
-      }}
-    >
-      <span
-        style={{
-          background: "#f8f8f8",
-          padding: "0 10px",
-          cursor: "pointer",
-        }}
-        onClick={onClick}
-      >
-        {text}
-        <b>{bold}</b>
-      </span>
-    </div>
-  );
-};
 
 const NewBottonBtn = styled(BottonBtn)`
   margin-top: auto;

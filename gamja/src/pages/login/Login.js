@@ -6,6 +6,7 @@ import BottonBtn from "../../components/login/BottonBtn";
 import LogoImage from "../../components/login/LogoImage";
 import InputStyle from "../../components/login/InputStyle";
 import InputLabel from "../../components/login/InputLabel";
+import axios from "axios";
 
 const Login = () => {
   const [id, setId] = useState("");
@@ -29,6 +30,25 @@ const Login = () => {
     }
   }, [id, pw]);
 
+  // 서버로 데이터 전송
+  function login() {
+    axios
+      .post("http://127.0.0.1:8000/users/login/", {
+        username: id,
+        password: pw,
+      })
+      .then((response) => {
+        console.log("로그인 성공");
+        navigate("/home", {
+          state: { userInfo: response.data },
+        });
+      })
+      .catch((error) => {
+        console.log("로그인 실패");
+        console.log(error);
+      });
+  }
+
   return (
     <MainContainer>
       <NewLogoImage />
@@ -51,7 +71,7 @@ const Login = () => {
           onChange={onChange}
         />
       </InputDiv>
-      <LoginBottonBtn disabled={disabled} onClick={() => console.log("로그인")}>
+      <LoginBottonBtn disabled={disabled} onClick={login}>
         로그인
       </LoginBottonBtn>
       <FindIdPw>

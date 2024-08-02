@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import QuoteSection from "../../components/home/QuoteSection";
 import SearchCard from "../../components/home/SearchCard";
 import ChatCard from "../../components/home/ChatCard";
@@ -17,7 +17,9 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userType = "mentee";
+  const userInfo = useLocation().state.userInfo;
+  const userType = userInfo.is_mentor ? "mentor" : "mentee";
+
   return (
     <>
       {userType === "mentor" ? (

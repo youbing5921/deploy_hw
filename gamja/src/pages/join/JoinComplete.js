@@ -13,7 +13,6 @@ const JoinComplete = () => {
   const navigate = useNavigate();
 
   // 서버로 유저 정보 전달
-
   useEffect(() => {
     if (role === "mento") {
       axios
@@ -30,7 +29,6 @@ const JoinComplete = () => {
           },
         })
         .then((response) => {
-          console.log("회원가입이 완료되었습니다.");
           alert("회원가입에 성공했습니다.");
         })
         .catch((error) => {
@@ -54,9 +52,10 @@ const JoinComplete = () => {
         })
         .catch((error) => {
           alert("회원가입에 실패했습니다.");
-          navigate("/join/info");
+          // navigate("/join/info");
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
