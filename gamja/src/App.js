@@ -114,10 +114,7 @@ function App() {
           path="/mypage/mentee/edit/:username"
           element={<EditMentee />}
         ></Route>
-        <Route
-          path="/review/write/:chatroomId"
-          element={<WriteReview />}
-        ></Route>
+        <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
       </Routes>
     </Wrapper>
   );
