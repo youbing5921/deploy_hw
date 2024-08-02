@@ -163,11 +163,11 @@ const InputInfo = () => {
         state: {
           role: role,
           info: {
-            username: name,
+            username: userId,
             email: email,
             password: password,
             is_mentor: role === "mento" ? true : false,
-            name: userId,
+            name: name,
             birth_date: `${year}-${month}-${date}`,
             agreed_to_terms: true,
           },
