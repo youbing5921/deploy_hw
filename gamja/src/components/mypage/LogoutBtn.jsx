@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import logoutBtn from "../../images/logoutBtn.svg";
 
-const LogoutBtn = () => {
+const LogoutBtn = ({ onClick }) => {
   return (
     <>
-      <Button>
+      <Button onClick={onClick}>
         로그아웃하기
         <Icon src={logoutBtn} alt="logoutIcon" />
       </Button>

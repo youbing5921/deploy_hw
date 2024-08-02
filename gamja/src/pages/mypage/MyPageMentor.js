@@ -9,6 +9,8 @@ import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column.jsx";
 import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 let mypageInfo = [
   {
@@ -22,6 +24,33 @@ let mypageInfo = [
 
 const MyPageMentor = () => {
   const [Info, setInfo] = useState(mypageInfo);
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken", response.data.access);
+  const refreshToken = "";
+
+  function logout() {
+    axios
+      .post(
+        "http://127.0.0.1:8000/users/logout",
+        {
+          refresh: refreshToken,
+        },
+        {
+          headers: {
+            Authorization: accessToken,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("로그아웃이 완료되었습니다.");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   return (
     <>
       {mypageInfo.map((info) => (
@@ -53,7 +82,7 @@ const MyPageMentor = () => {
             <Column />
           </ColumnBox>
           <ButtonBox>
-            <LogoutBtn />
+            <LogoutBtn onClick={logout} />
           </ButtonBox>
         </Container>
       ))}
