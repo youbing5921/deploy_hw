@@ -6,17 +6,17 @@ import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 
-const CreateChat = () => {
+const EditProfile = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
-  const [title, setTitle] = useState("");
+  const [username, setUsername] = useState("");
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
       if (prev.includes(value)) {
         return prev.filter((cat) => cat !== value);
-      } else if (prev.length < 2) {
+      } else if (prev.length < 3) {
         return [...prev, value];
       }
       return prev;
@@ -24,22 +24,24 @@ const CreateChat = () => {
   };
 
   useEffect(() => {
-    setDisabled(category.length === 0 || title.length === 0);
-  }, [category, title]);
+    setDisabled(category.length === 0 || username.length === 0);
+  }, [category, username]);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
   };
 
   return (
     <Container>
-      <TopBar txt="채팅하기" />
+      <TopBar txt="마이페이지" marginLeft={"154px"} />
       <Wrapper>
-        <StyledTitleOval $active={title.length > 0}>제목 설정</StyledTitleOval>
-        <TitleInput
-          placeholder="채팅의 제목을 설정해주세요"
-          value={title}
-          onChange={handleTitleChange}
+        <StyledTitleOval $active={username.length > 0}>
+          이름 변경
+        </StyledTitleOval>
+        <UsernameInput
+          placeholder="새로운 이름을 정해주세요"
+          value={username}
+          onChange={handleUsernameChange}
         />
         <StyledCategoryOval $active={category.length > 0}>
           카테고리 설정
@@ -57,20 +59,20 @@ const CreateChat = () => {
             )
           )}
         </ButtonGroup>
-        <SideText>최대 2개의 카테고리를 선택해주세요.</SideText>
+        <SideText>최대 3개의 카테고리를 선택해주세요.</SideText>
         <ChatBtn
           disabled={disabled}
           $active={!disabled}
           onClick={() => navigate("/chat/mentee/:username")}
         >
-          멘토님과 채팅하기
+          회원정보 저장하기
         </ChatBtn>
       </Wrapper>
     </Container>
   );
 };
 
-export default CreateChat;
+export default EditProfile;
 
 const Container = styled.div`
   background-color: #ebebeb;
@@ -83,7 +85,7 @@ const Wrapper = styled.div`
   padding: 0 40px;
 `;
 
-const TitleInput = styled.input`
+const UsernameInput = styled.input`
   margin-top: 19px;
   color: #494949;
   font-family: Pretendard;
@@ -120,19 +122,19 @@ const StyledButton = styled.button`
   padding: 9px 25px;
   border-radius: 30px;
   border: ${({ $active }) =>
-    $active ? "1px solid #FDDE55" : "1px solid rgba(73, 73, 73, 0.2)"};
+    $active ? "1px solid #03AED2" : "1px solid rgba(73, 73, 73, 0.2)"};
   background: ${({ $active }) =>
     $active
-      ? "linear-gradient(0deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), #FDDE55"
+      ? "linear-gradient(0deg, rgba(255, 255, 255, 0.30) 0%, rgba(255, 255, 255, 0.30) 100%), #03AED2"
       : "rgba(73, 73, 73, 0.1)"};
-  color: ${({ $active }) => ($active ? "#494949" : "#7f7f7f")};
+  color: ${({ $active }) => ($active ? "#fff" : "#7f7f7f")};
   text-align: center;
   font-family: Pretendard;
   font-size: 30px;
   font-weight: 700;
   cursor: pointer;
   box-shadow: ${({ $active }) =>
-    $active ? "0 0 8px rgba(253, 222, 85, 0.8)" : "none"};
+    $active ? "0px 0px 8px 0px rgba(3, 174, 210, 0.20)" : "none"};
 `;
 
 const ChatBtn = styled(BottonBtn)`

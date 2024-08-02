@@ -6,11 +6,11 @@ import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 
-const CreateChat = () => {
+const WriteConcern = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
-  const [title, setTitle] = useState("");
+  const [concern, setConcern] = useState("");
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
@@ -24,22 +24,24 @@ const CreateChat = () => {
   };
 
   useEffect(() => {
-    setDisabled(category.length === 0 || title.length === 0);
-  }, [category, title]);
+    setDisabled(category.length === 0 || concern.length === 0);
+  }, [category, concern]);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const handleConcernChange = (e) => {
+    setConcern(e.target.value);
   };
 
   return (
     <Container>
-      <TopBar txt="채팅하기" />
+      <TopBar txt="마이페이지" marginLeft={"154px"} />
       <Wrapper>
-        <StyledTitleOval $active={title.length > 0}>제목 설정</StyledTitleOval>
-        <TitleInput
-          placeholder="채팅의 제목을 설정해주세요"
-          value={title}
-          onChange={handleTitleChange}
+        <StyledTitleOval $active={concern.length > 0}>
+          한 줄 고민
+        </StyledTitleOval>
+        <ConcernInput
+          placeholder="한 줄 고민을 적어주세요"
+          value={concern}
+          onChange={handleConcernChange}
         />
         <StyledCategoryOval $active={category.length > 0}>
           카테고리 설정
@@ -63,14 +65,14 @@ const CreateChat = () => {
           $active={!disabled}
           onClick={() => navigate("/chat/mentee/:username")}
         >
-          멘토님과 채팅하기
+          한 줄 고민 작성하기
         </ChatBtn>
       </Wrapper>
     </Container>
   );
 };
 
-export default CreateChat;
+export default WriteConcern;
 
 const Container = styled.div`
   background-color: #ebebeb;
@@ -83,7 +85,7 @@ const Wrapper = styled.div`
   padding: 0 40px;
 `;
 
-const TitleInput = styled.input`
+const ConcernInput = styled.input`
   margin-top: 19px;
   color: #494949;
   font-family: Pretendard;

@@ -39,6 +39,8 @@ const Login = () => {
       })
       .then((response) => {
         console.log("로그인 성공");
+        console.log(response.data.access);
+        localStorage.setItem("accessToken", response.data.access);
         navigate("/home", {
           state: { userInfo: response.data },
         });
