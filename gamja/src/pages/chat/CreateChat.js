@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
+import axios from "axios";
 
 const CreateChat = () => {
   const navigate = useNavigate();
+  const { mentorId } = useParams();
+  //   const numericMentorId = parseInt(mentorId, 10);
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [title, setTitle] = useState("");
@@ -29,6 +32,28 @@ const CreateChat = () => {
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    const data = {
+      mentorId: mentorId,
+      interests: category,
+      title: title,
+    };
+    axios
+      .post("http://127.0.0.1:8000/chat/", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        navigate(`/chat/mentee/${mentorId}`);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("채팅방 생성에 실패했습니다!");
+      });
   };
 
   return (
@@ -58,11 +83,7 @@ const CreateChat = () => {
           )}
         </ButtonGroup>
         <SideText>최대 2개의 카테고리를 선택해주세요.</SideText>
-        <ChatBtn
-          disabled={disabled}
-          $active={!disabled}
-          onClick={() => navigate("/chat/mentee/:username")}
-        >
+        <ChatBtn disabled={disabled} $active={!disabled} onClick={handleSubmit}>
           멘토님과 채팅하기
         </ChatBtn>
       </Wrapper>

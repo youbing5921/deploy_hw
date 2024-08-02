@@ -6,20 +6,20 @@ import MenteeImg from "../../images/MenteeImg.svg";
 const UserInfo = ({ Info }) => {
   return (
     <>
-      {Info.map((info) => (
-        <ProfileBox key={info.id}>
-          <Profile src={MenteeImg} alt="profileImg" />
-          <NameBox>
-            <Username>{info.name}</Username>
-            <Next src={Arrow} alt="바로가기" />
-          </NameBox>
-          <CategoryBox>
-            {info.category.map((cat, idx) => (
-              <Category key={idx}>{cat}</Category>
-            ))}
-          </CategoryBox>
-        </ProfileBox>
-      ))}
+      <ProfileBox>
+        <Profile src={MenteeImg} alt="profileImg" />
+        <NameBox>
+          <Username>{Info.name}</Username>
+          <Next src={Arrow} alt="바로가기" />
+        </NameBox>
+        <CategoryContainer>
+          {Info.info?.interests_display.map((interest, idx) => (
+            <CategoryBox key={idx}>
+              <Category>{interest.name}</Category>
+            </CategoryBox>
+          ))}
+        </CategoryContainer>
+      </ProfileBox>
     </>
   );
 };
@@ -48,6 +48,7 @@ const NameBox = styled.div`
   justify-content: space-between;
   gap: 7px;
   margin-bottom: 9px;
+  cursor: pointer;
 `;
 
 const Username = styled.div`
@@ -62,11 +63,17 @@ const Next = styled.img`
   height: 10.983px;
 `;
 
+const CategoryContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+`;
+
 const CategoryBox = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 3px;
+  justify-content: center;
 `;
 
 const Category = styled.div`

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const RateBox = ({ rating }) => {
+const WriteRate = () => {
+  const [rating, setRating] = useState("");
   const starsArr = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
 
   const calcStarRates = (rating) => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
-    let remainingScore = (rating * 95) / 100;
+    let remainingScore = (rating * 120) / 100;
     let i = 0;
 
     while (remainingScore > 24) {
@@ -23,6 +24,13 @@ const RateBox = ({ rating }) => {
     setRatesResArr(calcStarRates(rating));
   }, [rating]);
 
+  const handleInputChange = (e) => {
+    let value = e.target.value;
+    if (value === "" || (Number(value) >= 0 && Number(value) <= 100)) {
+      setRating(value);
+    }
+  };
+
   return (
     <RatingBox>
       <StarRateWrap>
@@ -34,9 +42,9 @@ const RateBox = ({ rating }) => {
             <span className="star_icon" key={`${item}_${idx}`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="23"
+                width="24"
                 height="24"
-                viewBox="0 0 23 24"
+                viewBox="0 0 24 24"
                 fill="none"
               >
                 <clipPath id={`${item}StarClip`}>
@@ -59,7 +67,7 @@ const RateBox = ({ rating }) => {
                 </defs>
                 <path
                   id={`${item}Star`}
-                  d="M0.34375 12L8.42052 8.77197L11.6663 0.69517L14.8829 8.77451L22.9623 12.0089L14.8855 15.2369L11.6575 23.3137L8.42306 15.2344L0.34375 12Z"
+                  d="M0.685547 12L8.76231 8.77197L12.0081 0.69517L15.2247 8.77451L23.3041 12.0089L15.2273 15.2369L11.9993 23.3137L8.76486 15.2344L0.685547 12Z"
                   fill={
                     ratesResArr[idx] === 0
                       ? "#494949"
@@ -74,45 +82,57 @@ const RateBox = ({ rating }) => {
         })}
       </StarRateWrap>
       <Rating>
-        {rating}
+        <InputScore value={rating} onChange={handleInputChange} />
         <span>/100</span>
       </Rating>
     </RatingBox>
   );
 };
 
-export default RateBox;
+export default WriteRate;
 
 const RatingBox = styled.div`
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 5px;
   border-radius: 15px;
-  background: #f8f8f8;
+  background: #f1f0f0;
   width: 288px;
-  height: 16px;
-  padding: 16px 25px;
+  padding: 14px 25px;
 `;
 
 const StarRateWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 16.72px;
   .star_icon {
     display: inline-flex;
+    margin-right: 16px;
   }
 `;
 
-const Rating = styled.div`
+const InputScore = styled.input`
+  background: none;
+  outline: none;
+  width: 35px;
   color: #494949;
-  font-family: Inter;
+  text-align: center;
+  font-family: Pretendard;
   font-size: 20px;
-  font-style: normal;
   font-weight: 600;
-  line-height: normal;
+  border-radius: 10px;
+  border: 1px solid #494949;
+  margin-right: 3px;
+`;
+
+const Rating = styled.div`
+  display: flex;
+  align-items: center;
 
   > span {
     color: #a4a4a4;
+    font-size: 20px;
+    font-weight: 600;
   }
 `;

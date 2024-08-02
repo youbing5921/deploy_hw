@@ -44,9 +44,9 @@ const FindMentor = () => {
   const filteredInfos = infoList.filter(
     (info) =>
       selectedCategory === "전체" ||
-      info.category1 === selectedCategory ||
-      info.category2 === selectedCategory ||
-      info.category3 === selectedCategory
+      info.mentoring_record.some(
+        (interests) => interests.interest === selectedCategory
+      )
   );
 
   return (

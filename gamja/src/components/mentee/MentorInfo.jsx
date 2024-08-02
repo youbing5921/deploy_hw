@@ -10,23 +10,21 @@ import axios from "axios";
 const MentorInfo = ({ infoList, toggleSubscription }) => {
   const navigate = useNavigate();
 
-  // const postLike = () => {
-  //   axios.post("http://127.0.0.1:8000/mentor/{mentorId}/likes/");
-  // };
-
   return (
     <>
       {infoList.map((mentor) => (
-        <InfoBox key={mentor.id}>
+        <InfoBox key={mentor.user}>
           <ProfileBox>
-            <Profile
-              src={MentorImg}
-              alt="profileImg"
-              onClick={() => navigate(`/userpage/${mentor.name}`)}
-            />
-            <Name onClick={() => navigate(`/userpage/${mentor.name}`)}>
-              {mentor.name}
-            </Name>
+            <Left>
+              <Profile
+                src={MentorImg}
+                alt="profileImg"
+                onClick={() => navigate(`/profile/mentor/${mentor.user}`)}
+              />
+              <Name onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
+                {mentor.mentor_name}
+              </Name>
+            </Left>
             <SubscribeButton onClick={() => toggleSubscription(mentor.id)}>
               <img
                 src={mentor.isSubscribed ? FollowYellow : FollowGray}
@@ -35,17 +33,17 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
             </SubscribeButton>
           </ProfileBox>
           <MiddleBox>
-            {mentor.interests.map((cat, idx) => (
+            {mentor.mentoring_record.map((cat, idx) => (
               <CategoryBox key={idx}>
-                <Category>{cat}</Category>
+                <Category>{cat.interest}</Category>
                 <CategoryCount>
-                  {mentor.count[idx]}
+                  {cat.count}
                   <span>회</span>
                 </CategoryCount>
               </CategoryBox>
             ))}
-            <RateBox rating={mentor.rating} />
           </MiddleBox>
+          <RateBox rating={mentor.rating} />
           <BtnBox>
             <GoRead>칼럼 읽기</GoRead>
             <GoChat onClick={() => navigate("/chat-create/mentee/:roomId/")}>
@@ -67,16 +65,19 @@ const InfoBox = styled.div`
   width: 219px;
   padding: 18px 14px;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  gap: 8px;
   flex-shrink: 0;
 `;
 
 const ProfileBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
-
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const Profile = styled.img`
   width: 40px;
   height: 40px;
@@ -102,8 +103,8 @@ const SubscribeButton = styled.button`
 
 const MiddleBox = styled.div`
   display: flex;
-  gap: 7px;
-  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
 `;
 
 const CategoryBox = styled.div`
@@ -140,6 +141,7 @@ const BtnBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  margin-top: 12px;
 `;
 
 const GoRead = styled.button`

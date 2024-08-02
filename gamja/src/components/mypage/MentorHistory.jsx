@@ -2,67 +2,40 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 
-const users = [
-  {
-    id: 1,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요그리고 머시지",
-  },
-  {
-    id: 2,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 3,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 4,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-];
-
 const MentorHistory = ({ Info }) => {
   return (
     <>
       <Wrapper>
-        {Info.map((info) => (
-          <Left key={info.id}>
-            {info.category.map((cat, idx) => (
-              <CategoryBox key={idx}>
-                <Category>{cat}</Category>
-                <CategoryCount>
-                  {info.count[idx]}
-                  <span>회</span>
-                </CategoryCount>
-              </CategoryBox>
-            ))}
-          </Left>
-        ))}
+        <Left>
+          {Info.mentoringRecord?.map((record, idx) => (
+            <CategoryBox key={idx}>
+              <Category>{record.interest}</Category>
+              <CategoryCount>
+                {record.count}
+                <span>회</span>
+              </CategoryCount>
+            </CategoryBox>
+          ))}
+        </Left>
         <Right>
-          {users.map((user) => (
-            <Container key={user.id}>
+          {Info.myMentoring?.map((mentoring) => (
+            <Container>
               <InfoBox>
                 <PhotoBox>
                   <Profile src={MenteeImg} alt="profileImg" />
                 </PhotoBox>
                 <NameBox>
-                  <Username>{user.username}</Username>
+                  <Username>{mentoring.mentee_name}</Username>
                   <ContentCategoryBox>
-                    {user.categories.map((category, idx) => (
-                      <ContentCategory key={idx}>{category}</ContentCategory>
+                    {mentoring.interests?.map((interest, idx) => (
+                      <ContentCategory key={idx}>
+                        {interest.name}
+                      </ContentCategory>
                     ))}
                   </ContentCategoryBox>
                 </NameBox>
               </InfoBox>
-              <ConcernBox>{user.concern}</ConcernBox>
+              <ConcernBox>{mentoring.title}</ConcernBox>
             </Container>
           ))}
         </Right>
@@ -80,7 +53,7 @@ const Wrapper = styled.div`
 
 const Left = styled.div`
   margin-top: 5px;
-  width: 150px;
+  width: 85px;
   padding: 13px 10px;
   border-radius: 15px;
   background: #f8f8f8;
