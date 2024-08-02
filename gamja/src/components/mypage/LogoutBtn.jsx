@@ -7,7 +7,7 @@ const LogoutBtn = () => {
     <>
       <Button>
         로그아웃하기
-        <Icon src={logoutBtn} alt={logoutIcon} />
+        <Icon src={logoutBtn} alt="logoutIcon" />
       </Button>
     </>
   );
@@ -28,6 +28,8 @@ const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
 `;
 
 const Icon = styled.img`
