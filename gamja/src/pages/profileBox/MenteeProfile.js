@@ -1,63 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import xBtn from "../../images/xBtn.svg";
-import { useNavigate } from "react-router-dom";
-
-const userInfo = [
-  {
-    id: "1",
-    name: "돈이뭐길래",
-    concern:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-    mentoringRecord: [
-      {
-        interest: "가치관",
-        count: 10,
-      },
-      {
-        interest: "재테크",
-        count: 5,
-      },
-      {
-        interest: "사랑",
-        count: 10,
-      },
-      {
-        interest: "생활지식",
-        count: 20,
-      },
-      {
-        interest: "인간관계",
-        count: 20,
-      },
-      {
-        interest: "진로",
-        count: 10,
-      },
-    ],
-    mymentoring: [
-      {
-        id: 1,
-        interest: ["인간관계", "생활지식"],
-        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
-      },
-      {
-        id: 2,
-        interest: ["가치관", "진로"],
-        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
-      },
-      {
-        id: 3,
-        interest: ["사랑", "생활지식"],
-        title: "사랑하는 사람과 경제적 수준 차이가 고민이에요.",
-      },
-    ],
-  },
-];
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 const MenteeProfile = () => {
+  const { menteeId } = useParams();
+  console.log(menteeId);
   const navigate = useNavigate();
+  const [Info, setInfo] = useState([]);
+  console.log(Info);
+
+  useEffect(() => {
+    const getProfile = () => {
+      axios
+        .get(`http://127.0.0.1:8000/profile/${menteeId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(menteeId);
+          console.log(error);
+        });
+    };
+    getProfile();
+  }, [menteeId]);
 
   const onCancel = () => {
     navigate(-1);
@@ -65,66 +38,62 @@ const MenteeProfile = () => {
 
   return (
     <>
-      {userInfo.map((info) => (
-        <Container key={info.id}>
-          <MenteeBox>
-            <Top>
-              <NameBox>
-                <Profile src={MenteeImg} />
-                <Username>{info.name}</Username>
-              </NameBox>
-              <CloseBtn src={xBtn} onClick={onCancel} />
-            </Top>
-            <ConcernBox>
-              <Title>멘티의 한 줄 고민</Title>
-              <Concern>{info.concern}</Concern>
-            </ConcernBox>
-            <HistoryBox>
-              <Title>멘티의 멘토링 내역</Title>
-              <History>
-                <Column>
-                  {info.mentoringRecord.slice(0, 3).map((record, index) => (
-                    <Record key={index}>
-                      <Interest>{record.interest}</Interest>
-                      <Count>
-                        {record.count}
-                        <span>회</span>
-                      </Count>
-                    </Record>
-                  ))}
-                </Column>
-                <Column>
-                  {info.mentoringRecord.slice(3, 6).map((record, index) => (
-                    <Record key={index}>
-                      <Interest>{record.interest}</Interest>
-                      <Count>
-                        {record.count}
-                        <span>회</span>
-                      </Count>
-                    </Record>
-                  ))}
-                </Column>
-              </History>
-              <DetailWrapper>
-                <Details>
-                  {info.mymentoring.map((mentoring) => (
-                    <DetailBox key={mentoring.id}>
-                      <DetailCategoryBox>
-                        {mentoring.interest.map((interest, index) => (
-                          <DetailCategory key={index}>
-                            {interest}
-                          </DetailCategory>
-                        ))}
-                      </DetailCategoryBox>
-                      <DetailContent>{mentoring.title}</DetailContent>
-                    </DetailBox>
-                  ))}
-                </Details>
-              </DetailWrapper>
-            </HistoryBox>
-          </MenteeBox>
-        </Container>
-      ))}
+      <Container>
+        <MenteeBox>
+          <Top>
+            <NameBox>
+              <Profile src={MenteeImg} />
+              <Username>{Info.name}</Username>
+            </NameBox>
+            <CloseBtn src={xBtn} onClick={onCancel} />
+          </Top>
+          <ConcernBox>
+            <Title>멘티의 한 줄 고민</Title>
+            <Concern>{Info.concern?.content}</Concern>
+          </ConcernBox>
+          <HistoryBox>
+            <Title>멘티의 멘토링 내역</Title>
+            <History>
+              <Column>
+                {Info.mentoringRecord?.slice(0, 3)?.map((record, index) => (
+                  <Record key={index}>
+                    <Interest>{record.interest}</Interest>
+                    <Count>
+                      {record.count}
+                      <span>회</span>
+                    </Count>
+                  </Record>
+                ))}
+              </Column>
+              <Column>
+                {Info.mentoringRecord?.slice(3, 6)?.map((record, index) => (
+                  <Record key={index}>
+                    <Interest>{record.interest}</Interest>
+                    <Count>
+                      {record.count}
+                      <span>회</span>
+                    </Count>
+                  </Record>
+                ))}
+              </Column>
+            </History>
+            <DetailWrapper>
+              <Details>
+                {Info.mymentoring?.map((mentoring) => (
+                  <DetailBox key={mentoring.id}>
+                    <DetailCategoryBox>
+                      {mentoring.interest?.map((interest, index) => (
+                        <DetailCategory key={index}>{interest}</DetailCategory>
+                      ))}
+                    </DetailCategoryBox>
+                    <DetailContent>{mentoring.title}</DetailContent>
+                  </DetailBox>
+                ))}
+              </Details>
+            </DetailWrapper>
+          </HistoryBox>
+        </MenteeBox>
+      </Container>
     </>
   );
 };

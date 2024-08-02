@@ -75,7 +75,7 @@ function App() {
           element={<MentorProfile />}
         ></Route>
         <Route
-          path="/profile/mentee/:username"
+          path="/profile/mentee/:menteeId"
           element={<MenteeProfile />}
         ></Route>
         <Route

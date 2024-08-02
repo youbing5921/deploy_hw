@@ -30,15 +30,15 @@ const Concern = ({ concernList }) => {
   return (
     <>
       {concernList.map((concern) => (
-        <ConcernBox key={concern.author.user}>
+        <ConcernBox key={concern.id}>
           <Info>
             <Profile
               src={MenteeImg}
               alt="profileImg"
-              onClick={() => navigate(`/profile/mentee/${concern.mentee_name}`)}
+              onClick={() => navigate(`/profile/mentee/${concern.author.user}`)}
             />
             <Username
-              onClick={() => navigate(`/profile/mentee/${concern.mentee_name}`)}
+              onClick={() => navigate(`/profile/mentee/${concern.author.user}`)}
             >
               {concern.mentee_name}
             </Username>
