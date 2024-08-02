@@ -1,101 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import CategoryBar from "../../components/common/CategoryBar";
 import MentorInfo from "../../components/mentee/MentorInfo";
-
-let allInfoList = [
-  {
-    id: "1",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "가치관",
-    count1: "10",
-    category2: "사랑",
-    count2: "10",
-    category3: "생활지식",
-    count3: "2",
-    rating: "50",
-  },
-  {
-    id: "2",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "3",
-    category2: "생활지식",
-    count2: "8",
-    category3: "가치관",
-    count3: "1",
-    rating: "65",
-  },
-  {
-    id: "3",
-    name: "척척육은영",
-    isSubscribed: true,
-    category1: "인간관계",
-    count1: "9",
-    category2: "재테크",
-    count2: "23",
-    category3: "가치관",
-    count3: "2",
-    rating: "35",
-  },
-  {
-    id: "4",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "30",
-  },
-  {
-    id: "5",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "96",
-  },
-  {
-    id: "6",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "58",
-  },
-  {
-    id: "7",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "사랑",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "19",
-  },
-];
+import axios from "axios";
 
 const FindMentor = () => {
   const navigate = useNavigate();
-  const [infoList, setInfoList] = useState(allInfoList);
+  const [infoList, setInfoList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
+
+  const getMentorInfo = () => {
+    axios
+      .get("http://127.0.0.1:8000/mentors/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setInfoList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getMentorInfo();
+  }, []);
 
   const toggleSubscription = (id) => {
     setInfoList((prevInfoList) =>

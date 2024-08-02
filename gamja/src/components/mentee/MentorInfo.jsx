@@ -5,9 +5,14 @@ import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
+import axios from "axios";
 
 const MentorInfo = ({ infoList, toggleSubscription }) => {
   const navigate = useNavigate();
+
+  // const postLike = () => {
+  //   axios.post("http://127.0.0.1:8000/mentor/{mentorId}/likes/");
+  // };
 
   return (
     <>
@@ -30,23 +35,15 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
             </SubscribeButton>
           </ProfileBox>
           <MiddleBox>
-            <CategoryBox>
-              <Category>{mentor.category1}</Category>
-              <CategoryCount>
-                {mentor.count1}
-                <span>회</span>
-              </CategoryCount>
-              <Category>{mentor.category2}</Category>
-              <CategoryCount>
-                {mentor.count2}
-                <span>회</span>
-              </CategoryCount>
-              <Category>{mentor.category3}</Category>
-              <CategoryCount>
-                {mentor.count3}
-                <span>회</span>
-              </CategoryCount>
-            </CategoryBox>
+            {mentor.interests.map((cat, idx) => (
+              <CategoryBox key={idx}>
+                <Category>{cat}</Category>
+                <CategoryCount>
+                  {mentor.count[idx]}
+                  <span>회</span>
+                </CategoryCount>
+              </CategoryBox>
+            ))}
             <RateBox rating={mentor.rating} />
           </MiddleBox>
           <BtnBox>
@@ -120,7 +117,7 @@ const Category = styled.div`
   padding: 3px 8px;
   border-radius: 9px;
   background: rgba(253, 222, 85, 0.2);
-  color: #ffd000;
+  color: #494949;
   font-size: 10px;
   font-weight: 500;
 `;

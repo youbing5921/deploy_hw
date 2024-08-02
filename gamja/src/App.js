@@ -29,6 +29,10 @@ import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
 import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
 import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
 import JournalDetail from "./pages/mypage/JournalDetail";
+import WriteConcern from "./pages/mentee/WriteConcern";
+import EditConcern from "./pages/mentee/EditConcern";
+import EditProfile from "./pages/mentor/EditProfile";
+import EditMentee from "./pages/mentee/EditMentee";
 
 function App() {
   return (
@@ -98,6 +102,16 @@ function App() {
         <Route
           path="/mypage/journal/detail/:id"
           element={<JournalDetail />}
+        ></Route>
+        <Route path="/concern/write/" element={<WriteConcern />}></Route>
+        <Route path="/concern/edit/:id" element={<EditConcern />}></Route>
+        <Route
+          path="/mypage/mentor/edit/:username"
+          element={<EditProfile />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/edit/:username"
+          element={<EditMentee />}
         ></Route>
       </Routes>
     </Wrapper>
