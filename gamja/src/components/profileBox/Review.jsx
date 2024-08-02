@@ -2,32 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 
-const Review = () => {
+const Review = ({ Info }) => {
   return (
     <>
-      <Container>
-        <Top>
-          <Left>
-            <Low>
-              <Profile src={MentorImg} alt="menteeImg" />
-            </Low>
-            <Middle>
-              <Username>돈이 뭐길래</Username>
-              <Category>재테크</Category>
-              <Category>사랑</Category>
-            </Middle>
-          </Left>
-          <Right>
-            <High>
-              <MoreBtn>더보기</MoreBtn>
-            </High>
-          </Right>
-        </Top>
-        <Comment>
-          닉값합니다! 진짜 척척박사세요. 다음에 또 고민이 생기면 육은영멘토님께
-          채팅해보려구요! 감사합니다 :)
-        </Comment>
-      </Container>
+      {Info?.myReview?.map((review, idx) => (
+        <Container key={idx}>
+          <Top>
+            <Left>
+              <Low>
+                <Profile src={MentorImg} alt="menteeImg" />
+              </Low>
+              <Middle>
+                <Username>{review.mentee_name}</Username>
+                <CategoryBox>
+                  {review.chatroom_interests.map((interest, idx) => (
+                    <Category key={idx}>{interest.name}</Category>
+                  ))}
+                </CategoryBox>
+              </Middle>
+            </Left>
+            <Right>
+              <High>
+                <MoreBtn>더보기</MoreBtn>
+              </High>
+            </Right>
+          </Top>
+          <Comment>{review.content}</Comment>
+        </Container>
+      ))}
     </>
   );
 };
@@ -71,6 +73,7 @@ const Username = styled.div`
   font-size: 13px;
   font-weight: 500;
 `;
+const CategoryBox = styled.div``;
 const Category = styled.div`
   display: inline-block;
   padding: 2px 5px;
