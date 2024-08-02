@@ -10,22 +10,18 @@ import axios from "axios";
 const MentorInfo = ({ infoList, toggleSubscription }) => {
   const navigate = useNavigate();
 
-  // const postLike = () => {
-  //   axios.post("http://127.0.0.1:8000/mentor/{mentorId}/likes/");
-  // };
-
   return (
     <>
       {infoList.map((mentor) => (
-        <InfoBox key={mentor.id}>
+        <InfoBox key={mentor.user}>
           <ProfileBox>
             <Profile
               src={MentorImg}
               alt="profileImg"
-              onClick={() => navigate(`/userpage/${mentor.name}`)}
+              onClick={() => navigate(`/profile/mentor/${mentor.user}`)}
             />
-            <Name onClick={() => navigate(`/userpage/${mentor.name}`)}>
-              {mentor.name}
+            <Name onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
+              {mentor.mentor_name}
             </Name>
             <SubscribeButton onClick={() => toggleSubscription(mentor.id)}>
               <img
@@ -35,11 +31,11 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
             </SubscribeButton>
           </ProfileBox>
           <MiddleBox>
-            {mentor.interests.map((cat, idx) => (
+            {mentor.mentoring_record.map((cat, idx) => (
               <CategoryBox key={idx}>
-                <Category>{cat}</Category>
+                <Category>{cat.interest}</Category>
                 <CategoryCount>
-                  {mentor.count[idx]}
+                  {cat.count}
                   <span>회</span>
                 </CategoryCount>
               </CategoryBox>

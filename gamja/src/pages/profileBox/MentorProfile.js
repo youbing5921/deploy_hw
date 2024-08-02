@@ -1,25 +1,39 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
 import RateBox from "../../components/profileBox/RateBox";
 import MentorHistory from "../../components/profileBox/MentorHistory";
 import Review from "../../components/profileBox/Review";
-
-const userInfo = [
-  {
-    id: "1",
-    name: "척척육은영",
-    category: ["가치관", "사랑", "생활지식"],
-    count: [10, 10, 20],
-    rating: 50,
-  },
-];
+import axios from "axios";
 
 const MentorProfile = () => {
+  const { mentorId } = useParams();
+  console.log(mentorId);
   const navigate = useNavigate();
-  const [Info, setInfo] = useState(userInfo);
+  const [Info, setInfo] = useState([]);
+  console.log(Info);
+
+  useEffect(() => {
+    const getProfile = () => {
+      axios
+        .get(`http://127.0.0.1:8000/profile/${mentorId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(mentorId);
+          console.log(error);
+        });
+    };
+    getProfile();
+  }, [mentorId]);
 
   const onCancel = () => {
     navigate(-1);
@@ -27,45 +41,41 @@ const MentorProfile = () => {
 
   return (
     <>
-      {userInfo.map((info) => (
-        <Container key={info.id}>
-          <MentorBox>
-            <Top>
-              <NameBox>
-                <Left>
-                  <Profile src={MentorImg} />
-                </Left>
-                <Right>
-                  <Username>{info.name}</Username>
-                  {info.category.map((cat, idx) => (
-                    <CategoryBox key={idx}>
-                      <Category>{cat}</Category>
-                    </CategoryBox>
-                  ))}
-                </Right>
-              </NameBox>
-              <CloseBtn src={xBtn} onClick={onCancel} />
-            </Top>
-            <RatingBox>
-              <Title>멘토님의 등대 지수</Title>
-              <RateBox rating={info.rating} />
-            </RatingBox>
-            <HistoryBox>
-              <Title>멘토님의 멘토링 내역</Title>
-              <History>
-                <MentorHistory Info={Info} />
-              </History>
-            </HistoryBox>
-            <ReviewBox>
-              <Title>멘토님의 멘토링 후기</Title>
-              <Review></Review>
-            </ReviewBox>
-            <Button onClick={() => navigate("/chat-create/mentee/:roomId")}>
-              멘토님과 채팅
-            </Button>
-          </MentorBox>
-        </Container>
-      ))}
+      <Container>
+        <MentorBox>
+          <Top>
+            <NameBox>
+              <Left>
+                <Profile src={MentorImg} />
+              </Left>
+              <Right>
+                <Username>{Info.name}</Username>
+                <CategoryBox>
+                  <Category>{Info.info?.interests_display.name}</Category>
+                </CategoryBox>
+              </Right>
+            </NameBox>
+            <CloseBtn src={xBtn} onClick={onCancel} />
+          </Top>
+          <RatingBox>
+            <Title>멘토님의 등대 지수</Title>
+            <RateBox rating={Info.info?.rating} />
+          </RatingBox>
+          <HistoryBox>
+            <Title>멘토님의 멘토링 내역</Title>
+            <History>
+              <MentorHistory Info={Info} />
+            </History>
+          </HistoryBox>
+          <ReviewBox>
+            <Title>멘토님의 멘토링 후기</Title>
+            <Review></Review>
+          </ReviewBox>
+          <Button onClick={() => navigate("/chat-create/mentee/:roomId")}>
+            멘토님과 채팅
+          </Button>
+        </MentorBox>
+      </Container>
     </>
   );
 };

@@ -77,7 +77,7 @@ function App() {
           element={<MypageMentee />}
         ></Route>
         <Route
-          path="/profile/mentor/:username"
+          path="/profile/mentor/:mentorId"
           element={<MentorProfile />}
         ></Route>
         <Route
