@@ -24,20 +24,26 @@ import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
+import FindResult from "./pages/login/FindResult";
 
 function App() {
   return (
     <Wrapper>
       <Routes>
         <Route path="/" element={<Login />}></Route>
+        {/* 회원가입 */}
         <Route path="/join" element={<WelcomePage />}></Route>
         <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
         <Route path="/join/info" element={<InputInfo />}></Route>
         <Route path="/join/category" element={<ChooseCategory />}></Route>
         <Route path="/join/complete" element={<JoinComplete />}></Route>
+        {/* 로그인 */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/login/findId" element={<FindIdPw />}></Route>
         <Route path="/login/findPw" element={<FindIdPw />}></Route>
+        <Route path="/login/findId/result" element={<FindResult />}></Route>
+        <Route path="/login/findPw/result" element={<FindResult />}></Route>
+
         <Route path="/home" element={<Home />}></Route>
         <Route path="/concerns" element={<ConcernsPage />}></Route>
         <Route path="/find" element={<FindMentor />}></Route>
@@ -49,14 +55,8 @@ function App() {
           path="/chat-list/mentee/:username"
           element={<ChatListMentee />}
         ></Route>
-        <Route
-            path="/chat/mentor/:roomId"
-            element={<ChatRoomMentor />}
-          ></Route>
-          <Route
-            path="/chat/mentee/:roomId"
-            element={<ChatRoomMentee />}
-          ></Route>
+        <Route path="/chat/mentor/:roomId" element={<ChatRoomMentor />}></Route>
+        <Route path="/chat/mentee/:roomId" element={<ChatRoomMentee />}></Route>
         <Route
           path="/chat-create/mentee/:roomId"
           element={<CreateChat />}
@@ -73,13 +73,13 @@ function App() {
           element={<MypageMentee />}
         ></Route>
         <Route
-            path="/profile/mentor/:username"
-            element={<MentorProfile />}
-          ></Route>
-          <Route
-            path="/profile/mentee/:username"
-            element={<MenteeProfile />}
-          ></Route>
+          path="/profile/mentor/:username"
+          element={<MentorProfile />}
+        ></Route>
+        <Route
+          path="/profile/mentee/:username"
+          element={<MenteeProfile />}
+        ></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="/community/:colId" element={<Column />}></Route>
       </Routes>
