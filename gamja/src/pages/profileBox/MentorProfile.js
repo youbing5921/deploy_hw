@@ -50,7 +50,7 @@ const MentorProfile = () => {
               </Left>
               <Right>
                 <Username>{Info.name}</Username>
-                {Info.info.interests_display.map((interest, idx) => (
+                {Info.info?.interests_display.map((interest, idx) => (
                   <CategoryBox key={idx}>
                     <Category>{interest.name}</Category>
                   </CategoryBox>
