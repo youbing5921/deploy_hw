@@ -23,9 +23,11 @@ const CommunityContainer = ({ communityList, toggleSubscription }) => {
             <Title>{column.title}</Title>
             <Username>{column.writer}</Username>
           </Content>
-          <SubscribeButton onClick={() => toggleSubscription(column.id)}>
+          <SubscribeButton onClick={(e) => toggleSubscription(e, column.id)}>
             <img
-              src={`/img/Follow${column.isSubscribed ? "Blue" : "Gray"}.svg`}
+              src={`/img/${
+                column.isSubscribed ? "MentorStar" : "EmptyStar"
+              }.svg`}
               alt={column.isSubscribed ? "Following" : "NotFollow"}
             />
           </SubscribeButton>
@@ -42,6 +44,8 @@ const ListContainer = styled.div`
   flex-direction: column;
   gap: 16.5px;
   padding: 0px 40px 25px 40px;
+  margin-top: 180px;
+  margin-bottom: 110px;
 `;
 
 const ColumnBox = styled.div`
@@ -103,7 +107,7 @@ const SubscribeButton = styled.button`
   padding: 0;
   margin: 8.5px 7px auto auto;
   img {
-    width: 15px;
+    width: 20px;
     height: 20px;
   }
 `;

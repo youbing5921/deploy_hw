@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
 import { useLocation, useParams } from "react-router-dom";
@@ -7,16 +7,12 @@ const CommunityPage = () => {
   const { colId } = useParams();
   const column = useLocation().state.column;
   const [communityList, setCommunityList] = useState(column);
-  console.log(communityList);
 
-  const toggleSubscription = (id) => {
-    setCommunityList((prevCommunityList) =>
-      prevCommunityList.map((column) =>
-        column.id === id
-          ? { ...column, isSubscribed: !column.isSubscribed }
-          : column
-      )
-    );
+  const toggleSubscription = () => {
+    setCommunityList((prev) => ({
+      ...prev,
+      isSubscribed: !prev.isSubscribed,
+    }));
   };
 
   return (
@@ -27,21 +23,30 @@ const CommunityPage = () => {
       <Column>
         <Header>
           <ColTitle>
-            {column.title} <ColCategory>{column.category}</ColCategory>
+            {communityList.title}{" "}
+            <ColCategory>{communityList.category}</ColCategory>
           </ColTitle>
           <ColInfo>
-            by {column.writer} • {column.date} 별
+            by {communityList.writer} • {communityList.date}
+            <SubscribeButton onClick={toggleSubscription}>
+              <img
+                src={`/img/${
+                  communityList.isSubscribed ? "MentorStar" : "EmptyStar"
+                }.svg`}
+                alt={communityList.isSubscribed ? "Following" : "NotFollow"}
+              />
+            </SubscribeButton>
           </ColInfo>
         </Header>
         <HorizonLine />
-        <MainText>{column.mainText}</MainText>
-        <ColumnImg src={`/${column.imgSrc}`} />
+        <MainText>{communityList.mainText}</MainText>
+        <ColumnImg src={`/${communityList.imgSrc}`} />
       </Column>
       <WriterInfo>
         <Text>
-          <WriterName>{column.writer}</WriterName>
+          <WriterName>{communityList.writer}</WriterName>
           <CategoryList>
-            {column.writerCategory.map((value, idx) => (
+            {communityList.writerCategory.map((value, idx) => (
               <WriterCategory key={idx}>{value}</WriterCategory>
             ))}
           </CategoryList>
@@ -123,6 +128,18 @@ const ColInfo = styled.div`
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.33px;
+`;
+
+const SubscribeButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 8.5px 7px auto auto;
+  img {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const HorizonLine = styled.hr`
