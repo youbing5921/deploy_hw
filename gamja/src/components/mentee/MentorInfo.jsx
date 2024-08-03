@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import RateBox from "./RateBox";
@@ -7,13 +7,47 @@ import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
 import axios from "axios";
 
-const MentorInfo = ({ infoList, toggleSubscription }) => {
+const MentorInfo = ({ infoList }) => {
+  const [mentors, setMentors] = useState(infoList);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setMentors(infoList);
+  }, [infoList]);
+
+  const postLike = (mentor) => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/mentors/${mentor.mentor_id}/likes/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("멘토 관심 설정이 완료되었습니다.");
+        setMentors((prevMentors) =>
+          prevMentors.map((m) =>
+            m.mentor_id === mentor.mentor_id
+              ? { ...m, is_subscribed: !m.is_subscribed }
+              : m
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(mentor.mentor_id);
+        alert("멘토 관심 설정에 실패하였습니다.");
+      });
+  };
 
   return (
     <>
-      {infoList.map((mentor) => (
-        <InfoBox key={mentor.user}>
+      {mentors.map((mentor) => (
+        <InfoBox key={mentor.mentor_id}>
           <ProfileBox>
             <Left>
               <Profile
@@ -25,12 +59,11 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
                 {mentor.mentor_name}
               </Name>
             </Left>
-            <SubscribeButton onClick={() => toggleSubscription(mentor.id)}>
-              <img
-                src={mentor.isSubscribed ? FollowYellow : FollowGray}
-                alt={mentor.isSubscribed ? "Following" : "NotFollow"}
-              />
-            </SubscribeButton>
+            <SubscribeButton
+              src={mentor.is_subscribed ? FollowYellow : FollowGray}
+              alt={mentor.is_subscribed ? "Following" : "Follow"}
+              onClick={() => postLike(mentor)}
+            />
           </ProfileBox>
           <MiddleBox>
             {mentor.mentoring_record.map((cat, idx) => (
@@ -46,7 +79,11 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
           <RateBox rating={mentor.rating} />
           <BtnBox>
             <GoRead>칼럼 읽기</GoRead>
-            <GoChat onClick={() => navigate("/chat-create/mentee/:roomId/")}>
+            <GoChat
+              onClick={() =>
+                navigate(`/chat-create/mentee/${mentor.mentor_id}`)
+              }
+            >
               채팅하기
             </GoChat>
           </BtnBox>
@@ -94,11 +131,10 @@ const Name = styled.div`
   margin-right: 87px;
 `;
 
-const SubscribeButton = styled.button`
-  background: none;
-  border: none;
+const SubscribeButton = styled.img`
   cursor: pointer;
-  padding: 0;
+  width: 12px;
+  height: 15.429px;
 `;
 
 const MiddleBox = styled.div`

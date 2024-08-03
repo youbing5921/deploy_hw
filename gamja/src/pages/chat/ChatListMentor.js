@@ -1,13 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenuBar from "../../components/chat/MenuBar";
 import RecentChat from "../../components/chat/RecentChat";
 import SuggestMentee from "../../components/chat/SuggestMentee";
 import AdZone from "../../components/chat/AdZone";
+import axios from "axios";
 
 const ChatListMentee = () => {
   const [selectedNav, setSelectedNav] = useState("recent");
+  const [chatList, setChatList] = useState([]);
+  const [suggestList, setSuggestList] = useState([]);
+
+  const getChatList = () => {
+    axios
+      .get("http://127.0.0.1:8000/chat/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.recent_chats);
+        setChatList(response.data.recent_chats);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getSuggestList = () => {
+    axios
+      .get("http://127.0.0.1:8000/chat/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.mentee_suggestions);
+        setSuggestList(response.data.mentee_suggestions);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getChatList();
+    getSuggestList();
+  }, []);
 
   const onClickNav = (nav) => {
     setSelectedNav(nav);
@@ -17,13 +57,15 @@ const ChatListMentee = () => {
       <Container>
         <TopBar txt={"채팅하기"} />
         <MenuBar
-          txt={"관심 멘토 목록"}
+          txt={"멘티의 제안 목록"}
           selectedNav={selectedNav}
           onClickNav={onClickNav}
         />
         <ListBox>
-          {selectedNav === "recent" && <RecentChat />}
-          {selectedNav === "suggest" && <SuggestMentee />}
+          {selectedNav === "recent" && <RecentChat chatList={chatList} />}
+          {selectedNav === "suggest" && (
+            <SuggestMentee suggestList={suggestList} />
+          )}
         </ListBox>
         <BottomBar>
           <AdZone />

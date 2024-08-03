@@ -1,47 +1,70 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
 import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
+import axios from "axios";
 
 const ChatRoomMentee = () => {
+  const { roomId } = useParams();
+  // console.log(roomId);
+  const [chatRoomData, setChatRoomData] = useState([]);
+
+  useEffect(() => {
+    const getMessage = () => {
+      axios
+        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatRoomData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getMessage();
+  }, [roomId]);
+
+  const handleNewMessage = (newMessage) => {
+    setChatRoomData((prevData) => ({
+      ...prevData,
+      chats: [...prevData.chats, newMessage],
+    }));
+  };
+
   return (
     <Container>
       <TopContainer>
         <TopBar txt={"채팅하기"} />
         <FuncBar>
-          <RoomName>진로를 선택할 때 가장 중요한 기준입니다다다다</RoomName>
+          <RoomName>{chatRoomData?.title}</RoomName>
           <ButtonContainer>
-            <Icon src={OutBtnImg} alt="Out" />
+            <Icon src={OutBtnImg} alt="WriteReview" />
           </ButtonContainer>
         </FuncBar>
       </TopContainer>
       <MessageContainer>
-        <Receiver message="안녕하세요, " username="호기심천국" />
-        <Receiver
-          message="멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
-          username="호기심천국"
-        />
-        <Sender message="안녕하세요" />
-        <Sender message="호기심천국님! 잘 찾아오셨네요^^" />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
-        <Receiver
-          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
-          username="호기심천국"
-        />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
-        <Receiver
-          message="안녕하세요, 멘토님! “진로를 선택할 때 가장 중요한 기준”에 대해 여쭙고 싶어 채팅드렸습니다."
-          username="호기심천국"
-        />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
-        <Sender message="안녕하세요, 호기심천국님! 잘 찾아오셨네요^^" />
+        {chatRoomData?.chats?.map((chat, idx) =>
+          chat.is_mentee ? (
+            <Sender key={idx} message={chat.message} />
+          ) : (
+            <Receiver
+              key={idx}
+              message={chat.message}
+              username={chatRoomData.mentor_name}
+            />
+          )
+        )}
       </MessageContainer>
-      <InputMessage />
+      <InputMessage roomId={chatRoomData.id} onMessageSent={handleNewMessage} />
     </Container>
   );
 };

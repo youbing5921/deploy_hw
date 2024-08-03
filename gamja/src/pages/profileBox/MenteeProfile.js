@@ -79,11 +79,13 @@ const MenteeProfile = () => {
             </History>
             <DetailWrapper>
               <Details>
-                {Info.mymentoring?.map((mentoring) => (
+                {Info.myMentoring?.map((mentoring) => (
                   <DetailBox key={mentoring.id}>
                     <DetailCategoryBox>
-                      {mentoring.interest?.map((interest, index) => (
-                        <DetailCategory key={index}>{interest}</DetailCategory>
+                      {mentoring.interests?.map((interest, index) => (
+                        <DetailCategory key={index}>
+                          {interest.name}
+                        </DetailCategory>
                       ))}
                     </DetailCategoryBox>
                     <DetailContent>{mentoring.title}</DetailContent>
@@ -164,7 +166,7 @@ const Concern = styled.div`
 `;
 
 const HistoryBox = styled.div`
-  margin-right: 20px;
+  /* margin-right: 20px; */
 `;
 
 const History = styled.div`

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
@@ -7,25 +7,45 @@ import axios from "axios";
 
 const Concern = ({ concernList }) => {
   const navigate = useNavigate();
-  const [content, setContent] = useState("");
+  const [contents, setContents] = useState({});
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
+  const onChangeContent = (concernId) => (e) => {
+    setContents((prevContents) => ({
+      ...prevContents,
+      [concernId]: e.target.value,
+    }));
   };
 
-  const postContent = () => {
+  const postContent = (concernId) => {
+    console.log(concernId);
     axios
-      .post(`http://127.0.0.1:8000/concerns/${concernList.id}/comments/`, {
-        content: content,
-      })
+      .post(
+        `http://127.0.0.1:8000/concerns/${concernId}/comments/`,
+        {
+          content: contents[concernId] || "",
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         alert("댓글이 작성되었습니다.");
+        setContents((prevContents) => ({
+          ...prevContents,
+          [concernId]: "",
+        }));
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    console.log(concernList);
+  }, [concernList]);
 
   return (
     <>
@@ -54,11 +74,11 @@ const Concern = ({ concernList }) => {
               <ReplyInput
                 type="text"
                 placeholder="멘티의 고민 해결에 실마리가 될 한마디 해답을 주세요"
-                value={content}
-                onChange={onChangeContent}
+                value={contents[concern.id] || ""}
+                onChange={onChangeContent(concern.id)}
               />
-              <SendButton>
-                <img src={SendBtn} alt="send" onClick={postContent} />
+              <SendButton onClick={() => postContent(concern.id)}>
+                <img src={SendBtn} alt="send" />
               </SendButton>
             </ReplyInputWrapper>
           </ReplyBox>

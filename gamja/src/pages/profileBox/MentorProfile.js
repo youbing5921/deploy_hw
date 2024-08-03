@@ -73,7 +73,7 @@ const MentorProfile = () => {
             <Title>멘토님의 멘토링 후기</Title>
             <Review></Review>
           </ReviewBox>
-          <Button onClick={() => navigate("/chat-create/mentee/:roomId")}>
+          <Button onClick={() => navigate(`/chat-create/mentee/${mentorId}`)}>
             멘토님과 채팅
           </Button>
         </MentorBox>

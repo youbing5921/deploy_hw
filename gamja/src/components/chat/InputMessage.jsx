@@ -6,11 +6,36 @@ import BlankYellow from "../../images/BlankYellow.svg";
 import sendYellow from "../../images/sendYellow.svg";
 import { useLocation } from "react-router-dom";
 import { matchPath } from "react-router";
+import axios from "axios";
 
-const InputMessage = () => {
+const InputMessage = ({ roomId, onMessageSent }) => {
   const location = useLocation().pathname;
   const [message, setMessage] = useState("");
   const [sendBtnSrc, setSendBtnSrc] = useState(BlankSendBtn);
+  // console.log(roomId);
+
+  const postMessage = () => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/chat/${roomId}/add-chat/`,
+        {
+          message: message,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        onMessageSent(response.data);
+        setMessage("");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     if (matchPath("/chat/mentor/:roomId", location)) {
@@ -25,7 +50,9 @@ const InputMessage = () => {
   };
 
   const handleSendBtn = () => {
-    setMessage("");
+    if (message.trim() !== "") {
+      postMessage();
+    }
   };
 
   return (

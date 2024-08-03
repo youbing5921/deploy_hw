@@ -31,16 +31,6 @@ const FindMentor = () => {
     getMentorInfo();
   }, []);
 
-  const toggleSubscription = (id) => {
-    setInfoList((prevInfoList) =>
-      prevInfoList.map((mentor) =>
-        mentor.id === id
-          ? { ...mentor, isSubscribed: !mentor.isSubscribed }
-          : mentor
-      )
-    );
-  };
-
   const filteredInfos = infoList.filter(
     (info) =>
       selectedCategory === "전체" ||
@@ -56,10 +46,7 @@ const FindMentor = () => {
         <CategoryBar onSelectCategory={setSelectedCategory} />
       </TopContainer>
       <InfoBox>
-        <MentorInfo
-          infoList={filteredInfos}
-          toggleSubscription={toggleSubscription}
-        />
+        <MentorInfo infoList={filteredInfos} />
       </InfoBox>
       <BottomBar>
         <AutoMatch onClick={() => navigate("/category/mentee")}>

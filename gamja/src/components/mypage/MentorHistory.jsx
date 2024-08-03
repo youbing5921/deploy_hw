@@ -18,8 +18,8 @@ const MentorHistory = ({ Info }) => {
           ))}
         </Left>
         <Right>
-          {Info.myMentoring?.map((mentoring) => (
-            <Container>
+          {Info.myMentoring?.map((mentoring, index) => (
+            <Container key={index}>
               <InfoBox>
                 <PhotoBox>
                   <Profile src={MenteeImg} alt="profileImg" />
