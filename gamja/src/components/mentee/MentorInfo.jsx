@@ -5,7 +5,6 @@ import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
-import axios from "axios";
 
 const MentorInfo = ({ infoList, toggleSubscription }) => {
   const navigate = useNavigate();
@@ -46,7 +45,9 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
           <RateBox rating={mentor.rating} />
           <BtnBox>
             <GoRead>칼럼 읽기</GoRead>
-            <GoChat onClick={() => navigate("/chat-create/mentee/:roomId/")}>
+            <GoChat
+              onClick={() => navigate(`/chat-create/mentee/${mentor.user}`)}
+            >
               채팅하기
             </GoChat>
           </BtnBox>

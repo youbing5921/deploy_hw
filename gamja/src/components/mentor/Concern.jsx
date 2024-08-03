@@ -7,11 +7,13 @@ import axios from "axios";
 
 const Concern = ({ concernList }) => {
   const navigate = useNavigate();
-  const [content, setContent] = useState("");
-  const [selectedConcernId, setSelectedConcernId] = useState(null);
+  const [contents, setContents] = useState({});
 
-  const onChangeContent = (e) => {
-    setContent(e.target.value);
+  const onChangeContent = (concernId) => (e) => {
+    setContents((prevContents) => ({
+      ...prevContents,
+      [concernId]: e.target.value,
+    }));
   };
 
   const postContent = (concernId) => {
@@ -20,7 +22,7 @@ const Concern = ({ concernList }) => {
       .post(
         `http://127.0.0.1:8000/concerns/${concernId}/comments/`,
         {
-          content: content,
+          content: contents[concernId] || "",
         },
         {
           headers: {
@@ -31,7 +33,10 @@ const Concern = ({ concernList }) => {
       .then((response) => {
         console.log(response.data);
         alert("댓글이 작성되었습니다.");
-        setContent("");
+        setContents((prevContents) => ({
+          ...prevContents,
+          [concernId]: "",
+        }));
       })
       .catch((error) => {
         console.log(error);
@@ -69,9 +74,8 @@ const Concern = ({ concernList }) => {
               <ReplyInput
                 type="text"
                 placeholder="멘티의 고민 해결에 실마리가 될 한마디 해답을 주세요"
-                value={content}
-                onChange={onChangeContent}
-                onFocus={() => setSelectedConcernId(concern.id)}
+                value={contents[concern.id] || ""}
+                onChange={onChangeContent(concern.id)}
               />
               <SendButton onClick={() => postContent(concern.id)}>
                 <img src={SendBtn} alt="send" />

@@ -1,13 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenuBar from "../../components/chat/MenuBar";
 import RecentChat from "../../components/chat/RecentChat";
 import InterestMentor from "../../components/chat/InterestMentor";
 import AdZone from "../../components/chat/AdZone";
+import axios from "axios";
 
 const ChatListMentee = () => {
   const [selectedNav, setSelectedNav] = useState("recent");
+  const [chatList, setChatList] = useState([]);
+  const [interestList, setInterestList] = useState([]);
+
+  const getChatList = () => {
+    axios
+      .get("http://127.0.0.1:8000/chat/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setChatList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getInterestList = () => {
+    axios
+      .get("http://127.0.0.1:8000/chat/my-mentors/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setInterestList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getChatList();
+    getInterestList();
+  }, []);
 
   const onClickNav = (nav) => {
     setSelectedNav(nav);
@@ -22,8 +62,10 @@ const ChatListMentee = () => {
           onClickNav={onClickNav}
         />
         <ListBox>
-          {selectedNav === "recent" && <RecentChat />}
-          {selectedNav === "suggest" && <InterestMentor />}
+          {selectedNav === "recent" && <RecentChat chatList={chatList} />}
+          {selectedNav === "suggest" && (
+            <InterestMentor interestList={interestList} />
+          )}
         </ListBox>
         <BottomBar>
           <AdZone />

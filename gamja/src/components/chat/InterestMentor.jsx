@@ -5,44 +5,17 @@ import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
 import { useNavigate } from "react-router-dom";
 
-const mentorList = [
-  {
-    id: 1,
-    username: "나왕똑똑",
-    Category: ["가치관", "사랑", "인간관계"],
-    is_subscribe: true,
-  },
-  {
-    id: 2,
-    username: "나좀똑똑",
-    Category: ["생활지식", "재테크", "인간관계"],
-    is_subscribe: false,
-  },
-  {
-    id: 3,
-    username: "나덜똑똑",
-    Category: ["진로", "사랑", "인간관계"],
-    is_subscribe: false,
-  },
-  {
-    id: 4,
-    username: "나개똑똑",
-    Category: ["가치관", "사랑", "인간관계"],
-    is_subscribe: true,
-  },
-];
-
-const InterestMentee = () => {
+const InterestMentee = ({ interestList }) => {
   const navigate = useNavigate();
   const [subscriptions, setSubscriptions] = useState([]);
 
   useEffect(() => {
     const initialSubscriptions = [];
-    mentorList.forEach((mentor) => {
+    interestList.forEach((mentor) => {
       initialSubscriptions[mentor.id] = mentor.is_subscribe;
     });
     setSubscriptions(initialSubscriptions);
-  }, []);
+  }, [interestList]);
 
   const onSubscribe = (id) => {
     setSubscriptions((prevSubscriptions) => ({
@@ -53,18 +26,18 @@ const InterestMentee = () => {
 
   return (
     <>
-      {mentorList.map((mentor) => (
+      {interestList.map((mentor) => (
         <Wrapper key={mentor.id}>
-          <Both onClick={() => navigate(`/profile/mentor/${mentor.username}`)}>
+          <Both onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
             <Left>
               <Profile src={ChatMentor} alt="ChatMentor" />
             </Left>
 
             <Right>
               <Username>{mentor.username}</Username>
-              {mentor.Category.map((cat, idx) => (
+              {mentor.interests_display.map((interest, idx) => (
                 <CategoryBox key={idx}>
-                  <Category>{cat}</Category>
+                  <Category>{interest.name}</Category>
                 </CategoryBox>
               ))}
             </Right>

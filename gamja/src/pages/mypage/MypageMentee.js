@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
@@ -12,26 +12,33 @@ import axios from "axios";
 
 const MypageMentee = () => {
   const [Info, setInfo] = useState([]);
-
-  const getMenteeMypage = () => {
-    axios
-      .get("http://127.0.0.1:8000/my-page/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const getMenteeMypage = () => {
+      axios
+        .get("http://127.0.0.1:8000/my-page/", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getMenteeMypage();
   }, []);
+
+  // useEffect(() => {
+  //   if (Info.name) {
+  //     navigate(`/mypage/mentee/${Info.name}`);
+  //   }
+  // }, [Info, navigate]);
 
   return (
     <>

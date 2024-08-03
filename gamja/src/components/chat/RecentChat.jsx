@@ -5,69 +5,31 @@ import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
 import ChatMentee from "../../images/ChatMentee.svg";
 
-const MessageArr = [
-  {
-    id: 1,
-    username: "나왕똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 2,
-    username: "나좀똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 3,
-    username: "나덜똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 4,
-    username: "나개똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 5,
-    username: "나짱똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-  {
-    id: 6,
-    username: "나안똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-  },
-];
-
-const RecentChat = () => {
+const RecentChat = ({ chatList }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
+  console.log(chatList);
 
   if (matchPath("/chat-list/mentor/:username", location)) {
     return (
       <>
-        {MessageArr.map((message) => (
-          <Wrapper key={message.id}>
+        {chatList.map((chat) => (
+          <Wrapper key={chat.id}>
             <Both>
               <Left>
                 <Profile
                   src={ChatMentee}
                   alt="ChatMentee"
-                  onClick={() => navigate(`/mypage/mentor/${message.username}`)}
+                  onClick={() => navigate(`/profile/mentor/${chat.mentee_id}`)}
                 />
               </Left>
-              <Right onClick={() => navigate(`/chat/mentor/${message.id}`)}>
-                <Username>{message.username}</Username>
-                <Message>{message.message}</Message>
+              <Right onClick={() => navigate(`/chat/mentor/${chat.mentee_id}`)}>
+                <Username>{chat.mentee_name}</Username>
+                <Message>{chat.title}</Message>
               </Right>
             </Both>
             <DateBox>
-              <Date>{message.date}</Date>
+              <Date>{chat.last_chat}</Date>
             </DateBox>
           </Wrapper>
         ))}
@@ -77,23 +39,23 @@ const RecentChat = () => {
   if (matchPath("/chat-list/mentee/:username", location)) {
     return (
       <>
-        {MessageArr.map((message) => (
-          <Wrapper key={message.id}>
+        {chatList.map((chat) => (
+          <Wrapper key={chat.id}>
             <Both>
               <Left>
                 <Profile
                   src={ChatMentor}
                   alt="ChatMentor"
-                  onClick={() => navigate(`/mypage/mentee/${message.username}`)}
+                  onClick={() => navigate(`/profile/mentee/${chat.mentor_id}`)}
                 />
               </Left>
-              <Right onClick={() => navigate(`/chat/mentee/${message.id}`)}>
-                <Username>{message.username}</Username>
-                <Message>{message.message}</Message>
+              <Right onClick={() => navigate(`/chat/mentee/${chat.mentor_id}`)}>
+                <Username>{chat.mentor_name}</Username>
+                <Message>{chat.title}</Message>
               </Right>
             </Both>
             <DateBox>
-              <Date>{message.date}</Date>
+              <Date>{chat.last_chat}</Date>
             </DateBox>
           </Wrapper>
         ))}
