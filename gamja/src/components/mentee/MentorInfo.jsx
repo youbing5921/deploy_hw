@@ -5,14 +5,36 @@ import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
+import axios from "axios";
 
-const MentorInfo = ({ infoList, toggleSubscription }) => {
+const MentorInfo = ({ infoList }) => {
   const navigate = useNavigate();
 
+  const postLike = (mentor) => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/mentors/${mentor.mentor_id}/likes/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("멘토 관심 설정이 완료되었습니다.");
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(mentor.mentor_id);
+        alert("멘토 관심 설정에 실패하였습니다.");
+      });
+  };
   return (
     <>
       {infoList.map((mentor) => (
-        <InfoBox key={mentor.user}>
+        <InfoBox key={mentor.mentor_id}>
           <ProfileBox>
             <Left>
               <Profile
@@ -24,11 +46,8 @@ const MentorInfo = ({ infoList, toggleSubscription }) => {
                 {mentor.mentor_name}
               </Name>
             </Left>
-            <SubscribeButton onClick={() => toggleSubscription(mentor.id)}>
-              <img
-                src={mentor.isSubscribed ? FollowYellow : FollowGray}
-                alt={mentor.isSubscribed ? "Following" : "NotFollow"}
-              />
+            <SubscribeButton onClick={() => postLike(mentor)}>
+              <img src={FollowGray} alt={"NotFollow"} />
             </SubscribeButton>
           </ProfileBox>
           <MiddleBox>

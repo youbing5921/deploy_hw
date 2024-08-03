@@ -34,7 +34,7 @@ const InterestMentee = ({ interestList }) => {
             </Left>
 
             <Right>
-              <Username>{mentor.username}</Username>
+              <Username>{mentor.mentor_name}</Username>
               {mentor.interests_display.map((interest, idx) => (
                 <CategoryBox key={idx}>
                   <Category>{interest.name}</Category>

@@ -31,15 +31,15 @@ const FindMentor = () => {
     getMentorInfo();
   }, []);
 
-  const toggleSubscription = (id) => {
-    setInfoList((prevInfoList) =>
-      prevInfoList.map((mentor) =>
-        mentor.id === id
-          ? { ...mentor, isSubscribed: !mentor.isSubscribed }
-          : mentor
-      )
-    );
-  };
+  // const toggleSubscription = (id) => {
+  //   setInfoList((prevInfoList) =>
+  //     prevInfoList.map((mentor) =>
+  //       mentor.id === id
+  //         ? { ...mentor, isSubscribed: !mentor.isSubscribed }
+  //         : mentor
+  //     )
+  //   );
+  // };
 
   const filteredInfos = infoList.filter(
     (info) =>
@@ -58,7 +58,7 @@ const FindMentor = () => {
       <InfoBox>
         <MentorInfo
           infoList={filteredInfos}
-          toggleSubscription={toggleSubscription}
+          // toggleSubscription={toggleSubscription}
         />
       </InfoBox>
       <BottomBar>
