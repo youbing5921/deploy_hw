@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import RateBox from "./RateBox";
@@ -8,7 +8,12 @@ import FollowGray from "../../images/FollowGray.svg";
 import axios from "axios";
 
 const MentorInfo = ({ infoList }) => {
+  const [mentors, setMentors] = useState(infoList);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setMentors(infoList);
+  }, [infoList]);
 
   const postLike = (mentor) => {
     axios
@@ -24,6 +29,13 @@ const MentorInfo = ({ infoList }) => {
       .then((response) => {
         console.log(response.data);
         alert("멘토 관심 설정이 완료되었습니다.");
+        setMentors((prevMentors) =>
+          prevMentors.map((m) =>
+            m.mentor_id === mentor.mentor_id
+              ? { ...m, is_subscribed: !m.is_subscribed }
+              : m
+          )
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -31,9 +43,10 @@ const MentorInfo = ({ infoList }) => {
         alert("멘토 관심 설정에 실패하였습니다.");
       });
   };
+
   return (
     <>
-      {infoList.map((mentor) => (
+      {mentors.map((mentor) => (
         <InfoBox key={mentor.mentor_id}>
           <ProfileBox>
             <Left>
@@ -46,9 +59,11 @@ const MentorInfo = ({ infoList }) => {
                 {mentor.mentor_name}
               </Name>
             </Left>
-            <SubscribeButton onClick={() => postLike(mentor)}>
-              <img src={FollowGray} alt={"NotFollow"} />
-            </SubscribeButton>
+            <SubscribeButton
+              src={mentor.is_subscribed ? FollowYellow : FollowGray}
+              alt={mentor.is_subscribed ? "Following" : "Follow"}
+              onClick={() => postLike(mentor)}
+            />
           </ProfileBox>
           <MiddleBox>
             {mentor.mentoring_record.map((cat, idx) => (
@@ -116,11 +131,10 @@ const Name = styled.div`
   margin-right: 87px;
 `;
 
-const SubscribeButton = styled.button`
-  background: none;
-  border: none;
+const SubscribeButton = styled.img`
   cursor: pointer;
-  padding: 0;
+  width: 12px;
+  height: 15.429px;
 `;
 
 const MiddleBox = styled.div`
