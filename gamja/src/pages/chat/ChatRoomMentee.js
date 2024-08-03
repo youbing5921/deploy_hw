@@ -13,25 +13,25 @@ const ChatRoomMentee = () => {
   // console.log(roomId);
   const [chatRoomData, setChatRoomData] = useState([]);
 
-  const getMessage = () => {
-    axios
-      .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setChatRoomData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
+    const getMessage = () => {
+      axios
+        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatRoomData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getMessage();
-  }, []);
+  }, [roomId]);
 
   const handleNewMessage = (newMessage) => {
     setChatRoomData((prevData) => ({
