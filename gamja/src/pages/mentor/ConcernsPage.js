@@ -30,7 +30,7 @@ const ConcernsPage = () => {
 
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
-  const filteredConcerns = concernList.filter(
+  const filteredConcerns = concernList?.filter(
     (concern) =>
       selectedCategory === "전체" ||
       concern.interests.some((interest) => interest.name === selectedCategory)
