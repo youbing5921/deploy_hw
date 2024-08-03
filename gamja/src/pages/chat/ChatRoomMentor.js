@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
 import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
+import axios from "axios";
 
 const ChatRoomMentor = () => {
+  const [chatRoomData, setChatRoomData] = useState([]);
+
+  const getMessage = () => {
+    axios
+      .get("http://127.0.0.1:8000/chat/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data[0]);
+        setChatRoomData(response.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getMessage();
+  }, []);
+
+  const handleNewMessage = (newMessage) => {
+    setChatRoomData((prevData) => ({
+      ...prevData,
+      chats: [...prevData.chats, newMessage],
+    }));
+  };
+
   return (
     <Container>
       <TopContainer>

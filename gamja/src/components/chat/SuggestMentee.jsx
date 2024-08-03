@@ -16,7 +16,7 @@ const SuggestMentee = ({ suggestList }) => {
                 src={ChatMentee}
                 alt="ChatMentee"
                 onClick={() =>
-                  navigate(`/profile/mentor/${suggestion.mentee_id}`)
+                  navigate(`/profile/mentee/${suggestion.mentee_id}`)
                 }
               />
             </Left>

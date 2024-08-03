@@ -9,19 +9,20 @@ import InputMessage from "../../components/chat/InputMessage";
 import axios from "axios";
 
 const ChatRoomMentee = () => {
-  // const { chatRoomId } = useParams();
+  const { roomId } = useParams();
+  // console.log(roomId);
   const [chatRoomData, setChatRoomData] = useState([]);
 
   const getMessage = () => {
     axios
-      .get(`http://127.0.0.1:8000/chat/`, {
+      .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
       .then((response) => {
-        console.log(response.data[0]);
-        setChatRoomData(response.data[0]);
+        console.log(response.data);
+        setChatRoomData(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -51,12 +52,12 @@ const ChatRoomMentee = () => {
         </FuncBar>
       </TopContainer>
       <MessageContainer>
-        {chatRoomData?.chats?.map((chat) =>
+        {chatRoomData?.chats?.map((chat, idx) =>
           chat.is_mentee ? (
-            <Sender key={chat.id} message={chat.message} />
+            <Sender key={idx} message={chat.message} />
           ) : (
             <Receiver
-              key={chat.id}
+              key={idx}
               message={chat.message}
               username={chatRoomData.mentor_name}
             />

@@ -60,10 +60,7 @@ function App() {
           element={<ChatListMentee />}
         ></Route>
         <Route path="/chat/mentor/:roomId" element={<ChatRoomMentor />}></Route>
-        <Route
-          path="/chat/mentee/:mentorId"
-          element={<ChatRoomMentee />}
-        ></Route>
+        <Route path="/chat/mentee/:roomId" element={<ChatRoomMentee />}></Route>
         <Route
           path="/chat-create/mentee/:mentorId"
           element={<CreateChat />}

@@ -48,9 +48,7 @@ const RecentChat = ({ chatList }) => {
                   onClick={() => navigate(`/profile/mentor/${chat.mentor_id}`)}
                 />
               </Left>
-              <Right
-                onClick={() => navigate(`/chat/mentee/${chat.chats.room}`)}
-              >
+              <Right onClick={() => navigate(`/chat/mentee/${chat.id}`)}>
                 <Username>{chat.mentor_name}</Username>
                 <Message>{chat.title}</Message>
               </Right>
