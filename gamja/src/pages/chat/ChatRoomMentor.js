@@ -56,7 +56,7 @@ const ChatRoomMentor = () => {
             <Receiver
               key={idx}
               message={chat.message}
-              username={chatRoomData.mentor_name}
+              username={chatRoomData.mentee_name}
             />
           ) : (
             <Sender key={idx} message={chat.message} />
