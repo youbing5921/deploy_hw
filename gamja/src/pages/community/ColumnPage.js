@@ -8,10 +8,10 @@ const CommunityPage = () => {
   const column = useLocation().state.column;
   const [communityList, setCommunityList] = useState(column);
 
-  const toggleSubscription = () => {
+  const toggleScraption = () => {
     setCommunityList((prev) => ({
       ...prev,
-      isSubscribed: !prev.isSubscribed,
+      is_scraped: !prev.is_scraped,
     }));
   };
 
@@ -23,32 +23,39 @@ const CommunityPage = () => {
       <Column>
         <Header>
           <ColTitle>
-            {communityList.title}{" "}
+            {communityList.title}
             <ColCategory>{communityList.category}</ColCategory>
           </ColTitle>
           <ColInfo>
-            by {communityList.writer} • {communityList.date}
-            <SubscribeButton onClick={toggleSubscription}>
+            <p>
+              by {communityList.author.name} •{" "}
+              {communityList.published_date.substr(0, 10)}
+            </p>
+            <ScraptionButton onClick={toggleScraption}>
               <img
                 src={`/img/${
-                  communityList.isSubscribed ? "MentorStar" : "EmptyStar"
+                  communityList.is_scraped ? "MentorStar" : "EmptyStar"
                 }.svg`}
-                alt={communityList.isSubscribed ? "Following" : "NotFollow"}
+                alt={communityList.is_scraped ? "scraping" : "notScraping"}
               />
-            </SubscribeButton>
+            </ScraptionButton>
           </ColInfo>
         </Header>
         <HorizonLine />
-        <MainText>{communityList.mainText}</MainText>
-        <ColumnImg src={`/${communityList.imgSrc}`} />
+        <MainText>{communityList.content}</MainText>
+        {communityList.image ? (
+          <ColumnImg src={`/${communityList.image}`} />
+        ) : null}
       </Column>
       <WriterInfo>
         <Text>
-          <WriterName>{communityList.writer}</WriterName>
+          <WriterName>{communityList.author.name}</WriterName>
           <CategoryList>
-            {communityList.writerCategory.map((value, idx) => (
-              <WriterCategory key={idx}>{value}</WriterCategory>
-            ))}
+            {communityList.author.mentor_profile.interests_display.map(
+              (value, idx) => (
+                <WriterCategory key={idx}>{value.name}</WriterCategory>
+              )
+            )}
           </CategoryList>
         </Text>
         <WriterImg />
@@ -60,6 +67,8 @@ const CommunityPage = () => {
 export default CommunityPage;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   background-color: #ededed;
   width: 600px;
   height: 1230px;
@@ -121,21 +130,26 @@ const ColCategory = styled.div`
 `;
 
 const ColInfo = styled.div`
-  color: #494949;
-  font-family: Inter;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%;
-  letter-spacing: -0.33px;
+  width: 520px;
+  display: flex;
+  p {
+    margin: 0;
+    color: #494949;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: -0.33px;
+  }
 `;
 
-const SubscribeButton = styled.button`
+const ScraptionButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 8.5px 7px auto auto;
+  margin: auto 7px auto auto;
   img {
     width: 20px;
     height: 20px;

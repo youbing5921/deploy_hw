@@ -46,7 +46,11 @@ const Home = () => {
                 $bgimg={mentorBtn2}
                 onBtnClick={() => navigate("/chat-list/mentor/:username")}
               />
-              <CommunityCard $fontColor={"#fff"} $bgimg={mentorBtn3} />
+              <CommunityCard
+                $fontColor={"#fff"}
+                $bgimg={mentorBtn3}
+                onBtnClick={() => navigate("/community")}
+              />
               <MypageCard
                 $fontColor={"#fff"}
                 $bgimg={mentorBtn4}

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const CommunityContainer = ({ communityList, toggleSubscription }) => {
+const CommunityContainer = ({ communityList, toggleScraption }) => {
   const navigate = useNavigate();
 
   const onClick = (column) => {
@@ -17,18 +17,18 @@ const CommunityContainer = ({ communityList, toggleSubscription }) => {
     <ListContainer>
       {communityList.map((column) => (
         <ColumnBox key={column.id} onClick={() => onClick(column)}>
-          <Profile src="/img/communitySampleImage.svg" />
+          <Profile
+            src={column.image ? column.image : "/img/communitySampleImage.svg"}
+          />
           <Content>
             <Category>{column.category}</Category>
             <Title>{column.title}</Title>
-            <Username>{column.writer}</Username>
+            <Username>{column.author.name}</Username>
           </Content>
-          <SubscribeButton onClick={(e) => toggleSubscription(e, column.id)}>
+          <SubscribeButton onClick={(e) => toggleScraption(e, column.id)}>
             <img
-              src={`/img/${
-                column.isSubscribed ? "MentorStar" : "EmptyStar"
-              }.svg`}
-              alt={column.isSubscribed ? "Following" : "NotFollow"}
+              src={`/img/${column.is_scraped ? "MentorStar" : "EmptyStar"}.svg`}
+              alt={column.is_scraped ? "Following" : "NotFollow"}
             />
           </SubscribeButton>
         </ColumnBox>

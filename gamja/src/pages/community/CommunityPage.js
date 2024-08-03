@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
 import CategoryBar from "../../components/community/CategoryBar";
 import CommunityContainer from "../../components/community/CommunityContainer";
+import axios from "axios";
 
 const initCommunityList = [
   {
@@ -128,7 +129,7 @@ const initCommunityList = [
 ];
 
 const CommunityPage = () => {
-  const [communityList, setCommunityList] = useState(initCommunityList);
+  const [communityList, setCommunityList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
   const filteredCategory = communityList.filter(
@@ -136,16 +137,48 @@ const CommunityPage = () => {
       selectedCategory === "전체" || column.category === selectedCategory
   );
 
-  const toggleSubscription = (e, id) => {
+  const toggleScraption = (e, id) => {
     e.stopPropagation();
     setCommunityList((prevCommunityList) =>
       prevCommunityList.map((column) =>
         column.id === id
-          ? { ...column, isSubscribed: !column.isSubscribed }
+          ? { ...column, is_scraped: !column.is_scraped }
           : column
       )
     );
   };
+
+  // 서버에서 칼럼 목록 불러오기
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/community/columns/`)
+      .then((response) => {
+        console.log(response.data);
+        setCommunityList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  // 칼럼 데이터 넣기
+  // axios
+  //   .post(
+  //     `http://127.0.0.1:8000/community/columns/`,
+  //     {
+  //       title: "어쩌구저쩌구",
+  //       content: "슈어아후나ㅓ루ㅏ누라ㅜ자ㅓ두라주라ㅜ",
+  //       image: null,
+  //       categories: [1, 3],
+  //     },
+  //     {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("access")}`,
+  //       },
+  //     }
+  //   )
+  //   .then((response) => console.log(response.data))
+  //   .catch((error) => console.log(error));
 
   return (
     <Container>
@@ -155,7 +188,7 @@ const CommunityPage = () => {
       </TopContainer>
       <CommunityContainer
         communityList={filteredCategory}
-        toggleSubscription={toggleSubscription}
+        toggleScraption={toggleScraption}
       />
       <WriteCol>
         <button>칼럼 작성하기</button>
