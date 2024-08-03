@@ -65,7 +65,7 @@ function App() {
           element={<ChatRoomMentee />}
         ></Route>
         <Route
-          path="/chat-create/mentee/:roomId"
+          path="/chat-create/mentee/:mentorId"
           element={<CreateChat />}
         ></Route>
         <Route path="/category/mentor" element={<Category />}></Route>

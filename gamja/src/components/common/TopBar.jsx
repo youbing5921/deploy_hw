@@ -8,7 +8,7 @@ const TopBar = ({ txt, $marginLeft }) => {
   return (
     <>
       <Header>
-        <BackBtn onClick={() => navigate("/home")} />
+        <BackBtn onClick={() => navigate(-1)} />
         <Title $marginLeft={$marginLeft}>{txt}</Title>
       </Header>
     </>

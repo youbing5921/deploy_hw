@@ -10,10 +10,13 @@ import axios from "axios";
 const CreateChat = () => {
   const navigate = useNavigate();
   const { mentorId } = useParams();
-  //   const numericMentorId = parseInt(mentorId, 10);
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    console.log(mentorId);
+  }, [mentorId]);
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
@@ -40,6 +43,7 @@ const CreateChat = () => {
       interests: category,
       title: title,
     };
+    console.log(mentorId);
     axios
       .post("http://127.0.0.1:8000/chat/", data, {
         headers: {
