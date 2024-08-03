@@ -4,29 +4,48 @@ import ChatMentor from "../../images/ChatMentor.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const InterestMentee = ({ interestList }) => {
+  const [like, setLike] = useState(interestList);
   const navigate = useNavigate();
-  const [subscriptions, setSubscriptions] = useState([]);
 
   useEffect(() => {
-    const initialSubscriptions = [];
-    interestList.forEach((mentor) => {
-      initialSubscriptions[mentor.id] = mentor.is_subscribe;
-    });
-    setSubscriptions(initialSubscriptions);
+    setLike(interestList);
   }, [interestList]);
 
-  const onSubscribe = (id) => {
-    setSubscriptions((prevSubscriptions) => ({
-      ...prevSubscriptions,
-      [id]: !prevSubscriptions[id],
-    }));
+  const postLike = (mentor) => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/mentors/${mentor.id}/likes/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("멘토 관심 설정이 완료되었습니다.");
+        setLike((prevMentors) =>
+          prevMentors.map((m) =>
+            m.mentor_id === mentor.mentor_id
+              ? { ...m, is_subscribed: !m.is_subscribed }
+              : m
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(mentor.mentor_id);
+        alert("멘토 관심 설정에 실패하였습니다.");
+      });
   };
 
   return (
     <>
-      {interestList.map((mentor) => (
+      {like.map((mentor) => (
         <Wrapper key={mentor.id}>
           <Both onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
             <Left>
@@ -44,8 +63,9 @@ const InterestMentee = ({ interestList }) => {
           </Both>
           <SubscribeBox>
             <SubBtn
-              src={subscriptions[mentor.id] ? FollowYellow : FollowGray}
-              onClick={() => onSubscribe(mentor.id)}
+              src={mentor.is_subscribed ? FollowGray : FollowYellow}
+              alt={mentor.is_subscribed ? "Following" : "Follow"}
+              onClick={() => postLike(mentor)}
             />
           </SubscribeBox>
         </Wrapper>
