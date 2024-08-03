@@ -47,13 +47,11 @@ const Login = () => {
         localStorage.setItem("user_id", userInfo.userInfo);
         localStorage.setItem("username", userInfo.username);
         navigate("/home");
-        // navigate("/home", {
-        //   state: { userInfo: response.data },
-        // });
       })
       .catch((error) => {
         console.log("로그인 실패");
         console.log(error);
+        alert("아이디 또는 비밀번호가 틀렸습니다.\n다시 입력해주세요.");
       });
   }
 
