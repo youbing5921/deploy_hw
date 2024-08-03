@@ -39,9 +39,17 @@ const Login = () => {
       })
       .then((response) => {
         console.log("로그인 성공");
-        navigate("/home", {
-          state: { userInfo: response.data },
-        });
+        const userInfo = response.data;
+        localStorage.setItem("access", userInfo.access);
+        localStorage.setItem("is_mentor", userInfo.is_mentor);
+        localStorage.setItem("name", userInfo.name);
+        localStorage.setItem("refresh", userInfo.refresh);
+        localStorage.setItem("user_id", userInfo.userInfo);
+        localStorage.setItem("username", userInfo.username);
+        navigate("/home");
+        // navigate("/home", {
+        //   state: { userInfo: response.data },
+        // });
       })
       .catch((error) => {
         console.log("로그인 실패");

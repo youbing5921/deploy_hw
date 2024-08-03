@@ -17,8 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userInfo = useLocation().state.userInfo;
-  const userType = userInfo.is_mentor ? "mentor" : "mentee";
+  const userType = localStorage.is_mentor ? "mentor" : "mentee";
 
   return (
     <>
