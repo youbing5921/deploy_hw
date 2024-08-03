@@ -98,7 +98,7 @@ const RatingBox = styled.div`
   justify-content: space-between;
   gap: 5px;
   border-radius: 15px;
-  background: #f1f0f0;
+  background: #f8f8f8;
   width: 288px;
   padding: 14px 25px;
 `;

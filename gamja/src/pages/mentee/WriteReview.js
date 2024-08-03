@@ -4,6 +4,7 @@ import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
 import { useNavigate } from "react-router-dom";
 import WriteRate from "../../components/mentee/WriteRate";
+import InputContent from "../../components/mentee/InputContent";
 
 const userInfo = [
   {
@@ -66,6 +67,7 @@ const WriteReview = () => {
               <SubTitle>
                 {info.name}님과 함께한 멘토링 후기를 남겨주세요.
               </SubTitle>
+              <InputContent />
             </InputBox>
           </WholeBox>
         </Container>
