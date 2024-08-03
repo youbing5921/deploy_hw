@@ -21,7 +21,7 @@ const CommunityContainer = ({ communityList, toggleScraption }) => {
             src={column.image ? column.image : "/img/communitySampleImage.svg"}
           />
           <Content>
-            <Category>{column.category}</Category>
+            <Category>{column.categories[0].name}</Category>
             <Title>{column.title}</Title>
             <Username>{column.author.name}</Username>
           </Content>

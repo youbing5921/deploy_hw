@@ -2,18 +2,28 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
 import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 const CommunityPage = () => {
   const { colId } = useParams();
   const column = useLocation().state.column;
   const [communityList, setCommunityList] = useState(column);
+  console.log(column);
 
   const toggleScraption = () => {
     setCommunityList((prev) => ({
       ...prev,
       is_scraped: !prev.is_scraped,
     }));
+    sendScrapInfo(column.id);
   };
+
+  function sendScrapInfo(id) {
+    axios
+      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <Container>
