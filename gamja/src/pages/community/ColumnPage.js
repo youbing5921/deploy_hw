@@ -1,25 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
-
-const initCommunityList = [
-  {
-    id: 1,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: true,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    writerCategory: ["가치관", "사랑", "인간관계"],
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-];
+import { useLocation, useParams } from "react-router-dom";
 
 const CommunityPage = () => {
-  const [communityList, setCommunityList] = useState(initCommunityList);
-  const column = initCommunityList[0];
+  const { colId } = useParams();
+  const column = useLocation().state.column;
+  const [communityList, setCommunityList] = useState(column);
+  console.log(communityList);
 
   const toggleSubscription = (id) => {
     setCommunityList((prevCommunityList) =>
@@ -36,7 +24,19 @@ const CommunityPage = () => {
       <TopContainer>
         <TopBar txt={"커뮤니티"} />
       </TopContainer>
-      <Column></Column>
+      <Column>
+        <Header>
+          <ColTitle>
+            {column.title} <ColCategory>{column.category}</ColCategory>
+          </ColTitle>
+          <ColInfo>
+            by {column.writer} • {column.date} 별
+          </ColInfo>
+        </Header>
+        <HorizonLine />
+        <MainText>{column.mainText}</MainText>
+        <ColumnImg src={`/${column.imgSrc}`} />
+      </Column>
       <WriterInfo>
         <Text>
           <WriterName>{column.writer}</WriterName>
@@ -72,24 +72,101 @@ const TopContainer = styled.div`
 
 const Column = styled.div`
   min-height: 971px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 27px;
+  padding: 10px 40px;
+  gap: 30px;
+`;
+
+const ColTitle = styled.div`
+  display: flex;
+  align-items: center;
+  color: #494949;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.66px;
+`;
+
+const ColCategory = styled.div`
+  display: flex;
+  height: 16px;
+  padding: 8px 13px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: rgba(3, 174, 210, 0.2);
+  margin-left: auto;
+
+  color: #03aed2;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+
+const ColInfo = styled.div`
+  color: #494949;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.33px;
+`;
+
+const HorizonLine = styled.hr`
+  width: 520px;
+  height: 0.5px;
+  border: 0;
+  background-color: rgba(73, 73, 73, 0.5);
+  margin-top: 26px;
+  margin-bottom: 35px;
+`;
+
+const MainText = styled.p`
+  margin: 0 40px;
+  color: #7f7f7f;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.44px;
+`;
+
+const ColumnImg = styled.img`
+  width: 520px;
+  height: 379px;
+  border-radius: 10px;
+  margin: 35px auto 100px auto;
 `;
 
 const WriterInfo = styled.footer`
   display: flex;
   width: 520px;
-  height: 128px;
-  padding: 10px 40px 30px 40px;
+  height: 87px;
+  padding: 20px 40px 30px 40px;
   margin-top: auto;
   background-color: rgba(73, 73, 73, 0.2);
-  img {
-  }
 `;
 
 const Text = styled.div`
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
 `;
 
 const WriterName = styled.p`
@@ -107,12 +184,28 @@ const CategoryList = styled.div`
   gap: 15px;
 `;
 
-const WriterCategory = styled.div``;
+const WriterCategory = styled.div`
+  display: flex;
+  padding: 5px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: #03aed2;
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
 
 const WriterImg = styled.img.attrs({
   src: "/img/MentorImage.svg",
 })`
   width: 125px;
   height: 125px;
-  margin: -47px -3px 0 auto;
+  margin: -80px -3px 0 auto;
 `;

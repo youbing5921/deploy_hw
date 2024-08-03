@@ -1,16 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const CommunityContainer = ({ communityList, toggleSubscription }) => {
+  const navigate = useNavigate();
+
+  const onClick = (column) => {
+    navigate(`/community/${column.id}`, {
+      state: {
+        column: column,
+      },
+    });
+  };
+
   return (
     <ListContainer>
       {communityList.map((column) => (
-        <ColumnBox
-          key={column.id}
-          onClick={() => {
-            console.log("칼럼 상세 페이지로 이동");
-          }}
-        >
+        <ColumnBox key={column.id} onClick={() => onClick(column)}>
           <Profile src="/img/communitySampleImage.svg" />
           <Content>
             <Category>{column.category}</Category>
