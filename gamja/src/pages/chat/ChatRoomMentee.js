@@ -20,8 +20,8 @@ const ChatRoomMentee = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
-        setChatRoomData(response.data);
+        console.log(response.data[0]);
+        setChatRoomData(response.data[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -31,33 +31,39 @@ const ChatRoomMentee = () => {
   useEffect(() => {
     getMessage();
   }, []);
-  const currentChatRoom = chatRoomData[0];
+
+  const handleNewMessage = (newMessage) => {
+    setChatRoomData((prevData) => ({
+      ...prevData,
+      chats: [...prevData.chats, newMessage],
+    }));
+  };
 
   return (
     <Container>
       <TopContainer>
         <TopBar txt={"채팅하기"} />
         <FuncBar>
-          <RoomName>{currentChatRoom?.title}</RoomName>
+          <RoomName>{chatRoomData?.title}</RoomName>
           <ButtonContainer>
             <Icon src={OutBtnImg} alt="WriteReview" />
           </ButtonContainer>
         </FuncBar>
       </TopContainer>
       <MessageContainer>
-        {currentChatRoom?.chats?.map((chat) =>
+        {chatRoomData?.chats?.map((chat) =>
           chat.is_mentee ? (
             <Sender key={chat.id} message={chat.message} />
           ) : (
             <Receiver
               key={chat.id}
               message={chat.message}
-              username={currentChatRoom.mentor_name}
+              username={chatRoomData.mentor_name}
             />
           )
         )}
       </MessageContainer>
-      <InputMessage />
+      <InputMessage roomId={chatRoomData.id} onMessageSent={handleNewMessage} />
     </Container>
   );
 };
