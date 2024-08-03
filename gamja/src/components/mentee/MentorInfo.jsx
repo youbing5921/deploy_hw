@@ -65,7 +65,9 @@ const MentorInfo = ({ infoList }) => {
           <BtnBox>
             <GoRead>칼럼 읽기</GoRead>
             <GoChat
-              onClick={() => navigate(`/chat-create/mentee/${mentor.user}`)}
+              onClick={() =>
+                navigate(`/chat-create/mentee/${mentor.mentor_id}`)
+              }
             >
               채팅하기
             </GoChat>

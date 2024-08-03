@@ -8,22 +8,21 @@ import ChatMentee from "../../images/ChatMentee.svg";
 const RecentChat = ({ chatList }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
-  console.log(chatList);
 
   if (matchPath("/chat-list/mentor/:username", location)) {
     return (
       <>
-        {chatList.map((chat) => (
+        {chatList?.map((chat) => (
           <Wrapper key={chat.id}>
             <Both>
               <Left>
                 <Profile
                   src={ChatMentee}
                   alt="ChatMentee"
-                  onClick={() => navigate(`/profile/mentor/${chat.mentee_id}`)}
+                  onClick={() => navigate(`/profile/mentee/${chat.mentee_id}`)}
                 />
               </Left>
-              <Right onClick={() => navigate(`/chat/mentor/${chat.mentee_id}`)}>
+              <Right onClick={() => navigate(`/chat/mentor/${chat.id}`)}>
                 <Username>{chat.mentee_name}</Username>
                 <Message>{chat.title}</Message>
               </Right>
@@ -46,10 +45,12 @@ const RecentChat = ({ chatList }) => {
                 <Profile
                   src={ChatMentor}
                   alt="ChatMentor"
-                  onClick={() => navigate(`/profile/mentee/${chat.mentor_id}`)}
+                  onClick={() => navigate(`/profile/mentor/${chat.mentor_id}`)}
                 />
               </Left>
-              <Right onClick={() => navigate(`/chat/mentee/${chat.mentor_id}`)}>
+              <Right
+                onClick={() => navigate(`/chat/mentee/${chat.chats.room}`)}
+              >
                 <Username>{chat.mentor_name}</Username>
                 <Message>{chat.title}</Message>
               </Right>

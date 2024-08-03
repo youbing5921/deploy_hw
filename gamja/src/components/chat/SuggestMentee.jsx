@@ -3,67 +3,30 @@ import styled from "styled-components";
 import ChatMentee from "../../images/ChatMentee.svg";
 import { useNavigate } from "react-router-dom";
 
-const MessageArr = [
-  {
-    id: 1,
-    username: "나왕똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-  {
-    id: 2,
-    username: "나좀똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-  {
-    id: 3,
-    username: "나덜똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-  {
-    id: 4,
-    username: "나개똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-  {
-    id: 5,
-    username: "나짱똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-  {
-    id: 6,
-    username: "나안똑똑",
-    message: "똒똒똒똒 멘토림 ~",
-    date: "어제",
-  },
-];
-
-const SuggestMentee = () => {
+const SuggestMentee = ({ suggestList }) => {
   const navigate = useNavigate();
 
   return (
     <>
-      {MessageArr.map((message) => (
-        <Wrapper key={message.id}>
+      {suggestList?.map((suggestion) => (
+        <Wrapper key={suggestion.id}>
           <Both>
             <Left>
               <Profile
                 src={ChatMentee}
                 alt="ChatMentee"
-                onClick={() => navigate(`/mypage/mentor/${message.username}`)}
+                onClick={() =>
+                  navigate(`/profile/mentor/${suggestion.mentee_id}`)
+                }
               />
             </Left>
-            <Right onClick={() => navigate(`/chat/mentor/${message.id}`)}>
-              <Username>{message.username}</Username>
-              <Message>{message.message}</Message>
+            <Right onClick={() => navigate(`/chat/mentor/${suggestion.id}`)}>
+              <Username>{suggestion.mentee_name}</Username>
+              <Message>{suggestion.title}</Message>
             </Right>
           </Both>
           <DateBox>
-            <Date>{message.date}</Date>
+            <Date>{suggestion.last_chat}</Date>
           </DateBox>
         </Wrapper>
       ))}
