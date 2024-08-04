@@ -11,6 +11,33 @@ import axios from "axios";
 
 const MypageMentee = () => {
   const [Info, setInfo] = useState([]);
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
+  const refreshToken = localStorage.getItem("refresh");
+
+  function logout() {
+    axios
+      .post(
+        "http://127.0.0.1:8000/users/logout/",
+        {
+          refresh: refreshToken,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        localStorage.clear();
+        alert("로그아웃이 완료되었습니다.");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
     const getMenteeMypage = () => {
@@ -60,7 +87,7 @@ const MypageMentee = () => {
           />
         </ColumnBox>
         <ButtonBox>
-          <LogoutBtn />
+          <LogoutBtn onClick={logout} />
         </ButtonBox>
       </Container>
     </>

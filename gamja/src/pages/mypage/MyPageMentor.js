@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import TopBar from "../../components/common/TopBar";
@@ -14,12 +14,39 @@ import axios from "axios";
 
 const MyPageMentor = () => {
   const [Info, setInfo] = useState([]);
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
+  const refreshToken = localStorage.getItem("refresh");
 
-  const getMenteeMypage = () => {
+  function logout() {
+    axios
+      .post(
+        "http://127.0.0.1:8000/users/logout/",
+        {
+          refresh: refreshToken,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        localStorage.clear();
+        alert("로그아웃이 완료되었습니다.");
+        navigate("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/my-page/", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
@@ -29,10 +56,6 @@ const MyPageMentor = () => {
       .catch((error) => {
         console.log(error);
       });
-  };
-
-  useEffect(() => {
-    getMenteeMypage();
   }, []);
 
   return (
@@ -70,7 +93,7 @@ const MyPageMentor = () => {
           <Column />
         </ColumnBox>
         <ButtonBox>
-          <LogoutBtn />
+          <LogoutBtn onClick={logout} />
         </ButtonBox>
       </Container>
     </>

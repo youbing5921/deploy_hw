@@ -29,16 +29,16 @@ const users = [
   },
 ];
 
-const MentorHistory = ({ mentor }) => {
+const MentorHistory = ({ record }) => {
   return (
     <Wrapper>
       <CategoryBox>
-        {mentor.category.map((elt, idx) => {
+        {record.map((elt, idx) => {
           return (
             <div key={idx}>
-              <p>{elt}</p>
+              <p>{elt.interest}</p>
               <CategoryCount>
-                {mentor.count[idx]}
+                {elt.count}
                 <span>회</span>
               </CategoryCount>
             </div>

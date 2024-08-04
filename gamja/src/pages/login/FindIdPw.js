@@ -6,8 +6,9 @@ import BottonBtn from "../../components/login/BottonBtn";
 import LogoImage from "../../components/login/LogoImage";
 import InputStyle from "../../components/login/InputStyle";
 import InputLabel from "../../components/login/InputLabel";
+import axios from "axios";
 
-const FindId = () => {
+const FindIdPw = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
@@ -36,12 +37,48 @@ const FindId = () => {
     }
   }, [name, email, id]);
 
+  function findId(name, email) {
+    console.log(name, email);
+    axios
+      .get(
+        `http://127.0.0.1:8000/users/get-user-id/?name=${name}&email=${email}`
+      )
+      .then((response) => {
+        const username = response.data.username;
+        navigate("/login/findId/result", {
+          state: { username: username },
+        });
+      })
+      .catch((error) => {
+        alert("이름 또는 이메일이 틀렸습니다.");
+        console.log(error);
+      });
+  }
+
+  function findPw(id, email) {
+    axios
+      .get(
+        `http://127.0.0.1:8000/users/reset-user-pw/?username=${id}&email=${email}`
+      )
+      .then((response) => {
+        const password = response.data.new_password;
+        navigate("/login/findPw/result", {
+          state: { password: password },
+        });
+      })
+      .catch((error) => {
+        alert("아이디 또는 이메일이 틀렸습니다.");
+        console.log(error);
+      });
+  }
+
   return (
     <MainContainer>
       <FindContainer>
         <NewLogoImage />
         {location === path ? (
           <>
+            {/* 아이디 찾기 */}
             <InputDiv>
               <InputLabel htmlFor="Name">이름</InputLabel>
               <NewInputStyle
@@ -62,13 +99,14 @@ const FindId = () => {
             </InputDiv>
             <FindBottonBtn
               disabled={disabled}
-              onClick={() => console.log("아이디 찾기")}
+              onClick={() => findId(name, email)}
             >
               아이디 찾기
             </FindBottonBtn>
           </>
         ) : (
           <>
+            {/* 비밀번호 찾기 */}
             <InputDiv>
               <InputLabel htmlFor="Id">아이디</InputLabel>
               <NewInputStyle
@@ -89,7 +127,7 @@ const FindId = () => {
             </InputDiv>
             <FindBottonBtn
               disabled={disabled}
-              onClick={() => console.log("비밀번호 찾기")}
+              onClick={() => findPw(id, email)}
             >
               비밀번호 찾기
             </FindBottonBtn>
@@ -100,7 +138,7 @@ const FindId = () => {
   );
 };
 
-export default FindId;
+export default FindIdPw;
 
 const FindContainer = styled.div`
   display: flex;

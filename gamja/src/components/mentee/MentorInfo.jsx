@@ -22,7 +22,7 @@ const MentorInfo = ({ infoList }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
           },
         }
       )

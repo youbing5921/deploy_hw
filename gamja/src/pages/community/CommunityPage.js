@@ -1,118 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
 import CategoryBar from "../../components/community/CategoryBar";
 import CommunityContainer from "../../components/community/CommunityContainer";
-
-const initCommunityList = [
-  {
-    id: 1,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: true,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 2,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 3,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 4,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 5,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 6,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 7,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-  {
-    id: 8,
-    imgSrc: "images/communitySampleImage.svg",
-    isSubscribed: false,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라",
-    writer: "김조이",
-    date: "2024.07.31",
-    mainText:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-];
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CommunityPage = () => {
-  const [communityList, setCommunityList] = useState(initCommunityList);
+  const navigate = useNavigate();
+  const [communityList, setCommunityList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
+  const [filteredCategory, setFilteredCategory] = useState(communityList);
+  const accessToken = localStorage.getItem("access");
+  const is_mentor = localStorage.getItem("is_mentor") === "true";
 
-  const filteredCategory = communityList.filter(
-    (column) =>
-      selectedCategory === "전체" || column.category === selectedCategory
+  useEffect(
+    () =>
+      setFilteredCategory(
+        communityList.filter(
+          (column) =>
+            selectedCategory === "전체" ||
+            column.categories[0].name === selectedCategory
+        )
+      ),
+    [selectedCategory]
   );
 
-  const toggleSubscription = (id) => {
-    setCommunityList((prevCommunityList) =>
-      prevCommunityList.map((column) =>
-        column.id === id
-          ? { ...column, isSubscribed: !column.isSubscribed }
-          : column
-      )
-    );
+  const toggleScraption = (e, id) => {
+    e.stopPropagation();
+    let copiedList = [...communityList];
+    copiedList[id - 1].is_scraped = !copiedList[id - 1].is_scraped;
+    setCommunityList(copiedList);
+    sendScrapInfo(id);
   };
+
+  function sendScrapInfo(id) {
+    axios
+      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  }
+
+  // 서버에서 칼럼 목록 불러오기
+  useEffect(() => {
+    axios
+      .get(`http://127.0.0.1:8000/community/columns/`, null, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
+      })
+      .then((response) => {
+        setCommunityList(response.data);
+        setFilteredCategory(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Container>
@@ -122,8 +67,15 @@ const CommunityPage = () => {
       </TopContainer>
       <CommunityContainer
         communityList={filteredCategory}
-        toggleSubscription={toggleSubscription}
+        toggleScraption={toggleScraption}
       />
+      {is_mentor ? (
+        <WriteCol>
+          <button onClick={() => navigate("/community/write")}>
+            칼럼 작성하기
+          </button>
+        </WriteCol>
+      ) : null}
     </Container>
   );
 };
@@ -144,4 +96,36 @@ const Container = styled.div`
 const TopContainer = styled.div`
   background: #f8f8f8;
   box-shadow: 0px 4px 2px 0px rgba(0, 0, 0, 0.05);
+  width: 600px;
+  position: fixed;
+  top: 0;
+  margin-bottom: 28px;
+`;
+
+const WriteCol = styled.footer`
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  width: 600px;
+  height: 107px;
+  justify-content: center;
+  align-items: center;
+  background: #f8f8f8;
+  box-shadow: 0px -4px 4px 0px rgba(0, 0, 0, 0.05);
+  button {
+    border-radius: 15px;
+    background: #03aed2;
+    width: 229px;
+    height: 53px;
+    border: 0;
+    cursor: pointer;
+
+    color: #fff;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
 `;

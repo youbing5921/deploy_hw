@@ -5,7 +5,7 @@ const categories = [
   "전체",
   "가치관",
   "사랑",
-  "생활",
+  "생활지식",
   "인간관계",
   "재테크",
   "진로",
@@ -41,7 +41,7 @@ const Categories = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 23px 40px;
-  margin-bottom: 28px;
+  margin-bottom: 0px;
 `;
 
 const Category = styled.div`
