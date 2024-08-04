@@ -84,7 +84,10 @@ const Home = () => {
                 $bgimg={menteeBtn2}
                 onBtnClick={() => navigate("/chat-list/mentee/:username")}
               />
-              <CommunityCard $bgimg={menteeBtn3} />
+              <CommunityCard
+                $bgimg={menteeBtn3}
+                onBtnClick={() => navigate("/community")}
+              />
               <MypageCard
                 $bgimg={menteeBtn4}
                 onBtnClick={() => navigate("/mypage/mentee/:username")}

@@ -2,9 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
+const is_mentor = localStorage.getItem("is_mentor") === "true";
+
 const CommunityContainer = ({ communityList, toggleScraption }) => {
   const navigate = useNavigate();
-
   const onClick = (column) => {
     navigate(`/community/${column.id}`, {
       state: {
@@ -45,7 +46,7 @@ const ListContainer = styled.div`
   gap: 16.5px;
   padding: 0px 40px 25px 40px;
   margin-top: 180px;
-  margin-bottom: 110px;
+  margin-bottom: ${is_mentor ? "110px" : "0px"};
 `;
 
 const ColumnBox = styled.div`
@@ -75,8 +76,10 @@ const Category = styled.div`
   padding: 3px 9px;
   width: fit-content;
   border-radius: 20px;
-  background: rgba(3, 174, 210, 0.2);
-  color: #03aed2;
+  background: ${is_mentor
+    ? "rgba(3, 174, 210, 0.2)"
+    : "rgba(253, 222, 85, 0.20)"};
+  color: ${is_mentor ? "#03aed2" : "#FFD000"};
   text-align: center;
   font-size: 15px;
   font-style: normal;

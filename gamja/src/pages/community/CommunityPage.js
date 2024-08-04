@@ -12,6 +12,7 @@ const CommunityPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [filteredCategory, setFilteredCategory] = useState(communityList);
   const accessToken = localStorage.getItem("access");
+  const is_mentor = localStorage.getItem("is_mentor") === "true";
 
   useEffect(
     () =>
@@ -68,11 +69,13 @@ const CommunityPage = () => {
         communityList={filteredCategory}
         toggleScraption={toggleScraption}
       />
-      <WriteCol>
-        <button onClick={() => navigate("/community/write")}>
-          칼럼 작성하기
-        </button>
-      </WriteCol>
+      {is_mentor ? (
+        <WriteCol>
+          <button onClick={() => navigate("/community/write")}>
+            칼럼 작성하기
+          </button>
+        </WriteCol>
+      ) : null}
     </Container>
   );
 };
