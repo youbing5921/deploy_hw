@@ -20,7 +20,7 @@ const MyConcern = ({ Info }) => {
         <Content>
           <Concern>{Info?.concern?.content}</Concern>
           <ReplyWrapper>
-            {Info?.concern?.comments.map((comment, idx) => (
+            {Info?.concern?.comments?.map((comment, idx) => (
               <Reply
                 key={idx}
                 onClick={() => navigate(`/profile/mentor/${comment.author}`)}
