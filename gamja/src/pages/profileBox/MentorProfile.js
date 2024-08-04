@@ -6,6 +6,8 @@ import xBtn from "../../images/xBtn.svg";
 import RateBox from "../../components/profileBox/RateBox";
 import MentorHistory from "../../components/profileBox/MentorHistory";
 import Review from "../../components/profileBox/Review";
+import ChatBtn from "../../components/profileBox/ChatBtn";
+import InterestBtn from "../../components/profileBox/InterestBtn";
 import axios from "axios";
 
 const MentorProfile = () => {
@@ -73,9 +75,10 @@ const MentorProfile = () => {
             <Title>멘토님의 멘토링 후기</Title>
             <Review></Review>
           </ReviewBox>
-          <Button onClick={() => navigate(`/chat-create/mentee/${mentorId}`)}>
-            멘토님과 채팅
-          </Button>
+          <BtnBox>
+            <InterestBtn Info={Info} />
+            <ChatBtn mentorId={mentorId} Info={Info} />
+          </BtnBox>
         </MentorBox>
       </Container>
     </>
@@ -167,14 +170,9 @@ const ReviewBox = styled.div`
   margin-bottom: 33px;
 `;
 
-const Button = styled.button`
-  color: #fff;
-  font-family: Pretendard;
-  font-size: 20px;
-  font-weight: 700;
-  border-radius: 20px;
-  background: #494949;
-  border: none;
-  padding: 10px 115px;
-  cursor: pointer;
+const BtnBox = styled.div`
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
