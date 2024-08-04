@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import TopBar from "../../components/common/TopBar";
@@ -10,31 +10,15 @@ import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column.jsx";
 import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const MyPageMentor = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem("accessToken", response.data.access);
+  const accessToken = localStorage.getItem("access");
   const refreshToken = "";
-  
-  const getMenteeMypage = () => {
-    axios
-      .get("http://127.0.0.1:8000/my-page/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    
-     function logout() {
+
+  function logout() {
     axios
       .post(
         "http://127.0.0.1:8000/users/logout",
@@ -55,10 +39,22 @@ const MyPageMentor = () => {
       .catch((error) => {
         console.log(error);
       });
-     };
-    
-       useEffect(() => {
-    getMenteeMypage();
+  }
+
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/my-page/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setInfo(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
   return (

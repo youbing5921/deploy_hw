@@ -72,9 +72,12 @@ function App() {
           path="/chat-create/mentee/:mentorId"
           element={<CreateChat />}
         ></Route>
+
+        {/* 카테고리 및 매칭 */}
         <Route path="/category/mentor" element={<Category />}></Route>
         <Route path="/category/mentee" element={<Category />}></Route>
         <Route path="/matching" element={<Matching />}></Route>
+
         <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
         <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
         <Route
@@ -85,9 +88,12 @@ function App() {
           path="/profile/mentee/:menteeId"
           element={<MenteeProfile />}
         ></Route>
+
+        {/* 커뮤니티 */}
         <Route path="/community" element={<Community />}></Route>
         <Route path="/community/:colId" element={<Column />}></Route>
         <Route path="/community/write" element={<WriteColumnPage />}></Route>
+
         <Route
           path="/mypage/mentor/journal/select"
           element={<MentorSelectChat />}
