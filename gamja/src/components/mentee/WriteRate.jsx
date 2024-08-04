@@ -22,7 +22,7 @@ const WriteRate = ({ setScore }) => {
 
   useEffect(() => {
     setRatesResArr(calcStarRates(score));
-    setScore(score); // 부모 컴포넌트에 업데이트
+    setScore(score);
   }, [score, setScore]);
 
   const handleInputChange = (e) => {

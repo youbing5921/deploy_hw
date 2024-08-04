@@ -31,11 +31,6 @@ const EditProfile = () => {
     setUsername(e.target.value);
   };
 
-  //   const handleEdit = ()=>{
-  //     const data = {
-  //         name:
-  //     }
-  //   }
   return (
     <Container>
       <TopBar txt="마이페이지" marginLeft={"154px"} />

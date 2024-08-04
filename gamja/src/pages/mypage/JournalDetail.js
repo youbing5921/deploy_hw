@@ -5,6 +5,7 @@ import TopBar from "../../components/mypage/TopBar";
 import axios from "axios";
 
 const JournalDetail = () => {
+  const accessToken = localStorage.getItem("access");
   const [detail, setDetail] = useState([]);
   const { id } = useParams();
 
@@ -13,7 +14,7 @@ const JournalDetail = () => {
       axios
         .get(`http://127.0.0.1:8000/log/${id}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -26,7 +27,7 @@ const JournalDetail = () => {
     };
 
     getDetailJournal();
-  }, [id]);
+  }, [accessToken, id]);
   return (
     <>
       <Container>

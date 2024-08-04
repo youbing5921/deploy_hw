@@ -12,6 +12,7 @@ import axios from "axios";
 
 const MentorProfile = () => {
   const { mentorId } = useParams();
+  const accessToken = localStorage.getItem("access");
   console.log(mentorId);
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
@@ -22,7 +23,7 @@ const MentorProfile = () => {
       axios
         .get(`http://127.0.0.1:8000/profile/${mentorId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -35,7 +36,7 @@ const MentorProfile = () => {
         });
     };
     getProfile();
-  }, [mentorId]);
+  }, [accessToken, mentorId]);
 
   const onCancel = () => {
     navigate(-1);

@@ -8,6 +8,7 @@ const MentorJournalWrite = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -25,7 +26,7 @@ const MentorJournalWrite = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -38,7 +39,7 @@ const MentorJournalWrite = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const postJournal = () => {
     axios
@@ -51,14 +52,14 @@ const MentorJournalWrite = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentor/");
+        navigate("/mypage/mentor/:username");
       })
       .catch((error) => {
         console.log(error);

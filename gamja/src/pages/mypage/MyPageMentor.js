@@ -56,7 +56,7 @@ const MyPageMentor = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [accessToken]);
 
   return (
     <>
