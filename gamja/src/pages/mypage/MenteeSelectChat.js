@@ -7,26 +7,27 @@ import axios from "axios";
 
 const MenteeSelectChat = () => {
   const [chatList, setChatList] = useState([]);
-
-  const getChatList = () => {
-    axios
-      .get("http://127.0.0.1:8000/chat/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setChatList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
+    const getChatList = () => {
+      axios
+        .get("http://127.0.0.1:8000/chat/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatList(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getChatList();
-  }, []);
+  }, [accessToken]);
   return (
     <>
       <Container>

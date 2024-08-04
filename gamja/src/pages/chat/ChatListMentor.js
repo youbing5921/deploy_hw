@@ -11,12 +11,13 @@ const ChatListMentee = () => {
   const [selectedNav, setSelectedNav] = useState("recent");
   const [chatList, setChatList] = useState([]);
   const [suggestList, setSuggestList] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   const getChatList = () => {
     axios
       .get("http://127.0.0.1:8000/chat/", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
@@ -32,7 +33,7 @@ const ChatListMentee = () => {
     axios
       .get("http://127.0.0.1:8000/chat/", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {

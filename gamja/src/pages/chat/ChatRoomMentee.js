@@ -12,13 +12,14 @@ const ChatRoomMentee = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     const getMessage = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {

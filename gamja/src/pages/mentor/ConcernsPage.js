@@ -7,26 +7,27 @@ import axios from "axios";
 
 const ConcernsPage = () => {
   const [concernList, setConcernList] = useState([]);
-
-  const getMenteeConcern = () => {
-    axios
-      .get("http://127.0.0.1:8000/concerns/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setConcernList(response.data.reverse());
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
+    const getMenteeConcern = () => {
+      axios
+        .get("http://127.0.0.1:8000/concerns/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setConcernList(response.data.reverse());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getMenteeConcern();
-  }, []);
+  }, [accessToken]);
 
   const [selectedCategory, setSelectedCategory] = useState("전체");
 

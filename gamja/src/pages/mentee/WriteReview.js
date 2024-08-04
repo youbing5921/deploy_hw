@@ -14,13 +14,14 @@ const WriteReview = () => {
   const [Info, setInfo] = useState([]);
   const [score, setScore] = useState(0);
   const [content, setContent] = useState("");
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     const getMessage = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -33,7 +34,7 @@ const WriteReview = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   useEffect(() => {
     if (!chatRoomData.mentor_id) return;
@@ -42,7 +43,7 @@ const WriteReview = () => {
       axios
         .get(`http://127.0.0.1:8000/profile/${chatRoomData.mentor_id}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -55,7 +56,7 @@ const WriteReview = () => {
     };
 
     getProfile();
-  }, [chatRoomData.mentor_id]);
+  }, [accessToken, chatRoomData.mentor_id]);
 
   const handleInputChange = (e) => {
     setContent(e.target.value);
@@ -73,7 +74,7 @@ const WriteReview = () => {
     axios
       .post("http://127.0.0.1:8000/review/", data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {

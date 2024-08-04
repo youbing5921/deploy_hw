@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
@@ -44,7 +45,7 @@ const MypageMentee = () => {
       axios
         .get("http://127.0.0.1:8000/my-page/", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -57,7 +58,7 @@ const MypageMentee = () => {
     };
 
     getMenteeMypage();
-  }, []);
+  }, [accessToken]);
 
   return (
     <>

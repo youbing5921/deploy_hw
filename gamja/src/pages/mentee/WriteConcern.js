@@ -12,6 +12,7 @@ const WriteConcern = () => {
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [concern, setConcern] = useState("");
+  const accessToken = localStorage.getItem("access");
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
@@ -41,7 +42,7 @@ const WriteConcern = () => {
     axios
       .post("http://127.0.0.1:8000/concerns/", data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {

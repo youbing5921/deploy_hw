@@ -6,6 +6,7 @@ import axios from "axios";
 
 const MenteeJournalWrite = () => {
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
 
@@ -25,7 +26,7 @@ const MenteeJournalWrite = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -38,7 +39,7 @@ const MenteeJournalWrite = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const postJournal = () => {
     axios
