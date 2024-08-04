@@ -5,31 +5,29 @@ import MentorImg from "../../images/MentorImg.svg";
 const Review = ({ Info }) => {
   return (
     <>
-      {Info?.myReview?.map((review, idx) => (
-        <Container key={idx}>
-          <Top>
-            <Left>
-              <Low>
-                <Profile src={MentorImg} alt="menteeImg" />
-              </Low>
-              <Middle>
-                <Username>{review.mentee_name}</Username>
-                <CategoryBox>
-                  {review.chatroom_interests.map((interest, idx) => (
-                    <Category key={idx}>{interest.name}</Category>
-                  ))}
-                </CategoryBox>
-              </Middle>
-            </Left>
-            <Right>
-              <High>
-                <MoreBtn>더보기</MoreBtn>
-              </High>
-            </Right>
-          </Top>
-          <Comment>{review.content}</Comment>
-        </Container>
-      ))}
+      <Container>
+        <Top>
+          <Left>
+            <Low>
+              <Profile src={MentorImg} alt="menteeImg" />
+            </Low>
+            <Middle>
+              <Username>{Info.myReview?.mentee_name}</Username>
+              <CategoryBox>
+                {Info.myReview?.chatroom_interests.map((interest, idx) => (
+                  <Category key={idx}>{interest.name}</Category>
+                ))}
+              </CategoryBox>
+            </Middle>
+          </Left>
+          <Right>
+            <High>
+              <MoreBtn>더보기</MoreBtn>
+            </High>
+          </Right>
+        </Top>
+        <Comment>{Info.myReview?.content}</Comment>
+      </Container>
     </>
   );
 };

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/mypage/TopBar";
 import axios from "axios";
 
 const MentorJournalWrite = () => {
   const navigate = useNavigate();
+  const { roomId } = useParams();
+  const [chatRoomData, setChatRoomData] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -18,16 +21,45 @@ const MentorJournalWrite = () => {
     setContent(e.target.value);
   };
 
+  useEffect(() => {
+    const getMessage = () => {
+      axios
+        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatRoomData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getMessage();
+  }, [accessToken, roomId]);
+
   const postJournal = () => {
     axios
-      .post("http://127.0.0.1:8000/log/", {
-        title: title,
-        content: content,
-      })
+      .post(
+        "http://127.0.0.1:8000/log/",
+        {
+          chatroomId: roomId,
+          title: title,
+          content: content,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentor/${username}");
+        navigate("/mypage/mentor/:username");
       })
       .catch((error) => {
         console.log(error);
@@ -46,11 +78,9 @@ const MentorJournalWrite = () => {
             onChange={onChangeTitle}
           />
           <Together>
-            <ChatTitle>진로를 선택할 때 가장 중요한 기준</ChatTitle>
+            <ChatTitle>{chatRoomData.title}</ChatTitle>
             <P>&nbsp;･&nbsp;</P>
-            <Author>나왕똑똑</Author>
-            <P>&nbsp;･&nbsp;</P>
-            <WriteDate>어제</WriteDate>
+            <Author>{chatRoomData.mentee_name}</Author>
           </Together>
         </JournalInfo>
         <StyledHr />
@@ -111,7 +141,6 @@ const Together = styled.div`
 const P = styled.div``;
 const ChatTitle = styled.div``;
 const Author = styled.div``;
-const WriteDate = styled.div``;
 
 const StyledHr = styled.hr`
   margin-top: 15px;
@@ -143,6 +172,7 @@ const Content = styled.textarea`
   width: 520px;
   height: auto;
   min-height: 390px;
+  font-family: Pretendard;
   &::placeholder {
     color: rgba(73, 73, 73, 0.2);
   }

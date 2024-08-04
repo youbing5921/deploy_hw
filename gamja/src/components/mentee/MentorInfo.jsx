@@ -10,6 +10,7 @@ import axios from "axios";
 const MentorInfo = ({ infoList }) => {
   const [mentors, setMentors] = useState(infoList);
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     setMentors(infoList);
@@ -22,7 +23,7 @@ const MentorInfo = ({ infoList }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )

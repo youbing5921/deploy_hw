@@ -13,6 +13,7 @@ const CreateChat = () => {
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [title, setTitle] = useState("");
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     console.log(mentorId);
@@ -43,17 +44,17 @@ const CreateChat = () => {
       interests: category,
       title: title,
     };
-    console.log(mentorId);
+    console.log(data);
 
     axios
       .post("http://127.0.0.1:8000/chat/", data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
         console.log(response.data);
-        navigate(`/chat/mentee/${mentorId}`);
+        navigate(`/chat/mentee/${response.data.id}`);
       })
       .catch((error) => {
         console.log(error);

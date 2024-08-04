@@ -10,26 +10,27 @@ const FindMentor = () => {
   const navigate = useNavigate();
   const [infoList, setInfoList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
-
-  const getMentorInfo = () => {
-    axios
-      .get("http://127.0.0.1:8000/mentors/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setInfoList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
+    const getMentorInfo = () => {
+      axios
+        .get("http://127.0.0.1:8000/mentors/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfoList(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getMentorInfo();
-  }, []);
+  }, [accessToken]);
 
   const filteredInfos = infoList.filter(
     (info) =>

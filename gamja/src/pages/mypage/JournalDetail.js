@@ -1,39 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/mypage/TopBar";
-
-const journalArr = [
-  {
-    id: 1,
-    title: "새로운 생각이 드는 날 #1",
-    author: "김조이",
-    writedate: "2024.07.31",
-    content:
-      "나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.나는 지금 매우 배고픔. 지금이 딱 배고픔의 정상격임. 왜 대체 이시간에 배고파서 사람을 곤란하게 하는 것임? 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요. 어이가 없으세요 아까 볶음밥이랑 닭가슴살 드셔놓고 아무것도 안 먹은 것 마냥 배고픔 시위하시는 님이 참 어이없어요.",
-  },
-];
+import axios from "axios";
 
 const JournalDetail = () => {
+  const accessToken = localStorage.getItem("access");
+  const [detail, setDetail] = useState([]);
+  const { id } = useParams();
+
+  useEffect(() => {
+    const getDetailJournal = () => {
+      axios
+        .get(`http://127.0.0.1:8000/log/${id}/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setDetail(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getDetailJournal();
+  }, [accessToken, id]);
   return (
     <>
-      {journalArr.map((info) => (
-        <Container key={info.id}>
-          <TopBar txt={"멘토링 일지"} />
-          <JournalInfo>
-            <Title>{info.title}</Title>
-            <Together>
-              <P>by&nbsp;</P>
-              <Author>{info.author}</Author>
-              <P>&nbsp;･&nbsp;</P>
-              <WriteDate>{info.writedate}</WriteDate>
-            </Together>
-          </JournalInfo>
-          <StyledHr />
-          <ContentBox>
-            <Content>{info.content}</Content>
-          </ContentBox>
-        </Container>
-      ))}
+      <Container>
+        <TopBar txt={"멘토링 일지"} />
+        <JournalInfo>
+          <Title>{detail.title}</Title>
+          <Together>
+            <P>by&nbsp;</P>
+            <Author>{detail.name}</Author>
+            <P>&nbsp;･&nbsp;</P>
+            <WriteDate>{detail.created_at}</WriteDate>
+          </Together>
+        </JournalInfo>
+        <StyledHr />
+        <ContentBox>
+          <Content>{detail.content}</Content>
+        </ContentBox>
+      </Container>
     </>
   );
 };

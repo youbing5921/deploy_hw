@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
@@ -9,16 +9,17 @@ import InputMessage from "../../components/chat/InputMessage";
 import axios from "axios";
 
 const ChatRoomMentee = () => {
+  const navigate = useNavigate();
   const { roomId } = useParams();
-  // console.log(roomId);
   const [chatRoomData, setChatRoomData] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     const getMessage = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -31,7 +32,7 @@ const ChatRoomMentee = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const handleNewMessage = (newMessage) => {
     setChatRoomData((prevData) => ({
@@ -47,7 +48,11 @@ const ChatRoomMentee = () => {
         <FuncBar>
           <RoomName>{chatRoomData?.title}</RoomName>
           <ButtonContainer>
-            <Icon src={OutBtnImg} alt="WriteReview" />
+            <Icon
+              src={OutBtnImg}
+              alt="WriteReview"
+              onClick={() => navigate(`/review/write/${roomId}`)}
+            />
           </ButtonContainer>
         </FuncBar>
       </TopContainer>

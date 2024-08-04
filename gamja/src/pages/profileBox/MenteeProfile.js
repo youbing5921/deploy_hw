@@ -11,13 +11,14 @@ const MenteeProfile = () => {
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
   console.log(Info);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     const getProfile = () => {
       axios
         .get(`http://127.0.0.1:8000/profile/${menteeId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -30,7 +31,7 @@ const MenteeProfile = () => {
         });
     };
     getProfile();
-  }, [menteeId]);
+  }, [accessToken, menteeId]);
 
   const onCancel = () => {
     navigate(-1);

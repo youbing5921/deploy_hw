@@ -9,6 +9,7 @@ import axios from "axios";
 const InterestMentee = ({ interestList }) => {
   const [like, setLike] = useState(interestList);
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     setLike(interestList);
@@ -21,13 +22,13 @@ const InterestMentee = ({ interestList }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
       .then((response) => {
         console.log(response.data);
-        alert("멘토 관심 설정이 완료되었습니다.");
+        alert(response.data);
         setLike((prevMentors) =>
           prevMentors.map((m) =>
             m.mentor_id === mentor.mentor_id

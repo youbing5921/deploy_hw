@@ -45,7 +45,7 @@ const MypageMentee = () => {
       axios
         .get("http://127.0.0.1:8000/my-page/", {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -58,13 +58,7 @@ const MypageMentee = () => {
     };
 
     getMenteeMypage();
-  }, []);
-
-  // useEffect(() => {
-  //   if (Info.name) {
-  //     navigate(`/mypage/mentee/${Info.name}`);
-  //   }
-  // }, [Info, navigate]);
+  }, [accessToken]);
 
   return (
     <>
@@ -84,7 +78,7 @@ const MypageMentee = () => {
           <MyConcern Info={Info} />
         </ConcernBox>
         <JournalBox>
-          <JournalList txt={"일지"} />
+          <JournalList txt={"일지"} Info={Info} />
         </JournalBox>
         <ColumnBox>
           <Tit>내가 스크랩한 칼럼</Tit>

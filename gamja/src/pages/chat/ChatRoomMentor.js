@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
 import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
@@ -11,13 +10,14 @@ import axios from "axios";
 const ChatRoomMentor = () => {
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     const getMessage = () => {
       axios
         .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         })
         .then((response) => {
@@ -30,7 +30,7 @@ const ChatRoomMentor = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const handleNewMessage = (newMessage) => {
     setChatRoomData((prevData) => ({
@@ -45,9 +45,6 @@ const ChatRoomMentor = () => {
         <TopBar txt={"채팅하기"} />
         <FuncBar>
           <RoomName>{chatRoomData?.title}</RoomName>
-          <ButtonContainer>
-            <Icon src={OutBtnImg} alt="WriteReview" />
-          </ButtonContainer>
         </FuncBar>
       </TopContainer>
       <MessageContainer>
@@ -103,17 +100,6 @@ const RoomName = styled.div`
   font-weight: 600;
   line-height: 150%;
   letter-spacing: -0.55px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 29px;
-`;
-
-const Icon = styled.img`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
 `;
 
 const MessageContainer = styled.div`

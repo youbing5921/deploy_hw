@@ -1,96 +1,62 @@
 import React from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
 import ChatMentee from "../../images/ChatMentee.svg";
 
-const MessageArr = [
-  {
-    id: 1,
-    username: "나왕똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 3,
-  },
-  {
-    id: 2,
-    username: "나좀똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 10,
-  },
-  {
-    id: 3,
-    username: "나덜똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 2,
-  },
-  {
-    id: 4,
-    username: "나개똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 16,
-  },
-  {
-    id: 5,
-    username: "나짱똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 5,
-  },
-  {
-    id: 6,
-    username: "나안똑똑",
-    message: "진로를 선택할 때 가장 중요한 기준",
-    date: "어제",
-    room: 20,
-  },
-];
-
-const RecentChat = () => {
+const RecentChat = ({ chatList }) => {
   const location = useLocation().pathname;
+  const navigate = useNavigate();
+  // const roomId = useParams();
+  // console.log(roomId);
 
-  if (matchPath("mypage/mentor/journal/select", location)) {
+  if (matchPath(`mypage/mentor/journal/select/`, location)) {
     return (
       <>
-        {MessageArr.map((message) => (
-          <Wrapper key={message.id}>
-            <Both>
+        {chatList.all_chats?.map((chat) => (
+          <Wrapper key={chat.id}>
+            <Both
+              onClick={() =>
+                navigate(`/mypage/mentor/journal/write/${chat.id}`)
+              }
+            >
               <Left>
                 <Profile src={ChatMentee} alt="ChatMentee" />
               </Left>
               <Right>
-                <Username>{message.username}</Username>
-                <Message>{message.message}</Message>
+                <Username>{chat.mentee_name}</Username>
+                <Message>{chat.title}</Message>
               </Right>
             </Both>
             <DateBox>
-              <Date>{message.date}</Date>
+              <Date>{chat.last_chat}</Date>
             </DateBox>
           </Wrapper>
         ))}
       </>
     );
   }
-  if (matchPath("/mypage/mentee/journal/select", location)) {
+  if (matchPath("/mypage/mentee/journal/select/", location)) {
     return (
       <>
-        {MessageArr.map((message) => (
-          <Wrapper key={message.id}>
-            <Both>
+        {chatList.map((chat) => (
+          <Wrapper key={chat.id}>
+            <Both
+              onClick={() =>
+                navigate(`/mypage/mentee/journal/write/${chat.id}`)
+              }
+            >
               <Left>
                 <Profile src={ChatMentor} alt="ChatMentor" />
               </Left>
               <Right>
-                <Username>{message.username}</Username>
-                <Message>{message.message}</Message>
+                <Username>{chat.mentor_name}</Username>
+                <Message>{chat.title}</Message>
               </Right>
             </Both>
             <DateBox>
-              <Date>{message.date}</Date>
+              <Date>{chat.last_chat}</Date>
             </DateBox>
           </Wrapper>
         ))}
