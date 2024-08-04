@@ -58,25 +58,6 @@ const CommunityPage = () => {
       });
   }, []);
 
-  // 칼럼 데이터 넣기
-  // axios
-  //   .post(
-  //     `http://127.0.0.1:8000/community/columns/`,
-  //     {
-  //       title: "",
-  //       content: "숄라숄라",
-  //       image: null,
-  //       categories: [5],
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("access")}`,
-  //       },
-  //     }
-  //   )
-  //   .then((response) => console.log(response.data))
-  //   .catch((error) => console.log(error));
-
   return (
     <Container>
       <TopContainer>
