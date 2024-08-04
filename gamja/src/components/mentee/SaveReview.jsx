@@ -1,19 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
-const ChatBtn = ({ mentorId }) => {
-  const navigate = useNavigate();
+const SaveReview = ({ handleSubmit }) => {
   return (
     <>
-      <Button onClick={() => navigate(`/chat-create/mentee/${mentorId}`)}>
-        멘토님과 채팅
-      </Button>
+      <Button onClick={handleSubmit}>멘토링 후기 저장</Button>
     </>
   );
 };
 
-export default ChatBtn;
+export default SaveReview;
 
 const Button = styled.button`
   color: #fff;
@@ -23,6 +19,7 @@ const Button = styled.button`
   border-radius: 20px;
   background: #494949;
   border: none;
+  width: 338px;
   padding: 10px 24px;
   cursor: pointer;
 `;

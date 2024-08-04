@@ -58,7 +58,7 @@ const MentorJournalWrite = () => {
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentor/${username}");
+        navigate("/mypage/mentor/");
       })
       .catch((error) => {
         console.log(error);
@@ -171,6 +171,7 @@ const Content = styled.textarea`
   width: 520px;
   height: auto;
   min-height: 390px;
+  font-family: Pretendard;
   &::placeholder {
     color: rgba(73, 73, 73, 0.2);
   }

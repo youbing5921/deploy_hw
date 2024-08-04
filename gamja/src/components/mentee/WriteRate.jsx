@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-const WriteRate = () => {
-  const [rating, setRating] = useState("");
+const WriteRate = ({ setScore }) => {
+  const [score, setScoreState] = useState("");
   const starsArr = ["first", "second", "third", "fourth", "last"];
   const [ratesResArr, setRatesResArr] = useState([0, 0, 0, 0, 0]);
 
-  const calcStarRates = (rating) => {
+  const calcStarRates = (score) => {
     let tempStarRatesArr = [0, 0, 0, 0, 0];
-    let remainingScore = (rating * 120) / 100;
+    let remainingScore = (score * 120) / 100;
     let i = 0;
 
     while (remainingScore > 24) {
@@ -21,13 +21,14 @@ const WriteRate = () => {
   };
 
   useEffect(() => {
-    setRatesResArr(calcStarRates(rating));
-  }, [rating]);
+    setRatesResArr(calcStarRates(score));
+    setScore(score); // 부모 컴포넌트에 업데이트
+  }, [score, setScore]);
 
   const handleInputChange = (e) => {
     let value = e.target.value;
     if (value === "" || (Number(value) >= 0 && Number(value) <= 100)) {
-      setRating(value);
+      setScoreState(value);
     }
   };
 
@@ -47,9 +48,6 @@ const WriteRate = () => {
                 viewBox="0 0 24 24"
                 fill="none"
               >
-                <clipPath id={`${item}StarClip`}>
-                  <rect width={`${ratesResArr[idx]}`} height="24" />
-                </clipPath>
                 <defs>
                   {isPartialStar && (
                     <linearGradient
@@ -82,7 +80,7 @@ const WriteRate = () => {
         })}
       </StarRateWrap>
       <Rating>
-        <InputScore value={rating} onChange={handleInputChange} />
+        <InputScore value={score} onChange={handleInputChange} />
         <span>/100</span>
       </Rating>
     </RatingBox>

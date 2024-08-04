@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import OutBtnImg from "../../images/OutBtn.svg";
 import TopBar from "../../components/common/TopBar";
@@ -9,6 +9,7 @@ import InputMessage from "../../components/chat/InputMessage";
 import axios from "axios";
 
 const ChatRoomMentee = () => {
+  const navigate = useNavigate();
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
 
@@ -46,7 +47,11 @@ const ChatRoomMentee = () => {
         <FuncBar>
           <RoomName>{chatRoomData?.title}</RoomName>
           <ButtonContainer>
-            <Icon src={OutBtnImg} alt="WriteReview" />
+            <Icon
+              src={OutBtnImg}
+              alt="WriteReview"
+              onClick={() => navigate(`/review/write/${roomId}`)}
+            />
           </ButtonContainer>
         </FuncBar>
       </TopContainer>

@@ -73,7 +73,7 @@ const MentorProfile = () => {
           </HistoryBox>
           <ReviewBox>
             <Title>멘토님의 멘토링 후기</Title>
-            <Review></Review>
+            <Review Info={Info} />
           </ReviewBox>
           <BtnBox>
             <InterestBtn Info={Info} />

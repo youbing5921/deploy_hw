@@ -58,7 +58,7 @@ const MenteeJournalWrite = () => {
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentee/${username}");
+        navigate("/mypage/mentee/");
       })
       .catch((error) => {
         console.log(error);
@@ -116,6 +116,7 @@ const TitleInput = styled.input`
   border: none;
   background: none;
   outline: none;
+  font-family: Pretendard;
   &::placeholder {
     color: #494949;
   }

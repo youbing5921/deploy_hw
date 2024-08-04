@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
@@ -32,12 +31,6 @@ const MypageMentee = () => {
 
     getMenteeMypage();
   }, []);
-
-  // useEffect(() => {
-  //   if (Info.name) {
-  //     navigate(`/mypage/mentee/${Info.name}`);
-  //   }
-  // }, [Info, navigate]);
 
   return (
     <>
