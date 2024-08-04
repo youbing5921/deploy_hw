@@ -14,7 +14,7 @@ const Review = ({ Info }) => {
             <Middle>
               <Username>{Info.myReview?.mentee_name}</Username>
               <CategoryBox>
-                {Info.myReview?.chatroom_interests.map((interest, idx) => (
+                {Info.myReview?.chatroom_interests?.map((interest, idx) => (
                   <Category key={idx}>{interest.name}</Category>
                 ))}
               </CategoryBox>
