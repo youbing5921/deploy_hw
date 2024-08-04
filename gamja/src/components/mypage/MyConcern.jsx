@@ -11,7 +11,9 @@ const MyConcern = ({ Info }) => {
         <Top>
           <Title>나의 한 줄 고민</Title>
           <ButtonBox>
-            <Button>지난 고민 보기</Button>
+            <Button onClick={() => navigate("/mypage/concerns-list/")}>
+              지난 고민 보기
+            </Button>
             <Button onClick={() => navigate("/concern/write/")}>
               고민 생성하기
             </Button>

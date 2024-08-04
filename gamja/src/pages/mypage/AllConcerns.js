@@ -1,7 +1,7 @@
 import React from "react";
-import MyConcern from "../../components/mypage/MyConcern";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
+import MyConcernList from "../../components/mypage/MyConcernList";
 
 const AllConcerns = () => {
   return (
@@ -9,7 +9,7 @@ const AllConcerns = () => {
       <Container>
         <TopBar txt={"마이페이지"} marginLeft={"154px"} />
         <ConcernBox>
-          <MyConcern />
+          <MyConcernList />
         </ConcernBox>
       </Container>
     </>
@@ -19,12 +19,9 @@ const AllConcerns = () => {
 export default AllConcerns;
 
 const Container = styled.div`
-  display: flex;
   width: 600px;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 33px;
   background: #ededed;
 `;
-const ConcernBox = styled.div``;
+const ConcernBox = styled.div`
+  padding: 33px 40px 7px 40px;
+`;
