@@ -25,7 +25,7 @@ const InterestBtn = ({ Info }) => {
         alert("멘토 관심 설정이 완료되었습니다.");
         setLike((prevLike) => ({
           ...prevLike,
-          is_subscribed: !prevLike.is_subscribed,
+          is_subscribed: response.data.is_subscribed,
         }));
       })
       .catch((error) => {
