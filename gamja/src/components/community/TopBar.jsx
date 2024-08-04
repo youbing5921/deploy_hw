@@ -8,7 +8,7 @@ const TopBar = ({ txt, $marginLeft, search }) => {
   return (
     <>
       <Header>
-        <BackBtn onClick={() => navigate("/home")} />
+        <BackBtn onClick={() => navigate(-1)} />
         <Title $marginLeft={$marginLeft}>{txt}</Title>
         <Search id="searchBtn" onClick={search}>
           <img src="/img/searchBtn.svg" alt="search" />

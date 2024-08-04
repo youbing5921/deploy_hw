@@ -20,10 +20,12 @@ import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import Community from "./pages/community/CommunityPage";
 import Column from "./pages/community/ColumnPage";
+import WriteColumnPage from "./pages/community/WriteColumnPage";
 import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
 import MenteeProfile from "./pages/profileBox/MenteeProfile";
+import FindResult from "./pages/login/FindResult";
 import MentorSelectChat from "./pages/mypage/MentorSelectChat";
 import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
 import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
@@ -40,14 +42,19 @@ function App() {
     <Wrapper>
       <Routes>
         <Route path="/" element={<Login />}></Route>
+        {/* 회원가입 */}
         <Route path="/join" element={<WelcomePage />}></Route>
         <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
         <Route path="/join/info" element={<InputInfo />}></Route>
         <Route path="/join/category" element={<ChooseCategory />}></Route>
         <Route path="/join/complete" element={<JoinComplete />}></Route>
+        {/* 로그인 */}
         <Route path="/login" element={<Login />}></Route>
         <Route path="/login/findId" element={<FindIdPw />}></Route>
         <Route path="/login/findPw" element={<FindIdPw />}></Route>
+        <Route path="/login/findId/result" element={<FindResult />}></Route>
+        <Route path="/login/findPw/result" element={<FindResult />}></Route>
+
         <Route path="/home" element={<Home />}></Route>
         <Route path="/concerns" element={<ConcernsPage />}></Route>
         <Route path="/find" element={<FindMentor />}></Route>
@@ -78,6 +85,9 @@ function App() {
           path="/profile/mentee/:menteeId"
           element={<MenteeProfile />}
         ></Route>
+        <Route path="/community" element={<Community />}></Route>
+        <Route path="/community/:colId" element={<Column />}></Route>
+        <Route path="/community/write" element={<WriteColumnPage />}></Route>
         <Route
           path="/mypage/mentor/journal/select"
           element={<MentorSelectChat />}

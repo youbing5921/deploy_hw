@@ -17,8 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userInfo = useLocation().state.userInfo;
-  const userType = userInfo.is_mentor ? "mentor" : "mentee";
+  const userType = localStorage.is_mentor ? "mentor" : "mentee";
 
   return (
     <>
@@ -47,7 +46,11 @@ const Home = () => {
                 $bgimg={mentorBtn2}
                 onBtnClick={() => navigate("/chat-list/mentor/:username")}
               />
-              <CommunityCard $fontColor={"#fff"} $bgimg={mentorBtn3} />
+              <CommunityCard
+                $fontColor={"#fff"}
+                $bgimg={mentorBtn3}
+                onBtnClick={() => navigate("/community")}
+              />
               <MypageCard
                 $fontColor={"#fff"}
                 $bgimg={mentorBtn4}
