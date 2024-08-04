@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
+import axios from "axios";
 
 const EditMentee = () => {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
   const [username, setUsername] = useState("");
+  const userId = localStorage.getItem("user_id");
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     setDisabled(username.length === 0);
@@ -16,6 +19,30 @@ const EditMentee = () => {
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+  };
+
+  const patchMenteeName = () => {
+    axios
+      .patch(
+        `http://127.0.0.1:8000/users/users/${userId}/`,
+        {
+          name: username,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setUsername(response.data.name);
+        alert("회원정보 수정이 완료되었습니다.");
+        navigate(-1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -33,7 +60,7 @@ const EditMentee = () => {
         <ChatBtn
           disabled={disabled}
           $active={!disabled}
-          onClick={() => navigate("/chat/mentee/:username")}
+          onClick={patchMenteeName}
         >
           회원정보 저장하기
         </ChatBtn>
