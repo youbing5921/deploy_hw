@@ -32,7 +32,7 @@ const ChatRoomMentee = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const handleNewMessage = (newMessage) => {
     setChatRoomData((prevData) => ({

@@ -4,6 +4,7 @@ import axios from "axios";
 
 const InterestBtn = ({ Info }) => {
   const [like, setLike] = useState(Info);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     setLike(Info);
@@ -16,7 +17,7 @@ const InterestBtn = ({ Info }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )

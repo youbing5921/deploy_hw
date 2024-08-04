@@ -30,7 +30,7 @@ const ChatRoomMentor = () => {
     };
 
     getMessage();
-  }, [roomId]);
+  }, [accessToken, roomId]);
 
   const handleNewMessage = (newMessage) => {
     setChatRoomData((prevData) => ({

@@ -13,42 +13,42 @@ const ChatListMentee = () => {
   const [interestList, setInterestList] = useState([]);
   const accessToken = localStorage.getItem("access");
 
-  const getChatList = () => {
-    axios
-      .get("http://127.0.0.1:8000/chat/", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setChatList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-  const getInterestList = () => {
-    axios
-      .get("http://127.0.0.1:8000/chat/my-mentors/", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setInterestList(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
+    const getChatList = () => {
+      axios
+        .get("http://127.0.0.1:8000/chat/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatList(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    const getInterestList = () => {
+      axios
+        .get("http://127.0.0.1:8000/chat/my-mentors/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInterestList(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getChatList();
     getInterestList();
-  }, []);
+  }, [accessToken]);
 
   const onClickNav = (nav) => {
     setSelectedNav(nav);
