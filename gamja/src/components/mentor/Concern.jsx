@@ -8,6 +8,7 @@ import axios from "axios";
 const Concern = ({ concernList }) => {
   const navigate = useNavigate();
   const [contents, setContents] = useState({});
+  const accessToken = localStorage.getItem("access");
 
   const onChangeContent = (concernId) => (e) => {
     setContents((prevContents) => ({
@@ -26,7 +27,7 @@ const Concern = ({ concernList }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )

@@ -13,6 +13,7 @@ const InputMessage = ({ roomId, onMessageSent }) => {
   const [message, setMessage] = useState("");
   const [sendBtnSrc, setSendBtnSrc] = useState(BlankSendBtn);
   // console.log(roomId);
+  const accessToken = localStorage.getItem("access");
 
   const postMessage = () => {
     axios
@@ -23,7 +24,7 @@ const InputMessage = ({ roomId, onMessageSent }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )

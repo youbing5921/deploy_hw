@@ -9,6 +9,7 @@ import axios from "axios";
 const InterestMentee = ({ interestList }) => {
   const [like, setLike] = useState(interestList);
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     setLike(interestList);
@@ -21,7 +22,7 @@ const InterestMentee = ({ interestList }) => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )

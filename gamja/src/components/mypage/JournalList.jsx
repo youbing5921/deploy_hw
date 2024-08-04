@@ -9,26 +9,27 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const [journalInfo, setJournalInfo] = useState([]);
-
-  const getJournalList = () => {
-    axios
-      .get("http://127.0.0.1:8000/log/", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setJournalInfo(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
+    const getJournalList = () => {
+      axios
+        .get("http://127.0.0.1:8000/log/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setJournalInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
     getJournalList();
-  }, []);
+  }, [accessToken]);
 
   if (matchPath("/mypage/mentee/:username", location)) {
     return (
