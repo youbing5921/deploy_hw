@@ -59,7 +59,7 @@ const MentorJournalWrite = () => {
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentor/");
+        navigate("/mypage/mentor/:username");
       })
       .catch((error) => {
         console.log(error);

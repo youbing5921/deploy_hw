@@ -59,7 +59,7 @@ const MenteeJournalWrite = () => {
       .then((response) => {
         console.log(response);
         alert("저장이 완료되었습니다.");
-        navigate("/mypage/mentee/");
+        navigate("/mypage/mentee/:username");
       })
       .catch((error) => {
         console.log(error);
