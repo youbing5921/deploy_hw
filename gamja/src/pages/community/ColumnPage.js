@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
@@ -12,6 +12,7 @@ const CommunityPage = () => {
   const accessToken = localStorage.getItem("access");
   const [scrap, setScrap] = useState(false);
   const [subscribe, setSubscribe] = useState(false);
+  const navigate = useNavigate();
   console.log("지금은?", communityList);
 
   const searchBtn = document.querySelector("#searchBtn");
@@ -28,6 +29,7 @@ const CommunityPage = () => {
 
   const showMentorProfile = () => {
     console.log("멘토 프로필 보여주기");
+    navigate(`/profile/mentor/${column.author.id}`);
   };
 
   function sendScrapInfo(id) {

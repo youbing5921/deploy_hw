@@ -20,7 +20,7 @@ const MentorProfile = () => {
       axios
         .get(`http://127.0.0.1:8000/profile/${mentorId}/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
           },
         })
         .then((response) => {
