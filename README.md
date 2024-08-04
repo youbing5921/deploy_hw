@@ -1,4 +1,4 @@
 # CheongpaGamja-Client
 
-cd gamja
-yarn start
+1. cd gamja
+2. yarn start
