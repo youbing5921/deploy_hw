@@ -50,7 +50,7 @@ const Matching = () => {
 
   return (
     <MainContainer>
-      <BackBtn />
+      <BackBtn onClick={() => navigate(-1)} />
       <NewTitleOval>멘토 매칭</NewTitleOval>
       <TitleText>
         이지님이 찾던

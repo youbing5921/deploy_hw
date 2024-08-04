@@ -45,7 +45,7 @@ const Category = () => {
   if (location === "/category/mentor") {
     return (
       <MainContainer>
-        <NewBackBtn />
+        <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">전문 분야 설정</TitleOval>
         <TitleText>
           이지님은 멘티에게
@@ -90,7 +90,7 @@ const Category = () => {
   } else {
     return (
       <MainContainer>
-        <NewBackBtn />
+        <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">고민 설정</TitleOval>
         <TitleText>
           이지님은
