@@ -43,7 +43,7 @@ const CreateChat = () => {
       interests: category,
       title: title,
     };
-    console.log(mentorId);
+    console.log(data);
 
     axios
       .post("http://127.0.0.1:8000/chat/", data, {
@@ -53,7 +53,7 @@ const CreateChat = () => {
       })
       .then((response) => {
         console.log(response.data);
-        navigate(`/chat/mentee/${mentorId}`);
+        navigate(`/chat/mentee/${response.data.id}`);
       })
       .catch((error) => {
         console.log(error);

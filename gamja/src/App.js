@@ -95,19 +95,19 @@ function App() {
         <Route path="/community/write" element={<WriteColumnPage />}></Route>
 
         <Route
-          path="/mypage/mentor/journal/select"
+          path="/mypage/mentor/journal/select/"
           element={<MentorSelectChat />}
         ></Route>
         <Route
-          path="/mypage/mentee/journal/select"
+          path="/mypage/mentee/journal/select/"
           element={<MenteeSelectChat />}
         ></Route>
         <Route
-          path="/mypage/mentor/journal/write"
+          path="/mypage/mentor/journal/write/:roomId"
           element={<MentorJournalWrite />}
         ></Route>
         <Route
-          path="/mypage/mentee/journal/write"
+          path="/mypage/mentee/journal/write/:roomId"
           element={<MenteeJournalWrite />}
         ></Route>
         <Route

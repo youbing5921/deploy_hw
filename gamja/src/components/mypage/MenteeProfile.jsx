@@ -1,15 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
 import MentorImg from "../../images/MentorImg.svg";
 
 const MenteeProfile = ({ Info }) => {
+  const navigate = useNavigate();
   return (
     <ProfileBox>
       <Profile src={MentorImg} alt="profileImg" />
       <NameBox>
         <Username>{Info.name}</Username>
-        <Next src={Arrow} alt="바로가기" />
+        <Next
+          src={Arrow}
+          alt="바로가기"
+          onClick={() => navigate("/mypage/mentee/edit/:username")}
+        />
       </NameBox>
     </ProfileBox>
   );
@@ -51,4 +57,5 @@ const Username = styled.div`
 const Next = styled.img`
   width: 6.477px;
   height: 10.983px;
+  cursor: pointer;
 `;

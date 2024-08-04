@@ -4,23 +4,21 @@ import styled from "styled-components";
 const Review = ({ Info }) => {
   return (
     <>
-      {Info.myReview?.map((review, index) => (
-        <Container key={index}>
-          <Top>
-            <Left>
-              <CategoryBox>
-                {review.chatroom_interests?.map((interest, idx) => (
-                  <Category key={idx}>{interest.name}</Category>
-                ))}
-              </CategoryBox>
-            </Left>
-            <Right>
-              <MoreBtn>더보기</MoreBtn>
-            </Right>
-          </Top>
-          <Comment>{review.content}</Comment>
-        </Container>
-      ))}
+      <Container>
+        <Top>
+          <Left>
+            <CategoryBox>
+              {Info.myReview?.chatroom_interests?.map((interest, idx) => (
+                <Category key={idx}>{interest.name}</Category>
+              ))}
+            </CategoryBox>
+          </Left>
+          <Right>
+            <MoreBtn>더보기</MoreBtn>
+          </Right>
+        </Top>
+        <Comment>{Info.myReview?.content}</Comment>
+      </Container>
     </>
   );
 };

@@ -17,7 +17,7 @@ const ConcernsPage = () => {
       })
       .then((response) => {
         console.log(response.data);
-        setConcernList(response.data);
+        setConcernList(response.data.reverse());
       })
       .catch((error) => {
         console.log(error);

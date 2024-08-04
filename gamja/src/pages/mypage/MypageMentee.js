@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
@@ -60,12 +59,6 @@ const MypageMentee = () => {
     getMenteeMypage();
   }, []);
 
-  // useEffect(() => {
-  //   if (Info.name) {
-  //     navigate(`/mypage/mentee/${Info.name}`);
-  //   }
-  // }, [Info, navigate]);
-
   return (
     <>
       <Container>
@@ -84,7 +77,7 @@ const MypageMentee = () => {
           <MyConcern Info={Info} />
         </ConcernBox>
         <JournalBox>
-          <JournalList txt={"일지"} />
+          <JournalList txt={"일지"} Info={Info} />
         </JournalBox>
         <ColumnBox>
           <Tit>내가 스크랩한 칼럼</Tit>

@@ -1,40 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { matchPath } from "react-router";
+import axios from "axios";
 
-const JournalInfo = [
-  {
-    id: 1,
-    title: "사랑과 돈",
-    date: "2024.07.20",
-  },
-  {
-    id: 2,
-    title: "인생을 값지게 사는 법",
-    date: "2024.06.02",
-  },
-  {
-    id: 3,
-    title: "흰 빨래 잘 하는 팁",
-    date: "2024.06.01",
-  },
-  {
-    id: 4,
-    title: "도전과 실패",
-    date: "2024.05.21",
-  },
-  {
-    id: 5,
-    title: "짝사랑의 가치",
-    date: "2024.04.12",
-  },
-];
-
-const JournalList = ({ txt, $fontColor, $bgColor }) => {
+const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
+  const [journalInfo, setJournalInfo] = useState([]);
+
+  const getJournalList = () => {
+    axios
+      .get("http://127.0.0.1:8000/log/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setJournalInfo(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getJournalList();
+  }, []);
+
   if (matchPath("/mypage/mentee/:username", location)) {
     return (
       <>
@@ -42,7 +37,7 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           <Top>
             <Title>나의 멘토링 {txt}</Title>
             <WriteBtn
-              onClick={() => navigate("/mypage/mentee/journal/select")}
+              onClick={() => navigate(`/mypage/mentee/journal/select/`)}
               $fontColor={$fontColor}
               $bgColor={$bgColor}
             >
@@ -51,9 +46,13 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           </Top>
           <BoldHr />
           <ListBox>
-            {JournalInfo.map((journal) => (
+            {journalInfo.map((journal) => (
               <React.Fragment key={journal.id}>
-                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                <Journal
+                  onClick={() =>
+                    navigate(`/mypage/journal/detail/${journal.id}`)
+                  }
+                >
                   <JournalTitle>{journal.title}</JournalTitle>
                   <WriteDate>{journal.date}</WriteDate>
                 </Journal>
@@ -72,7 +71,7 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           <Top>
             <Title>나의 멘토링 {txt}</Title>
             <WriteBtn
-              onClick={() => navigate("/mypage/mentor/journal/select")}
+              onClick={() => navigate(`/mypage/mentor/journal/select/`)}
               $fontColor={$fontColor}
               $bgColor={$bgColor}
             >
@@ -81,9 +80,13 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           </Top>
           <BoldHr />
           <ListBox>
-            {JournalInfo.map((journal) => (
+            {journalInfo.map((journal) => (
               <React.Fragment key={journal.id}>
-                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                <Journal
+                  onClick={() =>
+                    navigate(`/mypage/journal/detail/${journal.id}`)
+                  }
+                >
                   <JournalTitle>{journal.title}</JournalTitle>
                   <WriteDate>{journal.date}</WriteDate>
                 </Journal>

@@ -1,34 +1,91 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import WriteRate from "../../components/mentee/WriteRate";
-import InputContent from "../../components/mentee/InputContent";
-
-const userInfo = [
-  {
-    id: "1",
-    name: "척척육은영",
-    mentoringRecord: [
-      {
-        interest: "가치관",
-        count: 0,
-      },
-      {
-        interest: "재테크",
-        count: 0,
-      },
-      {
-        interest: "사랑",
-        count: 2,
-      },
-    ],
-  },
-];
+import axios from "axios";
+import SaveReview from "../../components/mentee/SaveReview";
 
 const WriteReview = () => {
   const navigate = useNavigate();
+  const { roomId } = useParams();
+  const [chatRoomData, setChatRoomData] = useState([]);
+  const [Info, setInfo] = useState([]);
+  const [score, setScore] = useState(0);
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    const getMessage = () => {
+      axios
+        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setChatRoomData(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getMessage();
+  }, [roomId]);
+
+  useEffect(() => {
+    if (!chatRoomData.mentor_id) return;
+
+    const getProfile = () => {
+      axios
+        .get(`http://127.0.0.1:8000/profile/${chatRoomData.mentor_id}/`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getProfile();
+  }, [chatRoomData.mentor_id]);
+
+  const handleInputChange = (e) => {
+    setContent(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    const data = {
+      chatroomId: roomId,
+      content: content,
+      score: parseInt(score, 10),
+    };
+
+    console.log("Submitting data:", data);
+
+    axios
+      .post("http://127.0.0.1:8000/review/", data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("후기가 성공적으로 제출되었습니다.");
+        navigate(-1);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        alert("후기 제출에 실패하였습니다.");
+      });
+  };
 
   const onCancel = () => {
     navigate(-1);
@@ -36,42 +93,43 @@ const WriteReview = () => {
 
   return (
     <>
-      {userInfo.map((info) => (
-        <Container key={info.id}>
-          <WholeBox>
-            <Top>
-              <NameBox>
-                <Left>
-                  <Profile src={MentorImg} />
-                </Left>
-                <Right>
-                  <Username>{info.name}</Username>
-                  {info.mentoringRecord.map((record, idx) => (
-                    <CategoryBox key={idx}>
-                      <Category>{record.interest}</Category>
-                    </CategoryBox>
-                  ))}
-                </Right>
-              </NameBox>
-              <CloseBtn src={xBtn} onClick={onCancel} />
-            </Top>
-            <RateContainer>
-              <Title>멘토님의 등대 지수</Title>
-              <SubTitle>
-                {info.name}님은 얼마나 밝은 등대가 되어주셨나요?
-              </SubTitle>
-              <WriteRate />
-            </RateContainer>
-            <InputBox>
-              <Title>멘토님의 멘토링 후기</Title>
-              <SubTitle>
-                {info.name}님과 함께한 멘토링 후기를 남겨주세요.
-              </SubTitle>
-              <InputContent />
-            </InputBox>
-          </WholeBox>
-        </Container>
-      ))}
+      <Container>
+        <WholeBox>
+          <Top>
+            <NameBox>
+              <Left>
+                <Profile src={MentorImg} />
+              </Left>
+              <Right>
+                <Username>{Info.name}</Username>
+                {Info.info?.interests_display.map((interest, idx) => (
+                  <CategoryBox key={idx}>
+                    <Category>{interest.name}</Category>
+                  </CategoryBox>
+                ))}
+              </Right>
+            </NameBox>
+            <CloseBtn src={xBtn} onClick={onCancel} />
+          </Top>
+          <RateContainer>
+            <Title>멘토님의 등대 지수</Title>
+            <SubTitle>
+              {Info.name}님은 얼마나 밝은 등대가 되어주셨나요?
+            </SubTitle>
+            <WriteRate setScore={setScore} />
+          </RateContainer>
+          <InputBox>
+            <Title>멘토님의 멘토링 후기</Title>
+            <SubTitle>
+              {Info.name}님과 함께한 멘토링 후기를 남겨주세요.
+            </SubTitle>
+            <InputZone onChange={handleInputChange} value={content} />
+          </InputBox>
+          <BtnBox>
+            <SaveReview handleSubmit={handleSubmit} />
+          </BtnBox>
+        </WholeBox>
+      </Container>
     </>
   );
 };
@@ -94,7 +152,6 @@ const WholeBox = styled.div`
 const Top = styled.div`
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 `;
 
 const Left = styled.div``;
@@ -122,6 +179,7 @@ const CloseBtn = styled.img`
   width: 25px;
   height: 25px;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 const CategoryBox = styled.div`
@@ -141,17 +199,39 @@ const Category = styled.div`
 const RateContainer = styled.div`
   margin-top: 37px;
 `;
+
 const Title = styled.div`
   color: #494949;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 3px;
 `;
+
 const SubTitle = styled.div`
   color: #7f7f7f;
   font-size: 10px;
   font-weight: 500;
 `;
+
 const InputBox = styled.div`
   margin-top: 37px;
+`;
+
+const BtnBox = styled.div`
+  margin-top: 33px;
+`;
+
+const InputZone = styled.textarea`
+  margin-top: 8px;
+  border-radius: 20px;
+  background: #ededed;
+  box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.1) inset;
+  padding: 10px 10px;
+  border: none;
+  outline: none;
+  resize: none;
+  height: auto;
+  width: 318px;
+  height: 93px;
+  font-family: Pretendard;
 `;
