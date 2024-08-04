@@ -21,6 +21,13 @@ const WriteColumnPage = () => {
   const [uploadImgUrl, setUploadImgUrl] = useState("");
   const [categories, setCategories] = useState([]);
 
+  const selectCategory = (e) => {
+    const form = document.querySelector("#category");
+    setCategories([parseInt(e.target.value)]);
+    form.style.backgroundColor = "rgba(3, 174, 210, 0.20)";
+    form.style.color = "#03AED2";
+  };
+
   const loadImage = (e) => {
     const { files } = e.target;
     const uploadFile = files[0];
@@ -34,14 +41,14 @@ const WriteColumnPage = () => {
     alert("이미지가 업로드되었습니다.");
   };
 
-  const uploadCol = () => {
+  function uploadCol() {
     axios
       .post(
         `http://127.0.0.1:8000/community/columns/`,
         {
           title: title,
           content: content,
-          image: null,
+          image: uploadImgUrl,
           categories: categories,
         },
         {
@@ -52,7 +59,7 @@ const WriteColumnPage = () => {
       )
       .then((response) => navigate("/community"))
       .catch((error) => console.log(error));
-  };
+  }
 
   return (
     <Container>
@@ -71,11 +78,7 @@ const WriteColumnPage = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <ColCategory>
-              <select
-                id="category"
-                onChange={(e) => setCategories([parseInt(e.target.value)])}
-                defaultValue={0}
-              >
+              <select id="category" onChange={selectCategory} defaultValue={0}>
                 <option disabled hidden value={0}>
                   카테고리 설정
                 </option>
