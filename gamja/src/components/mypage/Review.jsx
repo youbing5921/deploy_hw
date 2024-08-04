@@ -1,26 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const reviewList = [
-  {
-    id: 1,
-    username: "돈이 뭐길래",
-    category: ["인간관계", "사랑"],
-    comment:
-      "닉값합니다! 진짜 척척박사세요. 다음에 또 고민이 생기면 육은영멘토님께 채팅해보려구요! 감사합니다 :)",
-  },
-];
-
-const Review = () => {
+const Review = ({ Info }) => {
   return (
     <>
-      {reviewList.map((reviewInfo) => (
-        <Container key={reviewInfo.id}>
+      {Info.myReview?.map((review, index) => (
+        <Container key={index}>
           <Top>
             <Left>
               <CategoryBox>
-                {reviewInfo.category.map((cat, idx) => (
-                  <Category key={idx}>{cat}</Category>
+                {review.chatroom_interests?.map((interest, idx) => (
+                  <Category key={idx}>{interest.name}</Category>
                 ))}
               </CategoryBox>
             </Left>
@@ -28,7 +18,7 @@ const Review = () => {
               <MoreBtn>더보기</MoreBtn>
             </Right>
           </Top>
-          <Comment>{reviewInfo.comment}</Comment>
+          <Comment>{review.content}</Comment>
         </Container>
       ))}
     </>
@@ -79,7 +69,6 @@ const MoreBtn = styled.button`
   border: none;
   color: #494949;
   text-align: center;
-  font-family: Pretendard;
   font-size: 10px;
   font-weight: 500;
   cursor: pointer;

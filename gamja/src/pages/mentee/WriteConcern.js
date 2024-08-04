@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 
-const CreateChat = () => {
+const WriteConcern = () => {
   const navigate = useNavigate();
-  const { mentorId } = useParams();
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    console.log(mentorId);
-  }, [mentorId]);
+  const [concern, setConcern] = useState("");
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
@@ -30,46 +25,45 @@ const CreateChat = () => {
   };
 
   useEffect(() => {
-    setDisabled(category.length === 0 || title.length === 0);
-  }, [category, title]);
+    setDisabled(category.length === 0 || concern.length === 0);
+  }, [category, concern]);
 
-  const handleTitleChange = (e) => {
-    setTitle(e.target.value);
+  const handleConcernChange = (e) => {
+    setConcern(e.target.value);
   };
 
   const handleSubmit = () => {
     const data = {
-      mentorId: mentorId,
+      content: concern,
       interests: category,
-      title: title,
     };
-    console.log(mentorId);
 
     axios
-      .post("http://127.0.0.1:8000/chat/", data, {
+      .post("http://127.0.0.1:8000/concerns/", data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
         },
       })
       .then((response) => {
         console.log(response.data);
-        navigate(`/chat/mentee/${mentorId}`);
+        navigate(-1);
       })
       .catch((error) => {
-        console.log(error);
-        alert("채팅방 생성에 실패했습니다!");
+        console.error(error);
       });
   };
 
   return (
     <Container>
-      <TopBar txt="채팅하기" />
+      <TopBar txt="마이페이지" marginLeft={"154px"} />
       <Wrapper>
-        <StyledTitleOval $active={title.length > 0}>제목 설정</StyledTitleOval>
-        <TitleInput
-          placeholder="채팅의 제목을 설정해주세요"
-          value={title}
-          onChange={handleTitleChange}
+        <StyledTitleOval $active={concern.length > 0}>
+          한 줄 고민
+        </StyledTitleOval>
+        <ConcernInput
+          placeholder="한 줄 고민을 적어주세요"
+          value={concern}
+          onChange={handleConcernChange}
         />
         <StyledCategoryOval $active={category.length > 0}>
           카테고리 설정
@@ -89,14 +83,14 @@ const CreateChat = () => {
         </ButtonGroup>
         <SideText>최대 2개의 카테고리를 선택해주세요.</SideText>
         <ChatBtn disabled={disabled} $active={!disabled} onClick={handleSubmit}>
-          멘토님과 채팅하기
+          한 줄 고민 작성하기
         </ChatBtn>
       </Wrapper>
     </Container>
   );
 };
 
-export default CreateChat;
+export default WriteConcern;
 
 const Container = styled.div`
   background-color: #ebebeb;
@@ -109,7 +103,7 @@ const Wrapper = styled.div`
   padding: 0 40px;
 `;
 
-const TitleInput = styled.input`
+const ConcernInput = styled.input`
   margin-top: 19px;
   color: #494949;
   font-family: Pretendard;

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
@@ -7,24 +8,38 @@ import JournalList from "../../components/mypage/JournalList";
 import MenteeHistory from "../../components/mypage/MenteeHistory";
 import Column from "../../components/mypage/Column.jsx";
 import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
+import axios from "axios";
 
-let mypageInfo = [
-  {
-    id: "1",
-    name: "돈이 뭐길래",
-    mentoringRecord: [
-      "가치관",
-      "재테크",
-      "사랑",
-      "생활지식",
-      "인간관계",
-      "진로",
-    ],
-    count: ["10", "20", "2", "3", "20", "0"],
-  },
-];
 const MypageMentee = () => {
-  const [Info, setInfo] = useState(mypageInfo);
+  const [Info, setInfo] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const getMenteeMypage = () => {
+      axios
+        .get("http://127.0.0.1:8000/my-page/", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getMenteeMypage();
+  }, []);
+
+  // useEffect(() => {
+  //   if (Info.name) {
+  //     navigate(`/mypage/mentee/${Info.name}`);
+  //   }
+  // }, [Info, navigate]);
+
   return (
     <>
       <Container>
@@ -40,7 +55,7 @@ const MypageMentee = () => {
           </Right>
         </Both>
         <ConcernBox>
-          <MyConcern />
+          <MyConcern Info={Info} />
         </ConcernBox>
         <JournalBox>
           <JournalList txt={"일지"} />

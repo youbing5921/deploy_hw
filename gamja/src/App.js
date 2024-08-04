@@ -20,6 +20,7 @@ import Category from "./pages/categoryAndMatching/Category";
 import Matching from "./pages/categoryAndMatching/Matching";
 import Community from "./pages/community/CommunityPage";
 import Column from "./pages/community/ColumnPage";
+import WriteColumnPage from "./pages/community/WriteColumnPage";
 import MyPageMentor from "./pages/mypage/MyPageMentor";
 import MypageMentee from "./pages/mypage/MypageMentee";
 import MentorProfile from "./pages/profileBox/MentorProfile";
@@ -30,7 +31,11 @@ import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
 import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
 import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
 import JournalDetail from "./pages/mypage/JournalDetail";
-import WriteColumnPage from "./pages/community/WriteColumnPage";
+import WriteConcern from "./pages/mentee/WriteConcern";
+import EditConcern from "./pages/mentee/EditConcern";
+import EditProfile from "./pages/mentor/EditProfile";
+import EditMentee from "./pages/mentee/EditMentee";
+import WriteReview from "./pages/mentee/WriteReview";
 
 function App() {
   return (
@@ -64,26 +69,20 @@ function App() {
         <Route path="/chat/mentor/:roomId" element={<ChatRoomMentor />}></Route>
         <Route path="/chat/mentee/:roomId" element={<ChatRoomMentee />}></Route>
         <Route
-          path="/chat-create/mentee/:roomId"
+          path="/chat-create/mentee/:mentorId"
           element={<CreateChat />}
         ></Route>
         <Route path="/category/mentor" element={<Category />}></Route>
         <Route path="/category/mentee" element={<Category />}></Route>
         <Route path="/matching" element={<Matching />}></Route>
+        <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
+        <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
         <Route
-          path="/mypage/mentor/:username"
-          element={<MyPageMentor />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/:username"
-          element={<MypageMentee />}
-        ></Route>
-        <Route
-          path="/profile/mentor/:username"
+          path="/profile/mentor/:mentorId"
           element={<MentorProfile />}
         ></Route>
         <Route
-          path="/profile/mentee/:username"
+          path="/profile/mentee/:menteeId"
           element={<MenteeProfile />}
         ></Route>
         <Route path="/community" element={<Community />}></Route>
@@ -109,6 +108,17 @@ function App() {
           path="/mypage/journal/detail/:id"
           element={<JournalDetail />}
         ></Route>
+        <Route path="/concern/write/" element={<WriteConcern />}></Route>
+        <Route path="/concern/edit/:id" element={<EditConcern />}></Route>
+        <Route
+          path="/mypage/mentor/edit/:username"
+          element={<EditProfile />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/edit/:username"
+          element={<EditMentee />}
+        ></Route>
+        <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
       </Routes>
     </Wrapper>
   );

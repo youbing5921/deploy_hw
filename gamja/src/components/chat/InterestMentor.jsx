@@ -4,75 +4,68 @@ import ChatMentor from "../../images/ChatMentor.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const mentorList = [
-  {
-    id: 1,
-    username: "나왕똑똑",
-    Category: ["가치관", "사랑", "인간관계"],
-    is_subscribe: true,
-  },
-  {
-    id: 2,
-    username: "나좀똑똑",
-    Category: ["생활지식", "재테크", "인간관계"],
-    is_subscribe: false,
-  },
-  {
-    id: 3,
-    username: "나덜똑똑",
-    Category: ["진로", "사랑", "인간관계"],
-    is_subscribe: false,
-  },
-  {
-    id: 4,
-    username: "나개똑똑",
-    Category: ["가치관", "사랑", "인간관계"],
-    is_subscribe: true,
-  },
-];
-
-const InterestMentee = () => {
+const InterestMentee = ({ interestList }) => {
+  const [like, setLike] = useState(interestList);
   const navigate = useNavigate();
-  const [subscriptions, setSubscriptions] = useState([]);
 
   useEffect(() => {
-    const initialSubscriptions = [];
-    mentorList.forEach((mentor) => {
-      initialSubscriptions[mentor.id] = mentor.is_subscribe;
-    });
-    setSubscriptions(initialSubscriptions);
-  }, []);
+    setLike(interestList);
+  }, [interestList]);
 
-  const onSubscribe = (id) => {
-    setSubscriptions((prevSubscriptions) => ({
-      ...prevSubscriptions,
-      [id]: !prevSubscriptions[id],
-    }));
+  const postLike = (mentor) => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/mentors/${mentor.id}/likes/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert("멘토 관심 설정이 완료되었습니다.");
+        setLike((prevMentors) =>
+          prevMentors.map((m) =>
+            m.mentor_id === mentor.mentor_id
+              ? { ...m, is_subscribed: !m.is_subscribed }
+              : m
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(mentor.mentor_id);
+        alert("멘토 관심 설정에 실패하였습니다.");
+      });
   };
 
   return (
     <>
-      {mentorList.map((mentor) => (
+      {like.map((mentor) => (
         <Wrapper key={mentor.id}>
-          <Both onClick={() => navigate(`/profile/mentor/${mentor.username}`)}>
+          <Both onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
             <Left>
               <Profile src={ChatMentor} alt="ChatMentor" />
             </Left>
 
             <Right>
-              <Username>{mentor.username}</Username>
-              {mentor.Category.map((cat, idx) => (
+              <Username>{mentor.mentor_name}</Username>
+              {mentor.interests_display.map((interest, idx) => (
                 <CategoryBox key={idx}>
-                  <Category>{cat}</Category>
+                  <Category>{interest.name}</Category>
                 </CategoryBox>
               ))}
             </Right>
           </Both>
           <SubscribeBox>
             <SubBtn
-              src={subscriptions[mentor.id] ? FollowYellow : FollowGray}
-              onClick={() => onSubscribe(mentor.id)}
+              src={mentor.is_subscribed ? FollowGray : FollowYellow}
+              alt={mentor.is_subscribed ? "Following" : "Follow"}
+              onClick={() => postLike(mentor)}
             />
           </SubscribeBox>
         </Wrapper>

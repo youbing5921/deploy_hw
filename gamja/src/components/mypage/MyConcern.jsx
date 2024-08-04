@@ -3,31 +3,7 @@ import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import { useNavigate } from "react-router-dom";
 
-const ReplyList = [
-  {
-    id: 1,
-    reply:
-      "사랑도 결국 현실이에요. 내가 고민하기 시작한 이상 문제는 이미 시작된거에요.",
-  },
-  {
-    id: 2,
-    reply: "돈은 어디까지나 극복 가능한 문제에요.",
-  },
-  {
-    id: 3,
-    reply: "본질에 집중해보세요.",
-  },
-  {
-    id: 4,
-    reply: "직접 경험해보며 느껴보세요. 계속해도될지 직접 결정해봐요.",
-  },
-  {
-    id: 5,
-    reply: "몰라요 나도.",
-  },
-];
-
-const MyConcern = () => {
+const MyConcern = ({ Info }) => {
   const navigate = useNavigate();
   return (
     <>
@@ -36,22 +12,21 @@ const MyConcern = () => {
           <Title>나의 한 줄 고민</Title>
           <ButtonBox>
             <Button>지난 고민 보기</Button>
-            <Button>고민 변경하기</Button>
+            <Button onClick={() => navigate("/concern/write/")}>
+              고민 생성하기
+            </Button>
           </ButtonBox>
         </Top>
         <Content>
-          <Concern>
-            사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도
-            괜찮을까요?
-          </Concern>
+          <Concern>{Info?.concern?.content}</Concern>
           <ReplyWrapper>
-            {ReplyList.map((reply) => (
+            {Info?.concern?.comments.map((comment, idx) => (
               <Reply
-                key={reply.id}
-                onClick={() => navigate("/profile/mentor/:username")}
+                key={idx}
+                onClick={() => navigate(`/profile/mentor/${comment.author}`)}
               >
                 <Profile src={MentorImg} alt="MentorImg" />
-                <Text>{reply.reply}</Text>
+                <Text>{comment.content}</Text>
               </Reply>
             ))}
           </ReplyWrapper>

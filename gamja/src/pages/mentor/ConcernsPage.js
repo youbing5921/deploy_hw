@@ -1,82 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import CategoryBar from "../../components/common/CategoryBar";
 import Concern from "../../components/mentor/Concern";
-
-const initConcernList = [
-  {
-    id: "1",
-    name: "돈이 뭐길래",
-    category1: "재테크",
-    category2: "생활지식",
-    category3: "인간관계",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "2",
-    name: "돈이 뭐길래",
-    category1: "생활지식",
-    category2: "가치관",
-    category3: "사랑",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "3",
-    name: "돈이 뭐길래",
-    category1: "사랑",
-    category2: "생활지식",
-    category3: "가치관",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "4",
-    name: "돈이 뭐길래",
-    category1: "사랑",
-    category2: "재테크",
-    category3: "인간관계",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "5",
-    name: "돈이 뭐길래",
-    category1: "사랑",
-    category2: "재테크",
-    category3: "인간관계",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-  {
-    id: "6",
-    name: "돈이 뭐길래",
-    category1: "사랑",
-    category2: "재테크",
-    category3: "인간관계",
-    comment:
-      "사랑하는 사람과 경제적 수준 차이가 심해요. 이 관계 계속해도 괜찮을까요?",
-  },
-];
+import axios from "axios";
 
 const ConcernsPage = () => {
-  const [concernList, setConcernList] = useState(initConcernList);
+  const [concernList, setConcernList] = useState([]);
+
+  const getMenteeConcern = () => {
+    axios
+      .get("http://127.0.0.1:8000/concerns/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setConcernList(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getMenteeConcern();
+  }, []);
+
   const [selectedCategory, setSelectedCategory] = useState("전체");
 
-  const filteredConcerns = concernList.filter(
+  const filteredConcerns = concernList?.filter(
     (concern) =>
       selectedCategory === "전체" ||
-      concern.category1 === selectedCategory ||
-      concern.category2 === selectedCategory ||
-      concern.category3 === selectedCategory
+      concern.interests.some((interest) => interest.name === selectedCategory)
   );
 
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={""} />
+        <TopBar txt={"멘티 돕기"} />
         <CategoryBar onSelectCategory={setSelectedCategory} />
       </TopContainer>
       <ConcernBox>

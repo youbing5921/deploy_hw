@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 import TopBar from "../../components/common/TopBar";
@@ -12,23 +13,28 @@ import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-let mypageInfo = [
-  {
-    id: "1",
-    name: "척척육은영",
-    category: ["가치관", "진로", "사랑"],
-    count: ["10", "20", "2"],
-    rating: "50",
-  },
-];
-
 const MyPageMentor = () => {
-  const [Info, setInfo] = useState(mypageInfo);
+  const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("accessToken", response.data.access);
   const refreshToken = "";
-
-  function logout() {
+  
+  const getMenteeMypage = () => {
+    axios
+      .get("http://127.0.0.1:8000/my-page/", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setInfo(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    
+     function logout() {
     axios
       .post(
         "http://127.0.0.1:8000/users/logout",
@@ -49,43 +55,45 @@ const MyPageMentor = () => {
       .catch((error) => {
         console.log(error);
       });
-  }
+     };
+    
+       useEffect(() => {
+    getMenteeMypage();
+  }, []);
 
   return (
     <>
-      {mypageInfo.map((info) => (
-        <Container key={info.id}>
-          <TopBar txt={"마이페이지"} $marginLeft={"154px"} />
-          <Both>
-            <Left>
-              <UserInfo profilImg={MenteeImg} Info={Info} />
-            </Left>
-            <Right>
-              <Rating>
-                <Title>나의 등대 지수</Title>
-                <SubTitle>나는 멘티들에게 얼마나 밝은 등대일까?</SubTitle>
-                <StarBox rating={info.rating} />
-              </Rating>
-              <ReviewBox>
-                <Title>나의 멘토링 후기</Title>
-                <Review />
-              </ReviewBox>
-            </Right>
-          </Both>
-          <HistoryBox>
-            <Title>나의 멘토링 내역</Title>
-            <MentorHistory Info={Info} />
-          </HistoryBox>
-          <JournalList txt={"일지"} $fontColor={"#fff"} $bgColor={"#03AED2"} />
-          <ColumnBox>
-            <Title>내가 스크랩한 칼럼</Title>
-            <Column />
-          </ColumnBox>
-          <ButtonBox>
-            <LogoutBtn onClick={logout} />
-          </ButtonBox>
-        </Container>
-      ))}
+      <Container>
+        <TopBar txt={"마이페이지"} $marginLeft={"154px"} />
+        <Both>
+          <Left>
+            <UserInfo profilImg={MenteeImg} Info={Info} />
+          </Left>
+          <Right>
+            <Rating>
+              <Title>나의 등대 지수</Title>
+              <SubTitle>나는 멘티들에게 얼마나 밝은 등대일까?</SubTitle>
+              <StarBox rating={Info.info?.rating} />
+            </Rating>
+            <ReviewBox>
+              <Title>나의 멘토링 후기</Title>
+              <Review Info={Info} />
+            </ReviewBox>
+          </Right>
+        </Both>
+        <HistoryBox>
+          <Title>나의 멘토링 내역</Title>
+          <MentorHistory Info={Info} />
+        </HistoryBox>
+        <JournalList txt={"일지"} $fontColor={"#fff"} $bgColor={"#03AED2"} />
+        <ColumnBox>
+          <Title>내가 스크랩한 칼럼</Title>
+          <Column />
+        </ColumnBox>
+        <ButtonBox>
+          <LogoutBtn onClick={logout} />
+        </ButtonBox>
+      </Container>
     </>
   );
 };

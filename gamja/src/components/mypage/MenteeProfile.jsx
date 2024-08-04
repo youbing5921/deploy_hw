@@ -5,17 +5,13 @@ import MentorImg from "../../images/MentorImg.svg";
 
 const MenteeProfile = ({ Info }) => {
   return (
-    <>
-      {Info.map((info) => (
-        <ProfileBox key={info.id}>
-          <Profile src={MentorImg} alt="profileImg" />
-          <NameBox>
-            <Username>{info.name}</Username>
-            <Next src={Arrow} alt="바로가기" />
-          </NameBox>
-        </ProfileBox>
-      ))}
-    </>
+    <ProfileBox>
+      <Profile src={MentorImg} alt="profileImg" />
+      <NameBox>
+        <Username>{Info.name}</Username>
+        <Next src={Arrow} alt="바로가기" />
+      </NameBox>
+    </ProfileBox>
   );
 };
 
@@ -24,6 +20,7 @@ export default MenteeProfile;
 const ProfileBox = styled.div`
   display: flex;
   height: 117px;
+  width: 101px;
   padding: 19px 24px;
   flex-direction: column;
   align-items: center;
