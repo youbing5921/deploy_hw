@@ -28,7 +28,7 @@ const MentorInfo = ({ infoList }) => {
       )
       .then((response) => {
         console.log(response.data);
-        alert("멘토 관심 설정이 완료되었습니다.");
+        alert(response.data);
         setMentors((prevMentors) =>
           prevMentors.map((m) =>
             m.mentor_id === mentor.mentor_id

@@ -59,7 +59,12 @@ const MyPageMentor = () => {
           <Title>나의 멘토링 내역</Title>
           <MentorHistory Info={Info} />
         </HistoryBox>
-        <JournalList txt={"일지"} $fontColor={"#fff"} $bgColor={"#03AED2"} />
+        <JournalList
+          txt={"일지"}
+          $fontColor={"#fff"}
+          $bgColor={"#03AED2"}
+          Info={Info}
+        />
         <ColumnBox>
           <Title>내가 스크랩한 칼럼</Title>
           <Column />

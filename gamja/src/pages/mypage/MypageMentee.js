@@ -12,7 +12,6 @@ import axios from "axios";
 
 const MypageMentee = () => {
   const [Info, setInfo] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getMenteeMypage = () => {
@@ -58,7 +57,7 @@ const MypageMentee = () => {
           <MyConcern Info={Info} />
         </ConcernBox>
         <JournalBox>
-          <JournalList txt={"일지"} />
+          <JournalList txt={"일지"} Info={Info} />
         </JournalBox>
         <ColumnBox>
           <Tit>내가 스크랩한 칼럼</Tit>

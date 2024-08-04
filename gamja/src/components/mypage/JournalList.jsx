@@ -32,7 +32,7 @@ const JournalInfo = [
   },
 ];
 
-const JournalList = ({ txt, $fontColor, $bgColor }) => {
+const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   if (matchPath("/mypage/mentee/:username", location)) {
@@ -42,7 +42,7 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           <Top>
             <Title>나의 멘토링 {txt}</Title>
             <WriteBtn
-              onClick={() => navigate("/mypage/mentee/journal/select")}
+              onClick={() => navigate(`/mypage/mentee/journal/select/`)}
               $fontColor={$fontColor}
               $bgColor={$bgColor}
             >
@@ -62,6 +62,7 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
             ))}
           </ListBox>
         </Container>
+        ;
       </>
     );
   }
@@ -72,7 +73,7 @@ const JournalList = ({ txt, $fontColor, $bgColor }) => {
           <Top>
             <Title>나의 멘토링 {txt}</Title>
             <WriteBtn
-              onClick={() => navigate("/mypage/mentor/journal/select")}
+              onClick={() => navigate(`/mypage/mentor/journal/select/`)}
               $fontColor={$fontColor}
               $bgColor={$bgColor}
             >

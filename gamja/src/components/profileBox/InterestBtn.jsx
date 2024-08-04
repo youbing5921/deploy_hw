@@ -22,10 +22,11 @@ const InterestBtn = ({ Info }) => {
       )
       .then((response) => {
         console.log(response.data);
-        alert("멘토 관심 설정이 완료되었습니다.");
-        setLike((prevLike) => ({
-          ...prevLike,
-          is_subscribed: response.data.is_subscribed,
+        alert(response.data);
+        const newSubscriptionStatus = response.data.is_subscribed;
+        setLike((prevState) => ({
+          ...prevState,
+          is_subscribed: newSubscriptionStatus,
         }));
       })
       .catch((error) => {
