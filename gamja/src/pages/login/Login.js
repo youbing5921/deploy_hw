@@ -39,6 +39,7 @@ const Login = () => {
       })
       .then((response) => {
         console.log("로그인 성공");
+        localStorage.clear();
         const userInfo = response.data;
         localStorage.setItem("access", userInfo.access);
         localStorage.setItem("is_mentor", userInfo.is_mentor);
