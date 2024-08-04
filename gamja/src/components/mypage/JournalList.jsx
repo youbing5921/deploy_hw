@@ -48,7 +48,11 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
           <ListBox>
             {journalInfo.map((journal) => (
               <React.Fragment key={journal.id}>
-                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                <Journal
+                  onClick={() =>
+                    navigate(`/mypage/journal/detail/${journal.id}`)
+                  }
+                >
                   <JournalTitle>{journal.title}</JournalTitle>
                   <WriteDate>{journal.date}</WriteDate>
                 </Journal>
@@ -78,7 +82,11 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
           <ListBox>
             {journalInfo.map((journal) => (
               <React.Fragment key={journal.id}>
-                <Journal onClick={() => navigate("/mypage/journal/detail/:id")}>
+                <Journal
+                  onClick={() =>
+                    navigate(`/mypage/journal/detail/${journal.id}`)
+                  }
+                >
                   <JournalTitle>{journal.title}</JournalTitle>
                   <WriteDate>{journal.date}</WriteDate>
                 </Journal>
