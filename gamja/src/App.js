@@ -30,6 +30,7 @@ import MenteeSelectChat from "./pages/mypage/MenteeSelectChat";
 import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
 import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
 import JournalDetail from "./pages/mypage/JournalDetail";
+import WriteColumnPage from "./pages/community/WriteColumnPage";
 
 function App() {
   return (
@@ -87,6 +88,7 @@ function App() {
         ></Route>
         <Route path="/community" element={<Community />}></Route>
         <Route path="/community/:colId" element={<Column />}></Route>
+        <Route path="/community/write" element={<WriteColumnPage />}></Route>
         <Route
           path="/mypage/mentor/journal/select"
           element={<MentorSelectChat />}

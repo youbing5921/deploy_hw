@@ -1,29 +1,52 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const CommunityPage = () => {
-  const { colId } = useParams();
   const column = useLocation().state.column;
   const [communityList, setCommunityList] = useState(column);
-  console.log(column);
+  const accessToken = localStorage.getItem("access");
+  const [scrap, setScrap] = useState(false);
+  console.log("지금은?", communityList);
 
   const toggleScraption = () => {
-    setCommunityList((prev) => ({
-      ...prev,
-      is_scraped: !prev.is_scraped,
-    }));
-    sendScrapInfo(column.id);
+    sendScrapInfo(communityList.id);
   };
 
   function sendScrapInfo(id) {
     axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`)
-      .then((response) => console.log(response.data))
+      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log("스크랩 결과", response.data.is_scraped);
+        setCommunityList(response.data.column);
+        setScrap(response.data.is_scraped);
+      })
       .catch((error) => console.log(error));
   }
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://127.0.0.1:8000/community/columns/${communityList.id}/`,
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log("초기값", response.data);
+        setCommunityList(response.data);
+        console.log(response.data.is_scraped);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <Container>
@@ -34,7 +57,7 @@ const CommunityPage = () => {
         <Header>
           <ColTitle>
             {communityList.title}
-            <ColCategory>{communityList.category}</ColCategory>
+            <ColCategory>{communityList.categories[0].name}</ColCategory>
           </ColTitle>
           <ColInfo>
             <p>
@@ -43,10 +66,8 @@ const CommunityPage = () => {
             </p>
             <ScraptionButton onClick={toggleScraption}>
               <img
-                src={`/img/${
-                  communityList.is_scraped ? "MentorStar" : "EmptyStar"
-                }.svg`}
-                alt={communityList.is_scraped ? "scraping" : "notScraping"}
+                src={`/img/${scrap ? "MentorStar" : "EmptyStar"}.svg`}
+                alt={scrap ? "scraping" : "notScraping"}
               />
             </ScraptionButton>
           </ColInfo>

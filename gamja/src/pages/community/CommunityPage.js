@@ -4,11 +4,14 @@ import TopBar from "../../components/community/TopBar";
 import CategoryBar from "../../components/community/CategoryBar";
 import CommunityContainer from "../../components/community/CommunityContainer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const CommunityPage = () => {
+  const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [filteredCategory, setFilteredCategory] = useState(communityList);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(
     () =>
@@ -32,7 +35,9 @@ const CommunityPage = () => {
 
   function sendScrapInfo(id) {
     axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`)
+      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   }
@@ -40,10 +45,13 @@ const CommunityPage = () => {
   // 서버에서 칼럼 목록 불러오기
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/community/columns/`)
+      .get(`http://127.0.0.1:8000/community/columns/`, null, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
+      })
       .then((response) => {
         setCommunityList(response.data);
         setFilteredCategory(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -55,10 +63,10 @@ const CommunityPage = () => {
   //   .post(
   //     `http://127.0.0.1:8000/community/columns/`,
   //     {
-  //       title: "어쩌구저쩌구",
-  //       content: "슈어아후나ㅓ루ㅏ누라ㅜ자ㅓ두라주라ㅜ",
+  //       title: "",
+  //       content: "숄라숄라",
   //       image: null,
-  //       categories: [1, 3],
+  //       categories: [5],
   //     },
   //     {
   //       headers: {
@@ -80,7 +88,9 @@ const CommunityPage = () => {
         toggleScraption={toggleScraption}
       />
       <WriteCol>
-        <button>칼럼 작성하기</button>
+        <button onClick={() => navigate("/community/write")}>
+          칼럼 작성하기
+        </button>
       </WriteCol>
     </Container>
   );
@@ -124,6 +134,7 @@ const WriteCol = styled.footer`
     width: 229px;
     height: 53px;
     border: 0;
+    cursor: pointer;
 
     color: #fff;
     text-align: center;
