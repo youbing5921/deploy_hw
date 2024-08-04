@@ -33,6 +33,7 @@ const MyPageMentor = () => {
       )
       .then((response) => {
         console.log(response.data);
+        localStorage.clear();
         alert("로그아웃이 완료되었습니다.");
         navigate("/login");
       })
