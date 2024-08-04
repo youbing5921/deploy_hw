@@ -10,7 +10,6 @@ import axios from "axios";
 
 const ChatRoomMentee = () => {
   const { roomId } = useParams();
-  // console.log(roomId);
   const [chatRoomData, setChatRoomData] = useState([]);
 
   useEffect(() => {

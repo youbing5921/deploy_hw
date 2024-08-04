@@ -53,7 +53,7 @@ const CreateChat = () => {
       })
       .then((response) => {
         console.log(response.data);
-        navigate(`/chat/mentee/${mentorId}`);
+        navigate(`/chat/mentee/${response.data.id}`);
       })
       .catch((error) => {
         console.log(error);

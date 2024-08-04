@@ -77,7 +77,7 @@ const MentorProfile = () => {
           </ReviewBox>
           <BtnBox>
             <InterestBtn Info={Info} />
-            <ChatBtn mentorId={mentorId} Info={Info} />
+            <ChatBtn mentorId={Info.info?.id} Info={Info} />
           </BtnBox>
         </MentorBox>
       </Container>
