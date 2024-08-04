@@ -5,12 +5,15 @@ import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import CategoryOval from "../../components/chat/CategoryOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
+import axios from "axios";
 
 const EditProfile = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [username, setUsername] = useState("");
+  const userId = localStorage.getItem("user_id");
+  const accessToken = localStorage.getItem("access");
 
   const toggleCategory = (value) => {
     setCategory((prev) => {
@@ -24,11 +27,33 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    setDisabled(category.length === 0 || username.length === 0);
+    setDisabled(category.length === 0 && username.length === 0);
   }, [category, username]);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+  };
+  const handleSubmit = () => {
+    const data = {
+      name: username,
+      interests: category,
+    };
+
+    axios
+      .patch(`http://127.0.0.1:8000/users/users/${userId}/`, data, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("회원정보 수정이 완료되었습니다.");
+        navigate(-1);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("회원정보 수정에 실패하였습니다.");
+      });
   };
 
   return (
@@ -60,11 +85,7 @@ const EditProfile = () => {
           )}
         </ButtonGroup>
         <SideText>최대 3개의 카테고리를 선택해주세요.</SideText>
-        <ChatBtn
-          disabled={disabled}
-          $active={!disabled}
-          onClick={() => navigate("/chat/mentee/:username")}
-        >
+        <ChatBtn disabled={disabled} $active={!disabled} onClick={handleSubmit}>
           회원정보 저장하기
         </ChatBtn>
       </Wrapper>
