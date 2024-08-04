@@ -11,7 +11,8 @@ const MentorReco = ({ infoList }) => {
   const [order, setOrder] = useState(0);
   const [leftDisabled, setLeftDisabled] = useState(true);
   const [rightDisabled, setRightDisabled] = useState(false);
-  let mentor = infoList[order];
+  const mentor = infoList[order];
+  const mentorInfo = mentor.info;
 
   const handleBtn = (e) => {
     if (e.target.className.includes("leftBtn")) {
@@ -38,26 +39,25 @@ const MentorReco = ({ infoList }) => {
   return (
     <MentorDiv>
       <OrderBtn disabled={leftDisabled} onClick={handleBtn} direction="left" />
-
       <MentorContainer>
         <ProfileBox>
           <ProfileImg src={MentorImg} alt="profileImg" />
           <Profile>
-            <Name>{mentor.name}</Name>
+            <Name>{mentorInfo.mentor_name}</Name>
             <MainCategory>
-              {mentor.category.map((elt, idx) => {
-                return <p key={idx}>{elt}</p>;
+              {mentorInfo.interests_display.map((elt, idx) => {
+                return <p key={idx}>{elt.name}</p>;
               })}
             </MainCategory>
           </Profile>
         </ProfileBox>
 
         <SemiTitle style={{ marginTop: "34px" }}>멘토님의 등대 지수</SemiTitle>
-        <RateBox rating={mentor.rating} />
+        <RateBox rating={mentorInfo.rating} />
 
         <HistoryBox>
           <SemiTitle>멘토님의 멘토링 내역</SemiTitle>
-          <MentorHistory mentor={mentor} />
+          <MentorHistory record={mentor.mentoringRecord} />
         </HistoryBox>
 
         <ReviewBox>

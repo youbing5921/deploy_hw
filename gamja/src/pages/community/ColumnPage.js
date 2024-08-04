@@ -4,15 +4,30 @@ import TopBar from "../../components/community/TopBar";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
+const is_mentor = localStorage.getItem("is_mentor") === "true";
+
 const CommunityPage = () => {
   const column = useLocation().state.column;
   const [communityList, setCommunityList] = useState(column);
   const accessToken = localStorage.getItem("access");
   const [scrap, setScrap] = useState(false);
+  const [subscribe, setSubscribe] = useState(false);
   console.log("지금은?", communityList);
+
+  const searchBtn = document.querySelector("#searchBtn");
+  searchBtn.style.display = "none";
 
   const toggleScraption = () => {
     sendScrapInfo(communityList.id);
+  };
+
+  const toggleSubscribe = (e) => {
+    e.stopPropagation();
+    setSubscribe((prev) => !prev);
+  };
+
+  const showMentorProfile = () => {
+    console.log("멘토 프로필 보여주기");
   };
 
   function sendScrapInfo(id) {
@@ -80,7 +95,19 @@ const CommunityPage = () => {
       </Column>
       <WriterInfo>
         <Text>
-          <WriterName>{communityList.author.name}</WriterName>
+          <div>
+            <WriterName onClick={showMentorProfile}>
+              {communityList.author.name}
+            </WriterName>
+            {is_mentor ? null : (
+              <SubscribeButton onClick={toggleSubscribe}>
+                <img
+                  src={`/img/Follow${subscribe ? "Yellow" : "Gray"}.svg`}
+                  alt={scrap ? "scraping" : "notScraping"}
+                />
+              </SubscribeButton>
+            )}
+          </div>
           <CategoryList>
             {communityList.author.mentor_profile.interests_display.map(
               (value, idx) => (
@@ -89,7 +116,7 @@ const CommunityPage = () => {
             )}
           </CategoryList>
         </Text>
-        <WriterImg />
+        <WriterImg onClick={showMentorProfile} />
       </WriterInfo>
     </Container>
   );
@@ -100,7 +127,7 @@ export default CommunityPage;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ededed;
+  background-color: #f8f8f8;
   width: 600px;
   height: 1230px;
   margin: 0 auto;
@@ -148,10 +175,12 @@ const ColCategory = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  background: rgba(3, 174, 210, 0.2);
+  background: ${is_mentor
+    ? "rgba(3, 174, 210, 0.2)"
+    : "rgba(253, 222, 85, 0.20)"};
   margin-left: auto;
 
-  color: #03aed2;
+  color: ${is_mentor ? "#03aed2" : "#FFD000"};
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;
@@ -184,6 +213,13 @@ const ScraptionButton = styled.button`
   img {
     width: 20px;
     height: 20px;
+  }
+`;
+
+const SubscribeButton = styled(ScraptionButton)`
+  margin: auto 0 auto 15px;
+  img {
+    width: 15px;
   }
 `;
 
@@ -220,7 +256,7 @@ const WriterInfo = styled.footer`
   height: 87px;
   padding: 20px 40px 30px 40px;
   margin-top: auto;
-  background-color: rgba(73, 73, 73, 0.2);
+  background-color: rgba(73, 73, 73, 0.1);
 `;
 
 const Text = styled.div`
@@ -229,6 +265,9 @@ const Text = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 12px;
+  div {
+    display: flex;
+  }
 `;
 
 const WriterName = styled.p`
@@ -239,6 +278,7 @@ const WriterName = styled.p`
   font-weight: 500;
   letter-spacing: -0.66px;
   margin: 0;
+  cursor: pointer;
 `;
 
 const CategoryList = styled.div`
@@ -253,9 +293,9 @@ const WriterCategory = styled.div`
   align-items: center;
   gap: 10px;
   border-radius: 20px;
-  background-color: #03aed2;
+  background-color: ${is_mentor ? "#03aed2" : "#FDDE55"};
 
-  color: #fff;
+  color: ${is_mentor ? "#fff" : "#494949"};
   text-align: center;
   font-family: Pretendard;
   font-size: 15px;
@@ -265,9 +305,10 @@ const WriterCategory = styled.div`
 `;
 
 const WriterImg = styled.img.attrs({
-  src: "/img/MentorImage.svg",
+  src: `/img/${is_mentor ? "Mentor" : "Mentee"}Image.svg`,
 })`
   width: 125px;
   height: 125px;
   margin: -80px -3px 0 auto;
+  cursor: pointer;
 `;

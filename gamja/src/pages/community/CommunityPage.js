@@ -12,6 +12,7 @@ const CommunityPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [filteredCategory, setFilteredCategory] = useState(communityList);
   const accessToken = localStorage.getItem("access");
+  const is_mentor = localStorage.getItem("is_mentor") === "true";
 
   useEffect(
     () =>
@@ -58,25 +59,6 @@ const CommunityPage = () => {
       });
   }, []);
 
-  // 칼럼 데이터 넣기
-  // axios
-  //   .post(
-  //     `http://127.0.0.1:8000/community/columns/`,
-  //     {
-  //       title: "",
-  //       content: "숄라숄라",
-  //       image: null,
-  //       categories: [5],
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("access")}`,
-  //       },
-  //     }
-  //   )
-  //   .then((response) => console.log(response.data))
-  //   .catch((error) => console.log(error));
-
   return (
     <Container>
       <TopContainer>
@@ -87,11 +69,13 @@ const CommunityPage = () => {
         communityList={filteredCategory}
         toggleScraption={toggleScraption}
       />
-      <WriteCol>
-        <button onClick={() => navigate("/community/write")}>
-          칼럼 작성하기
-        </button>
-      </WriteCol>
+      {is_mentor ? (
+        <WriteCol>
+          <button onClick={() => navigate("/community/write")}>
+            칼럼 작성하기
+          </button>
+        </WriteCol>
+      ) : null}
     </Container>
   );
 };

@@ -5,6 +5,7 @@ import MainContainer from "../../components/categoryAndMatching/MainContainer";
 import BackBtn from "../../components/categoryAndMatching/BackBtn";
 import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
+import axios from "axios";
 
 const Category = () => {
   const location = useLocation().pathname;
@@ -20,13 +21,35 @@ const Category = () => {
     } else {
       if (location === "/category/mentor" && category.length < 3) {
         e.target.id = "category_mentor_clicked";
-        setCategory((prev) => [...prev, e.target.value]);
+        setCategory((prev) => [...prev, value]);
       } else if (location === "/category/mentee") {
         e.target.id = "category_mentee_clicked";
-        setCategory((prev) => [...prev, e.target.value]);
+        setCategory((prev) => [...prev, value]);
       }
     }
   };
+
+  // axios
+  //   .post("http://127.0.0.1:8000/users/users/", {
+  //     username: "nefjnekdkne",
+  //     email: "rkl@jnkfnk.com",
+  //     password: "fnjkrn",
+  //     is_mentor: true,
+  //     name: "진멘토",
+  //     birth_date: "2020-02-11",
+  //     agreed_to_terms: true,
+  //     mentor_profile: {
+  //       interests: ["진로"],
+  //     },
+  //   })
+  //   .then((response) => {
+  //     alert("회원가입에 성공했습니다.");
+  //   })
+  //   .catch((error) => {
+  //     console.log(error.response.request.response);
+  //     //alert("회원가입에 실패했습니다.");
+  //     //navigate("/join/info");
+  //   });
 
   useEffect(() => {
     const titleOval = document.querySelector(".titleOval");
@@ -45,7 +68,7 @@ const Category = () => {
   if (location === "/category/mentor") {
     return (
       <MainContainer>
-        <NewBackBtn />
+        <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">전문 분야 설정</TitleOval>
         <TitleText>
           이지님은 멘티에게
@@ -57,7 +80,7 @@ const Category = () => {
           <button onClick={onClick} value="가치관">
             가치관
           </button>
-          <button onClick={onClick} value="돈・재테크">
+          <button onClick={onClick} value="재테크">
             돈・재테크
           </button>
           <button onClick={onClick} value="사랑">
@@ -78,9 +101,9 @@ const Category = () => {
         <NewBottonBtn
           className="bottomBtn"
           disabled={disabled}
-          onClick={() => {
-            console.log("카테고리 선택 완료");
-          }}
+          oonClick={() =>
+            navigate("/matching", { state: { category: category } })
+          }
         >
           고민 중인 멘티 돕기
         </NewBottonBtn>
@@ -90,7 +113,7 @@ const Category = () => {
   } else {
     return (
       <MainContainer>
-        <NewBackBtn />
+        <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">고민 설정</TitleOval>
         <TitleText>
           이지님은
@@ -102,7 +125,7 @@ const Category = () => {
           <button onClick={onClick} value="가치관">
             가치관
           </button>
-          <button onClick={onClick} value="돈,재테크">
+          <button onClick={onClick} value="재테크">
             돈・재테크
           </button>
           <button onClick={onClick} value="사랑">
@@ -124,7 +147,7 @@ const Category = () => {
           className="bottomBtn"
           disabled={disabled}
           onClick={() => {
-            navigate("/matching");
+            navigate("/matching", { state: { category: category } });
           }}
         >
           나에게 딱 맞는 멘토 찾기

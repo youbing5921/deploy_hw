@@ -45,7 +45,7 @@ const Login = () => {
         localStorage.setItem("is_mentor", userInfo.is_mentor);
         localStorage.setItem("name", userInfo.name);
         localStorage.setItem("refresh", userInfo.refresh);
-        localStorage.setItem("user_id", userInfo.userInfo);
+        localStorage.setItem("user_id", userInfo.user_id);
         localStorage.setItem("username", userInfo.username);
         navigate("/home");
       })
