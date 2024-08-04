@@ -16,23 +16,24 @@ const MyPageMentor = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access");
-  const refreshToken = "";
+  const refreshToken = localStorage.getItem("refresh");
 
   function logout() {
     axios
       .post(
-        "http://127.0.0.1:8000/users/logout",
+        "http://127.0.0.1:8000/users/logout/",
         {
           refresh: refreshToken,
         },
         {
           headers: {
-            Authorization: accessToken,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
       .then((response) => {
         console.log(response.data);
+        localStorage.clear();
         alert("로그아웃이 완료되었습니다.");
         navigate("/login");
       })
@@ -45,7 +46,7 @@ const MyPageMentor = () => {
     axios
       .get("http://127.0.0.1:8000/my-page/", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("access")}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
