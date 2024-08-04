@@ -2,42 +2,35 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 
-const reviewList = [
-  {
-    id: 1,
-    username: "돈이 뭐길래",
-    category: ["인간관계", "사랑"],
-    comment:
-      "닉값합니다! 진짜 척척박사세요. 다음에 또 고민이 생기면 육은영멘토님께 채팅해보려구요! 감사합니다 :)",
-  },
-];
-
-const Review = () => {
+const Review = ({ review }) => {
   return (
     <>
-      {reviewList.map((reviewInfo) => (
-        <Container key={reviewInfo.id}>
-          <Top>
-            <Left>
-              <Low>
-                <Profile src={MenteeImg} alt="menteeImg" />
-              </Low>
-              <Middle>
-                <Username>{reviewInfo.username}</Username>
-                {reviewInfo.category.map((cat, idx) => (
-                  <Category key={idx}>{cat}</Category>
-                ))}
-              </Middle>
-            </Left>
-            <Right>
-              <High>
-                <MoreBtn>더보기</MoreBtn>
-              </High>
-            </Right>
-          </Top>
-          <Comment>{reviewInfo.comment}</Comment>
-        </Container>
-      ))}
+      <Container>
+        {review.length === 0 ? null : (
+          <>
+            {" "}
+            <Top>
+              <Left>
+                <Low>
+                  <Profile src={MenteeImg} alt="menteeImg" />
+                </Low>
+                <Middle>
+                  <Username>{review.mentee_name}</Username>
+                  {review.chatroom_interests.map((elt, idx) => (
+                    <Category key={idx}>{elt.name}</Category>
+                  ))}
+                </Middle>
+              </Left>
+              <Right>
+                <High>
+                  <MoreBtn>더보기</MoreBtn>
+                </High>
+              </Right>
+            </Top>
+            <Comment>{review.content}</Comment>
+          </>
+        )}
+      </Container>
     </>
   );
 };

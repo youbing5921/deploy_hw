@@ -12,6 +12,7 @@ const Matching = () => {
   const navigate = useNavigate();
   const category = useLocation().state.category;
   const [mentorInfo, setMentorInfo] = useState([]);
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
     axios
@@ -22,7 +23,7 @@ const Matching = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       )
@@ -32,6 +33,22 @@ const Matching = () => {
       })
       .catch((error) => console.log(error));
   }, []);
+
+  function likeMentor() {
+    const name = document.querySelector("#mentorName").innerText;
+    console.log(name);
+    mentorInfo.map((mentor) => {
+      if (mentor.name === name) {
+        const id = mentor.info.id;
+        axios
+          .post(`http://127.0.0.1:8000/mentors/${id}/likes/`, null, {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          })
+          .then((response) => alert(response.data))
+          .catch((error) => console.log(error));
+      }
+    });
+  }
 
   if (mentorInfo.length === 0) {
     return <></>;
@@ -47,13 +64,7 @@ const Matching = () => {
         </TitleText>
         <MentorReco infoList={mentorInfo} />
         <BtnDiv>
-          <NewBottonBtn
-            onClick={() => {
-              alert("관심멘토로 설정되었습니다.");
-            }}
-          >
-            관심멘토로 설정하기
-          </NewBottonBtn>
+          <NewBottonBtn onClick={likeMentor}>관심멘토로 설정하기</NewBottonBtn>
           <NewBottonBtn1
             onClick={() => {
               console.log("멘토님께 채팅하기");

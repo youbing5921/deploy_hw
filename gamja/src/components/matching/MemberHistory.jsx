@@ -29,7 +29,7 @@ const users = [
   },
 ];
 
-const MentorHistory = ({ record }) => {
+const MentorHistory = ({ record, mentoring }) => {
   return (
     <Wrapper>
       <CategoryBox>
@@ -46,22 +46,22 @@ const MentorHistory = ({ record }) => {
         })}
       </CategoryBox>
       <Right>
-        {users.map((user) => (
-          <Container key={user.id}>
+        {mentoring.map((elt) => (
+          <Container key={elt.id}>
             <InfoBox>
               <PhotoBox>
                 <Profile src={MenteeImg} alt="profileImg" />
               </PhotoBox>
               <NameBox>
-                <Username>{user.username}</Username>
+                <Username>{elt.mentee_name}</Username>
                 <ContentCategoryBox>
-                  {user.categories.map((category, idx) => (
-                    <ContentCategory key={idx}>{category}</ContentCategory>
+                  {elt.interests.map((category, idx) => (
+                    <ContentCategory key={idx}>{category.name}</ContentCategory>
                   ))}
                 </ContentCategoryBox>
               </NameBox>
             </InfoBox>
-            <ConcernBox>{user.concern}</ConcernBox>
+            <ConcernBox>{elt.title}</ConcernBox>
           </Container>
         ))}
       </Right>

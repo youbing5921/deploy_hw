@@ -13,7 +13,7 @@ const MentorReco = ({ infoList }) => {
   const [rightDisabled, setRightDisabled] = useState(false);
   const mentor = infoList[order];
   const mentorInfo = mentor.info;
-
+  console.log(mentor);
   const handleBtn = (e) => {
     if (e.target.className.includes("leftBtn")) {
       if (order === 1) {
@@ -43,7 +43,7 @@ const MentorReco = ({ infoList }) => {
         <ProfileBox>
           <ProfileImg src={MentorImg} alt="profileImg" />
           <Profile>
-            <Name>{mentorInfo.mentor_name}</Name>
+            <Name id="mentorName">{mentorInfo.mentor_name}</Name>
             <MainCategory>
               {mentorInfo.interests_display.map((elt, idx) => {
                 return <p key={idx}>{elt.name}</p>;
@@ -57,12 +57,15 @@ const MentorReco = ({ infoList }) => {
 
         <HistoryBox>
           <SemiTitle>멘토님의 멘토링 내역</SemiTitle>
-          <MentorHistory record={mentor.mentoringRecord} />
+          <MentorHistory
+            record={mentor.mentoringRecord}
+            mentoring={mentor.myMentoring}
+          />
         </HistoryBox>
 
         <ReviewBox>
           <SemiTitle>멘토님의 멘토링 후기</SemiTitle>
-          <Review />
+          <Review review={mentor.myReview} />
         </ReviewBox>
       </MentorContainer>
 
