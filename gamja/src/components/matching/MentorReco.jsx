@@ -39,7 +39,7 @@ const MentorReco = ({ infoList }) => {
   return (
     <MentorDiv>
       <OrderBtn disabled={leftDisabled} onClick={handleBtn} direction="left" />
-      <MentorContainer>
+      <MentorContainer id="mentorContainer" data-key={mentorInfo.id}>
         <ProfileBox>
           <ProfileImg src={MentorImg} alt="profileImg" />
           <Profile>
