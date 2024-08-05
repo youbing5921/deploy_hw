@@ -5,13 +5,14 @@ import BackBtn from "./BackBtn";
 
 const TopBar = ({ txt, $marginLeft, search }) => {
   const navigate = useNavigate();
+
   return (
     <>
       <Header>
         <BackBtn onClick={() => navigate(-1)} />
         <Title $marginLeft={$marginLeft}>{txt}</Title>
-        <Search id="searchBtn" onClick={search}>
-          <img src="/img/searchBtn.svg" alt="search" />
+        <Search id="searchBtn">
+          <img src="/img/searchBtn.svg" alt="search" onClick={search} />
         </Search>
       </Header>
     </>
@@ -39,4 +40,7 @@ const Search = styled.button`
   border: 0;
   background-color: #f8f8f8;
   margin-left: auto;
+  img {
+    cursor: pointer;
+  }
 `;

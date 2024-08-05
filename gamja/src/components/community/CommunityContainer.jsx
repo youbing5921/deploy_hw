@@ -24,7 +24,7 @@ const CommunityContainer = ({
       <ForSpecialMentor style={{ display: forSpecialMentor ? "flex" : "none" }}>
         <img src="/img/MenteeImage.svg" alt="멘토 이미지" />
         <p>{mentor_name}</p>
-        <img src="/img/x.svg" alt="x" />
+        <img src="/img/x.svg" alt="x" onClick={() => navigate(-1)} />
       </ForSpecialMentor>
       {communityList.map((column) => (
         <ColumnBox key={column.id} onClick={() => onClick(column)}>
@@ -83,6 +83,7 @@ const ForSpecialMentor = styled.div`
     width: 25px;
     height: 25px;
     margin: auto 0 auto auto;
+    cursor: pointer;
   }
 `;
 
