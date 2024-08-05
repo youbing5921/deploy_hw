@@ -78,9 +78,11 @@ const CommunityPage = () => {
       })
       .then((response) => {
         setColumn(response.data);
-        console.log(response.data.is_scraped);
+        setScrap(response.data.is_scraped);
+        console.log("scrap:", response.data.is_scraped);
       })
       .catch((error) => console.log(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

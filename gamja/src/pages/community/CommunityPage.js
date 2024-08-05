@@ -27,6 +27,7 @@ const CommunityPage = () => {
             column.categories[0].name === selectedCategory
         )
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [selectedCategory]
   );
 
@@ -62,6 +63,7 @@ const CommunityPage = () => {
       .catch((error) => {
         console.log(error);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
