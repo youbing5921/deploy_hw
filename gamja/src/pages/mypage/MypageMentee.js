@@ -110,7 +110,7 @@ const MypageMentee = () => {
           <Column
             $categoryBg={"rgba(73, 73, 73, 0.20)"}
             $categoryColor={"#494949"}
-            Info={Info}
+            Info={Info.scrapedColumns}
           />
         </ColumnBox>
         <ButtonBox>
