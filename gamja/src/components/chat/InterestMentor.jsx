@@ -31,9 +31,7 @@ const InterestMentee = ({ interestList }) => {
         alert(response.data);
         setLike((prevMentors) =>
           prevMentors.map((m) =>
-            m.mentor_id === mentor.mentor_id
-              ? { ...m, is_subscribed: !m.is_subscribed }
-              : m
+            m.id === mentor.id ? { ...m, is_subscribed: !m.is_subscribed } : m
           )
         );
       })
@@ -46,8 +44,8 @@ const InterestMentee = ({ interestList }) => {
 
   return (
     <>
-      {like.map((mentor) => (
-        <Wrapper key={mentor.id}>
+      {like.map((mentor, idx) => (
+        <Wrapper key={idx}>
           <Both onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
             <Left>
               <Profile src={ChatMentor} alt="ChatMentor" />
@@ -126,6 +124,7 @@ const Category = styled.div`
 `;
 
 const SubscribeBox = styled.div`
+  display: flex;
   padding-top: 5px;
 `;
 
