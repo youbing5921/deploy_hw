@@ -62,7 +62,7 @@ const WriteColumnPage = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"커뮤니티"} />
+        <TopBar txt={"커뮤니티"} onClick={() => navigate("/community")} />
       </TopContainer>
       <Column>
         <Header>
