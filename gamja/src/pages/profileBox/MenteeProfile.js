@@ -52,7 +52,11 @@ const MenteeProfile = () => {
           </Top>
           <ConcernBox>
             <Title>멘티의 한 줄 고민</Title>
-            <Concern>{Info.concern?.content}</Concern>
+            <Concern>
+              {Info.concern?.content
+                ? Info.concern.content
+                : "아직 작성된 고민이 없어요"}
+            </Concern>
           </ConcernBox>
           <HistoryBox>
             <Title>멘티의 멘토링 내역</Title>

@@ -8,7 +8,7 @@ const ChatTopBar = ({ txt, $marginLeft }) => {
   return (
     <>
       <Header>
-        <BackBtn onClick={() => navigate("/chat-list/mentee/:username")} />
+        <BackBtn onClick={() => navigate(-1)} />
         <Title $marginLeft={$marginLeft}>{txt}</Title>
       </Header>
     </>

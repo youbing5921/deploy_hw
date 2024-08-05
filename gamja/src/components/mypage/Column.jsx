@@ -6,9 +6,12 @@ const Server_IP = process.env.REACT_APP_Server_IP;
 
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
-  console.log(Info);
+  const username = localStorage.getItem("name");
+  const hasScrap = Info?.length !== 0;
+  
   return (
     <>
+    {hasScrap ? (
       <Wapper>
         {Info?.map((colInfo, idx) => (
           <Container
@@ -24,23 +27,29 @@ const Column = ({ $categoryColor, $categoryBg, Info }) => {
                 colInfo.image
                   ? `${Server_IP}/${colInfo.image}`
                   : "/img/communitySampleImage.svg"
-              }
-              alt="mentorColumn"
-            />
-            {/* <Photo src={`${colInfo.image}`} alt="mentorColumn" /> */}
-            <InfoBox>
-              <Category
-                $categoryColor={$categoryColor}
-                $categoryBg={$categoryBg}
-              >
-                {colInfo.categories[0].name}
-              </Category>
-              <Title>{colInfo.title}</Title>
-              <Author>{colInfo.author.name}</Author>
-            </InfoBox>
-          </Container>
-        ))}
-      </Wapper>
+                }
+                alt="mentorColumn"
+              />
+              <InfoBox>
+                <Category
+                  $categoryColor={$categoryColor}
+                  $categoryBg={$categoryBg}
+                >
+                  {colInfo.categories[0].name}
+                </Category>
+                <Title>{colInfo.title}</Title>
+                <Author>{colInfo.author.name}</Author>
+              </InfoBox>
+            </Container>
+          ))}
+        </Wapper>
+      ) : (
+        <BlankContainer>
+          <BlankText>
+            커뮤니티에서 {username}님께 도움이 될만한 칼럼을 스크랩해 보세요
+          </BlankText>
+        </BlankContainer>
+      )}
     </>
   );
 };
@@ -100,4 +109,17 @@ const Author = styled.div`
   color: #a4a4a4;
   font-size: 10px;
   font-weight: 500;
+`;
+
+const BlankContainer = styled.div`
+  margin-top: 17px;
+  border-radius: 15px;
+  background: #f8f8f8;
+  padding: 25px 20px;
+  width: 480px;
+`;
+const BlankText = styled.div`
+  color: #494949;
+  font-size: 15px;
+  font-weight: 600;
 `;
