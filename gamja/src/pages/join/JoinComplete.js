@@ -71,7 +71,7 @@ const JoinComplete = () => {
             <p>
               지금 로그인하고
               <br />
-              오직 김이지님을 위한
+              오직 {userInfo.name}님을 위한
               <br />
               든든한 멘토님을 만나보세요!
             </p>
