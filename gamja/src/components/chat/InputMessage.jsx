@@ -16,9 +16,10 @@ const InputMessage = ({ roomId, onMessageSent }) => {
   const accessToken = localStorage.getItem("access");
 
   const postMessage = () => {
+    const Server_IP = process.env.REACT_APP_Server_IP;
     axios
       .post(
-        `http://127.0.0.1:8000/chat/${roomId}/add-chat/`,
+        `${Server_IP}/chat/${roomId}/add-chat/`,
         {
           message: message,
         },

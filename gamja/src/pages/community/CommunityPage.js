@@ -6,6 +6,8 @@ import CommunityContainer from "../../components/community/CommunityContainer";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const CommunityPage = () => {
   const navigate = useNavigate();
   const [communityList, setCommunityList] = useState([]);
@@ -37,7 +39,7 @@ const CommunityPage = () => {
       return;
     } else {
       axios
-        .get(`http://127.0.0.1:8000/community/columns/?search=${searchText}`)
+        .get(`${Server_IP}/community/columns/?search=${searchText}`)
         .then((response) => {
           console.log(response.data);
           setFilteredCategory(response.data);
@@ -62,8 +64,9 @@ const CommunityPage = () => {
   // 서버에서 칼럼 목록 불러오기
   useEffect(() => {
     const uri = forSpecialMentor ? `/mentor/?mentor_id=${mentor_id}` : `/`;
+    const Server_IP = process.env.REACT_APP_Server_IP;
     axios
-      .get(`http://127.0.0.1:8000/community/columns${uri}`, {
+      .get(`${Server_IP}/community/columns${uri}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {

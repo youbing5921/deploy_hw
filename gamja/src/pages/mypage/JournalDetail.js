@@ -4,6 +4,8 @@ import styled from "styled-components";
 import TopBar from "../../components/mypage/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const JournalDetail = () => {
   const accessToken = localStorage.getItem("access");
   const [detail, setDetail] = useState([]);
@@ -12,7 +14,7 @@ const JournalDetail = () => {
   useEffect(() => {
     const getDetailJournal = () => {
       axios
-        .get(`http://127.0.0.1:8000/log/${id}/`, {
+        .get(`${Server_IP}/log/${id}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

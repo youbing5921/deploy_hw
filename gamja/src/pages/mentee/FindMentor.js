@@ -6,6 +6,8 @@ import CategoryBar from "../../components/common/CategoryBar";
 import MentorInfo from "../../components/mentee/MentorInfo";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const FindMentor = () => {
   const navigate = useNavigate();
   const [infoList, setInfoList] = useState([]);
@@ -15,7 +17,7 @@ const FindMentor = () => {
   useEffect(() => {
     const getMentorInfo = () => {
       axios
-        .get("http://127.0.0.1:8000/mentors/", {
+        .get(`${Server_IP}/mentors/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MoreReview = ({ reviewId }) => {
   const [reviews, setReviews] = useState([]);
   const accessToken = localStorage.getItem("access");
@@ -11,7 +13,7 @@ const MoreReview = ({ reviewId }) => {
     const getReviewMore = () => {
       console.log(reviewId);
       axios
-        .get(`http://127.0.0.1:8000/review/${reviewId}/mentors/`, {
+        .get(`${Server_IP}/review/${reviewId}/mentors/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

@@ -10,6 +10,8 @@ import Column from "../../components/mypage/Column.jsx";
 import LogoutWithdrawBtn from "../../components/mypage/LogoutWithdrawBtn.jsx";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MypageMentee = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ const MypageMentee = () => {
     } else {
       axios
         .post(
-          "http://127.0.0.1:8000/users/logout/",
+          `${Server_IP}/users/logout/`,
           {
             refresh: refreshToken,
           },
@@ -50,9 +52,7 @@ const MypageMentee = () => {
     } else {
       axios
         .delete(
-          `http://127.0.0.1:8000//users/users/${localStorage.getItem(
-            "user_id"
-          )}/`,
+          `${Server_IP}//users/users/${localStorage.getItem("user_id")}/`,
           {
             headers: { Authorization: `Bearer ${accessToken}` },
           }
@@ -68,7 +68,7 @@ const MypageMentee = () => {
   useEffect(() => {
     const getMenteeMypage = () => {
       axios
-        .get("http://127.0.0.1:8000/my-page/", {
+        .get(`${Server_IP}/my-page/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

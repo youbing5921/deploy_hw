@@ -8,6 +8,8 @@ import InputStyle from "../../components/login/InputStyle";
 import InputLabel from "../../components/login/InputLabel";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const FindIdPw = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -40,9 +42,7 @@ const FindIdPw = () => {
   function findId(name, email) {
     console.log(name, email);
     axios
-      .get(
-        `http://127.0.0.1:8000/users/get-user-id/?name=${name}&email=${email}`
-      )
+      .get(`${Server_IP}/users/get-user-id/?name=${name}&email=${email}`)
       .then((response) => {
         const username = response.data.username;
         navigate("/login/findId/result", {
@@ -57,9 +57,7 @@ const FindIdPw = () => {
 
   function findPw(id, email) {
     axios
-      .get(
-        `http://127.0.0.1:8000/users/reset-user-pw/?username=${id}&email=${email}`
-      )
+      .get(`${Server_IP}/users/reset-user-pw/?username=${id}&email=${email}`)
       .then((response) => {
         const password = response.data.new_password;
         navigate("/login/findPw/result", {

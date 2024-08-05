@@ -5,6 +5,7 @@ import Today from "../../components/community/Today";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
 const categoryList = [
   "가치관",
   "재테크",
@@ -49,7 +50,7 @@ const WriteColumnPage = () => {
     formData.append("categories", categories);
 
     axios
-      .post(`http://127.0.0.1:8000/community/columns/`, formData, {
+      .post(`${Server_IP}/community/columns/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("access")}`,
           "Content-Type": "multipart/form-data",

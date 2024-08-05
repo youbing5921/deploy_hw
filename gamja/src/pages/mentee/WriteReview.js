@@ -7,6 +7,8 @@ import WriteRate from "../../components/mentee/WriteRate";
 import axios from "axios";
 import SaveReview from "../../components/mentee/SaveReview";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const WriteReview = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
@@ -19,7 +21,7 @@ const WriteReview = () => {
   useEffect(() => {
     const getMessage = () => {
       axios
-        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+        .get(`${Server_IP}/chat/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -41,7 +43,7 @@ const WriteReview = () => {
 
     const getProfile = () => {
       axios
-        .get(`http://127.0.0.1:8000/profile/${chatRoomData.mentor_id}/`, {
+        .get(`${Server_IP}/profile/${chatRoomData.mentor_id}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -72,7 +74,7 @@ const WriteReview = () => {
     console.log("Submitting data:", data);
 
     axios
-      .post("http://127.0.0.1:8000/review/", data, {
+      .post(`${Server_IP}/review/`, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

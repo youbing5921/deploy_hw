@@ -7,6 +7,8 @@ import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const ChatRoomMentor = () => {
   const { roomId } = useParams();
   const [chatRoomData, setChatRoomData] = useState([]);
@@ -15,7 +17,7 @@ const ChatRoomMentor = () => {
   useEffect(() => {
     const getMessage = () => {
       axios
-        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+        .get(`${Server_IP}/chat/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

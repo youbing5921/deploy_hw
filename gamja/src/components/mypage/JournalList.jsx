@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import { matchPath } from "react-router";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
@@ -13,8 +15,9 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
 
   useEffect(() => {
     const getJournalList = () => {
+      const Server_IP = process.env.REACT_APP_Server_IP;
       axios
-        .get("http://127.0.0.1:8000/log/", {
+        .get(`${Server_IP}/log/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

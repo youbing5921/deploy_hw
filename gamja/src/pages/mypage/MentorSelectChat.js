@@ -5,6 +5,8 @@ import SubBar from "../../components/mypage/SubBar";
 import RecentChat from "../../components/mypage/RecentChat";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MentorSelectChat = () => {
   const [chatList, setChatList] = useState([]);
   const accessToken = localStorage.getItem("access");
@@ -12,7 +14,7 @@ const MentorSelectChat = () => {
   useEffect(() => {
     const getChatList = () => {
       axios
-        .get("http://127.0.0.1:8000/chat/", {
+        .get(`${Server_IP}/chat/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

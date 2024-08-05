@@ -7,6 +7,8 @@ import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MentorInfo = ({ infoList }) => {
   const [mentors, setMentors] = useState(infoList);
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const MentorInfo = ({ infoList }) => {
   const postLike = (mentor) => {
     axios
       .post(
-        `http://127.0.0.1:8000/mentors/${mentor.mentor_id}/likes/`,
+        `${Server_IP}/mentors/${mentor.mentor_id}/likes/`,
         {},
         {
           headers: {

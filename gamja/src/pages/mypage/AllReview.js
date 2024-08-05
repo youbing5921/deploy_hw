@@ -4,13 +4,15 @@ import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 import ReviewMore from "../../components/mypage/ReviewMore";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const AllReview = () => {
   const [reviews, setReviews] = useState([]);
   const accessToken = localStorage.getItem("access");
   useEffect(() => {
     const getReviewMore = () => {
       axios
-        .get("http://127.0.0.1:8000/review/", {
+        .get(`${Server_IP}/review/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

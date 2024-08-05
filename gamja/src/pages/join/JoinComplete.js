@@ -6,6 +6,8 @@ import BottonBtn from "../../components/join/BottonBtn";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const JoinComplete = () => {
   const location = useLocation();
   const role = location.state.role;
@@ -16,7 +18,7 @@ const JoinComplete = () => {
   useEffect(() => {
     if (role === "mento") {
       axios
-        .post("http://127.0.0.1:8000/users/users/", {
+        .post(`${Server_IP}/users/users/`, {
           username: userInfo.username,
           email: userInfo.email,
           password: userInfo.password,
@@ -38,7 +40,7 @@ const JoinComplete = () => {
         });
     } else {
       axios
-        .post("http://127.0.0.1:8000/users/users/", {
+        .post(`${Server_IP}/users/users/`, {
           username: userInfo.username,
           email: userInfo.email,
           password: userInfo.password,

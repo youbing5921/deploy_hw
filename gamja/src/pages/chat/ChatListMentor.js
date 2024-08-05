@@ -6,6 +6,8 @@ import RecentChat from "../../components/chat/RecentChat";
 import SuggestMentee from "../../components/chat/SuggestMentee";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const ChatListMentee = () => {
   const [selectedNav, setSelectedNav] = useState("recent");
   const [chatList, setChatList] = useState([]);
@@ -15,7 +17,7 @@ const ChatListMentee = () => {
   useEffect(() => {
     const getChatList = () => {
       axios
-        .get("http://127.0.0.1:8000/chat/", {
+        .get(`${Server_IP}/chat/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -31,7 +33,7 @@ const ChatListMentee = () => {
 
     const getSuggestList = () => {
       axios
-        .get("http://127.0.0.1:8000/chat/", {
+        .get(`${Server_IP}/chat/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

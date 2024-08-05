@@ -8,6 +8,8 @@ import InputStyle from "../../components/login/InputStyle";
 import InputLabel from "../../components/login/InputLabel";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const Login = () => {
   const [id, setId] = useState("");
   const [pw, setPw] = useState("");
@@ -33,7 +35,7 @@ const Login = () => {
   // 서버로 데이터 전송
   function login() {
     axios
-      .post("http://127.0.0.1:8000/users/login/", {
+      .post(`${Server_IP}/users/login/`, {
         username: id,
         password: pw,
       })

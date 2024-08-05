@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
+const Server_IP = process.env.REACT_APP_Server_IP;
 
 const CommunityContainer = ({
   communityList,
@@ -28,7 +29,7 @@ const CommunityContainer = ({
 
   function sendScrapInfo(id) {
     axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+      .post(`${Server_IP}/community/columns/${id}/scrap/`, null, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {

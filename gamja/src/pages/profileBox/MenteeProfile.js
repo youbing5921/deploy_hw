@@ -5,6 +5,8 @@ import xBtn from "../../images/xBtn.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MenteeProfile = () => {
   const { menteeId } = useParams();
   console.log(menteeId);
@@ -16,7 +18,7 @@ const MenteeProfile = () => {
   useEffect(() => {
     const getProfile = () => {
       axios
-        .get(`http://127.0.0.1:8000/profile/${menteeId}/`, {
+        .get(`${Server_IP}/profile/${menteeId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
