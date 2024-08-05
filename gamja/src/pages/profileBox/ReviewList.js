@@ -12,7 +12,6 @@ import ChatBtn from "../../components/profileBox/ChatBtn";
 const ReviewList = () => {
   const accessToken = localStorage.getItem("access");
   const { mentorId } = useParams();
-
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
   const [reviewId, setReviewId] = useState([]);
@@ -28,13 +27,14 @@ const ReviewList = () => {
         .then((response) => {
           console.log(response.data);
           setInfo(response.data);
-          setReviewId(response.data.info.id);
+          setReviewId(response.data?.info?.id);
         })
         .catch((error) => {
           console.log(mentorId);
           console.log(error);
         });
     };
+
     getProfile();
   }, [accessToken, mentorId]);
 

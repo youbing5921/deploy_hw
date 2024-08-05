@@ -9,6 +9,7 @@ const MoreReview = ({ reviewId }) => {
 
   useEffect(() => {
     const getReviewMore = () => {
+      console.log(reviewId);
       axios
         .get(`http://127.0.0.1:8000/review/${reviewId}/mentors/`, {
           headers: {
@@ -28,7 +29,7 @@ const MoreReview = ({ reviewId }) => {
 
   return (
     <>
-      {reviews.map((review) => (
+      {reviews?.map((review) => (
         <Container key={review.id}>
           <Top>
             <Left>
