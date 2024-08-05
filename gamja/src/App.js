@@ -39,6 +39,7 @@ import WriteReview from "./pages/mentee/WriteReview";
 import AllConcerns from "./pages/mypage/AllConcerns";
 import ReviewList from "./pages/profileBox/ReviewList";
 import AllReview from "./pages/mypage/AllReview";
+import TermDetail from "./pages/join/TermDetail";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         {/* 회원가입 */}
         <Route path="/join" element={<WelcomePage />}></Route>
         <Route path="/join/tos" element={<TermsOfServicePage />}></Route>
+        <Route path="/join/tos/detail/:id" element={<TermDetail />}></Route>
         <Route path="/join/info" element={<InputInfo />}></Route>
         <Route path="/join/category" element={<ChooseCategory />}></Route>
         <Route path="/join/complete" element={<JoinComplete />}></Route>

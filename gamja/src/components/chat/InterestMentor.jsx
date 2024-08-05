@@ -16,9 +16,10 @@ const InterestMentee = ({ interestList }) => {
   }, [interestList]);
 
   const postLike = (mentor) => {
+    const Server_IP = process.env.REACT_APP_Server_IP;
     axios
       .post(
-        `http://127.0.0.1:8000/mentors/${mentor.id}/likes/`,
+        `${Server_IP}/mentors/${mentor.id}/likes/`,
         {},
         {
           headers: {

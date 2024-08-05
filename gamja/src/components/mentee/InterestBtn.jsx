@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const InterestBtn = ({ Info }) => {
   const [like, setLike] = useState(Info);
   const accessToken = localStorage.getItem("access");
@@ -11,9 +13,10 @@ const InterestBtn = ({ Info }) => {
   }, [Info]);
 
   const postLike = () => {
+    const Server_IP = process.env.REACT_APP_Server_IP;
     axios
       .post(
-        `http://127.0.0.1:8000/mentors/${like.info.id}/likes/`,
+        `${Server_IP}/mentors/${like.info.id}/likes/`,
         {},
         {
           headers: {

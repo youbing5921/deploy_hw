@@ -9,6 +9,8 @@ import MoreReview from "../../components/profileBox/MoreReview";
 import InterestBtn from "../../components/profileBox/InterestBtn";
 import ChatBtn from "../../components/profileBox/ChatBtn";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const ReviewList = () => {
   const accessToken = localStorage.getItem("access");
   const { mentorId } = useParams();
@@ -19,7 +21,7 @@ const ReviewList = () => {
   useEffect(() => {
     const getProfile = () => {
       axios
-        .get(`http://127.0.0.1:8000/profile/${mentorId}/`, {
+        .get(`${Server_IP}/profile/${mentorId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

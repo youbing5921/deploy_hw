@@ -8,6 +8,8 @@ import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import MentorReco from "../../components/matching/MentorReco";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const Matching = () => {
   const navigate = useNavigate();
   const category = useLocation().state.category;
@@ -24,7 +26,7 @@ const Matching = () => {
   useEffect(() => {
     axios
       .post(
-        `http://127.0.0.1:8000/matching/`,
+        `${Server_IP}/matching/`,
         {
           interests: category,
         },
@@ -49,7 +51,7 @@ const Matching = () => {
       if (mentor.name === name) {
         const id = mentor.info.id;
         axios
-          .post(`http://127.0.0.1:8000/mentors/${id}/likes/`, null, {
+          .post(`${Server_IP}/mentors/${id}/likes/`, null, {
             headers: { Authorization: `Bearer ${accessToken}` },
           })
           .then((response) => alert(response.data))

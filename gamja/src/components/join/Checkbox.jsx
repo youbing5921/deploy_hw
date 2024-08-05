@@ -1,11 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Checkbox = ({ element, onChange }) => {
+  const navigate = useNavigate();
   const id = element.id;
   const text = element.text;
   const required = element.required;
-  const detail = element.detail;
 
   if (required) {
     return (
@@ -18,8 +19,13 @@ const Checkbox = ({ element, onChange }) => {
           onChange={onChange}
         />
         <LabelStyle htmlFor={id}>{text}</LabelStyle>
-        {detail !== null ? (
-          <DetailStyle id={id} href="" detail={detail}>
+        {id !== 1 ? (
+          <DetailStyle
+            id={id}
+            onClick={() =>
+              navigate(`/join/tos/detail/${id}`, { state: { id: id } })
+            }
+          >
             보기
           </DetailStyle>
         ) : null}
@@ -30,11 +36,14 @@ const Checkbox = ({ element, onChange }) => {
       <InputDiv>
         <input id={id} type="checkbox" required={false} onChange={onChange} />
         <LabelStyle htmlFor={id}>{text}</LabelStyle>
-        {detail !== null ? (
-          <DetailStyle id={id} href="" detail={detail}>
-            보기
-          </DetailStyle>
-        ) : null}
+        <DetailStyle
+          id={id}
+          onClick={() =>
+            navigate(`/join/tos/detail/${id}`, { state: { id: id } })
+          }
+        >
+          보기
+        </DetailStyle>
       </InputDiv>
     );
   }
@@ -83,6 +92,9 @@ const DetailStyle = styled.a`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-decoration: underline;
+  text-underline-position: under;
+  cursor: pointer;
 `;
 
 export default Checkbox;

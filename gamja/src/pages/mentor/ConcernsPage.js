@@ -5,6 +5,8 @@ import CategoryBar from "../../components/common/CategoryBar";
 import Concern from "../../components/mentor/Concern";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const ConcernsPage = () => {
   const [concernList, setConcernList] = useState([]);
   const accessToken = localStorage.getItem("access");
@@ -12,7 +14,7 @@ const ConcernsPage = () => {
   useEffect(() => {
     const getMenteeConcern = () => {
       axios
-        .get("http://127.0.0.1:8000/concerns/", {
+        .get(`${Server_IP}/concerns/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },

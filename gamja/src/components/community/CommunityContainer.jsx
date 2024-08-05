@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
+const Server_IP = process.env.REACT_APP_Server_IP;
 
 const CommunityContainer = ({
   communityList,
@@ -28,7 +29,7 @@ const CommunityContainer = ({
 
   function sendScrapInfo(id) {
     axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+      .post(`${Server_IP}/community/columns/${id}/scrap/`, null, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
@@ -52,13 +53,27 @@ const CommunityContainer = ({
             src={column.image ? column.image : "/img/communitySampleImage.svg"}
           />
           <Content>
-            <Category>{column.categories[0].name}</Category>
+            <Category
+              style={{
+                backgroundColor: forSpecialMentor
+                  ? "rgba(253, 222, 85, 0.20)"
+                  : null,
+              }}
+            >
+              {column.categories[0].name}
+            </Category>
             <Title>{column.title}</Title>
             <Username>{mentor_name}</Username>
           </Content>
           <SubscribeButton onClick={(e) => toggleScraption(e, column.id)}>
             <img
-              src={`/img/${column.is_scraped ? "MentorStar" : "EmptyStar"}.svg`}
+              src={`/img/${
+                column.is_scraped
+                  ? is_mentor
+                    ? "MentorStar"
+                    : "MenteeStar"
+                  : "EmptyStar"
+              }.svg`}
               alt={column.is_scraped ? "Following" : "NotFollow"}
             />
           </SubscribeButton>

@@ -7,6 +7,8 @@ import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const WriteConcern = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
@@ -40,7 +42,7 @@ const WriteConcern = () => {
     };
 
     axios
-      .post("http://127.0.0.1:8000/concerns/", data, {
+      .post(`${Server_IP}/concerns/`, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

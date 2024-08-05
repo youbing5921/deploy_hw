@@ -5,6 +5,8 @@ import MenteeImg from "../../images/MenteeImg.svg";
 import SendBtn from "../../images/sendBtn.svg";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const Concern = ({ concernList }) => {
   const navigate = useNavigate();
   const [contents, setContents] = useState({});
@@ -21,7 +23,7 @@ const Concern = ({ concernList }) => {
     console.log(concernId);
     axios
       .post(
-        `http://127.0.0.1:8000/concerns/${concernId}/comments/`,
+        `${Server_IP}/concerns/${concernId}/comments/`,
         {
           content: contents[concernId] || "",
         },

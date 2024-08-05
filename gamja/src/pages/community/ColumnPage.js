@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
+const Server_IP = process.env.REACT_APP_Server_IP;
 
 const CommunityPage = () => {
   const receivedColumn = useLocation().state.column;
@@ -16,10 +17,9 @@ const CommunityPage = () => {
     parseInt(localStorage.getItem("user_id")) ===
     column.author.mentor_profile.user;
   const existImg =
-    column.image !==
-    "http://127.0.0.1:8000/media/column_images/voyage_default.png";
+    column.image !== `${Server_IP}/media/column_images/voyage_default.png` &&
+    column.image !== null;
   const navigate = useNavigate();
-  console.log(column);
 
   const toggleScraption = () => {
     sendScrapInfo(column.id);
@@ -41,7 +41,7 @@ const CommunityPage = () => {
       return;
     } else {
       axios
-        .delete(`http://127.0.0.1:8000/community/columns/${column.id}/`, {
+        .delete(`${Server_IP}/community/columns/${column.id}/`, {
           headers: { Authorization: `Bearer ${accessToken}` },
         })
         .then((response) => {
@@ -54,7 +54,7 @@ const CommunityPage = () => {
 
   function sendScrapInfo(id) {
     axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+      .post(`${Server_IP}/community/columns/${id}/scrap/`, null, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
@@ -70,7 +70,7 @@ const CommunityPage = () => {
     const searchBtn = document.querySelector("#searchBtn");
     searchBtn.style.display = "none";
     axios
-      .get(`http://127.0.0.1:8000/community/columns/${column.id}/`, {
+      .get(`${Server_IP}/community/columns/${column.id}/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -100,7 +100,13 @@ const CommunityPage = () => {
             </p>
             <ScraptionButton onClick={toggleScraption}>
               <img
-                src={`/img/${scrap ? "MentorStar" : "EmptyStar"}.svg`}
+                src={`/img/${
+                  scrap
+                    ? is_mentor
+                      ? "MentorStar"
+                      : "MenteeStar"
+                    : "EmptyStar"
+                }.svg`}
                 alt={scrap ? "scraping" : "notScraping"}
               />
             </ScraptionButton>

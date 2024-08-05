@@ -8,31 +8,11 @@ import Checkbox from "../../components/join/Checkbox";
 import TitleOval from "../../components/join/TitleOval";
 
 const tos = [
-  { id: 1, text: "(필수) 만 14세 이상입니다", required: true, detail: null },
-  {
-    id: 2,
-    text: "(필수) 이용약관",
-    required: true,
-    detail: "이용약관에 대한 내용",
-  },
-  {
-    id: 3,
-    text: "(필수) 개인정보 수집 및 이용동의",
-    required: true,
-    detail: "개인정보 수집 및 이용동의에 대한 내용",
-  },
-  {
-    id: 4,
-    text: "(필수) 김과외 표준규정",
-    required: true,
-    detail: "김과외 표준규정에 대한 내용",
-  },
-  {
-    id: 5,
-    text: "(선택) 마케팅 정보 수신동의",
-    required: false,
-    detail: "마케팅 정보 수신동의에 대한 내용",
-  },
+  { id: 1, text: "(필수) 만 14세 이상입니다", required: true },
+  { id: 2, text: "(필수) 이용약관", required: true },
+  { id: 3, text: "(필수) 개인정보 수집 및 이용동의", required: true },
+  { id: 4, text: "(필수) 김과외 표준규정", required: true },
+  { id: 5, text: "(선택) 마케팅 정보 수신동의", required: false },
 ];
 
 const TermsOfServicePage = () => {
@@ -62,7 +42,7 @@ const TermsOfServicePage = () => {
 
   return (
     <MainContainer>
-      <BackBtn />
+      <BackBtn onClick={() => navigate("/join")} />
       <TitleOval className="titleOval">이용약관 동의</TitleOval>
       <TitleText>새로운 계정을 만들어볼까요?</TitleText>
       <SideText>이용약관에 동의해주세요.</SideText>

@@ -7,6 +7,8 @@ import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const EditProfile = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
@@ -32,7 +34,7 @@ const EditProfile = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/my-page/", {
+      .get(`${Server_IP}/my-page/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -56,7 +58,7 @@ const EditProfile = () => {
     };
 
     axios
-      .patch(`http://127.0.0.1:8000/users/users/${userId}/`, data, {
+      .patch(`${Server_IP}/users/users/${userId}/`, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

@@ -7,6 +7,8 @@ import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const CreateChat = () => {
   const navigate = useNavigate();
   const { mentorId } = useParams();
@@ -47,7 +49,7 @@ const CreateChat = () => {
     console.log(data);
 
     axios
-      .post("http://127.0.0.1:8000/chat/", data, {
+      .post(`${Server_IP}/chat/`, data, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

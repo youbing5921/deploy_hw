@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import MentorImg from "../../images/MentorImg.svg";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MyConcernList = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ const MyConcernList = () => {
   useEffect(() => {
     const getAllConcerns = () => {
       axios
-        .get("http://127.0.0.1:8000/my-page/concerns/", {
+        .get(`${Server_IP}/my-page/concerns/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -33,7 +35,7 @@ const MyConcernList = () => {
   const deleteConcern = (e) => {
     let concern = e ? e.target.id : "";
     axios
-      .delete(`http://127.0.0.1:8000/concerns/${concern}/`, {
+      .delete(`${Server_IP}/concerns/${concern}/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },

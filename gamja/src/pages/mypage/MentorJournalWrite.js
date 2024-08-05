@@ -4,6 +4,8 @@ import styled from "styled-components";
 import TopBar from "../../components/mypage/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const MentorJournalWrite = () => {
   const navigate = useNavigate();
   const { roomId } = useParams();
@@ -24,7 +26,7 @@ const MentorJournalWrite = () => {
   useEffect(() => {
     const getMessage = () => {
       axios
-        .get(`http://127.0.0.1:8000/chat/${roomId}/`, {
+        .get(`${Server_IP}/chat/${roomId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -44,7 +46,7 @@ const MentorJournalWrite = () => {
   const postJournal = () => {
     axios
       .post(
-        "http://127.0.0.1:8000/log/",
+        `${Server_IP}/log/`,
         {
           chatroomId: roomId,
           title: title,

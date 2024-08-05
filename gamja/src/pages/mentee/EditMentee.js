@@ -6,6 +6,8 @@ import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
 import axios from "axios";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const EditMentee = () => {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
@@ -19,7 +21,7 @@ const EditMentee = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/my-page/", {
+      .get(`${Server_IP}/my-page/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -40,7 +42,7 @@ const EditMentee = () => {
   const patchMenteeName = () => {
     axios
       .patch(
-        `http://127.0.0.1:8000/users/users/${userId}/`,
+        `${Server_IP}/users/users/${userId}/`,
         {
           name: name,
         },
