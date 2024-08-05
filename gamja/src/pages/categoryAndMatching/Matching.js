@@ -66,9 +66,7 @@ const Matching = () => {
         <BtnDiv>
           <NewBottonBtn onClick={likeMentor}>관심멘토로 설정하기</NewBottonBtn>
           <NewBottonBtn1
-            onClick={() => {
-              console.log("멘토님께 채팅하기");
-            }}
+            onClick={() => navigate(`/chat-create/mentee/${mentorInfo.id}`)}
           >
             멘토님께 채팅하기
           </NewBottonBtn1>
