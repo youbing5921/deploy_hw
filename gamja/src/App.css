@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+#hide {
+  display: none;
+}
+
+#category_mentor_clicked {
+  border-color: #03aed2;
+  background-color: #4ec6df;
+  color: white;
+  box-shadow: 0px 0px 8px 0px #03aed2;
+}
+
+#category_mentee_clicked {
+  border-color: #fdde55;
+  background-color: #feefaa;
+  color: #494949;
+  box-shadow: 0px 0px 8px 0px rgba(253, 222, 85, 0.8);
+}

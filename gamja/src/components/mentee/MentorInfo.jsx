@@ -1,57 +1,103 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import RateBox from "./RateBox";
 import MentorImg from "../../images/MentorImg.svg";
 import FollowYellow from "../../images/FollowYellow.svg";
 import FollowGray from "../../images/FollowGray.svg";
+import axios from "axios";
 
-const MentorInfo = ({ infoList, toggleSubscription }) => {
+const MentorInfo = ({ infoList }) => {
+  const [mentors, setMentors] = useState(infoList);
   const navigate = useNavigate();
+  const accessToken = localStorage.getItem("access");
+
+  useEffect(() => {
+    setMentors(infoList);
+  }, [infoList]);
+
+  const postLike = (mentor) => {
+    axios
+      .post(
+        `http://127.0.0.1:8000/mentors/${mentor.mentor_id}/likes/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        alert(response.data);
+        setMentors((prevMentors) =>
+          prevMentors.map((m) =>
+            m.mentor_id === mentor.mentor_id
+              ? { ...m, is_subscribed: !m.is_subscribed }
+              : m
+          )
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+        console.log(mentor.mentor_id);
+        alert("멘토 관심 설정에 실패하였습니다.");
+      });
+  };
 
   return (
     <>
-      {infoList.map((mentor) => (
-        <InfoBox key={mentor.id}>
+      {mentors.map((mentor) => (
+        <InfoBox key={mentor.mentor_id}>
           <ProfileBox>
-            <Profile
-              src={MentorImg}
-              alt="profileImg"
-              onClick={() => navigate(`/userpage/${mentor.name}`)}
-            />
-            <Name onClick={() => navigate(`/userpage/${mentor.name}`)}>
-              {mentor.name}
-            </Name>
-            <SubscribeButton onClick={() => toggleSubscription(mentor.id)}>
-              <img
-                src={mentor.isSubscribed ? FollowYellow : FollowGray}
-                alt={mentor.isSubscribed ? "Following" : "NotFollow"}
+            <Left>
+              <Profile
+                src={MentorImg}
+                alt="profileImg"
+                onClick={() => navigate(`/profile/mentor/${mentor.user}`)}
               />
-            </SubscribeButton>
+              <Name onClick={() => navigate(`/profile/mentor/${mentor.user}`)}>
+                {mentor.mentor_name}
+              </Name>
+            </Left>
+            <SubscribeButton
+              src={mentor.is_subscribed ? FollowYellow : FollowGray}
+              alt={mentor.is_subscribed ? "Following" : "Follow"}
+              onClick={() => postLike(mentor)}
+            />
           </ProfileBox>
           <MiddleBox>
-            <CategoryBox>
-              <Category>{mentor.category1}</Category>
-              <CategoryCount>
-                {mentor.count1}
-                <span>회</span>
-              </CategoryCount>
-              <Category>{mentor.category2}</Category>
-              <CategoryCount>
-                {mentor.count2}
-                <span>회</span>
-              </CategoryCount>
-              <Category>{mentor.category3}</Category>
-              <CategoryCount>
-                {mentor.count3}
-                <span>회</span>
-              </CategoryCount>
-            </CategoryBox>
-            <RateBox rating={mentor.rating} />
+            {mentor.mentoring_record.map((cat, idx) => (
+              <CategoryBox key={idx}>
+                <Category>{cat.interest}</Category>
+                <CategoryCount>
+                  {cat.count}
+                  <span>회</span>
+                </CategoryCount>
+              </CategoryBox>
+            ))}
           </MiddleBox>
+          <RateBox rating={mentor.rating} />
           <BtnBox>
-            <GoRead>칼럼 읽기</GoRead>
-            <GoChat>채팅하기</GoChat>
+            <GoRead
+              onClick={() =>
+                navigate(`/community/mentor/${mentor.mentor_id}/`, {
+                  state: {
+                    mentor_id: mentor.mentor_id,
+                    mentor_name: mentor.mentor_name,
+                  },
+                })
+              }
+            >
+              칼럼 읽기
+            </GoRead>
+            <GoChat
+              onClick={() =>
+                navigate(`/chat-create/mentee/${mentor.mentor_id}`)
+              }
+            >
+              채팅하기
+            </GoChat>
           </BtnBox>
         </InfoBox>
       ))}
@@ -68,16 +114,19 @@ const InfoBox = styled.div`
   width: 219px;
   padding: 18px 14px;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
+  gap: 8px;
   flex-shrink: 0;
 `;
 
 const ProfileBox = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
 `;
-
+const Left = styled.div`
+  display: flex;
+  align-items: center;
+`;
 const Profile = styled.img`
   width: 40px;
   height: 40px;
@@ -94,17 +143,17 @@ const Name = styled.div`
   margin-right: 87px;
 `;
 
-const SubscribeButton = styled.button`
-  background: none;
-  border: none;
+const SubscribeButton = styled.img`
   cursor: pointer;
-  padding: 0;
+  width: 12px;
+  height: 15.429px;
 `;
 
 const MiddleBox = styled.div`
   display: flex;
-  gap: 7px;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
 `;
 
 const CategoryBox = styled.div`
@@ -118,7 +167,7 @@ const Category = styled.div`
   padding: 3px 8px;
   border-radius: 9px;
   background: rgba(253, 222, 85, 0.2);
-  color: #ffd000;
+  color: #494949;
   font-size: 10px;
   font-weight: 500;
 `;
@@ -141,6 +190,7 @@ const BtnBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  margin-top: 12px;
 `;
 
 const GoRead = styled.button`
@@ -149,6 +199,7 @@ const GoRead = styled.button`
   cursor: pointer;
   color: #494949;
   border: none;
+  font-family: "Pretendard";
   font-size: 15px;
   font-weight: 600;
   background: linear-gradient(
@@ -165,6 +216,7 @@ const GoChat = styled.button`
   cursor: pointer;
   color: #494949;
   border: none;
+  font-family: "Pretendard";
   font-size: 15px;
   font-weight: 600;
   background: #fdde55;

@@ -1,116 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import TopBar from "../../components/common/TopBar";
 import CategoryBar from "../../components/common/CategoryBar";
 import MentorInfo from "../../components/mentee/MentorInfo";
-
-let allInfoList = [
-  {
-    id: "1",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "가치관",
-    count1: "10",
-    category2: "사랑",
-    count2: "10",
-    category3: "생활",
-    count3: "2",
-    rating: "50",
-  },
-  {
-    id: "2",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "3",
-    category2: "재테크",
-    count2: "8",
-    category3: "가치관",
-    count3: "1",
-    rating: "65",
-  },
-  {
-    id: "3",
-    name: "척척육은영",
-    isSubscribed: true,
-    category1: "인간관계",
-    count1: "9",
-    category2: "재테크",
-    count2: "23",
-    category3: "가치관",
-    count3: "2",
-    rating: "35",
-  },
-  {
-    id: "4",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "30",
-  },
-  {
-    id: "5",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "96",
-  },
-  {
-    id: "6",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "인간관계",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "58",
-  },
-  {
-    id: "7",
-    name: "척척육은영",
-    isSubscribed: false,
-    category1: "사랑",
-    count1: "15",
-    category2: "재테크",
-    count2: "10",
-    category3: "진로",
-    count3: "20",
-    rating: "19",
-  },
-];
+import axios from "axios";
 
 const FindMentor = () => {
-  const [infoList, setInfoList] = useState(allInfoList);
+  const navigate = useNavigate();
+  const [infoList, setInfoList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
+  const accessToken = localStorage.getItem("access");
 
-  const toggleSubscription = (id) => {
-    setInfoList((prevInfoList) =>
-      prevInfoList.map((mentor) =>
-        mentor.id === id
-          ? { ...mentor, isSubscribed: !mentor.isSubscribed }
-          : mentor
-      )
-    );
-  };
+  useEffect(() => {
+    const getMentorInfo = () => {
+      axios
+        .get("http://127.0.0.1:8000/mentors/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setInfoList(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    getMentorInfo();
+  }, [accessToken]);
 
   const filteredInfos = infoList.filter(
     (info) =>
       selectedCategory === "전체" ||
-      info.category1 === selectedCategory ||
-      info.category2 === selectedCategory ||
-      info.category3 === selectedCategory
+      info.mentoring_record.some(
+        (interests) => interests.interest === selectedCategory
+      )
   );
 
   return (
@@ -120,13 +47,12 @@ const FindMentor = () => {
         <CategoryBar onSelectCategory={setSelectedCategory} />
       </TopContainer>
       <InfoBox>
-        <MentorInfo
-          infoList={filteredInfos}
-          toggleSubscription={toggleSubscription}
-        />
+        <MentorInfo infoList={filteredInfos} />
       </InfoBox>
       <BottomBar>
-        <AutoMatch>자동 매칭하기</AutoMatch>
+        <AutoMatch onClick={() => navigate("/category/mentee")}>
+          자동 매칭하기
+        </AutoMatch>
       </BottomBar>
     </Container>
   );
@@ -139,10 +65,6 @@ const Container = styled.div`
   width: 600px;
   height: 1230px;
   margin: 0 auto;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const TopContainer = styled.div`
@@ -155,6 +77,10 @@ const InfoBox = styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 24px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const BottomBar = styled.div`
@@ -181,4 +107,5 @@ const AutoMatch = styled.button`
   border-radius: 15px;
   background: #494949;
   border: none;
+  cursor: pointer;
 `;

@@ -39,9 +39,9 @@ const RateBox = ({ rating }) => {
                 viewBox="0 0 19 19"
                 fill="none"
               >
-                <clipPath id={`${item}StarClip`}>
+                {/* <clipPath id={`${item}StarClip`}>
                   <rect width={`${ratesResArr[idx]}`} height="19" />
-                </clipPath>
+                </clipPath> */}
                 <defs>
                   {isPartialStar && (
                     <linearGradient
