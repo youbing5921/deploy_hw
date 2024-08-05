@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
-import RateBox from "../../components/profileBox/RateBox";
-import MentorHistory from "../../components/profileBox/MentorHistory";
-import Review from "../../components/profileBox/Review";
-import ChatBtn from "../../components/profileBox/ChatBtn";
-import InterestBtn from "../../components/profileBox/InterestBtn";
 import axios from "axios";
 
-const MentorProfile = () => {
-  const { mentorId } = useParams();
+const ReviewList = () => {
   const accessToken = localStorage.getItem("access");
+  const userId = localStorage.getItem("user_id");
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
 
   useEffect(() => {
     const getProfile = () => {
       axios
-        .get(`http://127.0.0.1:8000/profile/${mentorId}/`, {
+        .get(`http://127.0.0.1:8000/profile/${userId}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -29,12 +24,12 @@ const MentorProfile = () => {
           setInfo(response.data);
         })
         .catch((error) => {
-          console.log(mentorId);
+          console.log(userId);
           console.log(error);
         });
     };
     getProfile();
-  }, [accessToken, mentorId]);
+  }, [accessToken, userId]);
 
   const onCancel = () => {
     navigate(-1);
@@ -60,31 +55,13 @@ const MentorProfile = () => {
             </NameBox>
             <CloseBtn src={xBtn} onClick={onCancel} />
           </Top>
-          <RatingBox>
-            <Title>멘토님의 등대 지수</Title>
-            <RateBox rating={Info.info?.rating} />
-          </RatingBox>
-          <HistoryBox>
-            <Title>멘토님의 멘토링 내역</Title>
-            <History>
-              <MentorHistory Info={Info} />
-            </History>
-          </HistoryBox>
-          <ReviewBox>
-            <Title>멘토님의 멘토링 후기</Title>
-            <Review Info={Info} />
-          </ReviewBox>
-          <BtnBox>
-            <InterestBtn Info={Info} />
-            <ChatBtn mentorId={Info.info?.id} Info={Info} />
-          </BtnBox>
         </MentorBox>
       </Container>
     </>
   );
 };
 
-export default MentorProfile;
+export default ReviewList;
 
 const Container = styled.div`
   background: rgba(248, 248, 248, 0.85);
@@ -143,35 +120,4 @@ const Category = styled.div`
   text-align: center;
   font-size: 15px;
   font-weight: 500;
-`;
-
-const RatingBox = styled.div`
-  color: #494949;
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 33px;
-`;
-const Title = styled.div`
-  color: #494949;
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 7px;
-`;
-const HistoryBox = styled.div`
-  margin-top: 26px;
-  margin-right: 20px;
-  border-radius: 15px;
-`;
-
-const History = styled.div``;
-const ReviewBox = styled.div`
-  margin-top: 26px;
-  margin-bottom: 33px;
-`;
-
-const BtnBox = styled.div`
-  margin-right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 `;

@@ -37,6 +37,7 @@ import EditProfile from "./pages/mentor/EditProfile";
 import EditMentee from "./pages/mentee/EditMentee";
 import WriteReview from "./pages/mentee/WriteReview";
 import AllConcerns from "./pages/mypage/AllConcerns";
+import ReviewList from "./pages/profileBox/ReviewList";
 
 function App() {
   return (
@@ -127,6 +128,10 @@ function App() {
         ></Route>
         <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
         <Route path="/mypage/concerns-list/" element={<AllConcerns />}></Route>
+        <Route
+          path="/profile/mentor/more/:userId"
+          element={<ReviewList />}
+        ></Route>
       </Routes>
     </Wrapper>
   );

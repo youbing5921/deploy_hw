@@ -60,7 +60,7 @@ const Category = styled.div`
   margin-right: 4px;
 `;
 
-const MoreBtn = styled.button`
+const MoreBtn = styled.div`
   padding: 3px 5px;
   border-radius: 10px;
   background: rgba(73, 73, 73, 0.2);

@@ -11,7 +11,7 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState([]);
   const [disabled, setDisabled] = useState(true);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const userId = localStorage.getItem("user_id");
   const accessToken = localStorage.getItem("access");
 
@@ -27,15 +27,31 @@ const EditProfile = () => {
   };
 
   useEffect(() => {
-    setDisabled(category.length === 0 && username.length === 0);
-  }, [category, username]);
+    setDisabled(category.length === 0 || name.length === 0);
+  }, [category, name]);
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/my-page/", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        const initValue = response.data;
+        setName(initValue.name || "");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accessToken]);
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
   };
   const handleSubmit = () => {
     const data = {
-      name: username,
+      name: name,
       interests: category,
     };
 
@@ -52,7 +68,7 @@ const EditProfile = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert("회원정보 수정에 실패하였습니다.");
+        alert("이름을 입력해 주세요.");
       });
   };
 
@@ -60,14 +76,13 @@ const EditProfile = () => {
     <Container>
       <TopBar txt="마이페이지" marginLeft={"154px"} />
       <Wrapper>
-        <StyledTitleOval $active={username.length > 0}>
-          이름 변경
-        </StyledTitleOval>
-        <UsernameInput
+        <StyledTitleOval $active={name.length > 0}>이름 변경</StyledTitleOval>
+        <NameInput
           placeholder="새로운 이름을 정해주세요"
-          value={username}
-          onChange={handleUsernameChange}
+          value={name}
+          onChange={handleNameChange}
         />
+        {name.length !== 0 && <Text>새로운 이름을 정해주세요</Text>}
         <StyledCategoryOval $active={category.length > 0}>
           카테고리 설정
         </StyledCategoryOval>
@@ -106,7 +121,7 @@ const Wrapper = styled.div`
   padding: 0 40px;
 `;
 
-const UsernameInput = styled.input`
+const NameInput = styled.input`
   margin-top: 19px;
   color: #494949;
   font-family: Pretendard;
@@ -120,6 +135,13 @@ const UsernameInput = styled.input`
     color: rgba(73, 73, 73, 0.2);
   }
 `;
+const Text = styled.div`
+  color: #7f7f7f;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 14px;
+`;
 
 const SideText = styled.div`
   color: #7f7f7f;
@@ -127,7 +149,7 @@ const SideText = styled.div`
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
-  padding: 14px 0 462px;
+  padding: 14px 0 420px;
 `;
 
 const ButtonGroup = styled.div`
