@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Review = ({ Info }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -14,7 +16,13 @@ const Review = ({ Info }) => {
             </CategoryBox>
           </Left>
           <Right>
-            <MoreBtn>더보기</MoreBtn>
+            <MoreBtn
+              onClick={() =>
+                navigate(`/mypage/mentor/review-list/${Info.info.user}`)
+              }
+            >
+              더보기
+            </MoreBtn>
           </Right>
         </Top>
         <Comment>{Info.myReview?.content}</Comment>

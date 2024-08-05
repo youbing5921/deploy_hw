@@ -47,7 +47,7 @@ const ReviewList = () => {
         })
         .then((response) => {
           console.log(response.data);
-          setReviews(response.data);
+          setReviews(response.data.reverse());
         })
         .catch((error) => {
           console.log(error);

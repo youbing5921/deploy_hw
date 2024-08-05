@@ -28,11 +28,40 @@ const MyConcernList = () => {
 
     getAllConcerns();
   }, [accessToken]);
+
+  const deleteConcern = (e) => {
+    let concern = e ? e.target.id : "";
+    axios
+      .delete(`http://127.0.0.1:8000/concerns/${concern}/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        alert("고민이 삭제되었습니다.");
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("삭제에 실패했습니다.");
+      });
+  };
+
+  //   useEffect(() => {
+  //     deleteConcern();
+  //   }, [accessToken]);
+
   return (
     <>
       {Info.map((info, idx) => (
         <Content key={idx}>
-          <Concern>{info?.content}</Concern>
+          <TopBox>
+            <Concern>{info?.content}</Concern>
+            <DeleteBtn onClick={deleteConcern} id={info.id}>
+              삭제
+            </DeleteBtn>
+          </TopBox>
           <ReplyWrapper>
             {info?.comments?.map((comment, idx) => (
               <Reply
@@ -60,6 +89,19 @@ const Content = styled.div`
   flex-direction: column;
   gap: 16px;
   margin-bottom: 26px;
+`;
+
+const TopBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+const DeleteBtn = styled.div`
+  color: #7f7f7f;
+  font-size: 13px;
+  font-weight: 500;
+  margin-right: 10px;
+  cursor: pointer;
 `;
 
 const Concern = styled.div`
