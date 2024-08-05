@@ -65,7 +65,7 @@ const MentorReco = ({ infoList }) => {
 
         <ReviewBox>
           <SemiTitle>멘토님의 멘토링 후기</SemiTitle>
-          <Review review={mentor.myReview} />
+          <Review review={mentor.myReview} mentorInfo={mentorInfo} />
         </ReviewBox>
       </MentorContainer>
 
@@ -132,12 +132,12 @@ const MentorDiv = styled.div`
   gap: 27px;
   justify-content: center;
   align-items: center;
-  margin: 63px -20px 98px -20px;
+  margin: 63px -20px 60px -20px;
 `;
 
 const MentorContainer = styled.div`
   width: 326px;
-  height: 478px;
+  /* height: 478px; */
   border-radius: 20px;
   background: linear-gradient(200deg, #fff8dd 0.49%, #fdde55 99.51%);
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
