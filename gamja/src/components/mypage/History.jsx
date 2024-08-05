@@ -2,33 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
 
-const users = [
-  {
-    id: 1,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 2,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 3,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 4,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-];
-
 const History = ({ Info }) => {
   return (
     <>
