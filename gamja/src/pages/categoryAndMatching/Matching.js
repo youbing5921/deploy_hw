@@ -14,6 +14,13 @@ const Matching = () => {
   const [mentorInfo, setMentorInfo] = useState([]);
   const accessToken = localStorage.getItem("access");
 
+  const chat = () => {
+    const mentor_id = document
+      .querySelector("#mentorContainer")
+      .getAttribute("data-key");
+    navigate(`/chat-create/mentee/${mentor_id}`);
+  };
+
   useEffect(() => {
     axios
       .post(
@@ -65,11 +72,7 @@ const Matching = () => {
         <MentorReco infoList={mentorInfo} />
         <BtnDiv>
           <NewBottonBtn onClick={likeMentor}>관심멘토로 설정하기</NewBottonBtn>
-          <NewBottonBtn1
-            onClick={() => navigate(`/chat-create/mentee/${mentorInfo.id}`)}
-          >
-            멘토님께 채팅하기
-          </NewBottonBtn1>
+          <NewBottonBtn1 onClick={chat}>멘토님께 채팅하기</NewBottonBtn1>
         </BtnDiv>
         <HorizonLine text="홈으로 이동하기" onClick={() => navigate("/home")} />
       </MainContainer>
