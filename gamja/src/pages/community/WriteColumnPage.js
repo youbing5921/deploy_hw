@@ -18,7 +18,6 @@ const WriteColumnPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [uploadImgUrl, setUploadImgUrl] = useState("");
   const [categories, setCategories] = useState([]);
   const formData = new FormData();
 

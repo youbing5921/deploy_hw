@@ -26,7 +26,6 @@ const CommunityPage = () => {
   };
 
   const showMentorProfile = () => {
-    console.log("멘토 프로필 보여주기");
     navigate(`/profile/mentor/${receivedColumn.author.id}`);
   };
 
@@ -71,16 +70,17 @@ const CommunityPage = () => {
     const searchBtn = document.querySelector("#searchBtn");
     searchBtn.style.display = "none";
     axios
-      .get(`http://127.0.0.1:8000/community/columns/${column.id}/`, null, {
+      .get(`http://127.0.0.1:8000/community/columns/${column.id}/`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((response) => {
         setColumn(response.data);
-        console.log(response.data.is_scraped);
+        setScrap(response.data.is_scraped);
       })
       .catch((error) => console.log(error));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
