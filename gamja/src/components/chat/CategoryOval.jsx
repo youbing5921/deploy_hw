@@ -8,7 +8,6 @@ const CategoryOval = styled.p`
   align-items: center;
   justify-content: center;
   border-radius: 100px;
-  /* margin: 63px auto 0 0; */
   margin-top: 103px;
   margin-bottom: 7px;
 

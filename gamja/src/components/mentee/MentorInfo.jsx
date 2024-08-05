@@ -151,7 +151,8 @@ const SubscribeButton = styled.img`
 
 const MiddleBox = styled.div`
   display: flex;
-  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 12px;
 `;
 

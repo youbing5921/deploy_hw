@@ -1,16 +1,22 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Arrow from "../../images/Arrow.svg";
 import MenteeImg from "../../images/MenteeImg.svg";
 
 const UserInfo = ({ Info }) => {
+  const navigate = useNavigate();
   return (
     <>
       <ProfileBox>
         <Profile src={MenteeImg} alt="profileImg" />
         <NameBox>
           <Username>{Info.name}</Username>
-          <Next src={Arrow} alt="바로가기" />
+          <Next
+            src={Arrow}
+            alt="바로가기"
+            onClick={() => navigate("/mypage/mentor/edit/:username}")}
+          />
         </NameBox>
         <CategoryContainer>
           {Info.info?.interests_display.map((interest, idx) => (
@@ -48,7 +54,6 @@ const NameBox = styled.div`
   justify-content: space-between;
   gap: 7px;
   margin-bottom: 9px;
-  cursor: pointer;
 `;
 
 const Username = styled.div`
@@ -61,6 +66,7 @@ const Username = styled.div`
 const Next = styled.img`
   width: 6.477px;
   height: 10.983px;
+  cursor: pointer;
 `;
 
 const CategoryContainer = styled.div`

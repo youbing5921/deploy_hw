@@ -4,36 +4,78 @@ import { useNavigate } from "react-router-dom";
 import TitleOval from "../../components/categoryAndMatching/TitleOval";
 import BottonBtn from "../../components/categoryAndMatching/BottonBtn";
 import TopBar from "../../components/common/TopBar";
+import axios from "axios";
 
 const EditMentee = () => {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState(true);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const userId = localStorage.getItem("user_id");
+  const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
-    setDisabled(username.length === 0);
-  }, [username]);
+    setDisabled(name.length === 0);
+  }, [name]);
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/my-page/", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .then((response) => {
+        const initValue = response.data;
+        setName(initValue.name || "");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [accessToken]);
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const patchMenteeName = () => {
+    axios
+      .patch(
+        `http://127.0.0.1:8000/users/users/${userId}/`,
+        {
+          name: name,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+        setName(response.data.name);
+        alert("회원정보 수정이 완료되었습니다.");
+        navigate(-1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <Container>
       <TopBar txt="마이페이지" marginLeft={"154px"} />
       <Wrapper>
-        <StyledTitleOval $active={username.length > 0}>
-          이름 변경
-        </StyledTitleOval>
-        <UsernameInput
+        <StyledTitleOval $active={name.length > 0}>이름 변경</StyledTitleOval>
+        <NameInput
           placeholder="새로운 이름을 정해주세요"
-          value={username}
-          onChange={handleUsernameChange}
+          value={name}
+          onChange={handleNameChange}
         />
+        {name.length !== 0 && <Text>새로운 이름을 정해주세요</Text>}
         <ChatBtn
           disabled={disabled}
           $active={!disabled}
-          onClick={() => navigate("/chat/mentee/:username")}
+          onClick={patchMenteeName}
         >
           회원정보 저장하기
         </ChatBtn>
@@ -55,7 +97,15 @@ const Wrapper = styled.div`
   padding: 0 40px;
 `;
 
-const UsernameInput = styled.input`
+const Text = styled.div`
+  color: #7f7f7f;
+  font-family: Pretendard;
+  font-size: 18px;
+  font-weight: 400;
+  margin-top: 14px;
+`;
+
+const NameInput = styled.input`
   margin-top: 19px;
   color: #494949;
   font-family: Pretendard;
@@ -64,7 +114,6 @@ const UsernameInput = styled.input`
   border: none;
   background: none;
   outline: none;
-  margin-bottom: 812px;
 
   &::placeholder {
     color: rgba(73, 73, 73, 0.2);
@@ -72,7 +121,7 @@ const UsernameInput = styled.input`
 `;
 
 const ChatBtn = styled(BottonBtn)`
-  margin-top: auto;
+  margin-top: 760px;
   background: ${({ $active }) =>
     $active ? "#494949" : "rgba(73, 73, 73, 0.20)"};
   cursor: ${({ $active }) => ($active ? "pointer" : "not-allowed")};

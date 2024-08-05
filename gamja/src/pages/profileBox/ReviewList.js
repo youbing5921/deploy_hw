@@ -3,18 +3,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import xBtn from "../../images/xBtn.svg";
-import RateBox from "../../components/profileBox/RateBox";
-import MentorHistory from "../../components/profileBox/MentorHistory";
-import Review from "../../components/profileBox/Review";
-import ChatBtn from "../../components/profileBox/ChatBtn";
-import InterestBtn from "../../components/profileBox/InterestBtn";
 import axios from "axios";
+import backProfile from "../../images/backProfile.svg";
+import MoreReview from "../../components/profileBox/MoreReview";
+import InterestBtn from "../../components/profileBox/InterestBtn";
+import ChatBtn from "../../components/profileBox/ChatBtn";
 
-const MentorProfile = () => {
-  const { mentorId } = useParams();
+const ReviewList = () => {
   const accessToken = localStorage.getItem("access");
+  const { mentorId } = useParams();
+
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const getProfile = () => {
@@ -35,6 +36,25 @@ const MentorProfile = () => {
     };
     getProfile();
   }, [accessToken, mentorId]);
+
+  useEffect(() => {
+    const getReviewMore = () => {
+      axios
+        .get("http://127.0.0.1:8000/review/", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setReviews(response.data.reverse());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getReviewMore();
+  }, [accessToken]);
 
   const onCancel = () => {
     navigate(-1);
@@ -60,19 +80,12 @@ const MentorProfile = () => {
             </NameBox>
             <CloseBtn src={xBtn} onClick={onCancel} />
           </Top>
-          <RatingBox>
-            <Title>멘토님의 등대 지수</Title>
-            <RateBox rating={Info.info?.rating} />
-          </RatingBox>
-          <HistoryBox>
-            <Title>멘토님의 멘토링 내역</Title>
-            <History>
-              <MentorHistory Info={Info} />
-            </History>
-          </HistoryBox>
-          <ReviewBox>
+          <TitleBox>
+            <BackButton src={backProfile} onClick={() => navigate(-1)} />
             <Title>멘토님의 멘토링 후기</Title>
-            <Review Info={Info} />
+          </TitleBox>
+          <ReviewBox>
+            <MoreReview reviews={reviews} />
           </ReviewBox>
           <BtnBox>
             <InterestBtn Info={Info} />
@@ -84,7 +97,7 @@ const MentorProfile = () => {
   );
 };
 
-export default MentorProfile;
+export default ReviewList;
 
 const Container = styled.div`
   background: rgba(248, 248, 248, 0.85);
@@ -145,31 +158,40 @@ const Category = styled.div`
   font-weight: 500;
 `;
 
-const RatingBox = styled.div`
-  color: #494949;
-  font-size: 20px;
-  font-weight: 700;
-  margin-top: 33px;
+const TitleBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 33.5px;
+`;
+const BackButton = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 `;
 const Title = styled.div`
   color: #494949;
+  text-align: center;
+  font-family: Pretendard;
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 7px;
 `;
-const HistoryBox = styled.div`
-  margin-top: 26px;
-  margin-right: 20px;
-  border-radius: 15px;
-`;
-
-const History = styled.div``;
 const ReviewBox = styled.div`
-  margin-top: 26px;
-  margin-bottom: 33px;
+  margin-top: 13.5px;
+  border-radius: 15px;
+  display: flex;
+  width: 339px;
+  height: 365px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
-
 const BtnBox = styled.div`
+  margin-top: 23px;
   margin-right: 20px;
   display: flex;
   align-items: center;
