@@ -29,12 +29,13 @@ const CommunityPage = () => {
     navigate(`/profile/mentor/${receivedColumn.author.id}`);
   };
 
-  function modifyCol() {
+  const modifyCol = () => {
     if (!window.confirm("칼럼을 수정하시겠습니까?")) {
       return;
     } else {
+      navigate("/community/modify", { state: { column_id: column.id } });
     }
-  }
+  };
 
   function deleteCol() {
     if (!window.confirm("칼럼을 지우시겠습니까?")) {
@@ -86,7 +87,7 @@ const CommunityPage = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"커뮤니티"} />
+        <TopBar txt={"커뮤니티"} onClick={() => navigate("/community")} />
       </TopContainer>
       <Column>
         <Header>

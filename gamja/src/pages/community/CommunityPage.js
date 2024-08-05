@@ -95,7 +95,7 @@ const CommunityPage = () => {
         />
       </TopContainer>
       <CommunityContainer
-        communityList={filteredCategory.reverse()}
+        communityList={filteredCategory}
         forSpecialMentor={forSpecialMentor}
         mentor_name={mentor_name}
       />

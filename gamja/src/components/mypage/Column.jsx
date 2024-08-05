@@ -2,33 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+const Server_IP = process.env.REACT_APP_Server_IP;
+
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
   const username = localStorage.getItem("name");
   const hasScrap = Info?.length !== 0;
-
+  
   return (
     <>
-      {hasScrap ? (
-        <Wapper>
-          {Info?.map((colInfo, idx) => (
-            <Container
-              key={idx}
-              onClick={() =>
-                navigate(`/community/${colInfo.id}`, {
-                  state: { column: Info[idx] },
-                })
-              }
-            >
-              <Photo
-                src={
-                  colInfo.image
-                    ? colInfo.image
-                    : "/img/communitySampleImage.svg"
+    {hasScrap ? (
+      <Wapper>
+        {Info?.map((colInfo, idx) => (
+          <Container
+            key={idx}
+            onClick={() =>
+              navigate(`/community/${colInfo.id}`, {
+                state: { column: Info[idx] },
+              })
+            }
+          >
+            <Photo
+              src={
+                colInfo.image
+                  ? `${Server_IP}/${colInfo.image}`
+                  : "/img/communitySampleImage.svg"
                 }
                 alt="mentorColumn"
               />
-              {/* <Photo src={`${colInfo.image}`} alt="mentorColumn" /> */}
               <InfoBox>
                 <Category
                   $categoryColor={$categoryColor}

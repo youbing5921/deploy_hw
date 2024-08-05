@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
 import Today from "../../components/community/Today";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Server_IP = process.env.REACT_APP_Server_IP;
@@ -17,9 +17,13 @@ const categoryList = [
 
 const WriteColumnPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const mode = location.pathname.substring(11);
+  const column_id = mode === "modify" ? location.state.column_id : -1;
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [categories, setCategories] = useState([]);
+  const [image, setImage] = useState("");
   const formData = new FormData();
 
   const selectCategory = (e) => {
@@ -30,35 +34,90 @@ const WriteColumnPage = () => {
   };
 
   const loadImage = (e) => {
-    if (!e.target.files[0]) {
+    const temp = e.target.files[0];
+    console.log(temp);
+    if (!temp) {
       return;
     }
-    formData.append("image", e.target.files[0]);
-    console.log(formData);
+    for (let key of formData.keys()) {
+      console.log(key);
+    }
+    setImage(temp);
     const imgLoad = document.querySelector("#imgLoad");
     imgLoad.src = "/img/loadedImage.svg";
     alert("이미지가 업로드되었습니다.");
   };
 
   function uploadCol() {
+    if (title === "") {
+      alert("제목을 입력해주시기 바랍니다.");
+      return;
+    }
     if (categories.length === 0) {
       alert("카테고리를 선택해주시기 바랍니다.");
       return;
     }
+    if (content === "") {
+      alert("내용을 입력해주시기 바랍니다.");
+      return;
+    }
+
+    formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("categories", categories);
 
-    axios
-      .post(`${Server_IP}/community/columns/`, formData, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("access")}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => navigate("/community"))
-      .catch((error) => console.log(error));
+    if (mode === "write") {
+      axios
+        .post(`${Server_IP}/community/columns/`, formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => navigate(-1))
+        .catch((error) => console.log(error));
+    } else if (mode === "modify") {
+      axios
+        .patch(`${Server_IP}/community/columns/${column_id}/`, formData, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access")}`,
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => navigate(-1))
+        .catch((error) => console.log(error));
+    }
   }
+
+  useEffect(() => {
+    if (mode === "modify") {
+      const imgLoad = document.querySelector("#imgLoad");
+      imgLoad.src = "/img/loadedImage.svg";
+
+      axios
+        .get(`${Server_IP}/community/columns/${column_id}/`)
+        .then((response) => {
+          const data = response.data;
+          setTitle(data.title);
+          setCategories([data.categories[0].name]);
+          setContent(data.content);
+          setImage(data.image);
+          checkCategory(data.categories[0].name);
+        })
+        .catch((error) => console.log(error));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const checkCategory = (name) => {
+    const category = String(categoryList.indexOf(name) + 2);
+    const doc = document.querySelector(`option:nth-child(${category})`);
+    doc.selected = true;
+    const form = document.querySelector("#category");
+    form.style.backgroundColor = "rgba(3, 174, 210, 0.20)";
+    form.style.color = "#03AED2";
+  };
 
   return (
     <Container>
