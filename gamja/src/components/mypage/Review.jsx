@@ -2,31 +2,38 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const Review = ({ Info }) => {
+const Review = ({ Info, review }) => {
   const navigate = useNavigate();
+  const hasReview = review && review.content;
   return (
     <>
-      <Container>
-        <Top>
-          <Left>
-            <CategoryBox>
-              {Info.myReview?.chatroom_interests?.map((interest, idx) => (
-                <Category key={idx}>{interest.name}</Category>
-              ))}
-            </CategoryBox>
-          </Left>
-          <Right>
-            <MoreBtn
-              onClick={() =>
-                navigate(`/mypage/mentor/review-list/${Info.info.user}`)
-              }
-            >
-              더보기
-            </MoreBtn>
-          </Right>
-        </Top>
-        <Comment>{Info.myReview?.content}</Comment>
-      </Container>
+      {hasReview ? (
+        <Container>
+          <Top>
+            <Left>
+              <CategoryBox>
+                {Info.myReview?.chatroom_interests?.map((interest, idx) => (
+                  <Category key={idx}>{interest.name}</Category>
+                ))}
+              </CategoryBox>
+            </Left>
+            <Right>
+              <MoreBtn
+                onClick={() =>
+                  navigate(`/mypage/mentor/review-list/${Info.info.user}`)
+                }
+              >
+                더보기
+              </MoreBtn>
+            </Right>
+          </Top>
+          <Comment>{Info.myReview?.content}</Comment>
+        </Container>
+      ) : (
+        <Container>
+          <BlankText>아직 작성된 후기가 없어요</BlankText>
+        </Container>
+      )}
     </>
   );
 };
@@ -91,4 +98,11 @@ const Comment = styled.div`
   text-overflow: ellipsis;
   font-size: 13px;
   font-weight: 400;
+`;
+
+const BlankText = styled.div`
+  padding: 16px 0px;
+  color: #494949;
+  font-size: 13px;
+  font-weight: 500;
 `;

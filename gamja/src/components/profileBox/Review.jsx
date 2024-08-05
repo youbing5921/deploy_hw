@@ -3,39 +3,46 @@ import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
 import { useNavigate } from "react-router-dom";
 
-const Review = ({ Info }) => {
+const Review = ({ Info, review }) => {
   const navigate = useNavigate();
+  const hasReview = review && review.content;
   return (
     <>
-      <Container>
-        <Top>
-          <Left>
-            <Low>
-              <Profile src={MentorImg} alt="menteeImg" />
-            </Low>
-            <Middle>
-              <Username>{Info.myReview?.mentee_name}</Username>
-              <CategoryBox>
-                {Info.myReview?.chatroom_interests?.map((interest, idx) => (
-                  <Category key={idx}>{interest.name}</Category>
-                ))}
-              </CategoryBox>
-            </Middle>
-          </Left>
-          <Right>
-            <High>
-              <MoreBtn
-                onClick={() =>
-                  navigate(`/profile/mentor/review-list/${Info.info.user}`)
-                }
-              >
-                더보기
-              </MoreBtn>
-            </High>
-          </Right>
-        </Top>
-        <Comment>{Info.myReview?.content}</Comment>
-      </Container>
+      {hasReview ? (
+        <Container>
+          <Top>
+            <Left>
+              <Low>
+                <Profile src={MentorImg} alt="menteeImg" />
+              </Low>
+              <Middle>
+                <Username>{review.mentee_name}</Username>
+                <CategoryBox>
+                  {review.chatroom_interests?.map((interest, idx) => (
+                    <Category key={idx}>{interest.name}</Category>
+                  ))}
+                </CategoryBox>
+              </Middle>
+            </Left>
+            <Right>
+              <High>
+                <MoreBtn
+                  onClick={() =>
+                    navigate(`/profile/mentor/review-list/${Info.info.user}`)
+                  }
+                >
+                  더보기
+                </MoreBtn>
+              </High>
+            </Right>
+          </Top>
+          <Comment>{review.content}</Comment>
+        </Container>
+      ) : (
+        <Container>
+          <BlankText>{Info.name}님께 멘토링을 받고 후기를 남겨보세요</BlankText>
+        </Container>
+      )}
     </>
   );
 };
@@ -118,4 +125,11 @@ const Comment = styled.div`
   text-overflow: ellipsis;
   font-size: 13px;
   font-weight: 400;
+`;
+
+const BlankText = styled.div`
+  padding: 30px 0px;
+  color: #494949;
+  font-size: 15px;
+  font-weight: 500;
 `;

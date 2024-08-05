@@ -99,7 +99,7 @@ const MyPageMentor = () => {
             </Rating>
             <ReviewBox>
               <Title>나의 멘토링 후기</Title>
-              <Review Info={Info} />
+              <Review Info={Info} review={Info.myReview} />
             </ReviewBox>
           </Right>
         </Both>
