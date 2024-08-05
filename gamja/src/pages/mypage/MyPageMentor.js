@@ -115,7 +115,11 @@ const MyPageMentor = () => {
         />
         <ColumnBox>
           <Title>내가 스크랩한 칼럼</Title>
-          <Column />
+          <Column
+            $categoryBg={"rgba(73, 73, 73, 0.20)"}
+            $categoryColor={"#494949"}
+            Info={Info.scrapedColumns}
+          />
         </ColumnBox>
         <ButtonBox>
           <LogoutWithdrawBtn text="logout" onClick={logout} />
