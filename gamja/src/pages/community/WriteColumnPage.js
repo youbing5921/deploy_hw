@@ -41,6 +41,10 @@ const WriteColumnPage = () => {
   };
 
   function uploadCol() {
+    if (categories.length === 0) {
+      alert("카테고리를 선택해주시기 바랍니다.");
+      return;
+    }
     formData.append("title", title);
     formData.append("content", content);
     formData.append("categories", categories);

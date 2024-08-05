@@ -119,6 +119,7 @@ const ButtonDiv = styled.div`
   gap: 10px;
   height: 55px;
   margin-bottom: 25px;
+  cursor: pointer;
   button {
     appearance: none;
     border: 0px;

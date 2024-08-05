@@ -9,7 +9,7 @@ import StarBox from "../../components/mypage/StarBox";
 import MentorHistory from "../../components/mypage/MentorHistory";
 import Review from "../../components/mypage/Review";
 import Column from "../../components/mypage/Column.jsx";
-import LogoutBtn from "../../components/mypage/LogoutBtn.jsx";
+import LogoutWithdrawBtn from "../../components/mypage/LogoutWithdrawBtn.jsx";
 import axios from "axios";
 
 const MyPageMentor = () => {
@@ -19,27 +19,52 @@ const MyPageMentor = () => {
   const refreshToken = localStorage.getItem("refresh");
 
   function logout() {
-    axios
-      .post(
-        "http://127.0.0.1:8000/users/logout/",
-        {
-          refresh: refreshToken,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
+    if (!window.confirm("로그아웃 하시겠습니까?")) {
+      return;
+    } else {
+      axios
+        .post(
+          "http://127.0.0.1:8000/users/logout/",
+          {
+            refresh: refreshToken,
           },
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-        localStorage.clear();
-        alert("로그아웃이 완료되었습니다.");
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          localStorage.clear();
+          alert("로그아웃이 완료되었습니다.");
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
+
+  function menberWithdraw() {
+    if (!window.confirm("탈퇴하시겠습니까?")) {
+      return;
+    } else {
+      axios
+        .delete(
+          `http://127.0.0.1:8000//users/users/${localStorage.getItem(
+            "user_id"
+          )}/`,
+          {
+            headers: { Authorization: `Bearer ${accessToken}` },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          navigate("/login");
+        })
+        .catch();
+    }
   }
 
   useEffect(() => {
@@ -93,7 +118,8 @@ const MyPageMentor = () => {
           <Column />
         </ColumnBox>
         <ButtonBox>
-          <LogoutBtn onClick={logout} />
+          <LogoutWithdrawBtn text="logout" onClick={logout} />
+          <LogoutWithdrawBtn text="withdraw" onClick={menberWithdraw} />
         </ButtonBox>
       </Container>
     </>
@@ -105,7 +131,6 @@ export default MyPageMentor;
 const Container = styled.div`
   background-color: #ededed;
   width: 600px;
-  padding-bottom: 40px;
   margin: 0 auto;
   overflow-y: scroll;
   &::-webkit-scrollbar {
@@ -159,6 +184,13 @@ const ColumnBox = styled.div`
 `;
 
 const ButtonBox = styled.div`
-  margin-top: 31px;
-  margin-left: 438px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 32px 40px 20px 0;
+
+  img {
+    margin-left: auto;
+    margin-bottom: auto;
+  }
 `;
