@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import TopBar from "../../components/common/TopBar";
+import BackHome from "../../components/common/BackHome";
 import MenuBar from "../../components/chat/MenuBar";
 import RecentChat from "../../components/chat/RecentChat";
 import SuggestMentee from "../../components/chat/SuggestMentee";
@@ -55,7 +55,7 @@ const ChatListMentee = () => {
   return (
     <>
       <Container>
-        <TopBar txt={"채팅하기"} />
+        <BackHome txt={"채팅하기"} />
         <MenuBar
           txt={"멘티의 제안 목록"}
           selectedNav={selectedNav}

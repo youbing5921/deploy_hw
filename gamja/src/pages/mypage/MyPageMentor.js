@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import MenteeImg from "../../images/MenteeImg.svg";
-import TopBar from "../../components/common/TopBar";
+import BackHome from "../../components/common/BackHome.jsx";
 import UserInfo from "../../components/mypage/UserInfo";
 import JournalList from "../../components/mypage/JournalList";
 import StarBox from "../../components/mypage/StarBox";
@@ -61,7 +61,7 @@ const MyPageMentor = () => {
   return (
     <>
       <Container>
-        <TopBar txt={"마이페이지"} $marginLeft={"154px"} />
+        <BackHome txt={"마이페이지"} $marginLeft={"154px"} />
         <Both>
           <Left>
             <UserInfo profilImg={MenteeImg} Info={Info} />
