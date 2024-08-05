@@ -23,7 +23,7 @@ const FindMentor = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfoList(response.data);
         })
         .catch((error) => {

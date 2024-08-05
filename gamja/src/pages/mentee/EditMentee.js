@@ -53,7 +53,7 @@ const EditMentee = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setName(response.data.name);
         alert("회원정보 수정이 완료되었습니다.");
         navigate(-1);

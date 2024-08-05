@@ -32,7 +32,7 @@ const MentorJournalWrite = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setChatRoomData(response.data);
         })
         .catch((error) => {
@@ -59,7 +59,7 @@ const MentorJournalWrite = () => {
         }
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("저장이 완료되었습니다.");
         navigate("/mypage/mentor/:username");
       })

@@ -30,7 +30,7 @@ const MentorInfo = ({ infoList }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert(response.data);
         setMentors((prevMentors) =>
           prevMentors.map((m) =>
@@ -42,7 +42,7 @@ const MentorInfo = ({ infoList }) => {
       })
       .catch((error) => {
         console.log(error);
-        console.log(mentor.mentor_id);
+        // console.log(mentor.mentor_id);
         alert("멘토 관심 설정에 실패하였습니다.");
       });
   };

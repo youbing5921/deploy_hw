@@ -48,7 +48,7 @@ const WriteConcern = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("고민이 생성되었습니다");
         navigate(-1);
       })

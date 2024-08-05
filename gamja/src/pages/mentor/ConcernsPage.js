@@ -20,7 +20,7 @@ const ConcernsPage = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setConcernList(response.data.reverse());
         })
         .catch((error) => {

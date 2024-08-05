@@ -17,9 +17,9 @@ const CreateChat = () => {
   const [title, setTitle] = useState("");
   const accessToken = localStorage.getItem("access");
 
-  useEffect(() => {
-    console.log(mentorId);
-  }, [mentorId]);
+  // useEffect(() => {
+  //   console.log(mentorId);
+  // }, [mentorId]);
 
   const toggleCategory = (value) => {
     setCategory((prev) => {

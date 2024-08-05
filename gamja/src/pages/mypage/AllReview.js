@@ -18,7 +18,7 @@ const AllReview = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setReviews(response.data.reverse());
         })
         .catch((error) => {

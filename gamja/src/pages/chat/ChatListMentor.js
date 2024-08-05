@@ -23,7 +23,7 @@ const ChatListMentee = () => {
           },
         })
         .then((response) => {
-          console.log(response.data.recent_chats);
+          // console.log(response.data.recent_chats);
           setChatList(response.data.recent_chats);
         })
         .catch((error) => {
@@ -39,7 +39,7 @@ const ChatListMentee = () => {
           },
         })
         .then((response) => {
-          console.log(response.data.mentee_suggestions);
+          // console.log(response.data.mentee_suggestions);
           setSuggestList(response.data.mentee_suggestions);
         })
         .catch((error) => {

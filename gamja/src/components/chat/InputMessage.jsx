@@ -30,7 +30,7 @@ const InputMessage = ({ roomId, onMessageSent }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         onMessageSent(response.data);
         setMessage("");
       })

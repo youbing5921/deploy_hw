@@ -37,7 +37,7 @@ const MyPageMentor = () => {
           }
         )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           localStorage.clear();
           alert("로그아웃이 완료되었습니다.");
           navigate("/login");
@@ -60,7 +60,7 @@ const MyPageMentor = () => {
           }
         )
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           navigate("/login");
         })
         .catch();
@@ -75,7 +75,7 @@ const MyPageMentor = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setInfo(response.data);
       })
       .catch((error) => {

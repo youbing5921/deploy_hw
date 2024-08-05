@@ -20,7 +20,7 @@ const JournalDetail = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setDetail(response.data);
         })
         .catch((error) => {

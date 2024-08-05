@@ -13,7 +13,7 @@ const MentorReco = ({ infoList }) => {
   const [rightDisabled, setRightDisabled] = useState(false);
   const mentor = infoList[order];
   const mentorInfo = mentor.info;
-  console.log(mentor);
+  // console.log(mentor);
   const handleBtn = (e) => {
     if (e.target.className.includes("leftBtn")) {
       if (order === 1) {

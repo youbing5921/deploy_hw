@@ -46,7 +46,7 @@ const CommunityPage = () => {
           headers: { Authorization: `Bearer ${accessToken}` },
         })
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           navigate("/community");
         })
         .catch((error) => console.log(error));
@@ -59,8 +59,8 @@ const CommunityPage = () => {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        console.log(response.data);
-        console.log("스크랩 결과", response.data.is_scraped);
+        // console.log(response.data);
+        // console.log("스크랩 결과", response.data.is_scraped);
         setColumn(response.data.column);
         setScrap(response.data.is_scraped);
       })

@@ -27,7 +27,7 @@ const WriteReview = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setChatRoomData(response.data);
         })
         .catch((error) => {
@@ -49,7 +49,7 @@ const WriteReview = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfo(response.data);
         })
         .catch((error) => {
@@ -71,7 +71,7 @@ const WriteReview = () => {
       score: parseInt(score, 10),
     };
 
-    console.log("Submitting data:", data);
+    // console.log("Submitting data:", data);
 
     axios
       .post(`${Server_IP}/review/`, data, {
@@ -80,7 +80,7 @@ const WriteReview = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("후기가 성공적으로 제출되었습니다.");
         navigate(-1);
       })
