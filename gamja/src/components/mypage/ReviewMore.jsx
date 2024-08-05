@@ -36,7 +36,6 @@ const Container = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   width: 480px;
-  height: 100px;
   padding: 14px 16px;
   margin-bottom: 26px;
 `;
