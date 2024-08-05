@@ -10,7 +10,7 @@ const MoreReview = ({ reviews }) => {
           <Top>
             <Left>
               <Low>
-                <Profile src={MentorImg} alt="menteeImg" />
+                <Profile src={MentorImg} alt="mentorImg" />
               </Low>
               <Middle>
                 <Username>{review.mentee_name}</Username>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import OutBtnImg from "../../images/OutBtn.svg";
-import TopBar from "../../components/common/TopBar";
+import ChatTopBar from "../../components/chat/ChatTopBar";
 import Receiver from "../../components/chat/Receiver";
 import Sender from "../../components/chat/Sender";
 import InputMessage from "../../components/chat/InputMessage";
@@ -44,7 +44,7 @@ const ChatRoomMentee = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"채팅하기"} />
+        <ChatTopBar txt={"채팅하기"} />
         <FuncBar>
           <RoomName>{chatRoomData?.title}</RoomName>
           <ButtonContainer>
