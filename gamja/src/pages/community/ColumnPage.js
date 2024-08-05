@@ -98,19 +98,9 @@ const CommunityPage = () => {
       </Column>
       <WriterInfo>
         <Text>
-          <div>
-            <WriterName onClick={is_mentor ? null : showMentorProfile}>
-              {communityList.author.name}
-            </WriterName>
-            {is_mentor ? null : (
-              <SubscribeButton onClick={toggleSubscribe}>
-                <img
-                  src={`/img/Follow${subscribe ? "Yellow" : "Gray"}.svg`}
-                  alt={scrap ? "scraping" : "notScraping"}
-                />
-              </SubscribeButton>
-            )}
-          </div>
+          <WriterName onClick={is_mentor ? null : showMentorProfile}>
+            {communityList.author.name}
+          </WriterName>
           <CategoryList>
             {communityList.author.mentor_profile.interests_display.map(
               (value, idx) => (
