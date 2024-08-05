@@ -42,7 +42,7 @@ const TermsOfServicePage = () => {
 
   return (
     <MainContainer>
-      <BackBtn onClick={() => navigate(-1)} />
+      <BackBtn onClick={() => navigate("/join")} />
       <TitleOval className="titleOval">이용약관 동의</TitleOval>
       <TitleText>새로운 계정을 만들어볼까요?</TitleText>
       <SideText>이용약관에 동의해주세요.</SideText>
