@@ -7,29 +7,51 @@ import axios from "axios";
 const is_mentor = localStorage.getItem("is_mentor") === "true";
 
 const CommunityPage = () => {
-  const column = useLocation().state.column;
-  const [communityList, setCommunityList] = useState(column);
+  const receivedColumn = useLocation().state.column;
+  const [column, setColumn] = useState(receivedColumn);
   const accessToken = localStorage.getItem("access");
   const [scrap, setScrap] = useState(false);
-  const [subscribe, setSubscribe] = useState(false);
   const is_mentor = localStorage.getItem("is_mentor") === "true";
+  const myColumn =
+    parseInt(localStorage.getItem("user_id")) ===
+    column.author.mentor_profile.user;
+  const existImg =
+    column.image !==
+    "http://127.0.0.1:8000/media/column_images/voyage_default.png";
   const navigate = useNavigate();
-  console.log("지금은?", communityList);
+  console.log(column);
 
   const toggleScraption = () => {
-    sendScrapInfo(communityList.id);
-  };
-
-  const toggleSubscribe = (e) => {
-    e.stopPropagation();
-    setSubscribe((prev) => !prev);
+    sendScrapInfo(column.id);
   };
 
   const showMentorProfile = () => {
     console.log("멘토 프로필 보여주기");
-    console.log(typeof column.author.id);
-    navigate(`/profile/mentor/${column.author.id}`);
+    navigate(`/profile/mentor/${receivedColumn.author.id}`);
   };
+
+  function modifyCol() {
+    if (!window.confirm("칼럼을 수정하시겠습니까?")) {
+      return;
+    } else {
+    }
+  }
+
+  function deleteCol() {
+    if (!window.confirm("칼럼을 지우시겠습니까?")) {
+      return;
+    } else {
+      axios
+        .delete(`http://127.0.0.1:8000/community/columns/${column.id}/`, {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        })
+        .then((response) => {
+          console.log(response);
+          navigate("/community");
+        })
+        .catch((error) => console.log(error));
+    }
+  }
 
   function sendScrapInfo(id) {
     axios
@@ -39,7 +61,7 @@ const CommunityPage = () => {
       .then((response) => {
         console.log(response.data);
         console.log("스크랩 결과", response.data.is_scraped);
-        setCommunityList(response.data.column);
+        setColumn(response.data.column);
         setScrap(response.data.is_scraped);
       })
       .catch((error) => console.log(error));
@@ -49,18 +71,13 @@ const CommunityPage = () => {
     const searchBtn = document.querySelector("#searchBtn");
     searchBtn.style.display = "none";
     axios
-      .get(
-        `http://127.0.0.1:8000/community/columns/${communityList.id}/`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      )
+      .get(`http://127.0.0.1:8000/community/columns/${column.id}/`, null, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
       .then((response) => {
-        console.log("초기값", response.data);
-        setCommunityList(response.data);
+        setColumn(response.data);
         console.log(response.data.is_scraped);
       })
       .catch((error) => console.log(error));
@@ -74,13 +91,12 @@ const CommunityPage = () => {
       <Column>
         <Header>
           <ColTitle>
-            {communityList.title}
-            <ColCategory>{communityList.categories[0].name}</ColCategory>
+            {column.title}
+            <ColCategory>{column.categories[0].name}</ColCategory>
           </ColTitle>
           <ColInfo>
             <p>
-              by {communityList.author.name} •{" "}
-              {communityList.published_date.substr(0, 10)}
+              by {column.author.name} • {column.published_date.substr(0, 10)}
             </p>
             <ScraptionButton onClick={toggleScraption}>
               <img
@@ -91,18 +107,26 @@ const CommunityPage = () => {
           </ColInfo>
         </Header>
         <HorizonLine />
-        <MainText>{communityList.content}</MainText>
-        {communityList.image ? (
-          <ColumnImg src={`${communityList.image}`} />
-        ) : null}
+        <MainText>{column.content}</MainText>
+        {existImg ? <ColumnImg src={`${column.image}`} /> : null}
+        <BtnContainer>
+          <ModifyBtn
+            onClick={modifyCol}
+            style={{ display: myColumn ? "flex" : "none" }}
+          />
+          <DeleteBtn
+            onClick={deleteCol}
+            style={{ display: myColumn ? "flex" : "none" }}
+          />
+        </BtnContainer>
       </Column>
       <WriterInfo>
         <Text>
           <WriterName onClick={is_mentor ? null : showMentorProfile}>
-            {communityList.author.name}
+            {column.author.name}
           </WriterName>
           <CategoryList>
-            {communityList.author.mentor_profile.interests_display.map(
+            {column.author.mentor_profile.interests_display.map(
               (value, idx) => (
                 <WriterCategory key={idx}>{value.name}</WriterCategory>
               )
@@ -139,6 +163,14 @@ const Column = styled.div`
   min-height: 971px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #ccc;
+  }
 `;
 
 const Header = styled.div`
@@ -209,13 +241,6 @@ const ScraptionButton = styled.button`
   }
 `;
 
-const SubscribeButton = styled(ScraptionButton)`
-  margin: auto 0 auto 15px;
-  img {
-    width: 15px;
-  }
-`;
-
 const HorizonLine = styled.hr`
   width: 520px;
   height: 0.5px;
@@ -236,11 +261,27 @@ const MainText = styled.p`
   letter-spacing: -0.44px;
 `;
 
+const BtnContainer = styled.div`
+  display: flex;
+  gap: 11px;
+  margin: 18px 40px 100px auto;
+`;
+
+const ModifyBtn = styled.img.attrs({ src: "/img/columnModifyBtn.svg" })`
+  width: 104px;
+  height: 33px;
+  border-radius: 20px;
+  cursor: pointer;
+`;
+
+const DeleteBtn = styled(ModifyBtn).attrs({
+  src: "/img/columnDeleteBtn.svg",
+})``;
+
 const ColumnImg = styled.img`
   width: 520px;
-  height: 379px;
   border-radius: 10px;
-  margin: 35px auto 100px auto;
+  margin: 35px auto 0 auto;
 `;
 
 const WriterInfo = styled.footer`
