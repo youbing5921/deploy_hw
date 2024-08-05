@@ -8,7 +8,6 @@ const MyConcernList = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access");
-  const hasComments = Info?.concern?.comments?.length > 0;
 
   useEffect(() => {
     const getAllConcerns = () => {
@@ -59,9 +58,9 @@ const MyConcernList = () => {
               삭제
             </DeleteBtn>
           </TopBox>
-          {hasComments && (
+          {info?.comments?.length > 0 && (
             <ReplyWrapper>
-              {info?.comments?.map((comment, idx) => (
+              {info.comments.map((comment, idx) => (
                 <Reply
                   key={idx}
                   onClick={() => navigate(`/profile/mentor/${comment.author}`)}
@@ -95,6 +94,7 @@ const TopBox = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
 const DeleteBtn = styled.div`
   color: #7f7f7f;
   font-size: 13px;
