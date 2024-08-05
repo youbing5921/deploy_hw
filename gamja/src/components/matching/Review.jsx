@@ -74,12 +74,12 @@ const Username = styled.div`
 `;
 const Category = styled.div`
   display: inline-block;
-  padding: 3px 9px;
+  padding: 3px 8px;
   border-radius: 10px;
   background: rgba(73, 73, 73, 0.2);
   color: #494949;
   text-align: center;
-  font-size: 8px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -88,10 +88,10 @@ const Category = styled.div`
 
 const MoreBtn = styled.button`
   padding: 4px 7.5px;
-  border-radius: 5px;
-  background: rgba(73, 73, 73, 0.2);
+  border-radius: 10px;
+  background: rgba(73, 73, 73, 0.1);
   border: none;
-  color: #494949;
+  color: #7f7f7f;
   text-align: center;
   font-family: Pretendard;
   font-size: 8px;

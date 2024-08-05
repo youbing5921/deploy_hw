@@ -3,7 +3,7 @@ import styled from "styled-components";
 const SemiTitle = styled.p`
   color: #494949;
   font-family: Pretendard;
-  font-size: 15px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
