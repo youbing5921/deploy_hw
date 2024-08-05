@@ -98,6 +98,7 @@ function App() {
         <Route path="/community" element={<Community />}></Route>
         <Route path="/community/:colId" element={<Column />}></Route>
         <Route path="/community/write" element={<WriteColumnPage />}></Route>
+        <Route path="/community/modify" element={<WriteColumnPage />}></Route>
         <Route
           path="/community/mentor/:mentorId"
           element={<Community />}
