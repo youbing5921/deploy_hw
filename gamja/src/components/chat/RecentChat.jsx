@@ -5,7 +5,7 @@ import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
 import ChatMentee from "../../images/ChatMentee.svg";
 
-const RecentChat = ({ chatList }) => {
+const RecentChat = ({ chatList = [] }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const RecentChat = ({ chatList }) => {
   if (matchPath("/chat-list/mentee/:username", location)) {
     return (
       <>
-        {chatList.map((chat) => (
+        {chatList?.map((chat) => (
           <Wrapper key={chat.id}>
             <Both>
               <Left>
