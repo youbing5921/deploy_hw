@@ -129,7 +129,7 @@ function App() {
         <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
         <Route path="/mypage/concerns-list/" element={<AllConcerns />}></Route>
         <Route
-          path="/profile/mentor/more/:userId"
+          path="/profile/mentor/review-list/:mentorId"
           element={<ReviewList />}
         ></Route>
       </Routes>
