@@ -33,8 +33,8 @@ const CommunityContainer = ({
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
-        console.log(response.data);
-        console.log("스크랩 결과", response.data.is_scraped);
+        // console.log(response.data);
+        // console.log("스크랩 결과", response.data.is_scraped);
       })
       .catch((error) => console.log(error));
     window.location.reload();

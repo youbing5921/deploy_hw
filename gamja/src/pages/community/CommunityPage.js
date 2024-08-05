@@ -41,7 +41,7 @@ const CommunityPage = () => {
       axios
         .get(`${Server_IP}/community/columns/?search=${searchText}`)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setFilteredCategory(response.data);
         })
         .catch((error) => console.log(error));
@@ -72,7 +72,7 @@ const CommunityPage = () => {
       .then((response) => {
         setCommunityList(response.data);
         setFilteredCategory(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

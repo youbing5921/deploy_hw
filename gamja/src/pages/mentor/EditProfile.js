@@ -64,7 +64,7 @@ const EditProfile = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("회원정보 수정이 완료되었습니다.");
         navigate(-1);
       })

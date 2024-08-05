@@ -25,13 +25,13 @@ const InterestBtn = ({ Info }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert(response.data);
         window.location.reload();
       })
       .catch((error) => {
         console.log(error);
-        console.log(like.mentor_id);
+        // console.log(like.mentor_id);
         alert("멘토 관심 설정에 실패하였습니다.");
       });
   };

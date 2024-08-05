@@ -25,7 +25,7 @@ const ChatRoomMentee = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setChatRoomData(response.data);
         })
         .catch((error) => {

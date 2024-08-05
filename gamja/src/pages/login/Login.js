@@ -40,7 +40,7 @@ const Login = () => {
         password: pw,
       })
       .then((response) => {
-        console.log("로그인 성공");
+        // console.log("로그인 성공");
         localStorage.clear();
         const userInfo = response.data;
         localStorage.setItem("access", userInfo.access);
@@ -52,7 +52,7 @@ const Login = () => {
         navigate("/home");
       })
       .catch((error) => {
-        console.log("로그인 실패");
+        // console.log("로그인 실패");
         console.log(error);
         alert("아이디 또는 비밀번호가 틀렸습니다.\n다시 입력해주세요.");
       });

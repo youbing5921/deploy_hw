@@ -35,12 +35,9 @@ const WriteColumnPage = () => {
 
   const loadImage = (e) => {
     const temp = e.target.files[0];
-    console.log(temp);
+    // console.log(temp);
     if (!temp) {
       return;
-    }
-    for (let key of formData.keys()) {
-      console.log(key);
     }
     setImage(temp);
     const imgLoad = document.querySelector("#imgLoad");

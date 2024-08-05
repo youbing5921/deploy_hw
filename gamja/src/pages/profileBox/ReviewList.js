@@ -27,12 +27,12 @@ const ReviewList = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfo(response.data);
           setReviewId(response.data?.info?.id);
         })
         .catch((error) => {
-          console.log(mentorId);
+          // console.log(mentorId);
           console.log(error);
         });
     };

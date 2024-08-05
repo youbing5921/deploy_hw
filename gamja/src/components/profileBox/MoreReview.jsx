@@ -11,7 +11,7 @@ const MoreReview = ({ reviewId }) => {
 
   useEffect(() => {
     const getReviewMore = () => {
-      console.log(reviewId);
+      // console.log(reviewId);
       axios
         .get(`${Server_IP}/review/${reviewId}/mentors/`, {
           headers: {
@@ -19,7 +19,7 @@ const MoreReview = ({ reviewId }) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setReviews(response.data.reverse());
         })
         .catch((error) => {

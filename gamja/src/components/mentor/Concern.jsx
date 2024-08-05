@@ -20,7 +20,7 @@ const Concern = ({ concernList }) => {
   };
 
   const postContent = (concernId) => {
-    console.log(concernId);
+    // console.log(concernId);
     axios
       .post(
         `${Server_IP}/concerns/${concernId}/comments/`,
@@ -34,7 +34,7 @@ const Concern = ({ concernList }) => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("댓글이 작성되었습니다.");
         setContents((prevContents) => ({
           ...prevContents,
@@ -47,7 +47,7 @@ const Concern = ({ concernList }) => {
   };
 
   useEffect(() => {
-    console.log(concernList);
+    // console.log(concernList);
   }, [concernList]);
 
   return (

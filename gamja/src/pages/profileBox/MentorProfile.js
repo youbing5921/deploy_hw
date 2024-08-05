@@ -27,11 +27,11 @@ const MentorProfile = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfo(response.data);
         })
         .catch((error) => {
-          console.log(mentorId);
+          // console.log(mentorId);
           console.log(error);
         });
     };

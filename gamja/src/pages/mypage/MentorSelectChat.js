@@ -20,7 +20,7 @@ const MentorSelectChat = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setChatList(response.data);
         })
         .catch((error) => {

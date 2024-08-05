@@ -24,7 +24,7 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setJournalInfo(response.data.reverse());
         })
         .catch((error) => {

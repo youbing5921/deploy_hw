@@ -9,10 +9,10 @@ const Server_IP = process.env.REACT_APP_Server_IP;
 
 const MenteeProfile = () => {
   const { menteeId } = useParams();
-  console.log(menteeId);
+  // console.log(menteeId);
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
-  console.log(Info);
+  // console.log(Info);
   const accessToken = localStorage.getItem("access");
 
   useEffect(() => {
@@ -24,11 +24,11 @@ const MenteeProfile = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfo(response.data);
         })
         .catch((error) => {
-          console.log(menteeId);
+          // console.log(menteeId);
           console.log(error);
         });
     };

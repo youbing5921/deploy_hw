@@ -20,7 +20,7 @@ const MyConcernList = () => {
           },
         })
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setInfo(response.data);
         })
         .catch((error) => {
@@ -40,7 +40,7 @@ const MyConcernList = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("고민이 삭제되었습니다.");
         window.location.reload();
       })

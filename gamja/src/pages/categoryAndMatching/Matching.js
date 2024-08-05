@@ -37,7 +37,7 @@ const Matching = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setMentorInfo(response.data);
       })
       .catch((error) => console.log(error));
@@ -46,7 +46,7 @@ const Matching = () => {
 
   function likeMentor() {
     const name = document.querySelector("#mentorName").innerText;
-    console.log(name);
+    // console.log(name);
     mentorInfo.map((mentor) => {
       if (mentor.name === name) {
         const id = mentor.info.id;

@@ -40,7 +40,7 @@ const FindIdPw = () => {
   }, [name, email, id]);
 
   function findId(name, email) {
-    console.log(name, email);
+    // console.log(name, email);
     axios
       .get(`${Server_IP}/users/get-user-id/?name=${name}&email=${email}`)
       .then((response) => {
