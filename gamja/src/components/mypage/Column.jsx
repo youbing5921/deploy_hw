@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import MentorColumn from "../../images/MentorColumn.png";
 import { useNavigate } from "react-router-dom";
 
 // const columnList = [
@@ -33,7 +32,7 @@ import { useNavigate } from "react-router-dom";
 
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
-  console.log(Info);
+
   return (
     <>
       <Wapper>
@@ -41,10 +40,18 @@ const Column = ({ $categoryColor, $categoryBg, Info }) => {
           <Container
             key={idx}
             onClick={() =>
-              navigate(`/community/${colInfo.id}`, { state: { column: Info } })
+              navigate(`/community/${colInfo.id}`, {
+                state: { column: Info[idx] },
+              })
             }
           >
-            <Photo src={`${colInfo.image}`} alt="mentorColumn" />
+            <Photo
+              src={
+                colInfo.image ? colInfo.image : "/img/communitySampleImage.svg"
+              }
+              alt="mentorColumn"
+            />
+            {/* <Photo src={`${colInfo.image}`} alt="mentorColumn" /> */}
             <InfoBox>
               <Category
                 $categoryColor={$categoryColor}

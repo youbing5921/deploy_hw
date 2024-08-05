@@ -17,9 +17,9 @@ const CommunityPage = () => {
     column.author.mentor_profile.user;
   const existImg =
     column.image !==
-    "http://127.0.0.1:8000/media/column_images/voyage_default.png";
+      "http://127.0.0.1:8000/media/column_images/voyage_default.png" &&
+    column.image !== null;
   const navigate = useNavigate();
-  console.log(column);
 
   const toggleScraption = () => {
     sendScrapInfo(column.id);
