@@ -34,7 +34,7 @@ const CommunityContainer = ({
           <Content>
             <Category>{column.categories[0].name}</Category>
             <Title>{column.title}</Title>
-            <Username>{column.author.name}</Username>
+            <Username>{mentor_name}</Username>
           </Content>
           <SubscribeButton onClick={(e) => toggleScraption(e, column.id)}>
             <img
