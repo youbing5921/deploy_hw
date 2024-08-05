@@ -52,13 +52,27 @@ const CommunityContainer = ({
             src={column.image ? column.image : "/img/communitySampleImage.svg"}
           />
           <Content>
-            <Category>{column.categories[0].name}</Category>
+            <Category
+              style={{
+                backgroundColor: forSpecialMentor
+                  ? "rgba(253, 222, 85, 0.20)"
+                  : null,
+              }}
+            >
+              {column.categories[0].name}
+            </Category>
             <Title>{column.title}</Title>
             <Username>{mentor_name}</Username>
           </Content>
           <SubscribeButton onClick={(e) => toggleScraption(e, column.id)}>
             <img
-              src={`/img/${column.is_scraped ? "MentorStar" : "EmptyStar"}.svg`}
+              src={`/img/${
+                column.is_scraped
+                  ? is_mentor
+                    ? "MentorStar"
+                    : "MenteeStar"
+                  : "EmptyStar"
+              }.svg`}
               alt={column.is_scraped ? "Following" : "NotFollow"}
             />
           </SubscribeButton>

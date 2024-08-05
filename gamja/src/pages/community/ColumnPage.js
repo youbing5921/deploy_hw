@@ -100,7 +100,13 @@ const CommunityPage = () => {
             </p>
             <ScraptionButton onClick={toggleScraption}>
               <img
-                src={`/img/${scrap ? "MentorStar" : "EmptyStar"}.svg`}
+                src={`/img/${
+                  scrap
+                    ? is_mentor
+                      ? "MentorStar"
+                      : "MenteeStar"
+                    : "EmptyStar"
+                }.svg`}
                 alt={scrap ? "scraping" : "notScraping"}
               />
             </ScraptionButton>
