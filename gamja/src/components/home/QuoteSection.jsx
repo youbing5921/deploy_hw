@@ -3,20 +3,24 @@ import styled from "styled-components";
 
 const quoteList = [
   {
-    quote: "가르치는 것은 \n두 번 배우는 것이다",
-    author: "프랑스 수필가, 죠세프 수베르",
+    quote: "언제나 현재에 집중할 수 있다면\n행복할 것이다.",
+    author: "파울로 코엘료",
   },
   {
-    quote: "두 번 배우는 것이다",
-    author: "프랑스 수필가, ",
+    quote: "피할 수 없으면 즐겨라",
+    author: "로버트 엘리엇",
   },
   {
-    quote: "가르치는 것은 ",
-    author: " 죠세프 수베르",
+    quote: "행복은 습관이다.\n그것을 몸에 지니라",
+    author: "허버드",
   },
   {
-    quote: "내 자신에 대한 자신감을 잃으면, \n온 세상이 나의 적이 된다.",
-    author: "랄프 왈도 에머슨",
+    quote: "그대의 하루하루를\n그대의 마지막날이라고 생각하라",
+    author: "호라티우스",
+  },
+  {
+    quote: "자신감 있는 표정을 지으면\n자신감이 생긴다",
+    author: "찰스 다윈",
   },
 ];
 
