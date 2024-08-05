@@ -58,7 +58,7 @@ const Matching = () => {
         <BackBtn onClick={() => navigate(-1)} />
         <NewTitleOval>멘토 매칭</NewTitleOval>
         <TitleText>
-          이지님이 찾던
+          {localStorage.getItem("name").substring(1)}님이 찾던
           <br />
           멘토님을 소개해드릴게요.
         </TitleText>

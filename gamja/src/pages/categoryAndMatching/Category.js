@@ -29,28 +29,6 @@ const Category = () => {
     }
   };
 
-  // axios
-  //   .post("http://127.0.0.1:8000/users/users/", {
-  //     username: "nefjnekdkne",
-  //     email: "rkl@jnkfnk.com",
-  //     password: "fnjkrn",
-  //     is_mentor: true,
-  //     name: "진멘토",
-  //     birth_date: "2020-02-11",
-  //     agreed_to_terms: true,
-  //     mentor_profile: {
-  //       interests: ["진로"],
-  //     },
-  //   })
-  //   .then((response) => {
-  //     alert("회원가입에 성공했습니다.");
-  //   })
-  //   .catch((error) => {
-  //     console.log(error.response.request.response);
-  //     //alert("회원가입에 실패했습니다.");
-  //     //navigate("/join/info");
-  //   });
-
   useEffect(() => {
     const titleOval = document.querySelector(".titleOval");
     const bottomBtn = document.querySelector(".bottomBtn");
@@ -71,7 +49,7 @@ const Category = () => {
         <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">전문 분야 설정</TitleOval>
         <TitleText>
-          이지님은 멘티에게
+          {localStorage.getItem("name").substring(1)}님은 멘티에게
           <br />
           어떤 이야기를 들려주실 건가요?
         </TitleText>
@@ -116,7 +94,7 @@ const Category = () => {
         <NewBackBtn onClick={() => navigate(-1)} />
         <TitleOval className="titleOval">고민 설정</TitleOval>
         <TitleText>
-          이지님은
+          {localStorage.getItem("name").substring(1)}님은
           <br />
           어떤 고민을 가지고 계신가요?
         </TitleText>
