@@ -36,8 +36,7 @@ const Container = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   width: 480px;
-  height: 100px;
-  padding: 14px 16px 19px 16px;
+  padding: 14px 16px;
   margin-bottom: 26px;
 `;
 
@@ -54,8 +53,8 @@ const Top = styled.div`
   /* gap: 9px; */
 `;
 const Profile = styled.img`
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
 `;
 const Low = styled.div``;
 
@@ -74,7 +73,7 @@ const Category = styled.div`
   background: rgba(3, 174, 210, 0.2);
   color: #03aed2;
   text-align: center;
-  font-size: 13px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
@@ -83,13 +82,10 @@ const Category = styled.div`
 
 const Comment = styled.div`
   margin-top: 14px;
-  display: -webkit-box;
   width: 299px;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   overflow: hidden;
   color: #494949;
-  text-overflow: ellipsis;
   font-size: 15px;
   font-weight: 400;
+  width: 100%;
 `;

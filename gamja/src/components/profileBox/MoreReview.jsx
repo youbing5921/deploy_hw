@@ -36,8 +36,7 @@ const Container = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   width: 307px;
-  height: 70px;
-  padding: 14px 16px 19px 16px;
+  padding: 14px 16px;
 `;
 
 const Left = styled.div`
@@ -82,13 +81,8 @@ const Category = styled.div`
 
 const Comment = styled.div`
   margin-top: 14px;
-  display: -webkit-box;
   width: 299px;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
   overflow: hidden;
-  color: #494949;
-  text-overflow: ellipsis;
   font-size: 13px;
   font-weight: 400;
 `;

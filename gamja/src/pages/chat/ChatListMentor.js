@@ -4,7 +4,6 @@ import TopBar from "../../components/common/TopBar";
 import MenuBar from "../../components/chat/MenuBar";
 import RecentChat from "../../components/chat/RecentChat";
 import SuggestMentee from "../../components/chat/SuggestMentee";
-import AdZone from "../../components/chat/AdZone";
 import axios from "axios";
 
 const ChatListMentee = () => {
@@ -68,9 +67,6 @@ const ChatListMentee = () => {
             <SuggestMentee suggestList={suggestList} />
           )}
         </ListBox>
-        <BottomBar>
-          <AdZone />
-        </BottomBar>
       </Container>
     </>
   );
@@ -87,16 +83,4 @@ const Container = styled.div`
 
 const ListBox = styled.div`
   padding: 15px 0px;
-`;
-
-const BottomBar = styled.div`
-  position: fixed;
-  bottom: 0;
-  width: 520px;
-  height: 148px;
-  background: #f8f8f8;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  padding: 38px 40px;
 `;

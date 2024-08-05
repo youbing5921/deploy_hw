@@ -71,7 +71,7 @@ const CommunityPage = () => {
         <CategoryBar onSelectCategory={setSelectedCategory} />
       </TopContainer>
       <CommunityContainer
-        communityList={filteredCategory}
+        communityList={filteredCategory.reverse()}
         toggleScraption={toggleScraption}
         forSpecialMentor={forSpecialMentor}
         mentor_name={mentor_name}
