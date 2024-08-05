@@ -87,7 +87,7 @@ const WriteColumnPage = () => {
           </ColTitle>
           <ColInfo>
             <p>
-              by {localStorage.name} • <Today />
+              by {localStorage.getItem("name")} • <Today />
             </p>
             <InputImg>
               <input
