@@ -20,6 +20,7 @@ const WriteColumnPage = () => {
   const [content, setContent] = useState("");
   const [uploadImgUrl, setUploadImgUrl] = useState("");
   const [categories, setCategories] = useState([]);
+  const formData = new FormData();
 
   const selectCategory = (e) => {
     const form = document.querySelector("#category");
@@ -29,34 +30,28 @@ const WriteColumnPage = () => {
   };
 
   const loadImage = (e) => {
-    const { files } = e.target;
-    const uploadFile = files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(uploadFile);
-    reader.onloadend = () => {
-      setUploadImgUrl(reader.result);
-    };
+    if (!e.target.files[0]) {
+      return;
+    }
+    formData.append("image", e.target.files[0]);
+    console.log(formData);
     const imgLoad = document.querySelector("#imgLoad");
     imgLoad.src = "/img/loadedImage.svg";
     alert("이미지가 업로드되었습니다.");
   };
 
   function uploadCol() {
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("categories", categories);
+
     axios
-      .post(
-        `http://127.0.0.1:8000/community/columns/`,
-        {
-          title: title,
-          content: content,
-          image: uploadImgUrl,
-          categories: categories,
+      .post(`http://127.0.0.1:8000/community/columns/`, formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access")}`,
+          "Content-Type": "multipart/form-data",
         },
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("access")}`,
-          },
-        }
-      )
+      })
       .then((response) => navigate("/community"))
       .catch((error) => console.log(error));
   }

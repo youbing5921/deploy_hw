@@ -93,7 +93,7 @@ const CommunityPage = () => {
         <HorizonLine />
         <MainText>{communityList.content}</MainText>
         {communityList.image ? (
-          <ColumnImg src={`/${communityList.image}`} />
+          <ColumnImg src={`${communityList.image}`} />
         ) : null}
       </Column>
       <WriterInfo>
