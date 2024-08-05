@@ -11,12 +11,40 @@ const CommunityPage = () => {
   const [communityList, setCommunityList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("전체");
   const [filteredCategory, setFilteredCategory] = useState(communityList);
+  const [searchMode, setSearchMode] = useState(true);
   const accessToken = localStorage.getItem("access");
   const is_mentor = localStorage.getItem("is_mentor") === "true";
   const location = useLocation();
   const forSpecialMentor = location.pathname.includes("mentor");
   const mentor_id = forSpecialMentor ? location.state.mentor_id : 0;
   const mentor_name = forSpecialMentor ? location.state.mentor_name : "";
+
+  const popSearchForm = () => {
+    // const searchBtn = document.querySelector("#searchBtn");
+    const categoryBar = document.querySelector("#categoryBar");
+    const searchBar = document.querySelector("#searchBar");
+    const searchSubmit = document.querySelector("#searchSubmit");
+
+    categoryBar.style.display = searchMode ? "none" : "flex";
+    searchBar.style.display = searchMode ? "flex" : "none";
+    searchSubmit.style.display = searchMode ? "block" : "none";
+    setSearchMode((prev) => !prev);
+  };
+
+  function search(searchText) {
+    if (searchText === "") {
+      alert("검색할 제목을 입력해주세요.");
+      return;
+    } else {
+      axios
+        .get(`http://127.0.0.1:8000/community/columns/?search=${searchText}`)
+        .then((response) => {
+          console.log(response.data);
+          setFilteredCategory(response.data);
+        })
+        .catch((error) => console.log(error));
+    }
+  }
 
   useEffect(
     () =>
@@ -52,8 +80,16 @@ const CommunityPage = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"커뮤니티"} onClick={() => navigate("/home")} />
-        <CategoryBar onSelectCategory={setSelectedCategory} />
+        <TopBar
+          txt={"커뮤니티"}
+          onClick={() => navigate("/home")}
+          search={popSearchForm}
+        />
+        <CategoryBar
+          id="categoryBar"
+          onSelectCategory={setSelectedCategory}
+          search={search}
+        />
       </TopContainer>
       <CommunityContainer
         communityList={filteredCategory.reverse()}
