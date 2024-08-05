@@ -12,10 +12,9 @@ import ChatBtn from "../../components/profileBox/ChatBtn";
 const ReviewList = () => {
   const accessToken = localStorage.getItem("access");
   const { mentorId } = useParams();
-
   const navigate = useNavigate();
   const [Info, setInfo] = useState([]);
-  const [reviews, setReviews] = useState([]);
+  const [reviewId, setReviewId] = useState([]);
 
   useEffect(() => {
     const getProfile = () => {
@@ -28,33 +27,16 @@ const ReviewList = () => {
         .then((response) => {
           console.log(response.data);
           setInfo(response.data);
+          setReviewId(response.data?.info?.id);
         })
         .catch((error) => {
           console.log(mentorId);
           console.log(error);
         });
     };
+
     getProfile();
   }, [accessToken, mentorId]);
-
-  useEffect(() => {
-    const getReviewMore = () => {
-      axios
-        .get("http://127.0.0.1:8000/review/", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        })
-        .then((response) => {
-          console.log(response.data);
-          setReviews(response.data.reverse());
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-    getReviewMore();
-  }, [accessToken]);
 
   const onCancel = () => {
     navigate(-1);
@@ -85,7 +67,7 @@ const ReviewList = () => {
             <Title>멘토님의 멘토링 후기</Title>
           </TitleBox>
           <ReviewBox>
-            <MoreReview reviews={reviews} />
+            <MoreReview reviewId={reviewId} />
           </ReviewBox>
           <BtnBox>
             <InterestBtn Info={Info} />

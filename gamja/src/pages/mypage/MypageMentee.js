@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import TopBar from "../../components/common/TopBar";
+import BackHome from "../../components/common/BackHome.jsx";
 import MenteeProfile from "../../components/mypage/MenteeProfile";
 import MyConcern from "../../components/mypage/MyConcern";
 import JournalList from "../../components/mypage/JournalList";
@@ -63,7 +63,7 @@ const MypageMentee = () => {
   return (
     <>
       <Container>
-        <TopBar txt={"마이페이지"} marginLeft={"154px"} />
+        <BackHome txt={"마이페이지"} marginLeft={"154px"} />
         <Both>
           <Left>
             <MenteeProfile Info={Info} />
@@ -85,6 +85,7 @@ const MypageMentee = () => {
           <Column
             $categoryBg={"rgba(73, 73, 73, 0.20)"}
             $categoryColor={"#494949"}
+            Info={Info}
           />
         </ColumnBox>
         <ButtonBox>

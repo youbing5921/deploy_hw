@@ -1,51 +1,56 @@
 import React from "react";
 import styled from "styled-components";
 import MentorColumn from "../../images/MentorColumn.png";
+import { useNavigate } from "react-router-dom";
 
-const columnList = [
-  {
-    id: 1,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라!",
-    author: "김조이",
-  },
-  {
-    id: 2,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라!",
-    author: "김조이",
-  },
+// const columnList = [
+//   {
+//     id: 1,
+//     category: "가치관",
+//     title: "단 한 번뿐인 인생, 도전하라!",
+//     author: "김조이",
+//   },
+//   {
+//     id: 2,
+//     category: "가치관",
+//     title: "단 한 번뿐인 인생, 도전하라!",
+//     author: "김조이",
+//   },
 
-  {
-    id: 3,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라!",
-    author: "김조이",
-  },
-  {
-    id: 4,
-    category: "가치관",
-    title: "단 한 번뿐인 인생, 도전하라!",
-    author: "김조이",
-  },
-];
+//   {
+//     id: 3,
+//     category: "가치관",
+//     title: "단 한 번뿐인 인생, 도전하라!",
+//     author: "김조이",
+//   },
+//   {
+//     id: 4,
+//     category: "가치관",
+//     title: "단 한 번뿐인 인생, 도전하라!",
+//     author: "김조이",
+//   },
+// ];
 
-const Column = ({ $categoryColor, $categoryBg }) => {
+const Column = ({ $categoryColor, $categoryBg, Info }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Wapper>
-        {columnList.map((columnInfo) => (
-          <Container key={columnInfo.id}>
+        {Info.scrapedColumns?.map((colInfo, idx) => (
+          <Container
+            key={idx}
+            onClick={() => navigate(`/community/${colInfo.id}`)}
+          >
             <Photo src={MentorColumn} alt="mentorColumn" />
             <InfoBox>
               <Category
                 $categoryColor={$categoryColor}
                 $categoryBg={$categoryBg}
               >
-                {columnInfo.category}
+                {colInfo.categories}
               </Category>
-              <Title>{columnInfo.title}</Title>
-              <Author>{columnInfo.author}</Author>
+              <Title>{colInfo.title}</Title>
+              <Author>{colInfo.author.name}</Author>
             </InfoBox>
           </Container>
         ))}
@@ -80,7 +85,8 @@ const Container = styled.div`
 `;
 
 const Photo = styled.img`
-  height: 94px;
+  width: 145px;
+  height: 93px;
   border-radius: 10px;
 `;
 
