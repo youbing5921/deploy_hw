@@ -8,6 +8,7 @@ const MyConcernList = () => {
   const [Info, setInfo] = useState([]);
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access");
+  const hasComments = Info?.concern?.comments?.length > 0;
 
   useEffect(() => {
     const getAllConcerns = () => {
@@ -48,10 +49,6 @@ const MyConcernList = () => {
       });
   };
 
-  //   useEffect(() => {
-  //     deleteConcern();
-  //   }, [accessToken]);
-
   return (
     <>
       {Info.map((info, idx) => (
@@ -62,17 +59,19 @@ const MyConcernList = () => {
               삭제
             </DeleteBtn>
           </TopBox>
-          <ReplyWrapper>
-            {info?.comments?.map((comment, idx) => (
-              <Reply
-                key={idx}
-                onClick={() => navigate(`/profile/mentor/${comment.author}`)}
-              >
-                <Profile src={MentorImg} alt="MentorImg" />
-                <Text>{comment?.content}</Text>
-              </Reply>
-            ))}
-          </ReplyWrapper>
+          {hasComments && (
+            <ReplyWrapper>
+              {info?.comments?.map((comment, idx) => (
+                <Reply
+                  key={idx}
+                  onClick={() => navigate(`/profile/mentor/${comment.author}`)}
+                >
+                  <Profile src={MentorImg} alt="MentorImg" />
+                  <Text>{comment?.content}</Text>
+                </Reply>
+              ))}
+            </ReplyWrapper>
+          )}
         </Content>
       ))}
     </>
