@@ -2,37 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-// const columnList = [
-//   {
-//     id: 1,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-//   {
-//     id: 2,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-
-//   {
-//     id: 3,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-//   {
-//     id: 4,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-// ];
+const Server_IP = process.env.REACT_APP_Server_IP;
 
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
-
+  console.log(Info);
   return (
     <>
       <Wapper>
@@ -47,7 +21,9 @@ const Column = ({ $categoryColor, $categoryBg, Info }) => {
           >
             <Photo
               src={
-                colInfo.image ? colInfo.image : "/img/communitySampleImage.svg"
+                colInfo.image
+                  ? `${Server_IP}/${colInfo.image}`
+                  : "/img/communitySampleImage.svg"
               }
               alt="mentorColumn"
             />
