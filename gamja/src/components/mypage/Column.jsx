@@ -33,21 +33,24 @@ import { useNavigate } from "react-router-dom";
 
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
+  console.log(Info);
   return (
     <>
       <Wapper>
-        {Info.scrapedColumns?.map((colInfo, idx) => (
+        {Info?.map((colInfo, idx) => (
           <Container
             key={idx}
-            onClick={() => navigate(`/community/${colInfo.id}`)}
+            onClick={() =>
+              navigate(`/community/${colInfo.id}`, { state: { column: Info } })
+            }
           >
-            <Photo src={MentorColumn} alt="mentorColumn" />
+            <Photo src={`${colInfo.image}`} alt="mentorColumn" />
             <InfoBox>
               <Category
                 $categoryColor={$categoryColor}
                 $categoryBg={$categoryBg}
               >
-                {colInfo.categories}
+                {colInfo.categories[0].name}
               </Category>
               <Title>{colInfo.title}</Title>
               <Author>{colInfo.author.name}</Author>
