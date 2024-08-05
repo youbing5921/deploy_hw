@@ -21,7 +21,7 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
         })
         .then((response) => {
           console.log(response.data);
-          setJournalInfo(response.data);
+          setJournalInfo(response.data.reverse());
         })
         .catch((error) => {
           console.log(error);
@@ -55,7 +55,7 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
                   }
                 >
                   <JournalTitle>{journal.title}</JournalTitle>
-                  <WriteDate>{journal.date}</WriteDate>
+                  <WriteDate>{journal.created_at}</WriteDate>
                 </Journal>
                 <BasicHr />
               </React.Fragment>
