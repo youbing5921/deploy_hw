@@ -10,6 +10,7 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
   const navigate = useNavigate();
   const [journalInfo, setJournalInfo] = useState([]);
   const accessToken = localStorage.getItem("access");
+  const hasJournal = journalInfo.length > 0;
 
   useEffect(() => {
     const getJournalList = () => {
@@ -45,22 +46,26 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
               일지쓰기
             </WriteBtn>
           </Top>
-          <BoldHr />
-          <ListBox>
-            {journalInfo.map((journal) => (
-              <React.Fragment key={journal.id}>
-                <Journal
-                  onClick={() =>
-                    navigate(`/mypage/journal/detail/${journal.id}`)
-                  }
-                >
-                  <JournalTitle>{journal.title}</JournalTitle>
-                  <WriteDate>{journal.created_at}</WriteDate>
-                </Journal>
-                <BasicHr />
-              </React.Fragment>
-            ))}
-          </ListBox>
+          {hasJournal && <BoldHr />}
+          {hasJournal ? (
+            <ListBox>
+              {journalInfo.map((journal) => (
+                <React.Fragment key={journal.id}>
+                  <Journal
+                    onClick={() =>
+                      navigate(`/mypage/journal/detail/${journal.id}`)
+                    }
+                  >
+                    <JournalTitle>{journal.title}</JournalTitle>
+                    <WriteDate>{journal.created_at}</WriteDate>
+                  </Journal>
+                  <BasicHr />
+                </React.Fragment>
+              ))}
+            </ListBox>
+          ) : (
+            <BlankText>멘토링 후 일지를 남길 수 있어요</BlankText>
+          )}
         </Container>
       </>
     );
@@ -175,4 +180,14 @@ const WriteDate = styled.div`
   text-align: center;
   font-size: 13px;
   font-weight: 400;
+`;
+
+const BlankText = styled.div`
+  padding: 25px 20px;
+  border-radius: 15px;
+  background: #f8f8f8;
+  margin-top: 3px;
+  color: #494949;
+  font-size: 15px;
+  font-weight: 600;
 `;
