@@ -84,22 +84,26 @@ const JournalList = ({ txt, $fontColor, $bgColor, Info }) => {
               일지쓰기
             </WriteBtn>
           </Top>
-          <BoldHr />
-          <ListBox>
-            {journalInfo.map((journal) => (
-              <React.Fragment key={journal.id}>
-                <Journal
-                  onClick={() =>
-                    navigate(`/mypage/journal/detail/${journal.id}`)
-                  }
-                >
-                  <JournalTitle>{journal.title}</JournalTitle>
-                  <WriteDate>{journal.date}</WriteDate>
-                </Journal>
-                <BasicHr />
-              </React.Fragment>
-            ))}
-          </ListBox>
+          {hasJournal && <BoldHr />}
+          {hasJournal ? (
+            <ListBox>
+              {journalInfo.map((journal) => (
+                <React.Fragment key={journal.id}>
+                  <Journal
+                    onClick={() =>
+                      navigate(`/mypage/journal/detail/${journal.id}`)
+                    }
+                  >
+                    <JournalTitle>{journal.title}</JournalTitle>
+                    <WriteDate>{journal.date}</WriteDate>
+                  </Journal>
+                  <BasicHr />
+                </React.Fragment>
+              ))}
+            </ListBox>
+          ) : (
+            <BlankText>멘토링 후 일지를 남길 수 있어요</BlankText>
+          )}
         </Container>
       </>
     );
@@ -157,7 +161,7 @@ const BasicHr = styled.div`
 
 const ListBox = styled.div`
   width: 520px;
-  height: 170px;
+  margin-bottom: 100px;
 `;
 
 const Journal = styled.div`
