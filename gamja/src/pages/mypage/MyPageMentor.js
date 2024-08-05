@@ -115,7 +115,7 @@ const MyPageMentor = () => {
         />
         <ColumnBox>
           <Title>내가 스크랩한 칼럼</Title>
-          <Column />
+          <Column Info={Info.scrapedColumns} />
         </ColumnBox>
         <ButtonBox>
           <LogoutWithdrawBtn text="logout" onClick={logout} />

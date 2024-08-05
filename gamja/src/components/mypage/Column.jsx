@@ -2,69 +2,53 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-// const columnList = [
-//   {
-//     id: 1,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-//   {
-//     id: 2,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-
-//   {
-//     id: 3,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-//   {
-//     id: 4,
-//     category: "가치관",
-//     title: "단 한 번뿐인 인생, 도전하라!",
-//     author: "김조이",
-//   },
-// ];
-
 const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
+  const username = localStorage.getItem("name");
+  const hasScrap = Info?.length !== 0;
 
   return (
     <>
-      <Wapper>
-        {Info?.map((colInfo, idx) => (
-          <Container
-            key={idx}
-            onClick={() =>
-              navigate(`/community/${colInfo.id}`, {
-                state: { column: Info[idx] },
-              })
-            }
-          >
-            <Photo
-              src={
-                colInfo.image ? colInfo.image : "/img/communitySampleImage.svg"
+      {hasScrap ? (
+        <Wapper>
+          {Info?.map((colInfo, idx) => (
+            <Container
+              key={idx}
+              onClick={() =>
+                navigate(`/community/${colInfo.id}`, {
+                  state: { column: Info[idx] },
+                })
               }
-              alt="mentorColumn"
-            />
-            {/* <Photo src={`${colInfo.image}`} alt="mentorColumn" /> */}
-            <InfoBox>
-              <Category
-                $categoryColor={$categoryColor}
-                $categoryBg={$categoryBg}
-              >
-                {colInfo.categories[0].name}
-              </Category>
-              <Title>{colInfo.title}</Title>
-              <Author>{colInfo.author.name}</Author>
-            </InfoBox>
-          </Container>
-        ))}
-      </Wapper>
+            >
+              <Photo
+                src={
+                  colInfo.image
+                    ? colInfo.image
+                    : "/img/communitySampleImage.svg"
+                }
+                alt="mentorColumn"
+              />
+              {/* <Photo src={`${colInfo.image}`} alt="mentorColumn" /> */}
+              <InfoBox>
+                <Category
+                  $categoryColor={$categoryColor}
+                  $categoryBg={$categoryBg}
+                >
+                  {colInfo.categories[0].name}
+                </Category>
+                <Title>{colInfo.title}</Title>
+                <Author>{colInfo.author.name}</Author>
+              </InfoBox>
+            </Container>
+          ))}
+        </Wapper>
+      ) : (
+        <BlankContainer>
+          <BlankText>
+            커뮤니티에서 {username}님께 도움이 될만한 칼럼을 스크랩해 보세요
+          </BlankText>
+        </BlankContainer>
+      )}
     </>
   );
 };
@@ -124,4 +108,17 @@ const Author = styled.div`
   color: #a4a4a4;
   font-size: 10px;
   font-weight: 500;
+`;
+
+const BlankContainer = styled.div`
+  margin-top: 17px;
+  border-radius: 15px;
+  background: #f8f8f8;
+  padding: 25px 20px;
+  width: 480px;
+`;
+const BlankText = styled.div`
+  color: #494949;
+  font-size: 15px;
+  font-weight: 600;
 `;
