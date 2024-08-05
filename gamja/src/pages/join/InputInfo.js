@@ -424,6 +424,7 @@ const MentoMentiBtn = styled.div`
   margin-top: 115px;
   width: 520px;
   gap: 20px;
+  cursor: pointer;
   input {
     display: none;
   }
