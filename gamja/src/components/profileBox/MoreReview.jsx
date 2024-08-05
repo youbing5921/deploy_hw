@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
+import axios from "axios";
 
-const MoreReview = ({ reviews }) => {
+const MoreReview = ({ reviewId }) => {
+  const [reviews, setReviews] = useState([]);
+  const accessToken = localStorage.getItem("access");
+
+  useEffect(() => {
+    const getReviewMore = () => {
+      axios
+        .get(`http://127.0.0.1:8000/review/${reviewId}/mentors/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          console.log(response.data);
+          setReviews(response.data.reverse());
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getReviewMore();
+  }, [accessToken, reviewId]);
+
   return (
     <>
       {reviews.map((review) => (
