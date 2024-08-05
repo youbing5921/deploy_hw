@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -6,11 +7,12 @@ const is_mentor = localStorage.getItem("is_mentor") === "true";
 
 const CommunityContainer = ({
   communityList,
-  toggleScraption,
   forSpecialMentor,
   mentor_name,
 }) => {
+  const accessToken = localStorage.getItem("access");
   const navigate = useNavigate();
+
   const onClick = (column) => {
     navigate(`/community/${column.id}`, {
       state: {
@@ -18,6 +20,24 @@ const CommunityContainer = ({
       },
     });
   };
+
+  const toggleScraption = (e, id) => {
+    e.stopPropagation();
+    sendScrapInfo(id);
+  };
+
+  function sendScrapInfo(id) {
+    axios
+      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((response) => {
+        console.log(response.data);
+        console.log("스크랩 결과", response.data.is_scraped);
+      })
+      .catch((error) => console.log(error));
+    window.location.reload();
+  }
 
   return (
     <ListContainer>

@@ -31,28 +31,11 @@ const CommunityPage = () => {
     [selectedCategory]
   );
 
-  const toggleScraption = (e, id) => {
-    e.stopPropagation();
-    let copiedList = [...communityList];
-    copiedList[id - 1].is_scraped = !copiedList[id - 1].is_scraped;
-    setCommunityList(copiedList);
-    sendScrapInfo(id);
-  };
-
-  function sendScrapInfo(id) {
-    axios
-      .post(`http://127.0.0.1:8000/community/columns/${id}/scrap/`, null, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((response) => console.log(response.data))
-      .catch((error) => console.log(error));
-  }
-
   // 서버에서 칼럼 목록 불러오기
   useEffect(() => {
     const uri = forSpecialMentor ? `/mentor/?mentor_id=${mentor_id}` : `/`;
     axios
-      .get(`http://127.0.0.1:8000/community/columns${uri}`, null, {
+      .get(`http://127.0.0.1:8000/community/columns${uri}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
@@ -74,7 +57,6 @@ const CommunityPage = () => {
       </TopContainer>
       <CommunityContainer
         communityList={filteredCategory.reverse()}
-        toggleScraption={toggleScraption}
         forSpecialMentor={forSpecialMentor}
         mentor_name={mentor_name}
       />
