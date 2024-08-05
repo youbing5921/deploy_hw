@@ -65,7 +65,7 @@ const MentorReco = ({ infoList }) => {
 
         <ReviewBox>
           <SemiTitle>멘토님의 멘토링 후기</SemiTitle>
-          <Review review={mentor.myReview} />
+          <Review review={mentor.myReview} mentorInfo={mentorInfo} />
         </ReviewBox>
       </MentorContainer>
 

@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import MentorImg from "../../images/MentorImg.svg";
+import { useNavigate } from "react-router-dom";
 
-const Review = ({ review }) => {
+const Review = ({ review, mentorInfo }) => {
+  const navigate = useNavigate();
   return (
     <>
       <Container>
@@ -23,7 +25,13 @@ const Review = ({ review }) => {
             </Left>
             <Right>
               <High>
-                <MoreBtn>더보기</MoreBtn>
+                <MoreBtn
+                  onClick={() =>
+                    navigate(`/profile/mentor/review-list/${mentorInfo.user}`)
+                  }
+                >
+                  더보기
+                </MoreBtn>
               </High>
             </Right>
           </Top>
