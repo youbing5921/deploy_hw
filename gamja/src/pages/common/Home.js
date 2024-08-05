@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import QuoteSection from "../../components/home/QuoteSection";
 import SearchCard from "../../components/home/SearchCard";
 import ChatCard from "../../components/home/ChatCard";
@@ -17,6 +17,7 @@ import menteeBtn4 from "../../images/menteeBtn4.svg";
 
 const Home = () => {
   const navigate = useNavigate();
+  const username = localStorage.getItem("name");
   const userType = localStorage.is_mentor === "true" ? "mentor" : "mentee";
 
   return (
@@ -54,7 +55,7 @@ const Home = () => {
               <MypageCard
                 $fontColor={"#fff"}
                 $bgimg={mentorBtn4}
-                onBtnClick={() => navigate("/mypage/mentor/:username")}
+                onBtnClick={() => navigate(`/mypage/mentor/${username}`)}
               />
             </Cards>
           </Container>
@@ -90,7 +91,7 @@ const Home = () => {
               />
               <MypageCard
                 $bgimg={menteeBtn4}
-                onBtnClick={() => navigate("/mypage/mentee/:username")}
+                onBtnClick={() => navigate(`/mypage/mentee/${username}`)}
               />
             </Cards>
           </Container>
