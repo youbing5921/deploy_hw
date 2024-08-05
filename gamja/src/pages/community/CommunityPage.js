@@ -17,7 +17,7 @@ const CommunityPage = () => {
   const forSpecialMentor = location.pathname.includes("mentor");
   const mentor_id = forSpecialMentor ? location.state.mentor_id : 0;
   const mentor_name = forSpecialMentor ? location.state.mentor_name : "";
-  console.log("mentor_name", mentor_name);
+
   useEffect(
     () =>
       setFilteredCategory(
