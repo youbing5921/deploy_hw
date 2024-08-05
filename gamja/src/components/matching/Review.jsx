@@ -1,35 +1,34 @@
 import React from "react";
 import styled from "styled-components";
-import MenteeImg from "../../images/MenteeImg.svg";
+import MentorImg from "../../images/MentorImg.svg";
 
 const Review = ({ review }) => {
   return (
     <>
       <Container>
-        {review.length === 0 ? null : (
-          <>
-            {" "}
-            <Top>
-              <Left>
-                <Low>
-                  <Profile src={MenteeImg} alt="menteeImg" />
-                </Low>
+        <>
+          <Top>
+            <Left>
+              <Low>
+                <Profile src={MentorImg} alt="menteeImg" />
+              </Low>
+              {review.length === 0 ? null : (
                 <Middle>
                   <Username>{review.mentee_name}</Username>
                   {review.chatroom_interests.map((elt, idx) => (
                     <Category key={idx}>{elt.name}</Category>
                   ))}
                 </Middle>
-              </Left>
-              <Right>
-                <High>
-                  <MoreBtn>더보기</MoreBtn>
-                </High>
-              </Right>
-            </Top>
-            <Comment>{review.content}</Comment>
-          </>
-        )}
+              )}
+            </Left>
+            <Right>
+              <High>
+                <MoreBtn>더보기</MoreBtn>
+              </High>
+            </Right>
+          </Top>
+          <Comment>{review.content}</Comment>
+        </>
       </Container>
     </>
   );
