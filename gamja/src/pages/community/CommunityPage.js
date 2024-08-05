@@ -4,7 +4,7 @@ import TopBar from "../../components/community/TopBar";
 import CategoryBar from "../../components/community/CategoryBar";
 import CommunityContainer from "../../components/community/CommunityContainer";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const CommunityPage = () => {
   const navigate = useNavigate();
@@ -13,7 +13,11 @@ const CommunityPage = () => {
   const [filteredCategory, setFilteredCategory] = useState(communityList);
   const accessToken = localStorage.getItem("access");
   const is_mentor = localStorage.getItem("is_mentor") === "true";
-
+  const location = useLocation();
+  const forSpecialMentor = location.pathname.includes("mentor");
+  const mentor_id = forSpecialMentor ? location.state.mentor_id : 0;
+  const mentor_name = forSpecialMentor ? location.state.mentor_name : "";
+  console.log("mentor_name", mentor_name);
   useEffect(
     () =>
       setFilteredCategory(
@@ -45,9 +49,10 @@ const CommunityPage = () => {
 
   // 서버에서 칼럼 목록 불러오기
   useEffect(() => {
+    const uri = forSpecialMentor ? `/mentor/?mentor_id=${mentor_id}` : `/`;
     axios
-      .get(`http://127.0.0.1:8000/community/columns/`, null, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("access")}` },
+      .get(`http://127.0.0.1:8000/community/columns${uri}`, null, {
+        headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
         setCommunityList(response.data);
@@ -68,6 +73,8 @@ const CommunityPage = () => {
       <CommunityContainer
         communityList={filteredCategory}
         toggleScraption={toggleScraption}
+        forSpecialMentor={forSpecialMentor}
+        mentor_name={mentor_name}
       />
       {is_mentor ? (
         <WriteCol>
