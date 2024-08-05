@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import TopBar from "../../components/community/TopBar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
@@ -12,10 +12,9 @@ const CommunityPage = () => {
   const accessToken = localStorage.getItem("access");
   const [scrap, setScrap] = useState(false);
   const [subscribe, setSubscribe] = useState(false);
+  const is_mentor = localStorage.getItem("is_mentor") === "true";
+  const navigate = useNavigate();
   console.log("지금은?", communityList);
-
-  const searchBtn = document.querySelector("#searchBtn");
-  searchBtn.style.display = "none";
 
   const toggleScraption = () => {
     sendScrapInfo(communityList.id);
@@ -28,6 +27,8 @@ const CommunityPage = () => {
 
   const showMentorProfile = () => {
     console.log("멘토 프로필 보여주기");
+    console.log(typeof column.author.id);
+    navigate(`/profile/mentor/${column.author.id}`);
   };
 
   function sendScrapInfo(id) {
@@ -45,6 +46,8 @@ const CommunityPage = () => {
   }
 
   useEffect(() => {
+    const searchBtn = document.querySelector("#searchBtn");
+    searchBtn.style.display = "none";
     axios
       .get(
         `http://127.0.0.1:8000/community/columns/${communityList.id}/`,
@@ -90,24 +93,14 @@ const CommunityPage = () => {
         <HorizonLine />
         <MainText>{communityList.content}</MainText>
         {communityList.image ? (
-          <ColumnImg src={`/${communityList.image}`} />
+          <ColumnImg src={`${communityList.image}`} />
         ) : null}
       </Column>
       <WriterInfo>
         <Text>
-          <div>
-            <WriterName onClick={showMentorProfile}>
-              {communityList.author.name}
-            </WriterName>
-            {is_mentor ? null : (
-              <SubscribeButton onClick={toggleSubscribe}>
-                <img
-                  src={`/img/Follow${subscribe ? "Yellow" : "Gray"}.svg`}
-                  alt={scrap ? "scraping" : "notScraping"}
-                />
-              </SubscribeButton>
-            )}
-          </div>
+          <WriterName onClick={is_mentor ? null : showMentorProfile}>
+            {communityList.author.name}
+          </WriterName>
           <CategoryList>
             {communityList.author.mentor_profile.interests_display.map(
               (value, idx) => (
@@ -116,7 +109,7 @@ const CommunityPage = () => {
             )}
           </CategoryList>
         </Text>
-        <WriterImg onClick={showMentorProfile} />
+        <WriterImg onClick={is_mentor ? null : showMentorProfile} />
       </WriterInfo>
     </Container>
   );
@@ -278,7 +271,7 @@ const WriterName = styled.p`
   font-weight: 500;
   letter-spacing: -0.66px;
   margin: 0;
-  cursor: pointer;
+  cursor: ${is_mentor ? null : "pointer"};
 `;
 
 const CategoryList = styled.div`
@@ -310,5 +303,5 @@ const WriterImg = styled.img.attrs({
   width: 125px;
   height: 125px;
   margin: -80px -3px 0 auto;
-  cursor: pointer;
+  cursor: ${is_mentor ? null : "pointer"};
 `;

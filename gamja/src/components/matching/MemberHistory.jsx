@@ -1,35 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import MenteeImg from "../../images/MenteeImg.svg";
+import MentorImg from "../../images/MentorImg.svg";
 
-const users = [
-  {
-    id: 1,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 2,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 3,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-  {
-    id: 4,
-    username: "돈이 뭐길래",
-    categories: ["재테크", "인간관계"],
-    concern: "사랑하는 사람과 경제적 수준 차이가 고민이에요",
-  },
-];
-
-const MentorHistory = ({ record }) => {
+const MentorHistory = ({ record, mentoring }) => {
   return (
     <Wrapper>
       <CategoryBox>
@@ -46,22 +19,22 @@ const MentorHistory = ({ record }) => {
         })}
       </CategoryBox>
       <Right>
-        {users.map((user) => (
-          <Container key={user.id}>
+        {mentoring.map((elt) => (
+          <Container key={elt.id}>
             <InfoBox>
               <PhotoBox>
-                <Profile src={MenteeImg} alt="profileImg" />
+                <Profile src={MentorImg} alt="profileImg" />
               </PhotoBox>
               <NameBox>
-                <Username>{user.username}</Username>
+                <Username>{elt.mentee_name}</Username>
                 <ContentCategoryBox>
-                  {user.categories.map((category, idx) => (
-                    <ContentCategory key={idx}>{category}</ContentCategory>
+                  {elt.interests.map((category, idx) => (
+                    <ContentCategory key={idx}>{category.name}</ContentCategory>
                   ))}
                 </ContentCategoryBox>
               </NameBox>
             </InfoBox>
-            <ConcernBox>{user.concern}</ConcernBox>
+            <ConcernBox>{elt.title}</ConcernBox>
           </Container>
         ))}
       </Right>

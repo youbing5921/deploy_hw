@@ -4,7 +4,12 @@ import styled from "styled-components";
 
 const is_mentor = localStorage.getItem("is_mentor") === "true";
 
-const CommunityContainer = ({ communityList, toggleScraption }) => {
+const CommunityContainer = ({
+  communityList,
+  toggleScraption,
+  forSpecialMentor,
+  mentor_name,
+}) => {
   const navigate = useNavigate();
   const onClick = (column) => {
     navigate(`/community/${column.id}`, {
@@ -16,6 +21,11 @@ const CommunityContainer = ({ communityList, toggleScraption }) => {
 
   return (
     <ListContainer>
+      <ForSpecialMentor style={{ display: forSpecialMentor ? "flex" : "none" }}>
+        <img src="/img/MenteeImage.svg" alt="멘토 이미지" />
+        <p>{mentor_name}</p>
+        <img src="/img/x.svg" alt="x" />
+      </ForSpecialMentor>
       {communityList.map((column) => (
         <ColumnBox key={column.id} onClick={() => onClick(column)}>
           <Profile
@@ -47,6 +57,33 @@ const ListContainer = styled.div`
   padding: 0px 40px 25px 40px;
   margin-top: 180px;
   margin-bottom: ${is_mentor ? "110px" : "0px"};
+`;
+
+const ForSpecialMentor = styled.div`
+  width: 490px;
+  height: 40px;
+  padding: 18px 14px;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  img:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    margin-right: 8px;
+  }
+  p {
+    margin: auto 0;
+    color: #494949;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  img:nth-child(3) {
+    width: 25px;
+    height: 25px;
+    margin: auto 0 auto auto;
+  }
 `;
 
 const ColumnBox = styled.div`

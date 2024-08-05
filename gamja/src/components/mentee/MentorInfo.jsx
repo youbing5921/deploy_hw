@@ -79,7 +79,18 @@ const MentorInfo = ({ infoList }) => {
           </MiddleBox>
           <RateBox rating={mentor.rating} />
           <BtnBox>
-            <GoRead>칼럼 읽기</GoRead>
+            <GoRead
+              onClick={() =>
+                navigate(`/community/mentor/${mentor.mentor_id}/`, {
+                  state: {
+                    mentor_id: mentor.mentor_id,
+                    mentor_name: mentor.mentor_name,
+                  },
+                })
+              }
+            >
+              칼럼 읽기
+            </GoRead>
             <GoChat
               onClick={() =>
                 navigate(`/chat-create/mentee/${mentor.mentor_id}`)
