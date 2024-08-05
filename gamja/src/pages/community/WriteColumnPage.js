@@ -222,7 +222,7 @@ const ColTitle = styled.div`
 
   input {
     color: #494949;
-    font-family: Inter;
+    font-family: Pretendard;
     font-size: 30px;
     font-style: normal;
     font-weight: 500;
@@ -266,7 +266,7 @@ const ColInfo = styled.div`
   p {
     margin: 0;
     color: #494949;
-    font-family: Inter;
+    font-family: Pretendard;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -308,7 +308,7 @@ const MainText = styled.p`
     resize: none;
 
     color: #7f7f7f;
-    font-family: Inter;
+    font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;

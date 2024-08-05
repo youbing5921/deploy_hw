@@ -192,7 +192,7 @@ const ColTitle = styled.div`
   display: flex;
   align-items: center;
   color: #494949;
-  font-family: Inter;
+  font-family: Pretendard;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
@@ -227,7 +227,7 @@ const ColInfo = styled.div`
   p {
     margin: 0;
     color: #494949;
-    font-family: Inter;
+    font-family: Pretendard;
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
@@ -260,7 +260,7 @@ const HorizonLine = styled.hr`
 const MainText = styled.p`
   margin: 0 40px;
   color: #7f7f7f;
-  font-family: Inter;
+  font-family: Pretendard;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -313,7 +313,7 @@ const Text = styled.div`
 
 const WriterName = styled.p`
   color: #494949;
-  font-family: Inter;
+  font-family: Pretendard;
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
