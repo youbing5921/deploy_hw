@@ -32,22 +32,26 @@ const MyConcernList = () => {
   }, [accessToken]);
 
   const deleteConcern = (e) => {
-    let concern = e ? e.target.id : "";
-    axios
-      .delete(`${Server_IP}/concerns/${concern}/`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      })
-      .then((response) => {
-        // console.log(response.data);
-        alert("고민이 삭제되었습니다.");
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("삭제에 실패했습니다.");
-      });
+    if (!window.confirm("고민을 지우시겠습니까?")) {
+      return;
+    } else {
+      let concern = e ? e.target.id : "";
+      axios
+        .delete(`${Server_IP}/concerns/${concern}/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          // console.log(response.data);
+          alert("고민이 삭제되었습니다.");
+          window.location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("삭제에 실패했습니다.");
+        });
+    }
   };
 
   return (
