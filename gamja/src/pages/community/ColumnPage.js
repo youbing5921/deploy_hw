@@ -77,6 +77,7 @@ const CommunityPage = () => {
         },
       })
       .then((response) => {
+        // console.log(response.data);
         setColumn(response.data);
         setScrap(response.data.is_scraped);
       })

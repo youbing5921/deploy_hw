@@ -64,7 +64,6 @@ const CommunityPage = () => {
   // 서버에서 칼럼 목록 불러오기
   useEffect(() => {
     const uri = forSpecialMentor ? `/mentor/?mentor_id=${mentor_id}` : `/`;
-    const Server_IP = process.env.REACT_APP_Server_IP;
     axios
       .get(`${Server_IP}/community/columns${uri}`, {
         headers: { Authorization: `Bearer ${accessToken}` },

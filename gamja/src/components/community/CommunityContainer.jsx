@@ -35,9 +35,9 @@ const CommunityContainer = ({
       .then((response) => {
         // console.log(response.data);
         // console.log("스크랩 결과", response.data.is_scraped);
+        window.location.reload();
       })
       .catch((error) => console.log(error));
-    window.location.reload();
   }
 
   return (
