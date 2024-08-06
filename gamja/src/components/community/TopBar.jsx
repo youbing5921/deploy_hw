@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import BackBtn from "./BackBtn";
 
-const TopBar = ({ txt, $marginLeft, search }) => {
+const TopBar = ({ txt, $marginLeft, search, noSearch }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,7 +11,7 @@ const TopBar = ({ txt, $marginLeft, search }) => {
       <Header>
         <BackBtn onClick={() => navigate(-1)} />
         <Title $marginLeft={$marginLeft}>{txt}</Title>
-        <Search id="searchBtn">
+        <Search id="searchBtn" style={{ display: noSearch ? "none" : "flex" }}>
           <img src="/img/searchBtn.svg" alt="search" onClick={search} />
         </Search>
       </Header>
