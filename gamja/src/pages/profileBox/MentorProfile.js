@@ -103,7 +103,6 @@ const MentorBox = styled.div`
 const Top = styled.div`
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 `;
 
 const Left = styled.div``;
@@ -131,6 +130,7 @@ const CloseBtn = styled.img`
   width: 25px;
   height: 25px;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 const CategoryBox = styled.div`
