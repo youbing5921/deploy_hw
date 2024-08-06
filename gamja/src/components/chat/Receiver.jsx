@@ -62,12 +62,12 @@ const Username = styled.div`
 `;
 
 const WhiteMessage = styled.div`
-  max-width: 332px;
-  padding: 20px 25px;
+  max-width: 320px;
+  padding: 15px 20px;
   border-radius: 15px;
   background: #fff;
   color: #494949;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   margin-right: auto;
 `;
