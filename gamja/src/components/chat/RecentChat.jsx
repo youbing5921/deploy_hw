@@ -5,11 +5,11 @@ import { matchPath } from "react-router";
 import ChatMentor from "../../images/ChatMentor.svg";
 import ChatMentee from "../../images/ChatMentee.svg";
 
-const RecentChat = ({ chatList = [] }) => {
+const RecentChat = ({ chatList }) => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
 
-  if (matchPath("/chat-list/mentor/:username", location)) {
+  if (matchPath("/chat-list/mentor", location)) {
     return (
       <>
         {chatList?.map((chat) => (
@@ -35,7 +35,7 @@ const RecentChat = ({ chatList = [] }) => {
       </>
     );
   }
-  if (matchPath("/chat-list/mentee/:username", location)) {
+  if (matchPath("/chat-list/mentee", location)) {
     return (
       <>
         {chatList?.map((chat) => (
