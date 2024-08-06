@@ -5,6 +5,14 @@ import Arrow from "../../images/Arrow.svg";
 import MenteeImg from "../../images/MenteeImg.svg";
 
 const UserInfo = ({ Info }) => {
+  const alertEdit = () => {
+    if (!window.confirm("회원정보를 수정하시겠습니까?")) {
+      return;
+    } else {
+      navigate("/mypage/mentor/edit");
+    }
+  };
+
   const navigate = useNavigate();
   return (
     <>
@@ -12,11 +20,7 @@ const UserInfo = ({ Info }) => {
         <Profile src={MenteeImg} alt="profileImg" />
         <NameBox>
           <Username>{Info.name}</Username>
-          <Next
-            src={Arrow}
-            alt="바로가기"
-            onClick={() => navigate("/mypage/mentor/edit/:username}")}
-          />
+          <Next src={Arrow} alt="바로가기" onClick={alertEdit} />
         </NameBox>
         <CategoryContainer>
           {Info.info?.interests_display.map((interest, idx) => (

@@ -31,27 +31,27 @@ const MessageBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 `;
 
 const BlueMessage = styled.div`
-  max-width: 332px;
-  padding: 20px 25px;
+  max-width: 320px;
+  padding: 15px 20px;
   border-radius: 15px;
   background: #03aed2;
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   margin-left: auto;
 `;
 
 const YellowMessage = styled.div`
-  max-width: 332px;
-  padding: 20px 25px;
+  max-width: 320px;
+  padding: 15px 20px;
   border-radius: 15px;
   background: #fdde55;
   color: #494949;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   margin-left: auto;
 `;

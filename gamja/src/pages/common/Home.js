@@ -45,7 +45,7 @@ const Home = () => {
                 txt={"멘티"}
                 $fontColor={"#fff"}
                 $bgimg={mentorBtn2}
-                onBtnClick={() => navigate("/chat-list/mentor/:username")}
+                onBtnClick={() => navigate("/chat-list/mentor")}
               />
               <CommunityCard
                 $fontColor={"#fff"}
@@ -83,7 +83,7 @@ const Home = () => {
               <ChatCard
                 txt={"멘토"}
                 $bgimg={menteeBtn2}
-                onBtnClick={() => navigate("/chat-list/mentee/:username")}
+                onBtnClick={() => navigate("/chat-list/mentee")}
               />
               <CommunityCard
                 $bgimg={menteeBtn3}

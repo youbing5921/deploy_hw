@@ -81,6 +81,10 @@ const Container = styled.div`
   width: 600px;
   margin: 0 auto;
   height: 1230px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ListBox = styled.div`
