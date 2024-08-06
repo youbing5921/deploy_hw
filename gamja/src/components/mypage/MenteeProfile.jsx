@@ -6,16 +6,20 @@ import MentorImg from "../../images/MentorImg.svg";
 
 const MenteeProfile = ({ Info }) => {
   const navigate = useNavigate();
+  const alertEdit = () => {
+    if (!window.confirm("정보를 수정하시겠습니까?")) {
+      return;
+    } else {
+      navigate("/mypage/mentee/edit");
+    }
+  };
+
   return (
     <ProfileBox>
       <Profile src={MentorImg} alt="profileImg" />
       <NameBox>
         <Username>{Info.name}</Username>
-        <Next
-          src={Arrow}
-          alt="바로가기"
-          onClick={() => navigate("/mypage/mentee/edit/:username")}
-        />
+        <Next src={Arrow} alt="바로가기" onClick={alertEdit} />
       </NameBox>
     </ProfileBox>
   );

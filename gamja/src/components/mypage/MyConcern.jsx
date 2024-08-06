@@ -20,7 +20,7 @@ const MyConcern = ({ Info }) => {
                 지난 고민 보기
               </Button>
             )}
-            <Button onClick={() => navigate("/concern/write/")}>
+            <Button onClick={() => navigate("/mypage/concern/write/")}>
               고민 생성하기
             </Button>
           </ButtonBox>

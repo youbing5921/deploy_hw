@@ -35,9 +35,9 @@ const ChatRoomMentor = () => {
   }, [accessToken, roomId]);
 
   const handleNewMessage = (newMessage) => {
-    setChatRoomData((prevData) => ({
-      ...prevData,
-      chats: [...prevData.chats, newMessage],
+    setChatRoomData((prevMessages) => ({
+      ...prevMessages,
+      chats: [...prevMessages.chats, newMessage],
     }));
   };
 

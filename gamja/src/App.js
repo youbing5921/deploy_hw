@@ -32,7 +32,6 @@ import MentorJournalWrite from "./pages/mypage/MentorJournalWrite";
 import MenteeJournalWrite from "./pages/mypage/MenteeJournalWrite";
 import JournalDetail from "./pages/mypage/JournalDetail";
 import WriteConcern from "./pages/mentee/WriteConcern";
-import EditConcern from "./pages/mentee/EditConcern";
 import EditProfile from "./pages/mentor/EditProfile";
 import EditMentee from "./pages/mentee/EditMentee";
 import WriteReview from "./pages/mentee/WriteReview";
@@ -59,51 +58,30 @@ function App() {
         <Route path="/login/findPw" element={<FindIdPw />}></Route>
         <Route path="/login/findId/result" element={<FindResult />}></Route>
         <Route path="/login/findPw/result" element={<FindResult />}></Route>
-
+        {/* 홈 */}
         <Route path="/home" element={<Home />}></Route>
+        {/* 멘티돕기,멘토찾기 */}
         <Route path="/concerns" element={<ConcernsPage />}></Route>
         <Route path="/find" element={<FindMentor />}></Route>
-        <Route
-          path="/chat-list/mentor/:username"
-          element={<ChatListMentor />}
-        ></Route>
-        <Route
-          path="/chat-list/mentee/:username"
-          element={<ChatListMentee />}
-        ></Route>
+        {/* 채팅하기 */}
+        <Route path="/chat-list/mentor" element={<ChatListMentor />}></Route>
+        <Route path="/chat-list/mentee" element={<ChatListMentee />}></Route>
         <Route path="/chat/mentor/:roomId" element={<ChatRoomMentor />}></Route>
         <Route path="/chat/mentee/:roomId" element={<ChatRoomMentee />}></Route>
         <Route
           path="/chat-create/mentee/:mentorId"
           element={<CreateChat />}
         ></Route>
-
         {/* 카테고리 및 매칭 */}
         <Route path="/category/mentor" element={<Category />}></Route>
         <Route path="/category/mentee" element={<Category />}></Route>
         <Route path="/matching" element={<Matching />}></Route>
-
+        {/* 마이페이지 */}
         <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
         <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
-        <Route
-          path="/profile/mentor/:mentorId"
-          element={<MentorProfile />}
-        ></Route>
-        <Route
-          path="/profile/mentee/:menteeId"
-          element={<MenteeProfile />}
-        ></Route>
-
-        {/* 커뮤니티 */}
-        <Route path="/community" element={<Community />}></Route>
-        <Route path="/community/:colId" element={<Column />}></Route>
-        <Route path="/community/write" element={<WriteColumnPage />}></Route>
-        <Route path="/community/modify" element={<WriteColumnPage />}></Route>
-        <Route
-          path="/community/mentor/:mentorId"
-          element={<Community />}
-        ></Route>
-
+        <Route path="/mypage/mentor/edit" element={<EditProfile />}></Route>
+        <Route path="/mypage/mentee/edit" element={<EditMentee />}></Route>
+        {/* 일지 */}
         <Route
           path="/mypage/mentor/journal/select/"
           element={<MentorSelectChat />}
@@ -124,18 +102,30 @@ function App() {
           path="/mypage/journal/detail/:id"
           element={<JournalDetail />}
         ></Route>
-        <Route path="/concern/write/" element={<WriteConcern />}></Route>
-        <Route path="/concern/edit/:id" element={<EditConcern />}></Route>
-        <Route
-          path="/mypage/mentor/edit/:username"
-          element={<EditProfile />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/edit/:username"
-          element={<EditMentee />}
-        ></Route>
-        <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
+        {/* 고민 */}
         <Route path="/mypage/concerns-list/" element={<AllConcerns />}></Route>
+        <Route path="/mypage/concern/write/" element={<WriteConcern />}></Route>
+        {/* 상대방 프로필 조회 */}
+        <Route
+          path="/profile/mentor/:mentorId"
+          element={<MentorProfile />}
+        ></Route>
+        <Route
+          path="/profile/mentee/:menteeId"
+          element={<MenteeProfile />}
+        ></Route>
+        {/* 커뮤니티 */}
+        <Route path="/community" element={<Community />}></Route>
+        <Route path="/community/:colId" element={<Column />}></Route>
+        <Route path="/community/write" element={<WriteColumnPage />}></Route>
+        <Route path="/community/modify" element={<WriteColumnPage />}></Route>
+        <Route
+          path="/community/mentor/:mentorId"
+          element={<Community />}
+        ></Route>
+        {/* 리뷰작성 및 리뷰 더보기 목록 */}
+        <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
+
         <Route
           path="/profile/mentor/review-list/:mentorId"
           element={<ReviewList />}
