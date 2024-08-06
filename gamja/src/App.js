@@ -80,6 +80,23 @@ function App() {
         <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
         <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
         <Route
+          path="/mypage/mentor/edit/:username"
+          element={<EditProfile />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/edit/:username"
+          element={<EditMentee />}
+        ></Route>
+        {/* 일지 */}
+        <Route
+          path="/mypage/mentor/journal/select/"
+          element={<MentorSelectChat />}
+        ></Route>
+        <Route
+          path="/mypage/mentee/journal/select/"
+          element={<MenteeSelectChat />}
+        ></Route>
+        <Route
           path="/mypage/mentor/journal/write/:roomId"
           element={<MentorJournalWrite />}
         ></Route>
@@ -91,16 +108,9 @@ function App() {
           path="/mypage/journal/detail/:id"
           element={<JournalDetail />}
         ></Route>
+        {/* 고민 */}
         <Route path="/mypage/concerns-list/" element={<AllConcerns />}></Route>
         <Route path="/mypage/concern/write/" element={<WriteConcern />}></Route>
-        <Route
-          path="/mypage/mentor/edit/:username"
-          element={<EditProfile />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/edit/:username"
-          element={<EditMentee />}
-        ></Route>
         {/* 상대방 프로필 조회 */}
         <Route
           path="/profile/mentor/:mentorId"
@@ -120,14 +130,6 @@ function App() {
           element={<Community />}
         ></Route>
         {/* 리뷰작성 및 리뷰 더보기 목록 */}
-        <Route
-          path="/mypage/mentor/journal/select/"
-          element={<MentorSelectChat />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/journal/select/"
-          element={<MenteeSelectChat />}
-        ></Route>
         <Route path="/review/write/:roomId" element={<WriteReview />}></Route>
 
         <Route
