@@ -70,15 +70,16 @@ const InputMessage = ({ roomId, onMessageSent }) => {
 export default InputMessage;
 
 const InputBox = styled.footer`
-  position: relative;
+  /* position: relative; */
   display: inline-flex;
   padding: 27px 40px;
   align-items: center;
   background: #f8f8f8;
+  gap: 10px;
 `;
 
 const Input = styled.input`
-  width: 490px;
+  width: 440px;
   height: 51px;
   border: none;
   border-radius: 100px;
@@ -91,15 +92,15 @@ const Input = styled.input`
 `;
 
 const SendButton = styled.button`
-  position: absolute;
-  right: 53px;
+  /* position: absolute; */
+  /* right: 53px; */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 `;
