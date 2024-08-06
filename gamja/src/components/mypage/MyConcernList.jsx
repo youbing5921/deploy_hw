@@ -32,7 +32,7 @@ const MyConcernList = () => {
   }, [accessToken]);
 
   const deleteConcern = (e) => {
-    if (!window.confirm("고민을 지우시겠습니까?")) {
+    if (!window.confirm("고민을 삭제하시겠습니까?")) {
       return;
     } else {
       let concern = e ? e.target.id : "";
