@@ -167,6 +167,7 @@ const Content = styled.textarea`
   font-size: 20px;
   font-weight: 500;
   line-height: 150%;
+  font-family: Pretendard;
   letter-spacing: -0.44px;
   border: none;
   background: none;

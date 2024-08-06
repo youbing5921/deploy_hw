@@ -48,4 +48,8 @@ const Container = styled.div`
   height: 1230px;
   background: #f8f8f8;
   margin: 0 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

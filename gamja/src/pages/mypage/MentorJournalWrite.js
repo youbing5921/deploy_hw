@@ -115,6 +115,7 @@ const TitleInput = styled.input`
   font-size: 30px;
   font-weight: 500;
   line-height: 150%;
+  font-family: Pretendard;
   letter-spacing: -0.66px;
   border: none;
   background: none;
