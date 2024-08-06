@@ -154,11 +154,14 @@ const ReplyBox = styled.div`
 `;
 
 const ReplyInputWrapper = styled.div`
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const ReplyInput = styled.input`
-  width: 442px;
+  width: 400px;
   height: 38px;
   padding: 3px 10px 3px 20px;
   border: none;
@@ -174,17 +177,17 @@ const ReplyInput = styled.input`
 `;
 
 const SendButton = styled.button`
-  position: absolute;
+  /* position: absolute;
   top: 53%;
   right: 10px;
-  transform: translateY(-50%);
+  transform: translateY(-50%); */
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
   }
 `;
