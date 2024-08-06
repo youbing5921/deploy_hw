@@ -67,6 +67,10 @@ const Container = styled.div`
   width: 600px;
   height: 1230px;
   margin: 0 auto;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const TopContainer = styled.div`
