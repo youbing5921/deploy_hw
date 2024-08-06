@@ -142,13 +142,10 @@ const WriteColumnPage = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <ColCategory>
-              <select
-                id="category"
-                onChange={selectCategory}
-                defaultValue={0}
-                style={{ cursor: mode === "write" ? "pointer" : "auto" }}
-              >
+            <ColCategory
+              style={{ display: mode === "write" ? "flex" : "none" }}
+            >
+              <select id="category" onChange={selectCategory} defaultValue={0}>
                 <option disabled hidden value={0}>
                   카테고리 설정
                 </option>
@@ -254,7 +251,6 @@ const ColTitle = styled.div`
 `;
 
 const ColCategory = styled.div`
-  display: flex;
   margin-left: auto;
   height: 18px;
   justify-content: center;
