@@ -129,7 +129,7 @@ const Comment = styled.div`
 
 const BlankText = styled.div`
   padding: 30px 0px;
-  color: #494949;
+  color: #7f7f7f;
   font-size: 15px;
   font-weight: 500;
 `;

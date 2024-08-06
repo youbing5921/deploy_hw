@@ -7,7 +7,7 @@ import MentorImg from "../../images/MentorImg.svg";
 const MenteeProfile = ({ Info }) => {
   const navigate = useNavigate();
   const alertEdit = () => {
-    if (!window.confirm("정보를 수정하시겠습니까?")) {
+    if (!window.confirm("회원정보를 수정하시겠습니까?")) {
       return;
     } else {
       navigate("/mypage/mentee/edit");

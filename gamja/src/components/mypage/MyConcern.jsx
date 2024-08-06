@@ -26,11 +26,11 @@ const MyConcern = ({ Info }) => {
           </ButtonBox>
         </Top>
         <Content>
-          <Concern>
-            {hasConcern
-              ? Info.concern.content
-              : `${username}님의 고민을 공유해 주세요`}
-          </Concern>
+          {hasConcern ? (
+            <Concern>{Info.concern.content}</Concern>
+          ) : (
+            <BlankText>{username}님의 고민을 공유해 주세요</BlankText>
+          )}
           {hasConcern && hasComments && (
             <ReplyWrapper>
               {Info.concern.comments.map((comment, idx) => (
@@ -141,5 +141,11 @@ const Profile = styled.img`
 const Text = styled.div`
   color: #494949;
   font-size: 13px;
+  font-weight: 500;
+`;
+
+const BlankText = styled.div`
+  color: #7f7f7f;
+  font-size: 15px;
   font-weight: 500;
 `;
