@@ -14,7 +14,7 @@ const MenteeProfile = ({ Info }) => {
         <Next
           src={Arrow}
           alt="바로가기"
-          onClick={() => navigate("/mypage/mentee/edit/:username")}
+          onClick={() => navigate("/mypage/mentee/edit")}
         />
       </NameBox>
     </ProfileBox>

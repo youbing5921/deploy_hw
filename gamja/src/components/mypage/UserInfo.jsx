@@ -15,7 +15,7 @@ const UserInfo = ({ Info }) => {
           <Next
             src={Arrow}
             alt="바로가기"
-            onClick={() => navigate("/mypage/mentor/edit/:username}")}
+            onClick={() => navigate("/mypage/mentor/edit")}
           />
         </NameBox>
         <CategoryContainer>

@@ -79,14 +79,8 @@ function App() {
         {/* 마이페이지 */}
         <Route path="/mypage/mentor/:name" element={<MyPageMentor />}></Route>
         <Route path="/mypage/mentee/:name" element={<MypageMentee />}></Route>
-        <Route
-          path="/mypage/mentor/edit/:username"
-          element={<EditProfile />}
-        ></Route>
-        <Route
-          path="/mypage/mentee/edit/:username"
-          element={<EditMentee />}
-        ></Route>
+        <Route path="/mypage/mentor/edit" element={<EditProfile />}></Route>
+        <Route path="/mypage/mentee/edit" element={<EditMentee />}></Route>
         {/* 일지 */}
         <Route
           path="/mypage/mentor/journal/select/"
