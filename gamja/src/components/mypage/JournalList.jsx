@@ -194,7 +194,7 @@ const BlankText = styled.div`
   border-radius: 15px;
   background: #f8f8f8;
   margin-top: 3px;
-  color: #494949;
+  color: #7f7f7f;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 `;

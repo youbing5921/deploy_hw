@@ -8,25 +8,25 @@ const Column = ({ $categoryColor, $categoryBg, Info }) => {
   const navigate = useNavigate();
   const username = localStorage.getItem("name");
   const hasScrap = Info?.length !== 0;
-  
+
   return (
     <>
-    {hasScrap ? (
-      <Wapper>
-        {Info?.map((colInfo, idx) => (
-          <Container
-            key={idx}
-            onClick={() =>
-              navigate(`/community/${colInfo.id}`, {
-                state: { column: Info[idx] },
-              })
-            }
-          >
-            <Photo
-              src={
-                colInfo.image
-                  ? `${Server_IP}/${colInfo.image}`
-                  : "/img/communitySampleImage.svg"
+      {hasScrap ? (
+        <Wapper>
+          {Info?.map((colInfo, idx) => (
+            <Container
+              key={idx}
+              onClick={() =>
+                navigate(`/community/${colInfo.id}`, {
+                  state: { column: Info[idx] },
+                })
+              }
+            >
+              <Photo
+                src={
+                  colInfo.image
+                    ? `${Server_IP}/${colInfo.image}`
+                    : "/img/communitySampleImage.svg"
                 }
                 alt="mentorColumn"
               />
@@ -119,7 +119,7 @@ const BlankContainer = styled.div`
   width: 480px;
 `;
 const BlankText = styled.div`
-  color: #494949;
+  color: #7f7f7f;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 `;
