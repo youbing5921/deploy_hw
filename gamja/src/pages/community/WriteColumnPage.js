@@ -27,10 +27,13 @@ const WriteColumnPage = () => {
   const formData = new FormData();
 
   const selectCategory = (e) => {
-    const form = document.querySelector("#category");
-    setCategories([parseInt(e.target.value)]);
-    form.style.backgroundColor = "rgba(3, 174, 210, 0.20)";
-    form.style.color = "#03AED2";
+    if (mode === "write") {
+      const form = document.querySelector("#category");
+      setCategories([parseInt(e.target.value)]);
+      form.style.backgroundColor = "rgba(3, 174, 210, 0.20)";
+      form.style.color = "#03AED2";
+      alert("카테고리는 수정이 안되니 다시 한 번 확인해주시기 바랍니다.");
+    }
   };
 
   const loadImage = (e) => {
@@ -42,7 +45,9 @@ const WriteColumnPage = () => {
     setImage(temp);
     const imgLoad = document.querySelector("#imgLoad");
     imgLoad.src = "/img/loadedImage.svg";
-    alert("이미지가 업로드되었습니다.");
+    alert(
+      "이미지가 업로드되었습니다.\n이미지는 수정이 안되니 신중하게 선택해주시기 바랍니다."
+    );
   };
 
   function uploadCol() {
@@ -59,12 +64,12 @@ const WriteColumnPage = () => {
       return;
     }
 
-    formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
     formData.append("categories", categories);
 
     if (mode === "write") {
+      formData.append("image", image);
       axios
         .post(`${Server_IP}/community/columns/`, formData, {
           headers: {
@@ -90,12 +95,13 @@ const WriteColumnPage = () => {
   useEffect(() => {
     if (mode === "modify") {
       const imgLoad = document.querySelector("#imgLoad");
-      imgLoad.src = "/img/loadedImage.svg";
+      imgLoad.style.display = "none";
 
       axios
         .get(`${Server_IP}/community/columns/${column_id}/`)
         .then((response) => {
           const data = response.data;
+          // console.log(data);
           setTitle(data.title);
           setCategories([data.categories[0].name]);
           setContent(data.content);
@@ -119,7 +125,11 @@ const WriteColumnPage = () => {
   return (
     <Container>
       <TopContainer>
-        <TopBar txt={"커뮤니티"} onClick={() => navigate("/community")} />
+        <TopBar
+          txt={"커뮤니티"}
+          onClick={() => navigate("/community")}
+          noSearch={true}
+        />
       </TopContainer>
       <Column>
         <Header>
@@ -133,7 +143,12 @@ const WriteColumnPage = () => {
               onChange={(e) => setTitle(e.target.value)}
             />
             <ColCategory>
-              <select id="category" onChange={selectCategory} defaultValue={0}>
+              <select
+                id="category"
+                onChange={selectCategory}
+                defaultValue={0}
+                style={{ cursor: mode === "write" ? "pointer" : "auto" }}
+              >
                 <option disabled hidden value={0}>
                   카테고리 설정
                 </option>
@@ -161,6 +176,7 @@ const WriteColumnPage = () => {
                   src="/img/loadImage.svg"
                   id="imgLoad"
                   alt="이미지 불러오기"
+                  style={{ cursor: mode === "write" ? "pointer" : "auto" }}
                 />
               </label>
             </InputImg>
@@ -221,6 +237,7 @@ const ColTitle = styled.div`
   align-items: center;
 
   input {
+    width: 370px;
     color: #494949;
     font-family: Pretendard;
     font-size: 30px;
@@ -283,7 +300,6 @@ const InputImg = styled.div`
   img {
     width: 30px;
     height: 30px;
-    cursor: pointer;
   }
 `;
 
