@@ -65,7 +65,7 @@ export default FindMentor;
 const Container = styled.div`
   background-color: #ededed;
   width: 600px;
-  height: 1230px;
+  max-height: 1230px;
   margin: 0 auto;
   overflow-y: scroll;
   &::-webkit-scrollbar {
